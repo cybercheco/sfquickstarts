@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Erth to Erth — Mobile App Pricing</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 18mm 18mm 18mm;
+    @bottom-left { content: "Erth to Erth · Mobile App Pricing"; font-family: Georgia, serif; font-size: 9pt; color: #6b665c; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font-family: Georgia, serif; font-size: 9pt; color: #6b665c; }
+  }
+  :root {
+    --bg: #f3efe7;
+    --ink: #1f1d18;
+    --muted: #6b665c;
+    --line: #d9d2c4;
+    --card: #ffffff;
+    --accent: #2f4a36;
+    --accent2: #5a6e44;
+    --accent-soft: #e3ead0;
+    --gold: #b9914c;
+    --warn: #b6643c;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+  .cover {
+    page-break-after: always;
+    padding: 30mm 0 0;
+  }
+  .cover .eyebrow {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 10pt;
+    letter-spacing: 2px;
+    margin-bottom: 8mm;
+  }
+  .cover h1 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 44pt;
+    line-height: 1.05;
+    margin: 0 0 8mm;
+    letter-spacing: -0.5px;
+  }
+  .cover .deck-tagline {
+    font-family: Georgia, serif;
+    color: var(--accent);
+    font-size: 18pt;
+    line-height: 1.3;
+    margin-bottom: 14mm;
+  }
+  .cover .meta {
+    color: var(--muted);
+    font-size: 10pt;
+    border-top: 1px solid var(--line);
+    padding-top: 4mm;
+  }
+  .cover .meta strong { color: var(--ink); }
+
+  h2 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 22pt;
+    color: var(--ink);
+    margin: 0 0 1mm;
+    letter-spacing: -0.2px;
+  }
+  h2 + .lede { color: var(--muted); margin: 0 0 6mm; font-size: 11pt; }
+  .section {
+    page-break-inside: avoid;
+    margin-bottom: 12mm;
+  }
+  .section + .section { padding-top: 2mm; }
+  .eyebrow {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 9pt;
+    letter-spacing: 2px;
+    margin-bottom: 2mm;
+  }
+  .rule {
+    width: 12mm; height: 2pt; background: var(--accent);
+    margin: 4mm 0 6mm;
+  }
+  p { margin: 0 0 4mm; }
+  .muted { color: var(--muted); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+    margin: 3mm 0 6mm;
+  }
+  th, td {
+    border-bottom: 1px solid var(--line);
+    padding: 2.4mm 3mm;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    border-bottom: 1.5pt solid var(--accent);
+  }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  th.num { text-align: right; }
+  tr.total td {
+    border-top: 1.5pt solid var(--accent);
+    border-bottom: none;
+    font-weight: 700;
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .callout {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 3pt solid var(--accent);
+    padding: 4mm 5mm;
+    margin: 4mm 0 6mm;
+    border-radius: 1mm;
+  }
+  .callout .lbl {
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 2mm;
+  }
+  .callout.warn { border-left-color: var(--warn); }
+  .callout.warn .lbl { color: var(--warn); }
+  .callout.gold { border-left-color: var(--gold); }
+  .callout.gold .lbl { color: var(--gold); }
+
+  .grid2 {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4mm;
+    margin: 3mm 0 6mm;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 2mm;
+    padding: 5mm;
+  }
+  .card h4 {
+    margin: 0 0 2mm;
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 13pt;
+    color: var(--accent);
+  }
+  .card p { margin: 0; color: var(--muted); font-size: 10pt; }
+
+  ul.clean { list-style: none; padding: 0; margin: 0 0 4mm; }
+  ul.clean li {
+    padding: 1.5mm 0 1.5mm 6mm;
+    border-bottom: 1px dashed var(--line);
+    position: relative;
+  }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li::before {
+    content: "";
+    position: absolute; left: 0; top: 4mm;
+    width: 2mm; height: 2mm; background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 1mm 3mm;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .pill.warn { background: #f4e1d4; color: var(--warn); }
+
+  .closing {
+    margin-top: 8mm;
+    padding: 8mm;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 2mm;
+  }
+  .closing .lbl {
+    color: var(--accent-soft);
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 3mm;
+  }
+  .closing h3 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 22pt;
+    margin: 0 0 4mm;
+  }
+  .closing p { color: var(--accent-soft); margin: 0 0 3mm; }
+
+  .small { font-size: 9.5pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">INTERNAL · NOT FOR CLIENT</div>
+  <h1>Pricing rationale<br/>Erth to Erth.</h1>
+  <div class="deck-tagline">Why we're not charging $500 / $1,000 flat —<br/>and what to charge instead.</div>
+  <div class="meta">
+    <strong>Audience</strong> &nbsp;·&nbsp; Internal only<br/>
+    <strong>Use</strong> &nbsp;·&nbsp; Reference for the conversation; never share with the brand<br/>
+    <strong>Status</strong> &nbsp;·&nbsp; Draft for discussion
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE PROPOSAL ON THE TABLE</div>
+  <h2>$500/mo for the first 1,000 MAU. $1,000/mo above.</h2>
+  <p class="muted">Two flat tiers. Simple. Round numbers. Easy to explain. We need to talk about why this breaks above 1K MAU and what to do instead.</p>
+  <div class="rule"></div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">REALITY CHECK</div>
+  <h2>What this actually costs us to run.</h2>
+  <p class="lede">Bare infrastructure + AI only — assumes "minimal effort" mode (no allocated maintenance dev). The fixed-cost reality is harsher when we add ~10–15 hours/year of mandatory OS-update work.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>MAU</th>
+        <th class="num">Infra & SaaS</th>
+        <th class="num">AI</th>
+        <th class="num">Our cost / mo</th>
+        <th class="num">Cost per MAU</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1,000</td><td class="num">$140</td><td class="num">$140</td><td class="num">~$280</td><td class="num">$0.28</td></tr>
+      <tr><td>5,000</td><td class="num">$400</td><td class="num">$400</td><td class="num">~$800</td><td class="num">$0.16</td></tr>
+      <tr><td>15,000</td><td class="num">$900</td><td class="num">$1,100</td><td class="num">~$2,000</td><td class="num">$0.13</td></tr>
+      <tr><td>25,000</td><td class="num">$1,200</td><td class="num">$1,500</td><td class="num">~$2,700</td><td class="num">$0.11</td></tr>
+      <tr><td>50,000</td><td class="num">$2,200</td><td class="num">$3,000</td><td class="num">~$5,200</td><td class="num">$0.10</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="lbl">The single biggest variable</div>
+    <p>AI usage. The fit-assistant chat is the line item that can spike. With prompt caching on the brand-voice + catalog system block, the chat cost drops 3–5×. Without it, a viral moment can blow the budget in a weekend.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHY THE FLAT $1,000 BREAKS</div>
+  <h2>Three problems with the proposed model.</h2>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>1. It doesn't scale with our costs.</h4>
+      <p>At 5K MAU our infra+AI alone is ~$800. Margin is $200. At 25K MAU costs are ~$2,700 — we're losing $1,700/month. The flat ceiling inverts the unit economics the moment the app starts working.</p>
+    </div>
+    <div class="card">
+      <h4>2. The 1,001-MAU cliff is jarring.</h4>
+      <p>Revenue 2× overnight on the same product. The brand will notice and push back the day they cross it. Round-number psychology cuts both ways.</p>
+    </div>
+    <div class="card">
+      <h4>3. No upside if it actually works.</h4>
+      <p>If the app reaches 50K MAU we're earning $1K while the brand is getting six-figure value. They either renegotiate (we lose) or they don't (we lose harder).</p>
+    </div>
+    <div class="card">
+      <h4>4. "Minimal effort" isn't zero effort.</h4>
+      <p>Apple and Google force ~2 mandatory maintenance windows / year — sign-in lib changes, push cert rotation, OS API deprecations. Budget 10–15 hrs/year as a fixed cost regardless of MAU. The pricing must cover this even at 0 active users.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">RECOMMENDED MODEL</div>
+  <h2>$500 floor + $0.30 per MAU above 1,000.</h2>
+  <p class="lede">Same two-number simplicity as the original proposal. No cliff. Margin grows with usage instead of inverting. The brand pays nothing extra until the app is working for them.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>MAU</th>
+        <th class="num">They pay</th>
+        <th class="num">Our cost</th>
+        <th class="num">Margin</th>
+        <th class="num">Margin %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1,000</td><td class="num">$500</td><td class="num">$280</td><td class="num">$220</td><td class="num">44%</td></tr>
+      <tr><td>2,500</td><td class="num">$950</td><td class="num">$500</td><td class="num">$450</td><td class="num">47%</td></tr>
+      <tr><td>5,000</td><td class="num">$1,700</td><td class="num">$800</td><td class="num">$900</td><td class="num">53%</td></tr>
+      <tr><td>15,000</td><td class="num">$4,700</td><td class="num">$2,000</td><td class="num">$2,700</td><td class="num">57%</td></tr>
+      <tr><td>25,000</td><td class="num">$7,700</td><td class="num">$2,700</td><td class="num">$5,000</td><td class="num">65%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <div class="lbl">Alternative if linear feels too "metered"</div>
+    <p>Step tiers — $500 / $1,000 / $2,000 / $4,000 at 1K / 5K / 15K MAU bands. Same shape, fewer round-number conversations, but reintroduces small cliffs.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">DEAL-MAKING TACTICS</div>
+  <h2>How to anchor the conversation.</h2>
+  <ul class="clean">
+    <li><strong>Lead with the floor, not the variable.</strong> "$500/mo to start" is the headline. "+$0.30 per MAU above 1K" is the footnote — and it only matters when the app is succeeding.</li>
+    <li><strong>Frame the $0.30 as cost-plus, not margin-grab.</strong> "Covers the AI calls, hosting, and email each new active user generates." It's roughly 2× our true variable cost — fair in this market.</li>
+    <li><strong>Always include an AI overage clause.</strong> "AI usage above 100K LLM calls / month billed at cost +20%." Caps our exposure to a viral moment.</li>
+    <li><strong>Bundle the build differently.</strong> If they push back on per-MAU, offer a flat $1,500/mo with a 24-month minimum and a $20K higher build fee. Gives them predictability; gives us the cash up front.</li>
+    <li><strong>Do not include unlimited support.</strong> Define "minimal effort": one critical-issue response time, one feature ask per quarter, OS-required updates. Anything else is T&M.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT WE DON'T SAY OUT LOUD</div>
+  <h2>Internal-only notes.</h2>
+  <div class="callout warn">
+    <div class="lbl">Cost trap to flag in contract</div>
+    <p>If the brand insists on flat pricing, set the flat number at <strong>$2,000/mo</strong>, not $1,000. That's the level where we stay above water at 5–10K MAU. Anything below assumes they never grow.</p>
+  </div>
+  <div class="callout">
+    <div class="lbl">Real margin target</div>
+    <p>50–60% gross at steady state. Below 40% and we can't fund the next feature; above 65% and the brand will eventually figure it out. The $0.30/MAU rate is calibrated for the middle of that band.</p>
+  </div>
+  <div class="callout">
+    <div class="lbl">Exit clause</div>
+    <p>30-day mutual termination clause. Source code, customer data, model logs in the brand's accounts. We hold no leverage except being good — that's the right pressure to be under.</p>
+  </div>
+</div>
+
+<div class="closing">
+  <div class="lbl">RECOMMENDED ASK</div>
+  <h3>$500/mo + $0.30 per MAU above 1,000. AI overage at cost +20%. 30-day exit.</h3>
+  <p>The original $500 / $1,000 instinct was right at the bottom and wrong at the top. Keep the friendly floor. Replace the cliff with a slope.</p>
+</div>
+
+</body>
+</html>
