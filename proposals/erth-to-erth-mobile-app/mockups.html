@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Erth to Erth — App Mockups</title>
+<style>
+  :root {
+    --bg: #f3efe7;
+    --ink: #1f1d18;
+    --muted: #6b665c;
+    --line: #d9d2c4;
+    --card: #ffffff;
+    --accent: #2f4a36;
+    --accent-soft: #e3ead0;
+    --warn: #b6643c;
+    --gold: #b9914c;
+    --radius: 26px;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header.page {
+    padding: 32px 32px 0;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  header.page h1 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400;
+    font-size: 34px;
+    margin: 0 0 4px;
+    letter-spacing: -0.5px;
+  }
+  header.page p {
+    color: var(--muted);
+    margin: 0 0 24px;
+    font-size: 14px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 32px 24px;
+    padding: 16px 32px 64px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .phone {
+    background: #111;
+    border-radius: 44px;
+    padding: 12px;
+    box-shadow: 0 24px 48px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
+    width: 310px;
+    justify-self: center;
+  }
+  .screen {
+    background: var(--card);
+    border-radius: 32px;
+    overflow: hidden;
+    height: 620px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .notch {
+    position: absolute;
+    top: 8px; left: 50%;
+    transform: translateX(-50%);
+    width: 110px; height: 22px;
+    background: #111;
+    border-radius: 0 0 14px 14px;
+    z-index: 5;
+  }
+  .statusbar {
+    height: 38px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 22px 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 18px 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar h2 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400;
+    font-size: 18px;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+  .icon-btn {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--bg);
+    display: grid; place-items: center;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .body {
+    flex: 1;
+    overflow: hidden;
+    padding: 14px 18px;
+  }
+  .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+  .h {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 22px;
+    margin: 6px 0 14px;
+    line-height: 1.15;
+  }
+  .pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .pill.warn { background: #f4e1d4; color: var(--warn); }
+  .pill.gold { background: #f1e6c8; color: var(--gold); }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  .muted { color: var(--muted); font-size: 12px; }
+  .btn {
+    display: block;
+    text-align: center;
+    background: var(--accent);
+    color: #fff;
+    padding: 12px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .btn.alt { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
+  .tabbar {
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 8px 4px 14px;
+    background: #fff;
+  }
+  .tab {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    font-size: 10px; color: var(--muted);
+  }
+  .tab.active { color: var(--accent); }
+  .tab .dot {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: var(--bg);
+    display: grid; place-items: center;
+    font-size: 12px;
+  }
+  .tab.active .dot { background: var(--accent-soft); }
+  .caption {
+    text-align: center;
+    margin: 12px 0 0;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+  }
+
+  /* Onboarding */
+  .onb {
+    background: linear-gradient(180deg, #d9c9a8 0%, #6e7e5b 100%);
+    color: #fff;
+    flex: 1;
+    padding: 60px 24px 24px;
+    display: flex; flex-direction: column;
+  }
+  .onb .logo {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 22px;
+    letter-spacing: 4px;
+  }
+  .onb h3 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.15;
+    margin: auto 0 12px;
+  }
+  .onb p { font-size: 13px; opacity: .85; margin: 0 0 24px; }
+  .onb .dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 14px; }
+  .onb .dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.4); }
+  .onb .dots span.on { background: #fff; }
+
+  /* Home */
+  .hero {
+    height: 160px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #b6a07a, #4d5b3f);
+    color: #fff;
+    padding: 14px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .hero .tag { font-size: 11px; letter-spacing: 2px; }
+  .hero h3 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .hgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 12px;
+    background: #fff;
+  }
+  .card .swatch {
+    height: 70px; border-radius: 8px; margin-bottom: 8px;
+  }
+
+  /* PDP */
+  .pdp-img {
+    height: 220px;
+    background: linear-gradient(135deg, #c7b58f, #6e7e5b);
+    border-radius: 14px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .pdp-img .qr {
+    position: absolute; bottom: 10px; right: 10px;
+    width: 34px; height: 34px;
+    background: #fff; border-radius: 6px;
+    display: grid; place-items: center;
+    font-size: 18px;
+  }
+  .meta-row { display: flex; gap: 6px; margin: 6px 0 12px; flex-wrap: wrap; }
+
+  /* Scan */
+  .scan {
+    flex: 1;
+    background: #1d1f1a;
+    color: #fff;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 60px 24px 30px;
+  }
+  .reticle {
+    width: 220px; height: 220px;
+    border: 2px solid #fff;
+    border-radius: 24px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .reticle::before, .reticle::after,
+  .reticle > .a, .reticle > .b {
+    content: "";
+    position: absolute;
+    width: 36px; height: 36px;
+    border-color: var(--accent-soft);
+    border-style: solid;
+    border-width: 0;
+  }
+  .reticle::before { top: -2px; left: -2px; border-top-width: 4px; border-left-width: 4px; border-top-left-radius: 16px; }
+  .reticle::after  { top: -2px; right: -2px; border-top-width: 4px; border-right-width: 4px; border-top-right-radius: 16px; }
+  .reticle > .a    { bottom: -2px; left: -2px; border-bottom-width: 4px; border-left-width: 4px; border-bottom-left-radius: 16px; }
+  .reticle > .b    { bottom: -2px; right: -2px; border-bottom-width: 4px; border-right-width: 4px; border-bottom-right-radius: 16px; }
+
+  /* Passport */
+  .passport-hero {
+    height: 130px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #8a9a6b, #3a4a35);
+    margin-bottom: 12px;
+  }
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .stat {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+  }
+  .stat .v { font-family: "Times New Roman", Georgia, serif; font-size: 18px; }
+  .stat .l { color: var(--muted); font-size: 10px; }
+  .timeline { font-size: 12px; }
+  .timeline .ev {
+    display: flex; gap: 10px; padding: 6px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .timeline .ev:last-child { border-bottom: 0; }
+  .timeline .ev .dt { color: var(--muted); width: 70px; flex: none; }
+
+  /* Closet */
+  .closet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .garment {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .garment .sw { height: 100px; }
+  .garment .info { padding: 8px; font-size: 12px; }
+  .wear-bar {
+    height: 4px; border-radius: 2px; background: var(--line);
+    margin-top: 6px; position: relative; overflow: hidden;
+  }
+  .wear-bar > i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); }
+
+  /* Rewards */
+  .rewards-card {
+    background: linear-gradient(135deg, #2f4a36, #5a6e44);
+    color: #fff;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .rewards-card .balance {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 36px; line-height: 1;
+  }
+  .reward-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid var(--line);
+    font-size: 13px;
+  }
+  .reward-item:last-child { border: 0; }
+
+  /* Fit chat (Tier 1 AI) */
+  .chat {
+    flex: 1; display: flex; flex-direction: column; gap: 8px;
+    overflow: hidden;
+  }
+  .bubble {
+    max-width: 78%;
+    padding: 10px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  .bubble.me { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+  .bubble.bot { align-self: flex-start; background: var(--bg); color: var(--ink); border-bottom-left-radius: 4px; }
+  .input {
+    margin-top: auto;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  /* Profile */
+  .avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c7b58f, #6e7e5b);
+    margin: 0 auto 8px;
+  }
+  .menu-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 0; border-bottom: 1px solid var(--line);
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>Erth to Erth — App Mockups</h1>
+  <p>Phase 1 screens. Open this file in any browser. Wireframe fidelity, not final visual design.</p>
+</header>
+
+<div class="grid">
+
+  <!-- 1. Onboarding -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="onb">
+        <div class="logo">ERTH&nbsp;TO&nbsp;ERTH</div>
+        <h3>Clothes that come back to the earth — and to you.</h3>
+        <p>Track every piece you own. Earn for every piece you return.</p>
+        <div class="dots"><span class="on"></span><span></span><span></span></div>
+        <div class="btn">Continue with Apple</div>
+        <div style="height:8px"></div>
+        <div class="btn alt">Sign in with email</div>
+      </div>
+    </div></div>
+    <div class="caption">1 · Onboarding</div>
+  </div>
+
+  <!-- 2. Home -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>ERTH&nbsp;TO&nbsp;ERTH</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="hero">
+          <div class="tag">NEW DROP · MAY 12</div>
+          <h3>Linen Field Series</h3>
+          <div class="pill" style="background:rgba(255,255,255,.2);color:#fff">Notify me</div>
+        </div>
+        <div class="row" style="margin-bottom:8px">
+          <div class="label">For you</div>
+          <div class="muted">See all →</div>
+        </div>
+        <div class="hgrid">
+          <div class="card">
+            <div class="swatch" style="background:linear-gradient(135deg,#c7b58f,#7a6a4a)"></div>
+            <div>Hemp Overshirt</div>
+            <div class="muted">$148</div>
+          </div>
+          <div class="card">
+            <div class="swatch" style="background:linear-gradient(135deg,#8a9a6b,#3a4a35)"></div>
+            <div>Wool Trouser</div>
+            <div class="muted">$182</div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">⊡</div><span>Scan</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">2 · Home</div>
+  </div>
+
+  <!-- 3. PDP -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>HEMP OVERSHIRT</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="pdp-img"><div class="qr">⊡</div></div>
+        <div class="row">
+          <div>
+            <div class="h" style="margin:0">Hemp Overshirt</div>
+            <div class="muted">Olive · Made in Portugal</div>
+          </div>
+          <div style="font-family:Georgia,serif;font-size:18px">$148</div>
+        </div>
+        <div class="meta-row">
+          <span class="pill">100% hemp</span>
+          <span class="pill gold">Repairable</span>
+          <span class="pill">2.1 kg CO₂e</span>
+        </div>
+        <div class="btn">Add to bag</div>
+        <div style="height:8px"></div>
+        <div class="btn alt">Ask about fit ✦</div>
+      </div>
+    </div></div>
+    <div class="caption">3 · Product detail</div>
+  </div>
+
+  <!-- 4. Scan -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="scan">
+        <div>
+          <div style="font-size:11px;letter-spacing:2px;text-align:center;opacity:.7;margin-bottom:14px">SCAN GARMENT TAG</div>
+          <div class="reticle"><i class="a"></i><i class="b"></i></div>
+        </div>
+        <div style="text-align:center;font-size:12px;opacity:.8">
+          Hold the camera over the QR or NFC tag sewn into your garment.
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab active"><div class="dot">⊡</div><span>Scan</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">4 · Scan tag</div>
+  </div>
+
+  <!-- 5. Garment passport -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>PASSPORT</h2>
+        <div class="icon-btn">⤴</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="passport-hero"></div>
+        <div class="label">GARMENT #00824 · Wool Trouser</div>
+        <div class="h" style="margin:4px 0 12px">Owned since Mar 2025</div>
+        <div class="stat-row">
+          <div class="stat"><div class="v">42</div><div class="l">wears</div></div>
+          <div class="stat"><div class="v">7.4</div><div class="l">kg CO₂e</div></div>
+          <div class="stat"><div class="v">A</div><div class="l">condition</div></div>
+        </div>
+        <div class="label" style="margin-bottom:6px">LIFECYCLE</div>
+        <div class="timeline">
+          <div class="ev"><div class="dt">Mar 14</div><div>Purchased online · registered</div></div>
+          <div class="ev"><div class="dt">Aug 09</div><div>Repaired hem (in-store)</div></div>
+          <div class="ev"><div class="dt">Today</div><div>Eligible for resale +250 pts</div></div>
+        </div>
+        <div style="height:12px"></div>
+        <div class="btn">Resell or recycle</div>
+      </div>
+    </div></div>
+    <div class="caption">5 · Garment passport</div>
+  </div>
+
+  <!-- 6. My Closet -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>MY CLOSET</h2>
+        <div class="icon-btn">+</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="row" style="margin-bottom:10px">
+          <div class="muted">12 pieces · 318 wears</div>
+          <div class="pill">All</div>
+        </div>
+        <div class="closet-grid">
+          <div class="garment">
+            <div class="sw" style="background:linear-gradient(135deg,#8a9a6b,#3a4a35)"></div>
+            <div class="info">
+              Wool Trouser
+              <div class="muted">42 wears</div>
+              <div class="wear-bar"><i style="width:80%"></i></div>
+            </div>
+          </div>
+          <div class="garment">
+            <div class="sw" style="background:linear-gradient(135deg,#c7b58f,#7a6a4a)"></div>
+            <div class="info">
+              Hemp Overshirt
+              <div class="muted">17 wears</div>
+              <div class="wear-bar"><i style="width:35%"></i></div>
+            </div>
+          </div>
+          <div class="garment">
+            <div class="sw" style="background:linear-gradient(135deg,#9aa9b6,#4a5a66)"></div>
+            <div class="info">
+              Linen Tee
+              <div class="muted">63 wears</div>
+              <div class="wear-bar"><i style="width:95%"></i></div>
+            </div>
+          </div>
+          <div class="garment">
+            <div class="sw" style="background:linear-gradient(135deg,#b6643c,#6a3a22)"></div>
+            <div class="info">
+              Field Jacket
+              <div class="muted">28 wears</div>
+              <div class="wear-bar"><i style="width:55%"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">⊡</div><span>Scan</span></div>
+        <div class="tab active"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">6 · My closet</div>
+  </div>
+
+  <!-- 7. Rewards -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>REWARDS</h2>
+        <div class="icon-btn">?</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="rewards-card">
+          <div style="font-size:11px;letter-spacing:2px;opacity:.8">CIRCULAR BALANCE</div>
+          <div class="balance">1,420</div>
+          <div style="font-size:12px;opacity:.85">Tier · Soil · 580 pts to Compost</div>
+        </div>
+        <div class="label" style="margin-bottom:6px">EARN MORE</div>
+        <div class="reward-item"><span>Register a garment</span><span class="pill">+50</span></div>
+        <div class="reward-item"><span>Send a piece for recycling</span><span class="pill">+250</span></div>
+        <div class="reward-item"><span>Refer a friend</span><span class="pill">+500</span></div>
+        <div class="reward-item"><span>Complete style profile</span><span class="pill">+100</span></div>
+        <div style="height:12px"></div>
+        <div class="btn">Redeem rewards</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">⊡</div><span>Scan</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab active"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">7 · Rewards</div>
+  </div>
+
+  <!-- 8. Fit chat (AI) -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>FIT ASSISTANT ✦</h2>
+        <div class="icon-btn">⋯</div>
+      </div>
+      <div class="body">
+        <div class="chat">
+          <div class="bubble bot">Hi Maya — looking at the Hemp Overshirt? Want help finding your size?</div>
+          <div class="bubble me">Yeah. I'm 5'9", usually a M in Patagonia.</div>
+          <div class="bubble bot">Based on your last 4 orders and the overshirt's roomier cut, I'd go with <b>S</b>. Sleeves run 1cm long — fine if you cuff them.</div>
+          <div class="bubble me">Will it shrink?</div>
+          <div class="bubble bot">Hemp softens but holds size if you wash cold &amp; line-dry. Care guide is in the passport.</div>
+          <div class="input"><span>Ask about fit, fabric, care…</span><span>↑</span></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">8 · Fit assistant (Tier 1 AI)</div>
+  </div>
+
+  <!-- 9. Profile -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>PROFILE</h2>
+        <div class="icon-btn">⚙</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div style="text-align:center;margin-bottom:12px">
+          <div class="avatar"></div>
+          <div style="font-family:Georgia,serif;font-size:18px">Maya R.</div>
+          <div class="muted">Member since 2024 · Soil tier</div>
+        </div>
+        <div class="label" style="margin-bottom:4px">YOUR DATA</div>
+        <div class="menu-item"><span>Sizes &amp; fit profile</span><span>›</span></div>
+        <div class="menu-item"><span>Style preferences</span><span>›</span></div>
+        <div class="menu-item"><span>Notifications</span><span>›</span></div>
+        <div class="menu-item"><span>What we know about you</span><span>›</span></div>
+        <div class="menu-item"><span>Privacy &amp; consent</span><span>›</span></div>
+        <div class="menu-item"><span>Sign out</span><span>›</span></div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">⊡</div><span>Scan</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab active"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">9 · Profile &amp; data</div>
+  </div>
+
+</div>
+
+</body>
+</html>

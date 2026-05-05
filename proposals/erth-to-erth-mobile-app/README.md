@@ -42,6 +42,9 @@ installs it.
 - User looks / outfit posts tagged to garments, with opt-in moderation.
 - In-app events for pop-ups, swap parties, repair clinics.
 
+> Visual wireframes: open `mockups.html` in any browser to see all Phase 1
+> screens rendered as phone frames.
+
 ## 3. Suggested screens (Phase 1)
 
 1. Onboarding (3 slides) → sign-in
