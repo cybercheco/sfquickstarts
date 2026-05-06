@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Titika Active — The Studio (Web Admin Mockups)</title>
+<style>
+  :root {
+    --bg: #f6f4f0;
+    --ink: #1a1a1a;
+    --muted: #777;
+    --line: #e6e3dd;
+    --card: #ffffff;
+    --accent: #c43e54;
+    --accent-deep: #8a2236;
+    --accent-soft: #f8e0e4;
+    --gold: #d4a85a;
+    --gold-soft: #f5e8c8;
+    --teal: #2d6e7e;
+    --pink: #ef6f8b;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 500; font-size: 36px; margin: 0 0 4px;
+    letter-spacing: -0.5px; color: var(--accent);
+  }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .deck { max-width: 1400px; margin: 0 auto; padding: 16px 32px 64px; }
+  .browser {
+    background: #1a1a1a; border-radius: 14px;
+    box-shadow: 0 24px 48px rgba(138,34,54,.12), 0 2px 8px rgba(0,0,0,.06);
+    margin-bottom: 32px; overflow: hidden;
+  }
+  .browser .chrome { background: #1a1a1a; padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
+  .browser .chrome .dots { display: flex; gap: 6px; }
+  .browser .chrome .dots span { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,.2); }
+  .browser .chrome .url {
+    flex: 1; background: rgba(255,255,255,.08);
+    color: rgba(255,255,255,.7); font-size: 12px;
+    padding: 5px 12px; border-radius: 6px; font-family: monospace;
+  }
+  .frame { height: 720px; display: grid; grid-template-columns: 220px 1fr; background: var(--bg); overflow: hidden; }
+
+  .sidebar { background: #fff; border-right: 1px solid var(--line); padding: 18px 0; display: flex; flex-direction: column; }
+  .brand { padding: 0 18px 16px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+  .brand .logo { font-family: "Times New Roman", Georgia, serif; color: var(--accent); font-size: 12px; letter-spacing: 4px; font-weight: 600; }
+  .brand .sub { color: var(--muted); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .nav { flex: 1; padding: 0 12px; display: flex; flex-direction: column; gap: 2px; }
+  .nav .section-label { color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; padding: 12px 12px 6px; }
+  .nav a { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; color: var(--ink); font-size: 12px; text-decoration: none; }
+  .nav a .ic { width: 18px; height: 18px; background: var(--bg); border-radius: 5px; display: grid; place-items: center; font-size: 10px; color: var(--muted); }
+  .nav a.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .nav a.active .ic { background: var(--accent); color: #fff; }
+  .nav a .badge { margin-left: auto; background: var(--accent); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 999px; }
+  .user { padding: 12px 16px; border-top: 1px solid var(--line); display: flex; gap: 10px; align-items: center; }
+  .user .av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--gold)); }
+  .user .name { font-size: 12px; }
+  .user .name strong { display: block; }
+  .user .name span { color: var(--muted); font-size: 10px; }
+
+  .main { overflow: auto; padding: 22px 28px 30px; }
+  .topline { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .crumb { color: var(--muted); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+  .top-actions { display: flex; gap: 8px; }
+  .btn { display: inline-block; padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; background: var(--accent); color: #fff; border: none; cursor: pointer; }
+  .btn.alt { background: #fff; color: var(--accent); border: 1px solid var(--line); }
+  .btn.subtle { background: var(--bg); color: var(--ink); }
+  h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 26px; margin: 0 0 4px; color: var(--ink); }
+  .subhead { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 22px; }
+  .stat-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .stat-card .label { color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+  .stat-card .num { font-family: "Times New Roman", Georgia, serif; color: var(--accent); font-size: 32px; line-height: 1; margin: 6px 0 2px; }
+  .stat-card .delta { color: var(--accent); font-size: 11px; font-weight: 600; }
+
+  .grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+  .panel h3 { margin: 0 0 12px; font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 15px; color: var(--ink); display: flex; justify-content: space-between; align-items: center; }
+  .panel h3 .more { color: var(--accent); font-size: 11px; font-weight: 600; }
+
+  .row { display: grid; grid-template-columns: 56px 1fr auto auto; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); align-items: center; }
+  .row:last-child { border: none; }
+  .row .id {
+    background: var(--accent-soft); color: var(--accent);
+    border-radius: 6px; padding: 4px; text-align: center;
+    font-family: monospace; font-size: 11px; font-weight: 700;
+  }
+  .row .info { font-size: 12px; }
+  .row .info strong { display: block; }
+  .row .info span { color: var(--muted); font-size: 11px; }
+  .pill {
+    padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 700;
+  }
+  .pill.live { background: #d6ebd9; color: #2c6e3a; }
+  .pill.review { background: var(--accent-soft); color: var(--accent); }
+  .pill.draft { background: var(--bg); color: var(--muted); }
+  .pill.flag { background: var(--gold-soft); color: #8a6e2a; }
+
+  /* Editor */
+  .editor-shell { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .field-group { margin-bottom: 14px; }
+  .field-group label { display: block; color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 5px; }
+  .field { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 12px; color: var(--ink); line-height: 1.5; }
+  .field.lg { min-height: 90px; }
+  .field.title { font-family: "Times New Roman", Georgia, serif; font-size: 18px; }
+  .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .three-ways-edit {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+    margin-top: 6px;
+  }
+  .three-ways-edit .way {
+    background: #fff; border: 1px solid var(--line);
+    border-radius: 8px; overflow: hidden;
+  }
+  .three-ways-edit .way .head {
+    padding: 6px 10px; font-size: 9px;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    font-weight: 700; color: #fff;
+  }
+  .three-ways-edit .way.studio .head { background: var(--accent); }
+  .three-ways-edit .way.street .head { background: var(--gold); color: #1a1a1a; }
+  .three-ways-edit .way.sunday .head { background: var(--teal); }
+  .three-ways-edit .way .body-content { padding: 8px 10px; font-size: 11px; line-height: 1.4; }
+
+  .ai-banner {
+    background: linear-gradient(135deg, var(--accent-soft), var(--gold-soft));
+    border-radius: 10px; padding: 10px 14px;
+    font-size: 11px; color: var(--ink); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .ai-banner .star {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: grid; place-items: center; font-size: 12px;
+  }
+  .ai-banner strong { color: var(--accent); }
+
+  /* Practice library */
+  .practice-row {
+    display: grid; grid-template-columns: 60px 1fr 80px 80px 80px;
+    gap: 12px; padding: 10px 0;
+    border-bottom: 1px dashed var(--line); align-items: center;
+  }
+  .practice-row:last-child { border: none; }
+  .practice-row .thumb {
+    width: 60px; height: 50px; border-radius: 6px;
+    background: linear-gradient(135deg, var(--accent), var(--ink));
+    display: grid; place-items: center; color: #fff; font-size: 14px;
+  }
+  .practice-row .thumb.gold { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .practice-row .thumb.teal { background: linear-gradient(135deg, var(--teal), #1a4148); }
+  .practice-row .thumb.pink { background: linear-gradient(135deg, var(--pink), var(--accent-deep)); }
+  .practice-row .info strong { display: block; font-size: 13px; }
+  .practice-row .info span { color: var(--muted); font-size: 11px; }
+  .practice-row .meta {
+    text-align: center; font-size: 11px; color: var(--muted);
+  }
+  .practice-row .meta strong { display: block; color: var(--ink); font-size: 12px; }
+
+  /* Moderation queue */
+  .mod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .mod-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .mod-card .img {
+    height: 130px;
+    background: linear-gradient(135deg, var(--pink), var(--accent-deep));
+  }
+  .mod-card.gold .img { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .mod-card.teal .img { background: linear-gradient(135deg, var(--teal), #1a4148); }
+  .mod-card.dark .img { background: linear-gradient(180deg, #3a3a3a, #1a1a1a); }
+  .mod-card .meta-bar { padding: 10px 12px; font-size: 11px; color: var(--muted); }
+  .mod-card .meta-bar strong { display: block; color: var(--ink); font-size: 12px; }
+  .mod-card .actions {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--line);
+  }
+  .mod-card .actions button {
+    background: #fff; border: none; padding: 8px;
+    font-size: 11px; font-weight: 600; cursor: pointer;
+  }
+  .mod-card .actions button.approve { color: #2c6e3a; }
+  .mod-card .actions button.reject { color: var(--accent); }
+  .mod-card .ai-flag {
+    margin: 0 12px 8px; font-size: 10px; padding: 4px 8px;
+    background: var(--gold-soft); color: #8a6e2a;
+    border-radius: 4px;
+  }
+
+  .caption {
+    text-align: center; margin: 4px 0 24px;
+    font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px;
+  }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>The Studio — Web Admin Mockups</h1>
+  <p>Titika Active's internal-facing portal. Brand palette, optimised for editors, ops, ambassadors, and concierge. Wireframe fidelity.</p>
+</header>
+
+<div class="deck">
+
+  <!-- 1. Dashboard -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.titikaactive.com / dashboard</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">TITIKA · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a class="active"><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">◐</span> Closet & passports</a>
+          <a><span class="ic">▶</span> Practice library <span class="badge">3</span></a>
+          <a><span class="ic">▦</span> Drops & calendar</a>
+          <a><span class="ic">A</span> Translations <span class="badge">8</span></a>
+          <div class="section-label">Community</div>
+          <a><span class="ic">★</span> Ambassadors</a>
+          <a><span class="ic">⌂</span> Tribe meetups</a>
+          <a><span class="ic">!</span> Moderation <span class="badge">12</span></a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">✉</span> Concierge <span class="badge">5</span></a>
+          <a><span class="ic">⊡</span> Returns &amp; fit</a>
+          <div class="section-label">Insights</div>
+          <a><span class="ic">▥</span> Analytics</a>
+        </nav>
+        <div class="user">
+          <div class="av"></div>
+          <div class="name"><strong>Mei W.</strong><span>Editor · EN/繁中</span></div>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">DASHBOARD · TODAY · 6 MAY 2026</div>
+          <div class="top-actions">
+            <button class="btn alt">Search</button>
+            <button class="btn">+ Schedule drop</button>
+          </div>
+        </div>
+        <h2>Good morning, Mei.</h2>
+        <div class="subhead">8 translation drafts pending · 12 community posts in moderation · 5 concierge messages.</div>
+
+        <div class="stat-row">
+          <div class="stat-card"><div class="label">Active customers · 30d</div><div class="num">22,140</div><div class="delta">+11.2% vs prior</div></div>
+          <div class="stat-card"><div class="label">Practice sessions / wk</div><div class="num">8,420</div><div class="delta">+18% MoM</div></div>
+          <div class="stat-card"><div class="label">Return rate</div><div class="num">12.8%</div><div class="delta">−5.4 pts since Fit Atelier</div></div>
+          <div class="stat-card"><div class="label">Asia Miles redemptions</div><div class="num">1,082</div><div class="delta">HK customers</div></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Upcoming drops <span class="more">Calendar →</span></h3>
+            <div class="row">
+              <div class="id">12 MAY</div>
+              <div class="info"><strong>Couture Legging — Bordeaux</strong><span>3 SKUs · push EN/繁中 · CA + HK</span></div>
+              <span class="pill live">LIVE-READY</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">18 MAY</div>
+              <div class="info"><strong>Ambassador-led morning flow</strong><span>Mei live class · Tribe push · Toronto</span></div>
+              <span class="pill review">REVIEW</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">02 JUN</div>
+              <div class="info"><strong>Black Series · summer reset</strong><span>5 SKUs · EN/繁中/JP · CA/US/HK/JP</span></div>
+              <span class="pill draft">DRAFT</span>
+              <div></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Concierge inbox <span class="more">All →</span></h3>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Priya R. · Toronto</strong><span>Fit question on Couture Legging — escalated by Atelier</span></div>
+              <div class="pill">EN · 2h</div>
+            </div>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Wong K. · Hong Kong</strong><span>Asia Miles points not credited from last order</span></div>
+              <div class="pill">繁中 · 4h</div>
+            </div>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Aria S. · Toronto</strong><span>Wants to apply to Tribe ambassador program</span></div>
+              <div class="pill">EN · 5h</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">1 · Dashboard · the editor's morning view</div>
+
+  <!-- 2. Closet/passport editor -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.titikaactive.com / passports / couture-legging-black / edit</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">TITIKA · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a class="active"><span class="ic">◐</span> Closet &amp; passports</a>
+          <a><span class="ic">▶</span> Practice library</a>
+          <a><span class="ic">▦</span> Drops &amp; calendar</a>
+          <a><span class="ic">A</span> Translations</a>
+          <div class="section-label">Community</div>
+          <a><span class="ic">★</span> Ambassadors</a>
+          <a><span class="ic">!</span> Moderation</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">PASSPORTS · ACTIVE · COUTURE LEGGING</div>
+          <div class="top-actions">
+            <button class="btn subtle">Discard</button>
+            <button class="btn alt">Save draft</button>
+            <button class="btn">Publish</button>
+          </div>
+        </div>
+        <h2>Couture Legging · Black · 25"</h2>
+        <div class="subhead">SKU 1432 · cool-touch nylon/elastane · high rise · Active series</div>
+
+        <div class="ai-banner">
+          <div class="star">✦</div>
+          <div><strong>Claude drafted "wear it three ways" copy.</strong> Editorial review pending — verify the Sunday styling against the Spring lookbook.</div>
+        </div>
+
+        <div class="editor-shell">
+          <div>
+            <div class="field-group">
+              <label>Name (customer-facing)</label>
+              <div class="field title">Couture Legging · Black</div>
+            </div>
+            <div class="field-group">
+              <label>Fabric &amp; construction</label>
+              <div class="field lg">85% nylon / 15% elastane · cool-touch · 4-way stretch · firm waistband · flat-lock seams · pocket on right thigh</div>
+            </div>
+            <div class="input-row">
+              <div class="field-group">
+                <label>Fit notes</label>
+                <div class="field">Runs true to size. Firmer than Lululemon Align — supportive, not compressive. Inseam 25".</div>
+              </div>
+              <div class="field-group">
+                <label>Care</label>
+                <div class="field">Wash cold inside-out · low spin · hang-dry · no fabric softener</div>
+              </div>
+            </div>
+            <div class="field-group">
+              <label>Wear it three ways · Claude draft</label>
+              <div class="three-ways-edit">
+                <div class="way studio">
+                  <div class="head">STUDIO</div>
+                  <div class="body-content">Pair with the Cropped Tank for hot yoga or HIIT — the firm waistband stays put through inversions.</div>
+                </div>
+                <div class="way street">
+                  <div class="head">STREET</div>
+                  <div class="body-content">Add the Black Series Tee oversized + sneakers. Coffee, errands, school run.</div>
+                </div>
+                <div class="way sunday">
+                  <div class="head">SUNDAY</div>
+                  <div class="body-content">Soft Bra Gold under a long cardigan. Brunch with a friend, no rush.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="field-group">
+              <label>Translations · Claude-drafted</label>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div class="row" style="grid-template-columns:48px 1fr auto;background:var(--bg);border-radius:8px;padding:8px 10px;border:none">
+                  <div class="id">EN</div>
+                  <div class="info"><strong>English · source</strong><span>Updated by Mei W.</span></div>
+                  <span class="pill live">LIVE</span>
+                </div>
+                <div class="row" style="grid-template-columns:48px 1fr auto;background:var(--bg);border-radius:8px;padding:8px 10px;border:none">
+                  <div class="id">繁中</div>
+                  <div class="info"><strong>Traditional Chinese</strong><span>Drafted · 2 min ago · awaiting review</span></div>
+                  <span class="pill review">REVIEW</span>
+                </div>
+                <div class="row" style="grid-template-columns:48px 1fr auto;background:var(--bg);border-radius:8px;padding:8px 10px;border:none">
+                  <div class="id">JP</div>
+                  <div class="info"><strong>日本語</strong><span>Drafted · awaiting curator</span></div>
+                  <span class="pill draft">DRAFT</span>
+                </div>
+                <div class="row" style="grid-template-columns:48px 1fr auto;background:var(--bg);border-radius:8px;padding:8px 10px;border:none">
+                  <div class="id">FR</div>
+                  <div class="info"><strong>Français</strong><span>Drafted · awaiting curator</span></div>
+                  <span class="pill draft">DRAFT</span>
+                </div>
+              </div>
+            </div>
+            <div class="field-group">
+              <label>Loyalty triggers</label>
+              <div class="field" style="font-size:11px">
+                +50 pts · register to closet<br/>
+                +20 pts · log first wear<br/>
+                +200 pts · post a "fit look" with this piece<br/>
+                +100 Asia Miles for HK customers (Cathay tie-in)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">2 · Closet &amp; passport editor · "wear it three ways" + multilingual</div>
+
+  <!-- 3. Practice library -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.titikaactive.com / practice-library</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">TITIKA · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">◐</span> Closet &amp; passports</a>
+          <a class="active"><span class="ic">▶</span> Practice library</a>
+          <a><span class="ic">▦</span> Drops &amp; calendar</a>
+          <a><span class="ic">A</span> Translations</a>
+          <div class="section-label">Community</div>
+          <a><span class="ic">★</span> Ambassadors</a>
+          <a><span class="ic">!</span> Moderation</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CONTENT · PRACTICE LIBRARY · 142 SESSIONS</div>
+          <div class="top-actions">
+            <button class="btn alt">Filter</button>
+            <button class="btn alt">+ Instructor</button>
+            <button class="btn">+ Session</button>
+          </div>
+        </div>
+        <h2>Practice library</h2>
+        <div class="subhead">142 sessions across yoga, mobility, strength, low-impact, and audio walks. 9 instructors. EN + 繁中 audio tracks.</div>
+
+        <div class="panel">
+          <div class="practice-row" style="border-bottom:2px solid var(--line);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:700">
+            <div></div>
+            <div>SESSION</div>
+            <div style="text-align:center">DURATION</div>
+            <div style="text-align:center">PLAYS · 30D</div>
+            <div style="text-align:center">STATUS</div>
+          </div>
+          <div class="practice-row">
+            <div class="thumb">▶</div>
+            <div class="info"><strong>Restorative flow · evening</strong><span>Yoga · Mei · audio + video · EN/繁中</span></div>
+            <div class="meta"><strong>20 min</strong></div>
+            <div class="meta"><strong>1,842</strong>↑ 14%</div>
+            <div class="meta"><span class="pill live">LIVE</span></div>
+          </div>
+          <div class="practice-row">
+            <div class="thumb teal">▶</div>
+            <div class="info"><strong>Strong glutes · 22 min</strong><span>Strength · Kira · video · EN</span></div>
+            <div class="meta"><strong>22 min</strong></div>
+            <div class="meta"><strong>1,420</strong>↑ 22%</div>
+            <div class="meta"><span class="pill live">LIVE</span></div>
+          </div>
+          <div class="practice-row">
+            <div class="thumb gold">▶</div>
+            <div class="info"><strong>Just-walking · sunset</strong><span>Walk · Aria · audio-only · EN</span></div>
+            <div class="meta"><strong>25 min</strong></div>
+            <div class="meta"><strong>1,114</strong>↑ 8%</div>
+            <div class="meta"><span class="pill live">LIVE</span></div>
+          </div>
+          <div class="practice-row">
+            <div class="thumb pink">▶</div>
+            <div class="info"><strong>Morning spine</strong><span>Yoga · Mei · audio + video · EN/繁中</span></div>
+            <div class="meta"><strong>10 min</strong></div>
+            <div class="meta"><strong>892</strong>↓ 4%</div>
+            <div class="meta"><span class="pill live">LIVE</span></div>
+          </div>
+          <div class="practice-row">
+            <div class="thumb">▶</div>
+            <div class="info"><strong>Desk reset</strong><span>Mobility · Lin · video · EN/繁中</span></div>
+            <div class="meta"><strong>10 min</strong></div>
+            <div class="meta"><strong>684</strong>↑ 30%</div>
+            <div class="meta"><span class="pill live">LIVE</span></div>
+          </div>
+          <div class="practice-row">
+            <div class="thumb teal">▶</div>
+            <div class="info"><strong>Marathon prep — long run audio</strong><span>Walk/Run · Aria · audio · EN</span></div>
+            <div class="meta"><strong>45 min</strong></div>
+            <div class="meta">—</div>
+            <div class="meta"><span class="pill review">REVIEW</span></div>
+          </div>
+          <div class="practice-row">
+            <div class="thumb pink">▶</div>
+            <div class="info"><strong>Couture flow · brand-collab</strong><span>Yoga · Mei + Bordeaux drop tie-in · EN/繁中</span></div>
+            <div class="meta"><strong>20 min</strong></div>
+            <div class="meta">—</div>
+            <div class="meta"><span class="pill draft">DRAFT</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">3 · Practice library · session admin with engagement analytics</div>
+
+  <!-- 4. Moderation queue -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.titikaactive.com / moderation</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">TITIKA · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">◐</span> Closet &amp; passports</a>
+          <a><span class="ic">▶</span> Practice library</a>
+          <a><span class="ic">▦</span> Drops &amp; calendar</a>
+          <div class="section-label">Community</div>
+          <a><span class="ic">★</span> Ambassadors</a>
+          <a><span class="ic">⌂</span> Tribe meetups</a>
+          <a class="active"><span class="ic">!</span> Moderation <span class="badge">12</span></a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">COMMUNITY · MODERATION · 12 PENDING</div>
+          <div class="top-actions">
+            <button class="btn alt">Filter</button>
+            <button class="btn alt">Bulk approve clean</button>
+            <button class="btn">Settings</button>
+          </div>
+        </div>
+        <h2>Tribe — moderation queue</h2>
+        <div class="subhead">"Fit looks" customers post to The Tribe. AI auto-screens; human approves before publish.</div>
+
+        <div class="ai-banner">
+          <div class="star">✦</div>
+          <div><strong>AI processed 47 posts overnight.</strong> 35 auto-approved as clean. 12 flagged for human review (3 ambiguous text, 2 image quality, 7 brand-tag verification).</div>
+        </div>
+
+        <div class="mod-grid">
+          <div class="mod-card">
+            <div class="img"></div>
+            <div class="meta-bar">
+              <strong>@aria.s · Toronto</strong>
+              <span>Couture Legging × Black Series Tee · "Sunday brunch"</span>
+            </div>
+            <div class="ai-flag">AI: clean. Brand tags verified.</div>
+            <div class="actions">
+              <button class="approve">✓ Approve</button>
+              <button class="reject">✕ Reject</button>
+            </div>
+          </div>
+          <div class="mod-card gold">
+            <div class="img"></div>
+            <div class="meta-bar">
+              <strong>@kira.h · Hong Kong</strong>
+              <span>Soft Bra Gold × Cropped Tank · "Pure Yoga, Central"</span>
+            </div>
+            <div class="ai-flag">AI: clean. 繁中 caption translated for review.</div>
+            <div class="actions">
+              <button class="approve">✓ Approve</button>
+              <button class="reject">✕ Reject</button>
+            </div>
+          </div>
+          <div class="mod-card teal">
+            <div class="img"></div>
+            <div class="meta-bar">
+              <strong>@meilin · Hong Kong</strong>
+              <span>Couture Legging · "Bowen Road run"</span>
+            </div>
+            <div class="ai-flag" style="background:var(--accent-soft);color:var(--accent)">AI: brand tag uncertain — needs manual confirm.</div>
+            <div class="actions">
+              <button class="approve">✓ Approve</button>
+              <button class="reject">✕ Reject</button>
+            </div>
+          </div>
+          <div class="mod-card dark">
+            <div class="img"></div>
+            <div class="meta-bar">
+              <strong>@nikolas · Vancouver</strong>
+              <span>Black Series Tee · "early gym light"</span>
+            </div>
+            <div class="ai-flag">AI: clean. New customer · first post.</div>
+            <div class="actions">
+              <button class="approve">✓ Approve</button>
+              <button class="reject">✕ Reject</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">4 · Moderation queue · AI-screened community posts</div>
+
+</div>
+
+</body>
+</html>
