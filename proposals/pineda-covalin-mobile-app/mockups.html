@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pineda Covalín — App Mockups</title>
+<style>
+  :root {
+    --bg: #f5ede0;
+    --ink: #2a1a14;
+    --muted: #8a7866;
+    --line: #e6d9c0;
+    --card: #ffffff;
+    --accent: #a02747;        /* cochineal / carmine */
+    --accent-deep: #6e1a30;
+    --accent-soft: #f7e0d8;
+    --gold: #d89b3d;          /* saffron / cempasúchil */
+    --gold-soft: #f5e2bd;
+    --teal: #2c6e6b;
+    --plum: #5b2a52;
+    --radius: 26px;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header.page {
+    padding: 32px 32px 0;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  header.page h1 {
+    font-family: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+    font-weight: 500;
+    font-size: 38px;
+    margin: 0 0 4px;
+    letter-spacing: -0.5px;
+    color: var(--accent);
+  }
+  header.page p {
+    color: var(--muted);
+    margin: 0 0 24px;
+    font-size: 14px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 32px 24px;
+    padding: 16px 32px 64px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .phone {
+    background: #2a1a14;
+    border-radius: 44px;
+    padding: 12px;
+    box-shadow: 0 24px 48px rgba(110, 26, 48,.18), 0 2px 8px rgba(0,0,0,.06);
+    width: 310px;
+    justify-self: center;
+  }
+  .screen {
+    background: var(--card);
+    border-radius: 32px;
+    overflow: hidden;
+    height: 620px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .notch {
+    position: absolute;
+    top: 8px; left: 50%;
+    transform: translateX(-50%);
+    width: 110px; height: 22px;
+    background: #2a1a14;
+    border-radius: 0 0 14px 14px;
+    z-index: 5;
+  }
+  .statusbar {
+    height: 38px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 22px 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 18px 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar h2 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+  }
+  .icon-btn {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--bg);
+    display: grid; place-items: center;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .body { flex: 1; overflow: hidden; padding: 14px 18px; }
+  .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+  .h {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 22px;
+    margin: 6px 0 14px;
+    line-height: 1.15;
+  }
+  .pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .pill.gold { background: var(--gold-soft); color: #8a5e1c; }
+  .pill.teal { background: #d6e6e2; color: var(--teal); }
+  .pill.plum { background: #e7d8e4; color: var(--plum); }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  .muted { color: var(--muted); font-size: 12px; }
+  .btn {
+    display: block;
+    text-align: center;
+    background: var(--accent);
+    color: #fff;
+    padding: 12px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .btn.alt { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
+  .btn.gold { background: var(--gold); color: #2a1a14; }
+  .tabbar {
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 8px 4px 14px;
+    background: #fff;
+  }
+  .tab {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    font-size: 10px; color: var(--muted);
+  }
+  .tab.active { color: var(--accent); }
+  .tab .dot {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: var(--bg);
+    display: grid; place-items: center;
+    font-size: 12px;
+  }
+  .tab.active .dot { background: var(--accent-soft); }
+  .caption {
+    text-align: center;
+    margin: 12px 0 0;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+  }
+
+  /* Pre-Hispanic geometric divider */
+  .grecas {
+    height: 12px;
+    background-image: linear-gradient(90deg,
+      var(--accent) 0 6px, transparent 6px 14px,
+      var(--gold) 14px 20px, transparent 20px 28px,
+      var(--accent) 28px 34px, transparent 34px 42px,
+      var(--plum) 42px 48px, transparent 48px 56px);
+    background-size: 56px 12px;
+    background-repeat: repeat-x;
+    background-position: center;
+    opacity: .55;
+    margin: 6px 0 8px;
+  }
+
+  /* Onboarding */
+  .onb {
+    background: linear-gradient(180deg, #c93b62 0%, #6e1a30 60%, #3a0c1c 100%);
+    color: #fff;
+    flex: 1;
+    padding: 60px 24px 24px;
+    display: flex; flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .onb::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(216,155,61,.15) 0 24px, transparent 25px),
+      radial-gradient(circle at 80% 12%, rgba(216,155,61,.18) 0 18px, transparent 19px),
+      radial-gradient(circle at 22% 78%, rgba(216,155,61,.12) 0 22px, transparent 23px),
+      radial-gradient(circle at 70% 86%, rgba(216,155,61,.16) 0 28px, transparent 29px);
+    pointer-events: none;
+  }
+  .onb .logo {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 18px;
+    letter-spacing: 6px;
+    position: relative;
+  }
+  .onb h3 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.15;
+    margin: auto 0 12px;
+    position: relative;
+  }
+  .onb p { font-size: 13px; opacity: .9; margin: 0 0 24px; position: relative; }
+  .lang-row {
+    display: flex; gap: 6px; margin-bottom: 16px;
+    position: relative; flex-wrap: wrap;
+  }
+  .lang-row span {
+    padding: 4px 10px; border-radius: 999px;
+    background: rgba(255,255,255,.15);
+    font-size: 11px; font-weight: 600;
+  }
+  .lang-row span.on { background: var(--gold); color: #2a1a14; }
+
+  /* Home */
+  .hero {
+    height: 170px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #d89b3d 0%, #a02747 65%, #6e1a30 100%);
+    color: #fff;
+    padding: 14px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; right: -20px; bottom: -20px;
+    width: 140px; height: 140px;
+    background: radial-gradient(circle, rgba(255,255,255,.18) 0 30%, transparent 32%);
+  }
+  .hero .tag { font-size: 10px; letter-spacing: 2.5px; position: relative; }
+  .hero h3 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.1;
+    margin: 0;
+    position: relative;
+  }
+  .hgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 12px;
+    background: #fff;
+  }
+  .card .swatch { height: 70px; border-radius: 8px; margin-bottom: 8px; }
+
+  /* Collection (Mercado) */
+  .collection-cover {
+    height: 180px;
+    border-radius: 14px;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(216,155,61,.55) 0 8%, transparent 9%),
+      radial-gradient(circle at 70% 60%, rgba(247,224,216,.45) 0 6%, transparent 7%),
+      linear-gradient(135deg, #6e1a30, #a02747);
+    color: #fff;
+    padding: 14px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+  .collection-cover .name {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 26px;
+    line-height: 1;
+  }
+  .collection-cover .sub { font-size: 11px; opacity: .85; margin-top: 4px; }
+
+  /* PDP */
+  .pdp-img {
+    height: 220px;
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 4px, transparent 4px 12px),
+      linear-gradient(135deg, #d89b3d, #a02747);
+    border-radius: 14px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .pdp-img .qr {
+    position: absolute; bottom: 10px; right: 10px;
+    width: 34px; height: 34px;
+    background: #fff; border-radius: 6px;
+    display: grid; place-items: center;
+    font-size: 18px;
+  }
+  .meta-row { display: flex; gap: 6px; margin: 6px 0 12px; flex-wrap: wrap; }
+
+  /* Atelier passport */
+  .passport-hero {
+    height: 130px;
+    border-radius: 14px;
+    background:
+      radial-gradient(circle at 25% 50%, rgba(216,155,61,.5) 0 18%, transparent 19%),
+      radial-gradient(circle at 75% 50%, rgba(216,155,61,.4) 0 14%, transparent 15%),
+      linear-gradient(135deg, #6e1a30, #2a1a14);
+    margin-bottom: 12px;
+  }
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .stat {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+  }
+  .stat .v { font-family: "Times New Roman", Georgia, serif; font-size: 18px; color: var(--accent); }
+  .stat .l { color: var(--muted); font-size: 10px; }
+  .audio {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--gold-soft);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+  }
+  .audio .play {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--gold); color: #2a1a14;
+    display: grid; place-items: center; font-size: 14px;
+  }
+  .audio .meta { font-size: 12px; }
+  .audio .meta strong { display: block; color: #5a3e16; }
+  .audio .meta span { color: var(--muted); }
+
+  /* Scan */
+  .scan {
+    flex: 1;
+    background: #2a1a14;
+    color: #fff;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 60px 24px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scan::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(160,39,71,.25) 0 30px, transparent 31px),
+      radial-gradient(circle at 88% 80%, rgba(216,155,61,.18) 0 26px, transparent 27px);
+    pointer-events: none;
+  }
+  .reticle {
+    width: 220px; height: 220px;
+    border: 2px solid #fff;
+    border-radius: 24px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .reticle::before, .reticle::after,
+  .reticle > .a, .reticle > .b {
+    content: ""; position: absolute;
+    width: 36px; height: 36px;
+    border-color: var(--gold);
+    border-style: solid;
+    border-width: 0;
+  }
+  .reticle::before { top: -2px; left: -2px; border-top-width: 4px; border-left-width: 4px; border-top-left-radius: 16px; }
+  .reticle::after  { top: -2px; right: -2px; border-top-width: 4px; border-right-width: 4px; border-top-right-radius: 16px; }
+  .reticle > .a    { bottom: -2px; left: -2px; border-bottom-width: 4px; border-left-width: 4px; border-bottom-left-radius: 16px; }
+  .reticle > .b    { bottom: -2px; right: -2px; border-bottom-width: 4px; border-right-width: 4px; border-bottom-right-radius: 16px; }
+  .auth-pill {
+    align-self: center;
+    margin-top: 10px;
+    padding: 4px 12px;
+    background: rgba(216,155,61,.25);
+    color: var(--gold);
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    border-radius: 999px;
+  }
+
+  /* Docent chat */
+  .chat {
+    flex: 1; display: flex; flex-direction: column; gap: 8px;
+    overflow: hidden;
+  }
+  .bubble {
+    max-width: 80%;
+    padding: 10px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .bubble.me { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+  .bubble.bot { align-self: flex-start; background: var(--bg); color: var(--ink); border-bottom-left-radius: 4px; }
+  .bubble small { display: block; color: var(--muted); margin-top: 4px; font-size: 10px; }
+  .input {
+    margin-top: auto;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  /* Gift */
+  .gift-hero {
+    height: 100px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--gold) 0%, #b97a23 100%);
+    color: #fff;
+    padding: 12px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .gift-hero::after {
+    content: "✦";
+    position: absolute; top: 8px; right: 16px;
+    font-size: 18px; opacity: .7;
+  }
+  .gift-step {
+    display: flex; gap: 12px; align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .gift-step .num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent);
+    display: grid; place-items: center;
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 14px; font-weight: 700; flex: none;
+  }
+  .gift-step .num.done { background: var(--accent); color: #fff; }
+  .gift-step .txt { font-size: 12px; }
+  .gift-step .txt strong { display: block; color: var(--ink); }
+  .gift-step .txt span { color: var(--muted); }
+
+  /* Collector's archive */
+  .tier-card {
+    background: linear-gradient(135deg, #6e1a30 0%, #a02747 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .tier-card::after {
+    content: "";
+    position: absolute; right: -10px; top: -10px;
+    width: 80px; height: 80px;
+    background: radial-gradient(circle, rgba(216,155,61,.35) 0 30%, transparent 32%);
+  }
+  .tier-card .tier-name {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 22px; line-height: 1; margin-top: 4px;
+  }
+  .tier-card .progress {
+    height: 4px; background: rgba(255,255,255,.2);
+    border-radius: 2px; margin-top: 10px; overflow: hidden;
+  }
+  .tier-card .progress > i {
+    display: block; height: 100%; width: 65%;
+    background: var(--gold);
+  }
+  .archive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .piece {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .piece .sw { height: 70px; }
+  .piece .info { padding: 8px; font-size: 11px; }
+  .piece .info strong { display: block; }
+
+  /* Travel */
+  .travel-card {
+    background: linear-gradient(135deg, var(--teal), #1e504e);
+    color: #fff;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .travel-card .place {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 18px;
+  }
+  .boutique {
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .boutique .pin {
+    width: 32px; height: 32px; flex: none;
+    border-radius: 50%;
+    background: var(--gold-soft);
+    display: grid; place-items: center;
+    color: var(--accent); font-weight: 700;
+  }
+  .boutique .info { flex: 1; font-size: 12px; }
+  .boutique .info strong { display: block; }
+  .boutique .info span { color: var(--muted); }
+  .boutique .cta {
+    align-self: center;
+    color: var(--accent); font-size: 11px; font-weight: 700;
+  }
+
+  /* AR try-on */
+  .ar {
+    flex: 1; background: #2a1a14;
+    color: #fff;
+    padding: 50px 18px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ar::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: linear-gradient(180deg, rgba(110,26,48,.5) 0 40%, rgba(42,26,20,.9) 100%);
+    pointer-events: none;
+  }
+  .ar-silhouette {
+    width: 160px; height: 220px;
+    margin: 0 auto;
+    border-radius: 80px 80px 16px 16px / 100px 100px 16px 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,.15) 0%, rgba(255,255,255,.05) 100%);
+    border: 1px dashed rgba(255,255,255,.3);
+    position: relative;
+  }
+  .ar-silhouette::before {
+    content: "";
+    position: absolute; left: 25px; right: 25px; top: 70px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--gold), var(--accent));
+    border-radius: 30px;
+    opacity: .85;
+    transform: rotate(-2deg);
+    box-shadow: 0 4px 12px rgba(0,0,0,.3);
+  }
+  .ar-bottom {
+    position: absolute; left: 18px; right: 18px; bottom: 30px;
+    display: flex; gap: 8px; justify-content: center;
+  }
+  .ar-bottom .swatch {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.3);
+  }
+  .ar-bottom .swatch.on { border-color: var(--gold); }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>Pineda Covalín — App Mockups</h1>
+  <p>Phase 1 + a Phase 2 preview. Open this file in any browser. Wireframe fidelity, not final visual design.</p>
+</header>
+
+<div class="grid">
+
+  <!-- 1. Onboarding -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="onb">
+        <div class="logo">PINEDA · COVALÍN</div>
+        <h3>El alma de México,<br/>en tus manos.</h3>
+        <p>Stories woven into silk. In your language, wherever you are.</p>
+        <div class="lang-row">
+          <span class="on">ES</span><span>EN</span><span>FR</span>
+          <span>IT</span><span>JP</span><span>ZH</span>
+        </div>
+        <div class="btn gold">Continuar con Apple</div>
+        <div style="height:8px"></div>
+        <div class="btn alt" style="background:transparent;color:#fff;border-color:#fff">Sign in with email</div>
+      </div>
+    </div></div>
+    <div class="caption">1 · Onboarding · multilingual</div>
+  </div>
+
+  <!-- 2. Home -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>PINEDA · COVALÍN</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="hero">
+          <div class="tag">CULTURAL CALENDAR · NOV 1</div>
+          <h3>Día de Muertos<br/>Collection 2026</h3>
+          <div class="pill" style="background:rgba(255,255,255,.22);color:#fff">Notify me</div>
+        </div>
+        <div class="grecas"></div>
+        <div class="row" style="margin-bottom:8px">
+          <div class="label">Curated for you</div>
+          <div class="muted">See all →</div>
+        </div>
+        <div class="hgrid">
+          <div class="card">
+            <div class="swatch" style="background:linear-gradient(135deg,#d89b3d,#a02747)"></div>
+            <div>Monarca Silk Scarf</div>
+            <div class="muted">$285 · Monarcas</div>
+          </div>
+          <div class="card">
+            <div class="swatch" style="background:linear-gradient(135deg,#5b2a52,#2c6e6b)"></div>
+            <div>Frida Print Tie</div>
+            <div class="muted">$195 · Frida</div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><div class="dot">⌂</div><span>Inicio</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Mercado</span></div>
+        <div class="tab"><div class="dot">⊡</div><span>Scan</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Atelier</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Yo</span></div>
+      </div>
+    </div></div>
+    <div class="caption">2 · Home · cultural calendar</div>
+  </div>
+
+  <!-- 3. Mercado / Collection -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>MERCADO</h2>
+        <div class="icon-btn">⌕</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="collection-cover">
+          <div style="font-size:10px;letter-spacing:2px;opacity:.85">COLLECTION · 24 PIECES</div>
+          <div class="name">Huichol</div>
+          <div class="sub">In collaboration with Wixárika artisans, Jalisco.</div>
+        </div>
+        <div class="meta-row">
+          <span class="pill">Frida</span>
+          <span class="pill plum">Codices</span>
+          <span class="pill teal">Monarcas</span>
+          <span class="pill gold">Día de Muertos</span>
+        </div>
+        <div class="hgrid">
+          <div class="card">
+            <div class="swatch" style="background:repeating-linear-gradient(45deg,#a02747 0 8px,#d89b3d 8px 16px,#5b2a52 16px 24px)"></div>
+            <div>Yarn-Bead Pattern</div>
+            <div class="muted">$320</div>
+          </div>
+          <div class="card">
+            <div class="swatch" style="background:radial-gradient(circle at 30% 30%,#d89b3d 0 18%,transparent 19%),radial-gradient(circle at 70% 70%,#a02747 0 22%,transparent 23%),#2c6e6b"></div>
+            <div>Peyote Vision</div>
+            <div class="muted">$285</div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">3 · Mercado · browse by collection</div>
+  </div>
+
+  <!-- 4. PDP -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>MONARCA SCARF</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="pdp-img"><div class="qr">⊡</div></div>
+        <div class="row">
+          <div>
+            <div class="h" style="margin:0">Monarca Migration</div>
+            <div class="muted">90×90cm silk twill · Edition 2026</div>
+          </div>
+          <div style="font-family:Georgia,serif;font-size:18px;color:var(--accent)">$285</div>
+        </div>
+        <div class="meta-row">
+          <span class="pill">Monarcas series</span>
+          <span class="pill gold">Numbered 142/500</span>
+          <span class="pill plum">Atelier story ✦</span>
+        </div>
+        <div class="btn">Add to bag</div>
+        <div style="height:8px"></div>
+        <div class="btn alt">Ask the docent ✦</div>
+      </div>
+    </div></div>
+    <div class="caption">4 · Product · cultural pills</div>
+  </div>
+
+  <!-- 5. Atelier (passport) -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>ATELIER</h2>
+        <div class="icon-btn">⤴</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="passport-hero"></div>
+        <div class="label">PIECE #2026-142 · Monarca Migration</div>
+        <div class="h" style="margin:4px 0 12px">A 4,500-km journey,<br/>woven in silk.</div>
+        <div class="audio">
+          <div class="play">▶</div>
+          <div class="meta">
+            <strong>Audio guide · 1:32</strong>
+            <span>Voiced by curator · ES · EN · FR · JP</span>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="v">2026</div><div class="l">edition</div></div>
+          <div class="stat"><div class="v">500</div><div class="l">pieces</div></div>
+          <div class="stat"><div class="v">Hgo.</div><div class="l">printed</div></div>
+        </div>
+        <div class="label" style="margin-bottom:6px">THE STORY</div>
+        <div style="font-size:12px;color:var(--ink);line-height:1.5">
+          The monarch's annual migration from Canada to the oyamel forests of
+          Michoacán inspired this piece. The pattern echoes the path of a single
+          generation… <span style="color:var(--accent);font-weight:700">read more</span>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">5 · Atelier · cultural passport</div>
+  </div>
+
+  <!-- 6. Scan / authenticity -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="scan">
+        <div>
+          <div style="font-size:11px;letter-spacing:2.5px;text-align:center;opacity:.7;margin-bottom:14px">SCAN TAG · VERIFY · UNLOCK STORY</div>
+          <div class="reticle"><i class="a"></i><i class="b"></i></div>
+          <div class="auth-pill">AUTHENTICITY VERIFIED</div>
+        </div>
+        <div style="text-align:center;font-size:12px;opacity:.85;position:relative">
+          Hold the camera over the silk-thread tag.<br/>
+          Works for any Pineda Covalín piece, any year.
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Inicio</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Mercado</span></div>
+        <div class="tab active"><div class="dot">⊡</div><span>Scan</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Atelier</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Yo</span></div>
+      </div>
+    </div></div>
+    <div class="caption">6 · Scan · authenticity + passport</div>
+  </div>
+
+  <!-- 7. Cultural docent chat -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>EL DOCENTE ✦</h2>
+        <div class="icon-btn">⋯</div>
+      </div>
+      <div class="body">
+        <div class="chat">
+          <div class="bubble bot">¡Hola Sofía! You're looking at the Huichol "Peyote Vision" scarf. Want me to tell you what the symbols mean?</div>
+          <div class="bubble me">Yes — and translate to English for my mother-in-law, the gift recipient.</div>
+          <div class="bubble bot">The pattern depicts a Wixárika shaman's vision. The deer represents the spiritual guide, the maize the sustenance of life. Each color carries meaning — blue for water, red for fire.<small>Sourced from Wixárika cultural archive · brand-curated</small></div>
+          <div class="bubble me">Will the EN version be sent with the gift?</div>
+          <div class="bubble bot">Yes — when she opens the parcel and confirms, the story unlocks in English in her own copy of the app.</div>
+          <div class="input"><span>Ask in any language…</span><span>↑</span></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">7 · Cultural docent · multilingual AI</div>
+  </div>
+
+  <!-- 8. Gift Concierge -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>GIFT CONCIERGE</h2>
+        <div class="icon-btn">?</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="gift-hero">
+          <div style="font-size:10px;letter-spacing:2px">FOR · CARMEN — DEC 24</div>
+          <div style="font-family:Georgia,serif;font-size:18px">A wrapped story</div>
+        </div>
+        <div class="gift-step">
+          <div class="num done">✓</div>
+          <div class="txt"><strong>Choose the piece</strong><span>Peyote Vision · Huichol · $285</span></div>
+        </div>
+        <div class="gift-step">
+          <div class="num done">✓</div>
+          <div class="txt"><strong>Signature wrapping</strong><span>Cempasúchil paper + raffia</span></div>
+        </div>
+        <div class="gift-step">
+          <div class="num done">✓</div>
+          <div class="txt"><strong>Handwritten card</strong><span>"Querida Carmen…"</span></div>
+        </div>
+        <div class="gift-step">
+          <div class="num">4</div>
+          <div class="txt"><strong>Record a 30-sec video</strong><span>Optional. She'll see it before she unwraps.</span></div>
+        </div>
+        <div class="gift-step">
+          <div class="num">5</div>
+          <div class="txt"><strong>Schedule the moment</strong><span>Story unlocks when she confirms "I just opened it"</span></div>
+        </div>
+        <div style="height:10px"></div>
+        <div class="btn">Continue</div>
+      </div>
+    </div></div>
+    <div class="caption">8 · Gift concierge · scheduled unboxing</div>
+  </div>
+
+  <!-- 9. Collector's Archive -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>EL ARCHIVO</h2>
+        <div class="icon-btn">+</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="tier-card">
+          <div style="font-size:10px;letter-spacing:2px;opacity:.85">COLLECTOR · TIER</div>
+          <div class="tier-name">Crisálida</div>
+          <div style="font-size:11px;opacity:.85;margin-top:4px">3 pieces to Mariposa · invitation to Polanco studio</div>
+          <div class="progress"><i></i></div>
+        </div>
+        <div class="row" style="margin-bottom:8px">
+          <div class="muted">7 pieces registered · 3 collections</div>
+          <div class="pill">All</div>
+        </div>
+        <div class="archive-grid">
+          <div class="piece">
+            <div class="sw" style="background:linear-gradient(135deg,#d89b3d,#a02747)"></div>
+            <div class="info"><strong>Monarca</strong>2024 · #142</div>
+          </div>
+          <div class="piece">
+            <div class="sw" style="background:repeating-linear-gradient(90deg,#5b2a52 0 6px,#d89b3d 6px 12px,#a02747 12px 18px)"></div>
+            <div class="info"><strong>Codex Borgia</strong>2023 · #088</div>
+          </div>
+          <div class="piece">
+            <div class="sw" style="background:radial-gradient(circle at 50% 30%,#d89b3d 0 20%,transparent 21%),#2c6e6b"></div>
+            <div class="info"><strong>Frida Espinas</strong>2025 · #221</div>
+          </div>
+          <div class="piece">
+            <div class="sw" style="background:linear-gradient(180deg,#5b2a52,#2a1a14)"></div>
+            <div class="info"><strong>Día Muertos</strong>2024 · #311</div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Inicio</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Mercado</span></div>
+        <div class="tab"><div class="dot">⊡</div><span>Scan</span></div>
+        <div class="tab active"><div class="dot">◐</div><span>Atelier</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Yo</span></div>
+      </div>
+    </div></div>
+    <div class="caption">9 · Archive · Crisálida tier</div>
+  </div>
+
+  <!-- 10. Travel mode -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>TRAVEL MODE</h2>
+        <div class="icon-btn">✈</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="travel-card">
+          <div style="font-size:10px;letter-spacing:2px;opacity:.85">VISITING</div>
+          <div class="place">Mexico City · 12–18 Nov</div>
+          <div style="font-size:11px;opacity:.85;margin-top:6px">5 boutiques · 2 museum stores · 1 airport</div>
+        </div>
+        <div class="boutique">
+          <div class="pin">P</div>
+          <div class="info"><strong>Polanco Studio</strong><span>Emilio Castelar 240 · 1.4 km</span></div>
+          <div class="cta">BOOK ›</div>
+        </div>
+        <div class="boutique">
+          <div class="pin">M</div>
+          <div class="info"><strong>MUNAL Museum Store</strong><span>Centro Histórico · 6 km</span></div>
+          <div class="cta">VISIT ›</div>
+        </div>
+        <div class="boutique">
+          <div class="pin">P</div>
+          <div class="info"><strong>Plaza Perisur</strong><span>Jardines del Pedregal · 12 km</span></div>
+          <div class="cta">VISIT ›</div>
+        </div>
+        <div class="boutique" style="border:none">
+          <div class="pin">✈</div>
+          <div class="info"><strong>MEX Terminal 2 · Departure</strong><span>Buy in city, collect at gate</span></div>
+          <div class="cta">SET UP ›</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">10 · Travel mode · tourists</div>
+  </div>
+
+  <!-- 11. AR try-on (Phase 2 preview) -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="ar">
+        <div style="text-align:center;font-size:10px;letter-spacing:2.5px;opacity:.7;position:relative">PHASE 2 · AR TRY-ON</div>
+        <div style="height:14px"></div>
+        <div class="ar-silhouette"></div>
+        <div style="text-align:center;font-size:12px;margin-top:14px;opacity:.85;position:relative">
+          Monarca Migration<br/>
+          <span style="opacity:.6;font-size:11px">90×90cm · French knot tie</span>
+        </div>
+        <div class="ar-bottom">
+          <div class="swatch" style="background:linear-gradient(135deg,#d89b3d,#a02747)"></div>
+          <div class="swatch on" style="background:linear-gradient(135deg,#a02747,#6e1a30)"></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#5b2a52,#2c6e6b)"></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#2c6e6b,#1e504e)"></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">11 · AR try-on (Phase 2)</div>
+  </div>
+
+</div>
+
+</body>
+</html>
