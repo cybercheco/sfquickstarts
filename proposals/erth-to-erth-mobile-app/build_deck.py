@@ -138,7 +138,7 @@ def add_section_header(slide, eyebrow, title):
 
 
 # ---------------------------------------------------------------- slides
-slides_total = 22  # placeholder, footer will be re-rendered
+slides_total = 23  # placeholder, footer will be re-rendered
 
 # 1. COVER --------------------------------------------------------
 def slide_cover():
@@ -218,10 +218,10 @@ def slide_vision():
 
 slide_vision()
 
-# 4. THREE PILLARS ------------------------------------------------
+# 4. FOUR PILLARS -------------------------------------------------
 def slide_pillars():
     s = add_slide()
-    add_section_header(s, "Product overview", "Three pillars.")
+    add_section_header(s, "Product overview", "Four pillars — three customer-facing, one internal.")
     pillars = [
         ("Shop", "A curated mobile storefront — drops, look-books, fast checkout — that feels like the brand, not a generic Shopify wrapper.",
          ["Drops & restock alerts", "Look-books & stories", "One-tap checkout"]),
@@ -229,25 +229,32 @@ def slide_pillars():
          ["Scan-to-register (QR / NFC)", "Wear log & care reminders", "Material & origin transparency"]),
         ("Circular Rewards", "Points, tiers, and recognition for the actions that matter — return, repair, resell, refer.",
          ["Soil → Compost → Bloom tiers", "Earn for circular actions", "Redeem on new pieces"]),
+        ("The Studio", "Internal-facing web admin portal — passport editor, repair queue, drop scheduler, sustainability report.",
+         ["Built for ops & editorial", "Same brand palette", "Audit-ready reporting"]),
     ]
-    x = Inches(0.6); y = Inches(2.3); w = Inches(4); gap = Inches(0.2)
+    cw = Inches(2.95); ch = Inches(4.6); gap = Inches(0.15)
+    x0 = Inches(0.6); y0 = Inches(2.3)
     for i, (title, desc, bullets) in enumerate(pillars):
-        cx = x + (w + gap) * i
-        add_rect(s, cx, y, w, Inches(4.6), fill=WHITE, line=LINE, corner=True)
-        add_rect(s, cx + Inches(0.4), y + Inches(0.4), Inches(0.6),
-                 Inches(0.6), fill=ACCENT_SO, corner=True)
-        add_text(s, cx + Inches(0.4), y + Inches(0.4), Inches(0.6),
-                 Inches(0.6), str(i + 1), font=SERIF, size=22, bold=True,
-                 color=ACCENT, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        add_text(s, cx + Inches(0.4), y + Inches(1.15), w - Inches(0.8),
-                 Inches(0.5), title, font=SERIF, size=22, color=INK)
-        add_text(s, cx + Inches(0.4), y + Inches(1.7), w - Inches(0.8),
-                 Inches(1.6), desc, size=12, color=MUTED)
-        bx = cx + Inches(0.4); by = y + Inches(3.3)
+        cx = x0 + (cw + gap) * i
+        is_studio = (i == 3)
+        add_rect(s, cx, y0, cw, ch, fill=WHITE, line=LINE, corner=True)
+        # Number badge — Studio gets the dark badge to mark it as internal
+        badge_fill = INK if is_studio else ACCENT_SO
+        badge_color = WHITE if is_studio else ACCENT
+        add_rect(s, cx + Inches(0.3), y0 + Inches(0.3), Inches(0.55),
+                 Inches(0.55), fill=badge_fill, corner=True)
+        add_text(s, cx + Inches(0.3), y0 + Inches(0.3), Inches(0.55),
+                 Inches(0.55), str(i + 1), font=SERIF, size=20, bold=True,
+                 color=badge_color, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+        add_text(s, cx + Inches(0.3), y0 + Inches(1.0), cw - Inches(0.6),
+                 Inches(0.5), title, font=SERIF, size=20, color=INK)
+        add_text(s, cx + Inches(0.3), y0 + Inches(1.55), cw - Inches(0.6),
+                 Inches(1.6), desc, size=11, color=MUTED)
+        bx = cx + Inches(0.3); by = y0 + Inches(3.3)
         for b in bullets:
-            add_text(s, bx, by, w - Inches(0.8), Inches(0.3),
-                     "•  " + b, size=11, color=INK)
-            by += Inches(0.4)
+            add_text(s, bx, by, cw - Inches(0.6), Inches(0.3),
+                     "•  " + b, size=10, color=INK)
+            by += Inches(0.36)
     add_footer(s, 4, slides_total)
 
 slide_pillars()
@@ -617,7 +624,70 @@ def slide_stack():
 
 slide_stack()
 
-# 17. ROADMAP / TIMELINE -----------------------------------------
+# 17. STUDIO ARCHITECTURE ----------------------------------------
+def slide_studio():
+    s = add_slide()
+    add_section_header(s, "The Studio · web admin portal",
+                       "The internal twin of the mobile app.")
+    add_text(s, Inches(0.6), Inches(2.1), Inches(12), Inches(0.8),
+             ("Customers use the mobile app. Your team uses the Studio. "
+              "Same backend, same brand language — different surface for "
+              "different users."),
+             size=14, color=MUTED)
+
+    # Top: Shopify
+    add_rect(s, Inches(4.5), Inches(3.0), Inches(4.3), Inches(0.85),
+             fill=WHITE, line=LINE, corner=True)
+    add_text(s, Inches(4.7), Inches(3.05), Inches(3.9), Inches(0.4),
+             "SHOPIFY", size=10, bold=True, color=ACCENT)
+    add_text(s, Inches(4.7), Inches(3.40), Inches(3.9), Inches(0.4),
+             "Catalog · orders · payments — unchanged",
+             size=11, color=MUTED)
+
+    # Middle: shared API
+    add_rect(s, Inches(0.6), Inches(4.2), Inches(12.1), Inches(0.7),
+             fill=ACCENT_SO, corner=True)
+    add_text(s, Inches(0.85), Inches(4.27), Inches(11.6), Inches(0.4),
+             "SHARED API · Postgres · Auth · AI gateway · Object storage",
+             size=11, bold=True, color=ACCENT,
+             anchor=MSO_ANCHOR.MIDDLE)
+
+    # Bottom: mobile | studio
+    add_rect(s, Inches(0.6), Inches(5.2), Inches(5.95), Inches(1.6),
+             fill=WHITE, line=LINE, corner=True)
+    add_rect(s, Inches(0.6), Inches(5.2), Inches(5.95), Inches(0.4),
+             fill=ACCENT, corner=True)
+    add_text(s, Inches(0.85), Inches(5.22), Inches(5.45), Inches(0.4),
+             "MOBILE APP — IOS & ANDROID",
+             size=10, bold=True, color=WHITE,
+             anchor=MSO_ANCHOR.MIDDLE)
+    add_text(s, Inches(0.85), Inches(5.7), Inches(5.45), Inches(1.0),
+             ("Customer-facing · Shop · Closet · Passport · Rewards · "
+              "Scan · Fit assistant"),
+             size=11, color=INK)
+
+    add_rect(s, Inches(6.75), Inches(5.2), Inches(5.95), Inches(1.6),
+             fill=WHITE, line=LINE, corner=True)
+    add_rect(s, Inches(6.75), Inches(5.2), Inches(5.95), Inches(0.4),
+             fill=INK, corner=True)
+    add_text(s, Inches(7.0), Inches(5.22), Inches(5.45), Inches(0.4),
+             "THE STUDIO — WEB ADMIN PORTAL",
+             size=10, bold=True, color=WHITE,
+             anchor=MSO_ANCHOR.MIDDLE)
+    add_text(s, Inches(7.0), Inches(5.7), Inches(5.45), Inches(1.0),
+             ("Internal · Passport editor · take-back queue · repair queue · "
+              "resale listings · loyalty admin · sustainability report"),
+             size=11, color=INK)
+
+    add_text(s, Inches(0.6), Inches(7.0), Inches(12), Inches(0.4),
+             ("BUILT FOR YOUR TEAM   —   editors, ops, customer concierge, "
+              "analysts. Audit-ready sustainability data for marketing & regulators."),
+             size=10, bold=True, color=ACCENT)
+    add_footer(s, 17, slides_total)
+
+slide_studio()
+
+# 18. ROADMAP / TIMELINE -----------------------------------------
 def slide_roadmap():
     s = add_slide()
     add_section_header(s, "How we'll deliver", "Roadmap — first nine months.")
@@ -648,11 +718,11 @@ def slide_roadmap():
                  Inches(0.6), name, font=SERIF, size=22, color=INK)
         add_text(s, x + Inches(0.3), y + Inches(2.3), cw - Inches(0.6),
                  Inches(2.0), detail, size=12, color=MUTED)
-    add_footer(s, 17, slides_total)
+    add_footer(s, 18, slides_total)
 
 slide_roadmap()
 
-# 18. SUCCESS METRICS --------------------------------------------
+# 19. SUCCESS METRICS --------------------------------------------
 def slide_metrics():
     s = add_slide()
     add_section_header(s, "How we'll know it's working", "The metrics that matter.")
@@ -683,11 +753,11 @@ def slide_metrics():
                  Inches(0.9), desc, size=11, color=MUTED)
         add_text(s, x + Inches(0.3), y + Inches(1.5), cw - Inches(0.6),
                  Inches(0.4), target, font=SERIF, size=14, color=INK)
-    add_footer(s, 18, slides_total)
+    add_footer(s, 19, slides_total)
 
 slide_metrics()
 
-# 19. PRINCIPLES --------------------------------------------------
+# 20. PRINCIPLES --------------------------------------------------
 def slide_principles():
     s = add_slide()
     add_section_header(s, "How it will feel", "Design principles.")
@@ -718,11 +788,11 @@ def slide_principles():
         add_text(s, x + Inches(0.3), y + Inches(0.65),
                  cw - Inches(0.6), Inches(1.0),
                  desc, size=11, color=MUTED)
-    add_footer(s, 19, slides_total)
+    add_footer(s, 20, slides_total)
 
 slide_principles()
 
-# 20. THE TEAM / WHO WE ARE  -------------------------------------
+# 21. THE TEAM / WHO WE ARE  -------------------------------------
 def slide_team():
     s = add_slide()
     add_section_header(s, "Working together", "How we'd partner.")
@@ -745,11 +815,11 @@ def slide_team():
         add_text(s, x + Inches(0.3), y + Inches(0.95),
                  cw - Inches(0.6), Inches(1.1),
                  desc, size=12, color=MUTED)
-    add_footer(s, 20, slides_total)
+    add_footer(s, 21, slides_total)
 
 slide_team()
 
-# 21. WHY IT WILL WORK -------------------------------------------
+# 22. WHY IT WILL WORK -------------------------------------------
 def slide_why():
     s = add_slide()
     add_section_header(s, "Why this works for Erth to Erth", "The bet behind the build.")
@@ -773,11 +843,11 @@ def slide_why():
         add_text(s, Inches(0.95), cy + Inches(0.55),
                  Inches(11.5), Inches(0.4),
                  body, size=12, color=MUTED)
-    add_footer(s, 21, slides_total)
+    add_footer(s, 22, slides_total)
 
 slide_why()
 
-# 22. NEXT STEP / CLOSING -----------------------------------------
+# 23. NEXT STEP / CLOSING -----------------------------------------
 def slide_next():
     s = add_slide()
     # full-bleed accent
@@ -803,14 +873,14 @@ def slide_next():
               "•  A list of the customer interviews and what we heard\n"
               "•  A go / no-go recommendation. Yours either way."),
              size=14, color=WHITE)
-    add_footer(s, 22, slides_total)
+    add_footer(s, 23, slides_total)
     # override footer color
     # (re-add over the dark band)
     add_text(s, Inches(0.6), Inches(7.05), Inches(6), Inches(0.3),
              "Erth to Erth · Mobile App Pitch",
              size=9, color=ACCENT_SO)
     add_text(s, Inches(11.7), Inches(7.05), Inches(1), Inches(0.3),
-             f"22 / {slides_total}",
+             f"23 / {slides_total}",
              size=9, color=ACCENT_SO, align=PP_ALIGN.RIGHT)
 
 slide_next()

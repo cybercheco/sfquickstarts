@@ -17,7 +17,7 @@ elevates the gift (which is half their volume), and gives the existing
 40+-store retail footprint a digital companion that tourists can use before,
 during, and long after their trip.
 
-## 2. The five product pillars
+## 2. The six product pillars
 
 ### 1. The Atelier — every piece carries its story
 
@@ -64,11 +64,36 @@ Half their volume is gifting. Most apps treat this as an afterthought.
 - Collector tiers as monarch lifecycle: **Huevo → Oruga → Crisálida → Mariposa**
   Rewards are *access*, not discounts: studio visits, advance drops, signed pieces, behind-the-scenes prints
 
+### 6. El Estudio — the brand's web admin portal
+
+The mobile app is the customer-facing surface. **El Estudio** is the
+internal-facing twin: a web app the editorial team, curators, concierge,
+B2B account managers, and analysts use every day. Catalog and orders stay
+in Shopify / VTEX. El Estudio owns everything new the app introduces.
+
+- **Atelier passport editor** — motif, story, technique, artist bio, audio guide upload, multilingual fields with curator review
+- **Translation workflow** — Spanish-first; Claude drafts EN/FR/IT/JP/ZH; curator approves per locale; one-click publish
+- **Cultural calendar & drop scheduler** — push copy, hero imagery, schedule per region
+- **Concierge inbox** — escalations from the cultural docent, B2B requests, VIP messages
+- **VIP / collector tier admin** — comp invitations, signed-piece allocation, Mariposa-tier overrides
+- **Authenticity & moderation queue** — review NFC tags, flag counterfeits, moderate user-generated content
+- **Heritage archive editor** (Phase 2) — vintage piece details, edition numbers, certificates
+- **B2B corporate gifting portal** (Phase 2 — triggers Enterprise upgrade)
+- **Analytics dashboards** — tourist retention, gift uptake, recipient activation, cross-language reach
+
+Same backend API as the mobile app — different UI for different users.
+Built in the same brand palette so the team that uses it daily isn't
+working in an off-brand admin tool.
+
 ## 3. Suggested screens (Phase 1)
 
-> Visual wireframes: open `mockups.html` in any browser to see all Phase 1
-> screens rendered as phone frames in the brand palette (warm cream +
-> cochineal red + saffron).
+> Visual wireframes:
+> - **Mobile app** — open `mockups.html` for the Phase 1 phone screens
+> - **Studio (web admin portal)** — open `studio-mockups.html` for the four
+>   core admin views: dashboard, Atelier editor with translation workflow,
+>   cultural calendar, and concierge inbox.
+>
+> Both in the brand palette (warm cream + cochineal red + saffron).
 
 1. Onboarding — language, region, motif preferences, gift-vs-self mode
 2. Home — drop hero, cultural calendar, your collection shortcut
@@ -130,6 +155,15 @@ Half their volume is gifting. Most apps treat this as an afterthought.
 - Outfit / occasion advisor
 - Visual search
 
+**El Estudio (web admin portal)**
+- Atelier passport editor (multilingual fields, curator review)
+- Translation workflow — Spanish-first, Claude drafts, one-click publish per locale
+- Cultural calendar / drop scheduler (push, hero imagery, region targeting)
+- Concierge inbox — docent escalations, B2B requests, VIP messages
+- VIP / Mariposa-tier admin (comp invitations, signed-piece allocation)
+- Authenticity & moderation queue
+- Phase 1 analytics — tourist retention, gift uptake, recipient activation, language reach
+
 ## 5. Phase 2 — Depth (months 5–9)
 
 - ⬆ **AR scarf try-on** (cloth-drape simulation) — *triggers Enterprise upgrade*
@@ -180,7 +214,7 @@ ad-tracking IDs.
 
 ## 9. Recommended SEYSO MaaS package
 
-### Phase 1 launch — **Growth ($3,500/mo)**
+### Phase 1 launch — **Growth ($3,500/mo)** + **Studio add-on ($750/mo)** = **$4,250/mo**
 
 | Growth feature                                | Why it fits Pineda Covalín                                                                                                |
 | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -196,6 +230,12 @@ ad-tracking IDs.
 email support. None of those work for an international luxury brand whose
 proposition depends on multilingual AI storytelling.
 
+**Studio add-on ($750/mo)** covers infra + editorial AI usage, ~5
+maintenance hours/month, dependency upgrades, and small editor-driven
+feature requests. Two Studio releases per month aligned with the mobile
+cadence. The Studio fee folds into the Enterprise total when the brand
+upgrades — no double-billing.
+
 ### Year 2 trigger — upgrade to **Enterprise (from $8,000/mo)**
 
 Upgrade when *any one* of these becomes a hard requirement:
@@ -207,9 +247,10 @@ Upgrade when *any one* of these becomes a hard requirement:
 
 ### Contract notes for Year 1
 
-- 12-month term on Growth
+- 12-month term on Growth + Studio (single combined invoice)
 - Pre-negotiated upgrade path to Enterprise with build credit prorated against the Enterprise tier
 - AI overage clause: usage above the Growth quota billed at cost +20% — caps exposure to a viral moment in the docent
+- Studio one-time build cost: **$30–45K** included in the Phase 1 build (separate from monthly platform fees)
 
 ## 10. Suggested next step
 

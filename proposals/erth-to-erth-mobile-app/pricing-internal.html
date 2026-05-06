@@ -291,31 +291,67 @@
 
 <div class="section">
   <div class="eyebrow">RECOMMENDED MODEL</div>
-  <h2>$500 floor + $0.30 per MAU above 1,000.</h2>
-  <p class="lede">Same two-number simplicity as the original proposal. No cliff. Margin grows with usage instead of inverting. The brand pays nothing extra until the app is working for them.</p>
+  <h2>$500 mobile floor + $750 Studio add-on + $0.30 per MAU above 1,000.</h2>
+  <p class="lede">Two flat numbers and one slope. Mobile + Studio together = $1,250/mo floor. Margin grows with usage instead of inverting. The brand pays nothing extra until the app is succeeding.</p>
 
   <table>
     <thead>
       <tr>
         <th>MAU</th>
-        <th class="num">They pay</th>
+        <th class="num">Mobile</th>
+        <th class="num">Studio</th>
+        <th class="num">Total they pay</th>
         <th class="num">Our cost</th>
-        <th class="num">Margin</th>
         <th class="num">Margin %</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td>1,000</td><td class="num">$500</td><td class="num">$280</td><td class="num">$220</td><td class="num">44%</td></tr>
-      <tr><td>2,500</td><td class="num">$950</td><td class="num">$500</td><td class="num">$450</td><td class="num">47%</td></tr>
-      <tr><td>5,000</td><td class="num">$1,700</td><td class="num">$800</td><td class="num">$900</td><td class="num">53%</td></tr>
-      <tr><td>15,000</td><td class="num">$4,700</td><td class="num">$2,000</td><td class="num">$2,700</td><td class="num">57%</td></tr>
-      <tr><td>25,000</td><td class="num">$7,700</td><td class="num">$2,700</td><td class="num">$5,000</td><td class="num">65%</td></tr>
+      <tr><td>1,000</td><td class="num">$500</td><td class="num">$750</td><td class="num">$1,250</td><td class="num">$380</td><td class="num">70%</td></tr>
+      <tr><td>2,500</td><td class="num">$950</td><td class="num">$750</td><td class="num">$1,700</td><td class="num">$600</td><td class="num">65%</td></tr>
+      <tr><td>5,000</td><td class="num">$1,700</td><td class="num">$750</td><td class="num">$2,450</td><td class="num">$900</td><td class="num">63%</td></tr>
+      <tr><td>15,000</td><td class="num">$4,700</td><td class="num">$750</td><td class="num">$5,450</td><td class="num">$2,100</td><td class="num">61%</td></tr>
+      <tr><td>25,000</td><td class="num">$7,700</td><td class="num">$750</td><td class="num">$8,450</td><td class="num">$2,800</td><td class="num">67%</td></tr>
     </tbody>
   </table>
 
   <div class="callout gold">
+    <div class="lbl">Why Studio is a flat add-on, not a per-MAU line</div>
+    <p>Studio cost scales with editorial volume (drops, content updates, queue work) — not with consumer MAU. Flat fee is the honest shape. ~$100/mo real cost at typical editorial volume; $750/mo includes ~5 maintenance hrs/mo and Studio releases aligned with the mobile cadence.</p>
+  </div>
+
+  <div class="callout">
     <div class="lbl">Alternative if linear feels too "metered"</div>
-    <p>Step tiers — $500 / $1,000 / $2,000 / $4,000 at 1K / 5K / 15K MAU bands. Same shape, fewer round-number conversations, but reintroduces small cliffs.</p>
+    <p>Step tiers on the mobile portion — $500 / $1,000 / $2,000 / $4,000 at 1K / 5K / 15K MAU bands. Studio still flat at $750/mo. Same shape, fewer round-number conversations, but reintroduces small cliffs.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">STUDIO ADD-ON ($750/mo)</div>
+  <h2>Mandatory, not optional. Every brand needs it.</h2>
+  <p class="lede">The Studio is how the brand maintains content — passport editor, take-back queue, repair queue, drop scheduler, sustainability report. Without it, the customer is editing JSON in a CMS we don't ship. Don't make this optional.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th class="num">Real cost / mo</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Web hosting</td><td class="num">$20–40</td><td>Often shared with mobile API</td></tr>
+      <tr><td>DB delta (passport content, queues, ledger)</td><td class="num">$5–15</td><td>Same Postgres</td></tr>
+      <tr><td>Object storage (passport photos, exports)</td><td class="num">$5–25</td><td>R2 or S3</td></tr>
+      <tr><td>Editorial AI (passport drafts, repair triage)</td><td class="num">$20–60</td><td>Heavily cached</td></tr>
+      <tr><td>Email (concierge alerts, queue notifications)</td><td class="num">$5–15</td><td>Postmark / Resend</td></tr>
+      <tr><td>Auth (~10 internal seats)</td><td class="num">$0</td><td>Free tier</td></tr>
+      <tr class="total"><td>Subtotal infra + AI</td><td class="num">~$55–155</td><td>Scales with editorial work, not MAU</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="lbl">Studio one-time build cost</div>
+    <p><strong>$30–45K</strong> on top of the mobile build. 8 modules in Phase 1: auth + passport editor + drop scheduler + take-back queue + repair queue + resale listings + loyalty admin + sustainability report. Built in the same cream/green palette as the mobile app.</p>
   </div>
 </div>
 
@@ -350,8 +386,8 @@
 
 <div class="closing">
   <div class="lbl">RECOMMENDED ASK</div>
-  <h3>$500/mo + $0.30 per MAU above 1,000. AI overage at cost +20%. 30-day exit.</h3>
-  <p>The original $500 / $1,000 instinct was right at the bottom and wrong at the top. Keep the friendly floor. Replace the cliff with a slope.</p>
+  <h3>$500 mobile + $750 Studio = $1,250/mo floor + $0.30 per MAU above 1,000. AI overage at cost +20%. 30-day exit. Studio build $30–45K inside Phase 1.</h3>
+  <p>The original $500 / $1,000 instinct was right at the bottom and wrong at the top. Keep the friendly floor. Replace the cliff with a slope. Make the Studio non-negotiable — every brand needs to maintain content.</p>
 </div>
 
 </body>

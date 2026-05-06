@@ -42,8 +42,29 @@ installs it.
 - User looks / outfit posts tagged to garments, with opt-in moderation.
 - In-app events for pop-ups, swap parties, repair clinics.
 
-> Visual wireframes: open `mockups.html` in any browser to see all Phase 1
-> screens rendered as phone frames.
+### Always — The Studio (web admin portal)
+The brand needs a way to maintain content, run drops, and manage the loop.
+Catalog and orders stay in Shopify. **The Studio** is a custom web app that
+sits alongside it and owns everything new the mobile app introduces:
+
+- **Garment passport editor** — materials, origin, factory, care, carbon-equivalent
+- **Loyalty admin** — points overrides, tier rules, comp credits
+- **Take-back / repair / resale queues** — operations team workflow
+- **Drop scheduler** — push copy, hero imagery, scheduled releases
+- **Customer concierge inbox** — repair questions, recycle escalations
+- **Sustainability reporting** — kg saved, items recycled, lifecycle data for
+  marketing and regulatory disclosures
+- **Phase 1 analytics** — activation, repeat rate, return rate, closet depth
+
+Same backend API as the mobile app — different UI for different users.
+Built in the same brand palette so the team that uses it daily isn't
+working in an off-brand admin tool.
+
+> Visual wireframes:
+> - **Mobile app** — open `mockups.html` for the Phase 1 phone screens
+> - **Studio (web admin portal)** — open `studio-mockups.html` for the four
+>   core admin views: dashboard, passport editor, take-back queue, and
+>   sustainability reporting.
 
 ## 3. Suggested screens (Phase 1)
 

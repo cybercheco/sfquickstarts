@@ -142,7 +142,7 @@
 <div class="cover">
   <div class="eyebrow">INTERNAL · NOT FOR CLIENT</div>
   <h1>Tier rationale<br/>Pineda Covalín.</h1>
-  <div class="deck-tagline">Why we recommend Growth — and exactly when<br/>to upgrade them to Enterprise.</div>
+  <div class="deck-tagline">Growth + Studio add-on at launch.<br/>Enterprise when one of four triggers fires.</div>
   <div class="meta">
     <strong>Audience</strong> &nbsp;·&nbsp; Internal only<br/>
     <strong>Use</strong> &nbsp;·&nbsp; Reference for the conversation; never share with the brand<br/>
@@ -152,8 +152,8 @@
 
 <div class="section">
   <div class="eyebrow">THE RECOMMENDATION</div>
-  <h2>Growth at launch ($3,500/mo). Enterprise when one of four triggers fires.</h2>
-  <p class="muted">A luxury, multi-region brand with serious AI ambitions cannot live on Starter. But Enterprise on day one would over-charge and under-utilise. Growth is the right shape — for now.</p>
+  <h2>Growth ($3,500) + Studio add-on ($750) = $4,250/mo at launch. Enterprise when one of four triggers fires.</h2>
+  <p class="muted">A luxury, multi-region brand with serious AI ambitions cannot live on Starter. Enterprise on day one would over-charge and under-utilise. Growth is the right shape — and the Studio add-on is non-negotiable: every brand needs a way to maintain content, drops, translations, and concierge messages.</p>
   <div class="rule"></div>
 </div>
 
@@ -200,6 +200,41 @@
       <tr><td>Shared Slack, 4h response</td><td>Right level for a luxury brand at launch — not over-engineered.</td></tr>
     </tbody>
   </table>
+</div>
+
+<div class="section">
+  <div class="eyebrow">STUDIO ADD-ON ($750/mo)</div>
+  <h2>The internal-facing twin. Mandatory, not optional.</h2>
+  <p class="lede">El Estudio is how the brand maintains content — Atelier passports, translations, cultural calendar, concierge inbox, VIP admin, authenticity. SEYSO's MaaS tiers are mobile-only, so this is a separate line item. Every client gets it.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th class="num">Real cost / mo</th>
+        <th>Margin notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Web hosting (Vercel Pro or shared API box)</td><td class="num">$20–40</td><td>Often shared infra; near-zero marginal cost</td></tr>
+      <tr><td>Database delta (passport content, translations, audio metadata, concierge)</td><td class="num">$5–15</td><td>Same Postgres as mobile</td></tr>
+      <tr><td>Object storage (audio guides, hi-res exports)</td><td class="num">$5–25</td><td>R2 or S3</td></tr>
+      <tr><td>Editorial AI (translation drafts, passport drafts)</td><td class="num">$20–60</td><td>Heavily cached — brand glossary as system prompt</td></tr>
+      <tr><td>Email (concierge alerts, B2B approvals)</td><td class="num">$5–15</td><td>Postmark / Resend</td></tr>
+      <tr><td>Auth (~20 internal seats)</td><td class="num">$0</td><td>Free tier on Supabase / Clerk</td></tr>
+      <tr class="total"><td>Subtotal infra + AI</td><td class="num">~$55–155</td><td>Scales with editorial volume, not MAU</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <div class="lbl">Margin at $750/mo</div>
+    <p>Real cost ~$100/mo. Includes ~5 maintenance hrs/mo at $150 internal rate = $750 capacity used; gross margin still ~85%+ before that maintenance is consumed. Even with monthly editor support and minor feature requests, target gross stays above 65%.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Studio one-time build cost</div>
+    <p>Roughly <strong>$30–45K</strong> on top of the mobile build. 8 modules in Phase 1 (auth + Atelier editor + translation workflow + cultural calendar + concierge inbox + VIP admin + authenticity queue + analytics dashboard). Heritage editor and B2B portal are Phase 2.</p>
+  </div>
 </div>
 
 <div class="section">
@@ -273,8 +308,8 @@
   </div>
 
   <div class="callout">
-    <div class="lbl">Margin target</div>
-    <p>Growth tier infra+AI cost at expected luxury MAU (~5K active in Year 1) is roughly $700–1,200/mo. At $3,500/mo we're at 65–80% gross before our maintenance dev. Healthy. Watch the AI line.</p>
+    <div class="lbl">Margin target — combined</div>
+    <p>Growth tier infra+AI cost at expected luxury MAU (~5K active in Year 1) is roughly $700–1,200/mo. Plus Studio at ~$100/mo. At combined $4,250/mo invoice we're at 65–80% gross before our maintenance dev. Healthy. Watch the AI line, especially the docent in 6 languages.</p>
   </div>
 
   <div class="callout gold">
@@ -290,7 +325,7 @@
 
 <div class="closing">
   <div class="lbl">RECOMMENDED ASK</div>
-  <h3>Growth ($3,500/mo) for Year 1 + pre-negotiated Enterprise upgrade. AI overage at cost +20%. Brand-side cultural-content approval.</h3>
+  <h3>Growth ($3,500) + Studio ($750) = $4,250/mo for Year 1. Pre-negotiated Enterprise upgrade folds Studio in. AI overage at cost +20%. Brand-side cultural-content approval. $30–45K Studio build inside Phase 1.</h3>
   <p>Right tier for the launch. Right path for the success scenario. Right protections against the small set of things that could go wrong.</p>
 </div>
 
