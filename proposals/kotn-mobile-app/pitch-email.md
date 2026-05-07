@@ -24,41 +24,31 @@ Hi Rami,
 
 Kotn has done the hardest part — verifiable provenance, 15 schools
 funded, every customer-facing claim citation-linked. The mobile-app
-industry hasn't caught up to that level of honesty.
+side of the category hasn't caught up.
 
-I put together a proposal for what a Kotn app could look like, built
-around the things you've already done — and the moments your customers
-don't yet have access to. The Origin (every piece scannable to its
-full ledger). The Field (their personal impact dashboard, with
-dispatches from the Delta, with maker consent). A calm, slow-fashion
-Wardrobe that makes "buy less, wear more" part of the daily ritual.
+I sketched what a Kotn app could look like — delivered as
+Mobile-as-a-Service (MaaS), a monthly platform subscription rather
+than a one-time build. Built around what you've already done, and
+the moments your customers don't yet have access to. The Origin
+(every piece scannable to its full ledger). The Field (their personal
+impact dashboard). A calm, slow-fashion Wardrobe that makes "buy
+less, wear more" part of the daily ritual.
 
-Three things you can look at in five minutes:
+Five-minute look — pitch deck, mockups, and the Studio admin concept
+on one page:
 
-- A 23-slide pitch deck — features, no costs:
-  https://raw.githubusercontent.com/cybercheco/sfquickstarts/claude/clothing-brand-mobile-app-YzX6F/proposals/kotn-mobile-app/Kotn-Pitch.pptx
+  https://yoursite.com/kotn
 
-- An interactive mobile mockup — opens in any browser:
-  https://raw.githack.com/cybercheco/sfquickstarts/claude/clothing-brand-mobile-app-YzX6F/proposals/kotn-mobile-app/mockups.html
-
-- A Studio mockup showing how your team would maintain the provenance
-  ledger and the impact data:
-  https://raw.githack.com/cybercheco/sfquickstarts/claude/clothing-brand-mobile-app-YzX6F/proposals/kotn-mobile-app/studio-mockups.html
-
-If any of it lands, we'd propose a two-week paid discovery — sit with
-your team, talk to ten of your customers across Toronto and NYC, come
-back with a lockable Phase 1 scope and a working prototype of the
-Origin scan-to-passport flow in EN and FR. Platform pricing is in a
-one-pager linked from the deck.
+If anything lands, I'd propose a two-week paid discovery: I sit with
+your team, talk to ten of your customers, and come back with a
+lockable Phase 1 scope and a working Origin scan-to-passport flow in
+EN and FR. Pricing is on the page above.
 
 Either way — good luck with the work you're already doing.
 
-Warm regards,
 [Your name]
-
-P.S. The mockups follow real maker-attribution conventions — no precise
-GPS, no names without consent. If anything reads as off-brand, I'd
-genuinely like to hear why.
+[role · single line]
+yoursite.com
 ```
 
 ## Important — what this email does NOT do
@@ -77,14 +67,30 @@ genuinely like to hear why.
 
 - **Compliment what they already do, then propose what's next.** Avoids
   the consultant smell.
-- **Three artifacts, one minute each.** Lets the founder verify the
-  craft before they invest a meeting.
+- **MaaS positioning baked into the second sentence.** Differentiates
+  from the typical "$80–130K build + monthly retainer" agency proposal,
+  without sounding salesy.
+- **One link, not three.** Multiple long `raw.githubusercontent.com`
+  URLs read as phishing to spam filters. Use one short link to a
+  landing page on your own domain.
+- **Three artifacts behind one URL.** Lets the founder verify the craft
+  before they invest a meeting.
 - **Soft CTA — paid discovery, not contract.** Lower commitment, higher
   reply rate. Removes the "is this another agency pitch" guard.
 - **The "either way" sign-off.** Closes without manufactured urgency.
   Kotn's voice would never push.
-- **The P.S. earns trust.** Shows you understood the maker-privacy
-  question without being asked.
+
+## Subject lines (deliverability-tuned)
+
+Short, lowercase, conversational, no symbols, ≤55 characters:
+
+1. `quick app idea for Kotn`
+2. `mockups: a mobile concept for Kotn`
+3. `for Rami — a Kotn app idea`
+
+Avoid: `Re:` / `Fwd:` (deceptive), all caps, `$`/`%`/`!!!`, emojis,
+the words "proposal" / "opportunity" / "free" / "limited" / "urgent" /
+"guarantee."
 
 ## What to add before sending
 
