@@ -37,7 +37,7 @@ less, wear more" part of the daily ritual.
 Five-minute look — pitch deck, mockups, and the Studio admin concept
 on one page:
 
-  https://yoursite.com/kotn
+  https://seysoservices.com/proposals/kotn
 
 If anything lands, I'd propose a two-week paid discovery: I sit with
 your team, talk to ten of your customers, and come back with a
@@ -48,7 +48,7 @@ Either way — good luck with the work you're already doing.
 
 [Your name]
 [role · single line]
-yoursite.com
+seysoservices.com
 ```
 
 ## Important — what this email does NOT do
