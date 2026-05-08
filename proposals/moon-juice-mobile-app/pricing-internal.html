@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Moon Juice — Tier Recommendation (Internal)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 18mm 18mm 18mm;
+    @bottom-left { content: "Moon Juice · Tier Recommendation · Internal"; font-family: Georgia, serif; font-size: 9pt; color: #8b8194; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font-family: Georgia, serif; font-size: 9pt; color: #8b8194; }
+  }
+  :root {
+    --bg: #f5f0eb; --ink: #2a1f3d; --muted: #8b8194; --line: #e6dfd0; --card: #ffffff;
+    --accent: #8b6fbf; --accent-deep: #4a3878; --accent-soft: #e7defa;
+    --gold: #c9a85e; --gold-soft: #f3e8c7; --pink: #d8a8b5; --pink-soft: #f5e2e6;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; font-size: 10.5pt; line-height: 1.5; }
+  .cover { page-break-after: always; padding: 30mm 0 0; }
+  .cover .eyebrow { color: var(--accent); font-weight: 700; font-size: 10pt; letter-spacing: 2px; margin-bottom: 8mm; }
+  .cover h1 { font-family: Georgia, serif; font-weight: 400; font-size: 44pt; line-height: 1.05; margin: 0 0 8mm; letter-spacing: -0.5px; }
+  .cover .deck-tagline { font-family: Georgia, serif; color: var(--accent); font-size: 18pt; line-height: 1.3; margin-bottom: 14mm; }
+  .cover .meta { color: var(--muted); font-size: 10pt; border-top: 1px solid var(--line); padding-top: 4mm; }
+  .cover .meta strong { color: var(--ink); }
+  h2 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; color: var(--ink); margin: 0 0 1mm; letter-spacing: -0.2px; }
+  h2 + .lede { color: var(--muted); margin: 0 0 6mm; font-size: 11pt; }
+  .section { page-break-inside: avoid; margin-bottom: 12mm; }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: 9pt; letter-spacing: 2px; margin-bottom: 2mm; }
+  .rule { width: 12mm; height: 2pt; background: var(--accent); margin: 4mm 0 6mm; }
+  p { margin: 0 0 4mm; } .muted { color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 3mm 0 6mm; }
+  th, td { border-bottom: 1px solid var(--line); padding: 2.4mm 3mm; text-align: left; vertical-align: top; }
+  th { background: var(--accent-soft); color: var(--accent-deep); font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; border-bottom: 1.5pt solid var(--accent); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; } th.num { text-align: right; }
+  tr.total td { border-top: 1.5pt solid var(--accent); border-bottom: none; font-weight: 700; background: var(--accent-soft); color: var(--accent-deep); }
+  .callout { background: var(--card); border: 1px solid var(--line); border-left: 3pt solid var(--accent); padding: 4mm 5mm; margin: 4mm 0 6mm; border-radius: 1mm; }
+  .callout .lbl { font-size: 9pt; font-weight: 700; letter-spacing: 1.5px; color: var(--accent); text-transform: uppercase; margin-bottom: 2mm; }
+  .callout.gold { border-left-color: var(--gold); } .callout.gold .lbl { color: #8a6e2a; }
+  .callout.warn { border-left-color: var(--pink); } .callout.warn .lbl { color: #a85a78; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0 6mm; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 2mm; padding: 5mm; }
+  .card h4 { margin: 0 0 2mm; font-family: Georgia, serif; font-weight: 400; font-size: 13pt; color: var(--accent); }
+  .card p { margin: 0; color: var(--muted); font-size: 10pt; }
+  ul.clean { list-style: none; padding: 0; margin: 0 0 4mm; }
+  ul.clean li { padding: 1.5mm 0 1.5mm 6mm; border-bottom: 1px dashed var(--line); position: relative; }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li::before { content: ""; position: absolute; left: 0; top: 4mm; width: 2mm; height: 2mm; background: var(--accent); border-radius: 50%; }
+  .closing { margin-top: 8mm; padding: 8mm; background: var(--accent-deep); color: #fff; border-radius: 2mm; }
+  .closing .lbl { color: var(--gold); font-size: 9pt; font-weight: 700; letter-spacing: 2px; margin-bottom: 3mm; }
+  .closing h3 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; margin: 0 0 4mm; }
+  .closing p { color: var(--gold-soft); margin: 0 0 3mm; }
+  .small { font-size: 9.5pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">INTERNAL · NOT FOR CLIENT</div>
+  <h1>Tier rationale<br/>Moon Juice.</h1>
+  <div class="deck-tagline">Growth + Studio at launch.<br/>Higher Studio cost. Higher legal scrutiny.</div>
+  <div class="meta">
+    <strong>Audience</strong> &nbsp;·&nbsp; Internal only<br/>
+    <strong>Use</strong> &nbsp;·&nbsp; Reference for the conversation; never share with the brand<br/>
+    <strong>Status</strong> &nbsp;·&nbsp; Draft for discussion · regulatory considerations require lawyer review before contract
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE RECOMMENDATION</div>
+  <h2>Growth ($3,500) + Studio ($750) = $4,250/mo at launch.</h2>
+  <p class="muted">Same shape as the other clients on the surface — but Moon Juice is operationally heavier (Apothecary citation manager + compliance review queue + Rx-interaction warnings + refill subscription ops + multilingual). Margin is thinner than other clients. Walk-away signals are sharper.</p>
+  <div class="rule"></div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">DIFFERENT FROM THE CLOTHING BRANDS</div>
+  <h2>What makes Moon Juice operationally heavier than the apparel clients.</h2>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>1. Regulatory exposure</h4>
+      <p>FDA / FTC supplement marketing rules. AI cannot say "treat", "cure", "prevent disease." Every claim requires citation. Brand-side legal review is non-negotiable.</p>
+    </div>
+    <div class="card">
+      <h4>2. Rx interaction handling</h4>
+      <p>Customers disclose medications. AI must flag interactions and defer to physicians. We need a real interaction database and physician-confirmation workflow.</p>
+    </div>
+    <div class="card">
+      <h4>3. Subscription ops at scale</h4>
+      <p>Refill management is the brand's LTV mechanism. Pause/skip/accelerate/bundle workflow needs to be calm, humane, and bulletproof.</p>
+    </div>
+    <div class="card">
+      <h4>4. Health-data adjacency</h4>
+      <p>Goals, allergies, Rx, cycle data — not HIPAA but close to it under CCPA-CMIA + GDPR special category. Privacy posture must be tighter than apparel clients.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHY STARTER IS DISQUALIFIED</div>
+  <h2>Same as other brands — single-platform, 5-screen, no AI.</h2>
+
+  <table>
+    <thead><tr><th>Starter constraint</th><th>Moon Juice reality</th></tr></thead>
+    <tbody>
+      <tr><td>Single platform</td><td>Both — DTC + Sephora customer base mixed iOS/Android.</td></tr>
+      <tr><td>5 screens</td><td>Phase 1 is ~18 screens including Apothecary, Stack, Refill Vault.</td></tr>
+      <tr><td>No AI</td><td>Apothecary chat, goal-to-stack, Rx interaction detection are all core to value AND compliance — without them, the proposition fails.</td></tr>
+      <tr><td>24h email support</td><td>Rx-interaction questions need same-day response — slow response damages trust.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="eyebrow">STUDIO ADD-ON ($750/mo) — HIGHER REAL COST HERE</div>
+  <h2>Studio is doubly important and meaningfully more expensive to run than apparel clients.</h2>
+  <p class="lede">Compliance review queue + Apothecary citation manager + interaction database + refill ops together push real cost up. Worth flagging in pricing reviews — at scale this could justify a $1,000/mo Studio tier.</p>
+
+  <table>
+    <thead><tr><th>Component</th><th class="num">Real cost / mo</th><th>Margin notes</th></tr></thead>
+    <tbody>
+      <tr><td>Web hosting</td><td class="num">$30–60</td><td>Slightly higher; compliance review tooling adds load</td></tr>
+      <tr><td>DB delta (citations, interactions, refill ops, Rx flags)</td><td class="num">$15–35</td><td>Higher than apparel — more relational complexity</td></tr>
+      <tr><td>Object + audio storage (ritual narrations × 3 langs × N rituals)</td><td class="num">$15–35</td><td>Audio library + product imagery</td></tr>
+      <tr><td>Editorial AI (apothecary drafts, citation extraction, translation, compliance pre-screening)</td><td class="num">$50–120</td><td>Highest of any client — compliance pre-screen is expensive</td></tr>
+      <tr><td>Email + push (refill reminders, ritual nudges, Rx flag alerts)</td><td class="num">$15–35</td><td>Higher tx volume from refills</td></tr>
+      <tr><td>Auth (~30 internal seats — editors, refill ops, concierge, compliance, founder)</td><td class="num">$0</td><td>Free tier on Supabase / Clerk</td></tr>
+      <tr><td>External services (Rx interaction database license — RxNorm, etc.)</td><td class="num">$30–80</td><td>Wellness-specific</td></tr>
+      <tr class="total"><td>Subtotal infra + AI</td><td class="num">~$155–365</td><td>Roughly 2× Encircled / Kotn</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn">
+    <div class="lbl">Margin at $750/mo</div>
+    <p>Real cost ~$260/mo (mid-band). Includes ~5 maintenance hrs/mo. Gross margin ~50–65% before maintenance hours consumed. <strong>Tighter than other clients.</strong> Push back on $750 if AI usage spikes; discuss $1,000/mo Studio for Year 2.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Studio one-time build cost</div>
+    <p>Roughly <strong>$45–65K</strong> on top of the mobile build. 10 modules in Phase 1: auth + Apothecary editor with citation manager + adaptogen library + compliance review queue + Ritual library + goal-stack rules engine + drop scheduler + refill ops dashboard + concierge + analytics. Higher than other clients due to the compliance review queue + interaction database integration — these are net-new modules with no apparel-client equivalent.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">YEAR-2 UPGRADE TRIGGERS</div>
+  <h2>Move them to Enterprise the moment any one fires — likely faster than apparel clients.</h2>
+
+  <table>
+    <thead><tr><th>Trigger</th><th>Why it forces the upgrade</th></tr></thead>
+    <tbody>
+      <tr><td>Practitioner B2B portal</td><td>Naturopaths / coaches with white-label client tracking — SSO + audit logging + RLS hardening.</td></tr>
+      <tr><td>Health-data integration (Apple Health, Google Fit, cycle data)</td><td>HIPAA-adjacent / CCPA-CMIA — Enterprise tier provides the audit logging required.</td></tr>
+      <tr><td>EU expansion makes data residency contractual</td><td>GDPR special-category data (health) — Enterprise residency is essentially required at any EU scale.</td></tr>
+      <tr><td>AR ritual visualization</td><td>Native modules for stable on-counter AR.</td></tr>
+      <tr><td>24/7 SLA from Sephora / major retail partner</td><td>When a major partner makes uptime contractual.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="lbl">Likelihood by month 12</div>
+    <p>Health-data integration: <strong>high</strong>. Practitioner portal: <strong>high</strong> — naturopaths are obvious distribution. EU residency: <strong>medium-high</strong> — wellness brands expand to EU early. Sephora SLA: <strong>medium</strong>. Realistic timeline to Enterprise is 12–15 months, not 18+ like apparel clients.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">DEAL-MAKING TACTICS</div>
+  <h2>How to anchor and protect the conversation.</h2>
+  <ul class="clean">
+    <li><strong>Lead with compliance, not features.</strong> Most wellness apps cut FDA / FTC corners. Position our AI guardrails as the brand's protection.</li>
+    <li><strong>Studio is mandatory and the Apothecary citation manager is the killer demo.</strong> Show the legal-team-approval flow. Kills competitor proposals.</li>
+    <li><strong>Pre-negotiate the Enterprise upgrade path.</strong> 12–15 month timeline expected — make the upgrade fee visible early.</li>
+    <li><strong>AI overage clause is non-negotiable.</strong> Apothecary chat in 3 languages with compliance pre-screening is expensive.</li>
+    <li><strong>Brand-side legal review on every customer-facing claim.</strong> Get this signed in the contract before any work starts.</li>
+    <li><strong>Rx interaction database licensing.</strong> Pass-through at cost (RxNorm is free; commercial APIs aren't). Make this explicit.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT WE DON'T SAY OUT LOUD</div>
+  <h2>Internal-only notes — sharper than apparel clients.</h2>
+
+  <div class="callout warn">
+    <div class="lbl">Reputation risk to manage</div>
+    <p>One AI hallucination claiming an adaptogen "treats anxiety" or "cures fatigue" is an FDA warning letter waiting to happen. Insist on brand-side legal review of every customer-facing claim. Budget for an in-house compliance reviewer on our team, not theirs. Walk away if they push back.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Margin target — combined</div>
+    <p>Growth tier infra+AI cost at expected MAU (~10K active in Year 1) is ~$1,400–1,800/mo. Plus Studio at ~$260/mo. At combined $4,250/mo we're at 50–60% gross before maintenance dev. <strong>Tightest margin of any client</strong>. Watch the AI line carefully — Apothecary chat is the swing factor.</p>
+  </div>
+
+  <div class="callout gold">
+    <div class="lbl">Upsell sequencing</div>
+    <p>Don't propose practitioner B2B portal at the same time as Phase 1 contract. Land Growth + Studio, deliver Apothecary + Refill Vault + Ritual well, prove the compliance posture works, *then* propose Enterprise + practitioner portal as the next step.</p>
+  </div>
+
+  <div class="callout warn">
+    <div class="lbl">Walk-away signals</div>
+    <p>(1) Brand pushes back on legal review of AI claims. (2) Brand wants to ship before discovery is complete. (3) Brand resists Rx interaction database licensing as cost-plus. Any one of these = walk. Wellness reputation risk is too high to absorb.</p>
+  </div>
+</div>
+
+<div class="closing">
+  <div class="lbl">RECOMMENDED ASK</div>
+  <h3>Growth ($3,500) + Studio ($750) = $4,250/mo for Year 1. Pre-negotiated Enterprise upgrade by month 12–15. AI overage at cost +20%. Brand-side legal review on every customer-facing claim. Rx interaction database license at cost-plus. $45–65K Studio build inside Phase 1.</h3>
+  <p>Right tier for the launch — but watch the margin. Plan for Enterprise faster than other clients. Walk if brand-side legal review is contested.</p>
+</div>
+
+</body>
+</html>
