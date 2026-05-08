@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Cocokind — Platform Investment</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 18mm 18mm 18mm;
+    @bottom-left { content: "Cocokind · Platform Investment"; font-family: Georgia, serif; font-size: 9pt; color: #8a9085; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font-family: Georgia, serif; font-size: 9pt; color: #8a9085; }
+  }
+  :root {
+    --bg: #f4efe6; --ink: #2c3a2e; --muted: #8a9085; --line: #e0d8c8; --card: #ffffff;
+    --accent: #6e8b6a; --accent-deep: #3e4f3b; --accent-soft: #d8e4d4;
+    --gold: #c9a85e; --gold-soft: #f1e7c9; --rose: #d8a594;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; font-size: 10.5pt; line-height: 1.55; }
+  .cover { page-break-after: always; padding: 30mm 0 0; }
+  .cover .eyebrow { color: var(--accent-deep); font-weight: 700; font-size: 10pt; letter-spacing: 2px; margin-bottom: 8mm; }
+  .cover h1 { font-family: Georgia, serif; font-weight: 400; font-size: 44pt; line-height: 1.05; margin: 0 0 8mm; letter-spacing: -0.5px; }
+  .cover .deck-tagline { font-family: Georgia, serif; color: var(--accent-deep); font-size: 18pt; line-height: 1.3; margin-bottom: 14mm; }
+  .cover .meta { color: var(--muted); font-size: 10pt; border-top: 1px solid var(--line); padding-top: 4mm; }
+  .cover .meta strong { color: var(--ink); }
+  h2 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; color: var(--ink); margin: 0 0 1mm; letter-spacing: -0.2px; }
+  h2 + .lede { color: var(--muted); margin: 0 0 6mm; font-size: 11pt; }
+  .section { page-break-inside: avoid; margin-bottom: 12mm; }
+  .eyebrow { color: var(--accent-deep); font-weight: 700; font-size: 9pt; letter-spacing: 2px; margin-bottom: 2mm; }
+  .rule { width: 12mm; height: 2pt; background: var(--accent); margin: 4mm 0 6mm; }
+  p { margin: 0 0 4mm; } .muted { color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 10.5pt; margin: 3mm 0 6mm; }
+  th, td { border-bottom: 1px solid var(--line); padding: 3mm; text-align: left; vertical-align: top; }
+  th { background: var(--accent-soft); color: var(--accent-deep); font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; border-bottom: 1.5pt solid var(--accent); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; } th.num { text-align: right; }
+  tr.highlight td { background: var(--accent-soft); color: var(--accent-deep); font-weight: 700; }
+  .callout { background: var(--card); border: 1px solid var(--line); border-left: 3pt solid var(--accent); padding: 4mm 5mm; margin: 4mm 0 6mm; border-radius: 1mm; }
+  .callout .lbl { font-size: 9pt; font-weight: 700; letter-spacing: 1.5px; color: var(--accent-deep); text-transform: uppercase; margin-bottom: 2mm; }
+  .callout.gold { border-left-color: var(--gold); } .callout.gold .lbl { color: #8a6e2a; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0 6mm; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; margin: 3mm 0 6mm; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 2mm; padding: 5mm; }
+  .card h4 { margin: 0 0 2mm; font-family: Georgia, serif; font-weight: 400; font-size: 14pt; color: var(--accent-deep); }
+  .card p { margin: 0; color: var(--muted); font-size: 10pt; }
+  .card .big { font-family: Georgia, serif; color: var(--accent-deep); font-size: 32pt; line-height: 1; margin: 2mm 0 3mm; }
+  .card .lbl { color: var(--muted); font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 1mm; }
+  ul.clean { list-style: none; padding: 0; margin: 0 0 4mm; }
+  ul.clean li { padding: 2mm 0 2mm 6mm; border-bottom: 1px dashed var(--line); position: relative; }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li::before { content: ""; position: absolute; left: 0; top: 4.5mm; width: 2mm; height: 2mm; background: var(--accent); border-radius: 50%; }
+  .closing { margin-top: 8mm; padding: 8mm; background: var(--accent-deep); color: #fff; border-radius: 2mm; }
+  .closing .lbl { color: var(--gold); font-size: 9pt; font-weight: 700; letter-spacing: 2px; margin-bottom: 3mm; }
+  .closing h3 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; margin: 0 0 4mm; }
+  .closing p { color: var(--gold-soft); margin: 0 0 3mm; }
+  .small { font-size: 9.5pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">PLATFORM INVESTMENT</div>
+  <h1>An app that<br/>publishes the truth.</h1>
+  <div class="deck-tagline">A right-sized partnership for launch —<br/>mobile app + admin Studio, ready as one.</div>
+  <div class="meta">
+    <strong>Prepared for</strong> &nbsp;·&nbsp; The Cocokind team<br/>
+    <strong>Scope</strong> &nbsp;·&nbsp; Mobile platform + The Studio (web admin portal) — hosting, AI with cosmetic-rule guardrails, releases, monitoring, on-call, OS-required maintenance<br/>
+    <strong>Excluded</strong> &nbsp;·&nbsp; One-time build (separate proposal). Payment processing, shipping, taxes — passthrough.
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE PHILOSOPHY</div>
+  <h2>Right-sized for launch. Designed for a transparency-led brand.</h2>
+  <p>Cocokind already does what most brands won't — publishes Sustainability Facts, refuses vague "clean" language, sources every ingredient claim. The app should mirror that rigor. Our recommendation balances a strong middle tier today with a contractually-locked path to Enterprise the moment scale requires it.</p>
+  <div class="rule"></div>
+
+  <div class="grid3">
+    <div class="card"><h4>Predictable</h4><p>A flat monthly fee for everything in the launch scope. No surprises during Year 1.</p></div>
+    <div class="card"><h4>Transparent</h4><p>Every ingredient and sustainability claim cited and editor-approved. AI never invents.</p></div>
+    <div class="card"><h4>Honest</h4><p>If something is genuinely included, we say so. If something is passthrough or scoped separately, we say that too.</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE RECOMMENDATION</div>
+  <h2>Growth tier + Studio add-on — $4,250 / month — for Year 1.</h2>
+
+  <div class="grid3">
+    <div class="card">
+      <div class="lbl">MOBILE TIER</div>
+      <div class="big">Growth</div>
+      <p style="margin-bottom:3mm"><strong style="color:var(--ink);font-size:11pt">$3,500 / mo</strong></p>
+      <p>Both stores via React Native. Claude-powered AI with strict cosmetic-rule guardrails. RevenueCat. Apple + Google sign-in. ASO quarterly. Two releases a month. Shared Slack with 4-hour response.</p>
+    </div>
+    <div class="card">
+      <div class="lbl">ADMIN PORTAL</div>
+      <div class="big">The Studio</div>
+      <p style="margin-bottom:3mm"><strong style="color:var(--ink);font-size:11pt">$750 / mo</strong></p>
+      <p>Sustainability Facts editor with citation manager, ingredient library, compliance review queue, routine library, refill ops dashboard, concierge inbox, analytics.</p>
+    </div>
+    <div class="card">
+      <div class="lbl">FUTURE TIER</div>
+      <div class="big">Enterprise</div>
+      <p style="margin-bottom:3mm"><strong style="color:var(--ink);font-size:11pt">from $8,000 / mo</strong></p>
+      <p>Esthetician B2B portal. Photo skin analysis at scale. EU GDPR data residency. Native AR. SSO + audit logging + RLS hardening. 24/7 SLA. Studio folds in.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE STUDIO — WHAT'S INSIDE</div>
+  <h2>The internal twin of the mobile app — and the brand's transparency backbone.</h2>
+  <p class="lede">Catalog and orders stay in Shopify. The Studio owns the Sustainability Facts library, the ingredient evidence base, the compliance review queue, the refill ops dashboard.</p>
+
+  <table>
+    <thead><tr><th>Module</th><th>What your team does with it</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Facts editor + citation manager</strong></td><td>Author per-product Sustainability Facts with LCA citations, packaging detail, ingredient sourcing.</td></tr>
+      <tr><td><strong>Ingredient library</strong></td><td>Per-ingredient reference with peer-reviewed citations and contraindications.</td></tr>
+      <tr><td><strong>Compliance review queue</strong></td><td>Catches FDA cosmetic-rule sensitive language before publish. AI pre-screens; you approve.</td></tr>
+      <tr><td><strong>Routine library</strong></td><td>AM / PM templates per goal. Editors define what "hydration + glow" recommends.</td></tr>
+      <tr><td><strong>Refill ops dashboard</strong></td><td>At-risk subscriptions, smart refill predictions, bottle returns + credit.</td></tr>
+      <tr><td><strong>Concierge inbox</strong></td><td>Studio chat escalations, ingredient questions, sustainability questions, refill issues.</td></tr>
+      <tr><td><strong>Translation workflow</strong></td><td>EN-first; Claude drafts ES; editors approve per locale.</td></tr>
+      <tr><td><strong>Analytics dashboards</strong></td><td>Routine completion, refill churn, Facts engagement, compliance flags caught pre-publish.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT THIS LOOKS LIKE</div>
+  <h2>At every stage of growth.</h2>
+
+  <table>
+    <thead><tr><th>Stage</th><th class="num">Monthly active users</th><th class="num">Monthly platform fee</th><th class="num">Per active user</th></tr></thead>
+    <tbody>
+      <tr><td>Pilot</td><td class="num">2,000</td><td class="num">$4,250</td><td class="num">$2.13</td></tr>
+      <tr class="highlight"><td>Launch</td><td class="num">8,000</td><td class="num">$4,250</td><td class="num">$0.53</td></tr>
+      <tr><td>Early growth</td><td class="num">20,000</td><td class="num">$4,250</td><td class="num">$0.21</td></tr>
+      <tr><td>Established</td><td class="num">40,000</td><td class="num">$4,250</td><td class="num">$0.11</td></tr>
+      <tr><td>Strong adoption</td><td class="num">80,000</td><td class="num">$4,250</td><td class="num">$0.05</td></tr>
+    </tbody>
+  </table>
+
+  <p class="small">Combined fee covers mobile platform + Studio at every stage. AI overage above 100K calls/month billed at cost +20%.</p>
+</div>
+
+<div class="section">
+  <div class="eyebrow">YEAR 2 — THE UPGRADE PATH</div>
+  <h2>When Cocokind is ready, Enterprise is one decision away.</h2>
+
+  <table>
+    <thead><tr><th>Trigger</th><th>What Enterprise unlocks</th></tr></thead>
+    <tbody>
+      <tr><td>Launching <strong>esthetician B2B portal</strong></td><td>SSO, audit logging, role-based access — for partner esthetician client tracking.</td></tr>
+      <tr><td>Adding <strong>photo skin analysis at scale</strong></td><td>Health-data adjacent audit logging required.</td></tr>
+      <tr><td>EU expansion makes <strong>data residency</strong> contractual</td><td>EU storage + CSRD-style sustainability disclosure compliance.</td></tr>
+      <tr><td>Launching <strong>AR product try-on</strong></td><td>Native Swift / Kotlin modules for stable on-face AR.</td></tr>
+      <tr><td>Major retail partner requires <strong>24/7 / 1h SLA</strong></td><td>Dedicated lead engineer + PM, on-call rotation.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <div class="lbl">What we lock in your Year 1 contract</div>
+    <p>The Enterprise upgrade fee is set in advance, with no penalty for moving up. Any build credit accrued during Year 1 is prorated against the Enterprise tier. You decide when you're ready.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">FAIR TERMS</div>
+  <h2>Three commitments to keep the relationship healthy.</h2>
+
+  <div class="grid3">
+    <div class="card"><h4>30-day exit</h4><p>Either side can end on 30 days' notice after the Year 1 term.</p></div>
+    <div class="card"><h4>Your data, your accounts</h4><p>Source code, customer data, AI logs, the Sustainability Facts library all live in your cloud accounts.</p></div>
+    <div class="card"><h4>AI overage cap</h4><p>If AI usage spikes beyond 100,000 calls per month, anything above is billed at our cost +20%.</p></div>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Brand-side compliance review</div>
+    <p>Every customer-facing ingredient claim, sustainability figure, or routine recommendation reviewed and approved by your editorial team before publish. AI generates; humans approve. Always.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT'S NOT INCLUDED</div>
+  <h2>Passed through at cost or scoped separately.</h2>
+  <ul class="clean">
+    <li><strong>App-store fees</strong> — Apple's $99/yr and Google's $25 one-time, on your accounts.</li>
+    <li><strong>Payment processing</strong> — Shopify and Stripe fees on transactions, at standard rates.</li>
+    <li><strong>LCA / audit fees</strong> — Anthesis or whichever LCA partner you use. The Studio links to them; the audits themselves are yours.</li>
+    <li><strong>USDA Organic certification fees</strong> — yours.</li>
+    <li><strong>Phase 2 &amp; Phase 3 build work</strong> — esthetician portal, AR, content scaling all scoped separately.</li>
+    <li><strong>Editorial content production</strong> — long-form journal, VOICES films, photography are yours.</li>
+    <li><strong>Marketing &amp; ad spend</strong> — entirely yours to direct.</li>
+  </ul>
+</div>
+
+<div class="closing">
+  <div class="lbl">THE OFFER</div>
+  <h3>Growth + Studio · $4,250 / month for Year 1. Pre-negotiated Enterprise upgrade folds Studio in. Brand-side compliance review on every customer-facing claim. AI overage at cost +20%. 30-day exit after Year 1.</h3>
+  <p>Right-sized for the launch. Right path for the success scenario. Built so the platform stays in service of the truth — never the other way around.</p>
+</div>
+
+</body>
+</html>
