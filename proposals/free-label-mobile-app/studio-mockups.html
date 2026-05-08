@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Free Label — The Studio (Web Admin Mockups)</title>
+<style>
+  :root {
+    --bg: #f7f3ed; --ink: #2a2520; --muted: #8a7e72; --line: #e6dcd0; --card: #ffffff;
+    --accent: #c08f7a; --accent-deep: #7a4d3d; --accent-soft: #f0dfd2;
+    --gold: #c9a85e; --gold-soft: #f3e8c7; --sage: #9bb0a0; --blush: #d8a5a5; --blush-soft: #f3dcdc;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 { font-family: "Times New Roman", Georgia, serif; font-weight: 500; font-size: 36px; margin: 0 0 4px; letter-spacing: -0.5px; color: var(--accent-deep); }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .deck { max-width: 1400px; margin: 0 auto; padding: 16px 32px 64px; }
+  .browser { background: #2a2520; border-radius: 14px; box-shadow: 0 24px 48px rgba(122,77,61,.12), 0 2px 8px rgba(0,0,0,.06); margin-bottom: 32px; overflow: hidden; }
+  .browser .chrome { background: #2a2520; padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
+  .browser .chrome .dots { display: flex; gap: 6px; }
+  .browser .chrome .dots span { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,.2); }
+  .browser .chrome .url { flex: 1; background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); font-size: 12px; padding: 5px 12px; border-radius: 6px; font-family: monospace; }
+  .frame { height: 720px; display: grid; grid-template-columns: 220px 1fr; background: var(--bg); overflow: hidden; }
+
+  .sidebar { background: #fff; border-right: 1px solid var(--line); padding: 18px 0; display: flex; flex-direction: column; }
+  .brand { padding: 0 18px 16px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+  .brand .logo { font-family: "Times New Roman", Georgia, serif; color: var(--accent-deep); font-size: 12px; letter-spacing: 4px; font-weight: 600; }
+  .brand .sub { color: var(--muted); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .nav { flex: 1; padding: 0 12px; display: flex; flex-direction: column; gap: 2px; }
+  .nav .section-label { color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; padding: 12px 12px 6px; }
+  .nav a { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; color: var(--ink); font-size: 12px; text-decoration: none; }
+  .nav a .ic { width: 18px; height: 18px; background: var(--bg); border-radius: 5px; display: grid; place-items: center; font-size: 10px; color: var(--muted); }
+  .nav a.active { background: var(--accent-soft); color: var(--accent-deep); font-weight: 600; }
+  .nav a.active .ic { background: var(--accent); color: #fff; }
+  .nav a .badge { margin-left: auto; background: var(--accent); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 999px; }
+  .user { padding: 12px 16px; border-top: 1px solid var(--line); display: flex; gap: 10px; align-items: center; }
+  .user .av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--blush), var(--accent-deep)); }
+  .user .name { font-size: 12px; }
+  .user .name strong { display: block; }
+  .user .name span { color: var(--muted); font-size: 10px; }
+
+  .main { overflow: auto; padding: 22px 28px 30px; }
+  .topline { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .crumb { color: var(--muted); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+  .top-actions { display: flex; gap: 8px; }
+  .btn { display: inline-block; padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; background: var(--accent); color: #fff; border: none; cursor: pointer; }
+  .btn.alt { background: #fff; color: var(--accent-deep); border: 1px solid var(--line); }
+  .btn.subtle { background: var(--bg); color: var(--ink); }
+  h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 26px; margin: 0 0 4px; color: var(--ink); }
+  .subhead { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 22px; }
+  .stat-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .stat-card .label { color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+  .stat-card .num { font-family: "Times New Roman", Georgia, serif; color: var(--accent-deep); font-size: 32px; line-height: 1; margin: 6px 0 2px; }
+  .stat-card .delta { color: var(--accent); font-size: 11px; font-weight: 600; }
+
+  .grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+  .panel h3 { margin: 0 0 12px; font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 15px; color: var(--ink); display: flex; justify-content: space-between; align-items: center; }
+  .panel h3 .more { color: var(--accent-deep); font-size: 11px; font-weight: 600; }
+  .row { display: grid; grid-template-columns: 70px 1fr auto auto; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); align-items: center; }
+  .row:last-child { border: none; }
+  .row .id { background: var(--accent-soft); color: var(--accent-deep); border-radius: 6px; padding: 4px; text-align: center; font-family: monospace; font-size: 11px; font-weight: 700; }
+  .row .info { font-size: 12px; }
+  .row .info strong { display: block; }
+  .row .info span { color: var(--muted); font-size: 11px; }
+  .pill { padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; }
+  .pill.live { background: var(--accent-soft); color: var(--accent-deep); }
+  .pill.review { background: var(--gold-soft); color: #8a6e2a; }
+  .pill.draft { background: var(--bg); color: var(--muted); }
+  .pill.swap { background: var(--blush-soft); color: #a85a5a; }
+
+  /* Fit-Finder rules editor */
+  .editor-shell { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field-group { margin-bottom: 14px; }
+  .field-group label { display: block; color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 5px; }
+  .field { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 12px; color: var(--ink); line-height: 1.5; }
+  .field.lg { min-height: 80px; }
+  .field.title { font-family: "Times New Roman", Georgia, serif; font-size: 18px; }
+  .ai-banner { background: linear-gradient(135deg, var(--accent-soft), var(--gold-soft)); border-radius: 10px; padding: 10px 14px; font-size: 11px; color: var(--ink); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .ai-banner .star { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 12px; }
+  .ai-banner strong { color: var(--accent-deep); }
+
+  .rules-table { display: flex; flex-direction: column; gap: 6px; }
+  .rule-item {
+    display: grid; grid-template-columns: 80px 1fr auto;
+    gap: 10px; padding: 10px 12px;
+    background: var(--bg); border-radius: 8px; align-items: center;
+  }
+  .rule-item .label { font-family: monospace; font-size: 11px; color: var(--accent-deep); font-weight: 700; }
+  .rule-item .info { font-size: 12px; }
+  .rule-item .info strong { display: block; }
+  .rule-item .info span { color: var(--muted); font-size: 11px; }
+
+  /* Drop scheduler */
+  .drop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .drop-tile { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .drop-tile .img {
+    height: 80px;
+    background: linear-gradient(135deg, var(--blush), var(--accent));
+  }
+  .drop-tile.gold .img { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .drop-tile.sage .img { background: linear-gradient(135deg, var(--sage), #4e6754); }
+  .drop-tile.dark .img { background: linear-gradient(180deg, #2a2520, #555047); }
+  .drop-tile .body-content { padding: 12px 14px; }
+  .drop-tile .body-content strong { display: block; font-size: 13px; }
+  .drop-tile .body-content .meta { color: var(--muted); font-size: 11px; margin-top: 2px; }
+  .drop-tile .progress {
+    height: 4px; background: var(--bg); border-radius: 2px;
+    margin: 8px 0 4px; overflow: hidden;
+  }
+  .drop-tile .progress > i {
+    display: block; height: 100%; background: var(--accent);
+  }
+  .drop-tile .stats { display: flex; gap: 8px; font-size: 10px; color: var(--muted); margin-top: 4px; }
+  .drop-tile .stats span:not(:first-child) { color: var(--muted); }
+
+  /* Concierge */
+  .inbox-shell { display: grid; grid-template-columns: 280px 1fr; gap: 14px; height: 600px; }
+  .msg { display: grid; grid-template-columns: 32px 1fr; gap: 10px; padding: 10px 12px; border-radius: 8px; cursor: pointer; }
+  .msg.active { background: var(--accent-soft); }
+  .msg .av { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--blush), var(--accent-deep)); }
+  .msg .body { font-size: 12px; }
+  .msg .body .name { font-weight: 600; }
+  .msg .body .preview { color: var(--muted); margin-top: 2px; }
+  .msg .body .meta { color: var(--muted); font-size: 10px; margin-top: 4px; display: flex; gap: 8px; }
+  .msg .body .lang { background: var(--bg); padding: 1px 6px; border-radius: 999px; font-weight: 600; }
+
+  .inbox-thread { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 18px 22px; display: flex; flex-direction: column; }
+  .thread-head { border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 14px; }
+  .thread-head h4 { margin: 0 0 4px; font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 17px; }
+  .thread-head .meta { color: var(--muted); font-size: 11px; }
+  .thread-head .meta .pill { background: var(--accent-soft); color: var(--accent-deep); padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; margin-right: 6px; }
+  .bubbles { flex: 1; overflow: auto; display: flex; flex-direction: column; gap: 8px; }
+  .bubble { max-width: 80%; padding: 10px 12px; border-radius: 12px; font-size: 12px; line-height: 1.4; }
+  .bubble.left { align-self: flex-start; background: var(--bg); }
+  .bubble.right { align-self: flex-end; background: var(--accent); color: #fff; }
+  .bubble.ai { align-self: center; background: linear-gradient(135deg, var(--accent-soft), var(--gold-soft)); color: var(--ink); font-size: 11px; font-style: italic; }
+  .bubble small { display: block; opacity: .7; margin-top: 4px; font-size: 10px; }
+  .reply-bar { margin-top: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
+
+  .caption { text-align: center; margin: 4px 0 24px; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px; }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>The Studio — Web Admin Mockups</h1>
+  <p>Free Label's internal-facing portal. Warm terracotta + bamboo palette, optimised for editors, production ops, and concierge.</p>
+</header>
+
+<div class="deck">
+
+  <!-- 1. Dashboard -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.freelabel.com / dashboard</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">FL · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a class="active"><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">✦</span> Fit-Finder rules</a>
+          <a><span class="ic">◐</span> Pieces &amp; passports</a>
+          <a><span class="ic">▦</span> Drops &amp; production <span class="badge">3</span></a>
+          <a><span class="ic">▶</span> Comfort Lab</a>
+          <a><span class="ic">A</span> Translations <span class="badge">5</span></a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">↺</span> Size swaps <span class="badge">8</span></a>
+          <a><span class="ic">✉</span> Concierge <span class="badge">4</span></a>
+          <a><span class="ic">★</span> Free tiers</a>
+          <div class="section-label">Insights</div>
+          <a><span class="ic">▥</span> Analytics</a>
+        </nav>
+        <div class="user">
+          <div class="av"></div>
+          <div class="name"><strong>Jess S.</strong><span>Founder · EN/FR</span></div>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">DASHBOARD · TODAY · 8 MAY 2026</div>
+          <div class="top-actions">
+            <button class="btn alt">Search</button>
+            <button class="btn">+ New drop</button>
+          </div>
+        </div>
+        <h2>Good morning, Jess.</h2>
+        <div class="subhead">8 size-swaps awaiting label print · 3 drops in production · 5 translation drafts pending · 4 concierge messages.</div>
+
+        <div class="stat-row">
+          <div class="stat-card"><div class="label">Active customers · 30d</div><div class="num">9,420</div><div class="delta">+7.2% vs prior</div></div>
+          <div class="stat-card"><div class="label">Fit-Finder conversion</div><div class="num">71%</div><div class="delta">+4 pts MoM</div></div>
+          <div class="stat-card"><div class="label">Return rate · bras</div><div class="num">9.4%</div><div class="delta">−6.2 pts since FF</div></div>
+          <div class="stat-card"><div class="label">Drop sell-through · 30d</div><div class="num">82%</div><div class="delta">healthy small-batch</div></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Drops in production <span class="more">All →</span></h3>
+            <div class="row">
+              <div class="id">CR-220</div>
+              <div class="info"><strong>Carrie · black · 220 made</strong><span>cut + sewn Vancouver · ships May 24 · 64% sold</span></div>
+              <span class="pill live">LIVE</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">AN-180</div>
+              <div class="info"><strong>Andie · blush · 180 made</strong><span>in production · ships Jun 7 · 142 pre-orders</span></div>
+              <span class="pill review">PRE-ORDER</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">SET-?</div>
+              <div class="info"><strong>Bamboo set · sage · TBD</strong><span>community waitlist · 142 saved · awaiting batch decision</span></div>
+              <span class="pill draft">WAITLIST</span>
+              <div></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Size swaps · 8 open <span class="more">All →</span></h3>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Sam K. · Vancouver</strong><span>Andie · L → XL · label print pending</span></div>
+              <div class="pill swap">SWAP</div>
+            </div>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Dana M. · Toronto</strong><span>Carrie · M → L · received in lab</span></div>
+              <div class="pill swap">SWAP</div>
+            </div>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Anika P. · Calgary</strong><span>Andie · 2X → 3X · in transit</span></div>
+              <div class="pill swap">SWAP</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">1 · Dashboard · founder's morning view</div>
+
+  <!-- 2. Fit-Finder rules editor -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.freelabel.com / fit-finder / andie-bra</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">FL · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a class="active"><span class="ic">✦</span> Fit-Finder rules</a>
+          <a><span class="ic">◐</span> Pieces &amp; passports</a>
+          <a><span class="ic">▦</span> Drops &amp; production</a>
+          <a><span class="ic">▶</span> Comfort Lab</a>
+          <a><span class="ic">A</span> Translations</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">FIT-FINDER · BRAS · ANDIE</div>
+          <div class="top-actions">
+            <button class="btn subtle">Discard</button>
+            <button class="btn alt">Save draft</button>
+            <button class="btn">Publish</button>
+          </div>
+        </div>
+        <h2>Andie reversible bra · Fit-Finder rules</h2>
+        <div class="subhead">Sizes A–L cup · band XS–5X · how the algorithm maps customer answers + body comfort to a recommended size.</div>
+
+        <div class="ai-banner">
+          <div class="star">✦</div>
+          <div><strong>Claude proposed 3 rule updates</strong> based on Q1 return data — most common error was over-sizing in band M. Founder review pending.</div>
+        </div>
+
+        <div class="editor-shell">
+          <div>
+            <div class="field-group">
+              <label>Style</label>
+              <div class="field title">Andie reversible bra</div>
+            </div>
+            <div class="field-group">
+              <label>Customer-facing fit summary</label>
+              <div class="field lg">Wire-free, elastic-free, supportive but never compressive. Wears one cup smaller than your wired bra in most cases. Band should feel firm but never pinch — when in doubt, size up the band, not the cup.</div>
+            </div>
+            <div class="field-group">
+              <label>Visual fit guide</label>
+              <div class="field" style="font-size:11px">
+                <strong>Band lies</strong> · level across the back, not riding up<br/>
+                <strong>Cup hits</strong> · just under the underarm crease<br/>
+                <strong>Strap length</strong> · two fingers between strap + shoulder<br/>
+                <span style="color:var(--muted)">Photo references attached · 4 body shapes</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="field-group">
+              <label>Sizing rules · Q1 2026</label>
+              <div class="rules-table">
+                <div class="rule-item">
+                  <div class="label">IF Q1 = "wired DD"</div>
+                  <div class="info"><strong>Recommend L cup</strong><span>drop one cup from wired</span></div>
+                </div>
+                <div class="rule-item">
+                  <div class="label">IF Q2 = "marks"</div>
+                  <div class="info"><strong>Size band UP</strong><span>marks = band too tight, not cup too big</span></div>
+                </div>
+                <div class="rule-item">
+                  <div class="label">IF Q3 = "all-day"</div>
+                  <div class="info"><strong>Medium hold</strong><span>most-popular default</span></div>
+                </div>
+                <div class="rule-item">
+                  <div class="label">IF Q4 = "scoop neck"</div>
+                  <div class="info"><strong>Reversible side B</strong><span>v-neck flat-lay</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="field-group">
+              <label>Free size-swap policy (visible to customer)</label>
+              <div class="field" style="font-size:11px">
+                <strong>30-day free swap</strong> · ships next size at no cost<br/>
+                <strong>Most customers get it on swap #2</strong> · expected, not failed
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">2 · Fit-Finder rules · per-style algorithm</div>
+
+  <!-- 3. Drop scheduler -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.freelabel.com / drops</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">FL · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">✦</span> Fit-Finder rules</a>
+          <a><span class="ic">◐</span> Pieces &amp; passports</a>
+          <a class="active"><span class="ic">▦</span> Drops &amp; production <span class="badge">3</span></a>
+          <a><span class="ic">▶</span> Comfort Lab</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CONTENT · DROPS · 3 ACTIVE · 4 PLANNED</div>
+          <div class="top-actions">
+            <button class="btn alt">Filter</button>
+            <button class="btn alt">Production calendar</button>
+            <button class="btn">+ Plan a drop</button>
+          </div>
+        </div>
+        <h2>Drops &amp; production</h2>
+        <div class="subhead">Small-batch drops based on real demand. Waitlist signal feeds production planning. No predictions, no overstock.</div>
+
+        <div class="row" style="margin-bottom:6px;border:none;padding:0;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:700">
+          <div></div><div>DROP</div><div></div><div></div>
+        </div>
+
+        <div class="drop-grid">
+          <div class="drop-tile dark">
+            <div class="img"></div>
+            <div class="body-content">
+              <strong>Carrie · black · 220 made</strong>
+              <div class="meta">cut + sewn Vancouver · ships May 24</div>
+              <div class="progress"><i style="width:64%"></i></div>
+              <div class="stats">
+                <span>140 sold</span>·<span>80 left</span>·<span>~7 days to sell-out</span>
+              </div>
+            </div>
+          </div>
+          <div class="drop-tile">
+            <div class="img"></div>
+            <div class="body-content">
+              <strong>Andie · blush · 180 made</strong>
+              <div class="meta">in production · ships Jun 7</div>
+              <div class="progress"><i style="width:79%"></i></div>
+              <div class="stats">
+                <span>142 pre-orders</span>·<span>38 floor</span>·<span>likely sell-out at launch</span>
+              </div>
+            </div>
+          </div>
+          <div class="drop-tile sage">
+            <div class="img"></div>
+            <div class="body-content">
+              <strong>Bamboo set · sage · TBD</strong>
+              <div class="meta">community waitlist · awaiting batch decision</div>
+              <div class="progress"><i style="width:48%"></i></div>
+              <div class="stats">
+                <span>142 saved</span>·<span>need 200 to trigger</span>·<span>at 71% threshold</span>
+              </div>
+            </div>
+          </div>
+          <div class="drop-tile gold">
+            <div class="img"></div>
+            <div class="body-content">
+              <strong>Lounge · cream · planned</strong>
+              <div class="meta">batch size TBD · target Q3</div>
+              <div class="stats">
+                <span>—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">3 · Drops &amp; production · small-batch scheduler</div>
+
+  <!-- 4. Concierge inbox -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.freelabel.com / concierge / sam-k-2841</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">FL · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">✦</span> Fit-Finder rules</a>
+          <a><span class="ic">▦</span> Drops &amp; production</a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">↺</span> Size swaps</a>
+          <a class="active"><span class="ic">✉</span> Concierge <span class="badge">4</span></a>
+          <a><span class="ic">★</span> Free tiers</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CONCIERGE · 4 OPEN</div>
+          <div class="top-actions">
+            <button class="btn alt">Filter</button>
+            <button class="btn">Mark resolved</button>
+          </div>
+        </div>
+        <h2>Concierge inbox</h2>
+        <div class="subhead">Lab chat escalations · size-swap follow-ups · larger-cup fitting questions · waitlist asks</div>
+
+        <div class="inbox-shell">
+          <div class="panel" style="overflow:auto">
+            <h3 style="margin-bottom:8px">Open · 4</h3>
+            <div class="msg active">
+              <div class="av"></div>
+              <div class="body">
+                <div class="name">Sam K. · Vancouver</div>
+                <div class="preview">Andie L → XL swap follow-up</div>
+                <div class="meta"><span class="lang">EN</span><span>2h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--gold),var(--accent-deep))"></div>
+              <div class="body">
+                <div class="name">Lila G. · Montréal</div>
+                <div class="preview">Quel taille pour 38J? · cup-size question</div>
+                <div class="meta"><span class="lang">FR</span><span>4h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--sage),var(--accent-deep))"></div>
+              <div class="body">
+                <div class="name">Anika P. · Calgary</div>
+                <div class="preview">Bra as binder · post-top-surgery question</div>
+                <div class="meta"><span class="lang">EN</span><span>5h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--blush),var(--accent-deep))"></div>
+              <div class="body">
+                <div class="name">Boutique · Granville</div>
+                <div class="preview">Wholesale enquiry · 60 pieces</div>
+                <div class="meta"><span class="lang">EN</span><span>1d</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="inbox-thread">
+            <div class="thread-head">
+              <h4>Sam Khoury · Vancouver</h4>
+              <div class="meta"><span class="pill">VIP · FREE TIER</span><span>4 pieces · 1 swap · escalated by Lab chat · 2h ago</span></div>
+            </div>
+            <div class="bubbles">
+              <div class="bubble ai">Lab chat escalated this — customer received her swapped Andie XL but it now feels too loose. AI suggested size L was right after all. Customer wants direct human follow-up.</div>
+              <div class="bubble left">I sized up to XL on the swap but now it's too loose. Should I swap back to L?<small>EN · 2h ago</small></div>
+              <div class="bubble right">Hi Sam — yes, the L was probably correct. The Andie has 2-inch stretch in the band; the XL only feels right after the first wash. Two paths: (1) try the L again, free swap on us, or (2) keep the XL and wash it once before deciding. Most customers go with option 1. What feels right?<small>EN · sending</small></div>
+            </div>
+            <div class="reply-bar"><span>Reply in English — Claude ready to translate to FR for archive…</span><span>↑</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">4 · Concierge inbox · size-aware escalations</div>
+
+</div>
+
+</body>
+</html>

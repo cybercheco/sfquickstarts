@@ -214,6 +214,34 @@ BRANDS = [
         "studio":   "studio-mockups.html",
         "pricing":  "Cocokind-Pricing-Client.pdf",
     },
+    {
+        "slug": "free-label",
+        "folder": "free-label-mobile-app",
+        "name": "Free Label",
+        "tagline": "The bra that finally fits.",
+        "summary": (
+            "A fit engine for the Vancouver brand making wire-free, "
+            "elastic-free, bamboo bras sized A to L cup and up to 5X. "
+            "The Fit Finder ends the under-sizing first try. The Drop "
+            "shows real batch counts, no fake urgency. Free size-swap "
+            "is the default, not a perk."
+        ),
+        "category": "Wire-free bras · size-inclusive · slow fashion",
+        "palette": {
+            "bg":      "#f7f3ed",
+            "ink":     "#2a2520",
+            "muted":   "#8a7e72",
+            "line":    "#e6dcd0",
+            "accent":  "#c08f7a",
+            "deep":    "#7a4d3d",
+            "soft":    "#f0dfd2",
+            "gold":    "#c9a85e",
+        },
+        "deck":     "Free-Label-Pitch.pptx",
+        "mobile":   "mockups.html",
+        "studio":   "studio-mockups.html",
+        "pricing":  "Free-Label-Pricing-Client.pdf",
+    },
 ]
 
 

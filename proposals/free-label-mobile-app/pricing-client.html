@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Free Label — Platform Investment</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 18mm 18mm 18mm;
+    @bottom-left { content: "Free Label · Platform Investment"; font-family: Georgia, serif; font-size: 9pt; color: #8a7e72; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font-family: Georgia, serif; font-size: 9pt; color: #8a7e72; }
+  }
+  :root {
+    --bg: #f7f3ed; --ink: #2a2520; --muted: #8a7e72; --line: #e6dcd0; --card: #ffffff;
+    --accent: #c08f7a; --accent-deep: #7a4d3d; --accent-soft: #f0dfd2;
+    --gold: #c9a85e; --gold-soft: #f3e8c7; --blush: #d8a5a5;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; font-size: 10.5pt; line-height: 1.55; }
+  .cover { page-break-after: always; padding: 30mm 0 0; }
+  .cover .eyebrow { color: var(--accent-deep); font-weight: 700; font-size: 10pt; letter-spacing: 2px; margin-bottom: 8mm; }
+  .cover h1 { font-family: Georgia, serif; font-weight: 400; font-size: 44pt; line-height: 1.05; margin: 0 0 8mm; letter-spacing: -0.5px; }
+  .cover .deck-tagline { font-family: Georgia, serif; color: var(--accent-deep); font-size: 18pt; line-height: 1.3; margin-bottom: 14mm; }
+  .cover .meta { color: var(--muted); font-size: 10pt; border-top: 1px solid var(--line); padding-top: 4mm; }
+  .cover .meta strong { color: var(--ink); }
+  h2 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; color: var(--ink); margin: 0 0 1mm; letter-spacing: -0.2px; }
+  h2 + .lede { color: var(--muted); margin: 0 0 6mm; font-size: 11pt; }
+  .section { page-break-inside: avoid; margin-bottom: 12mm; }
+  .eyebrow { color: var(--accent-deep); font-weight: 700; font-size: 9pt; letter-spacing: 2px; margin-bottom: 2mm; }
+  .rule { width: 12mm; height: 2pt; background: var(--accent); margin: 4mm 0 6mm; }
+  p { margin: 0 0 4mm; } .muted { color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 10.5pt; margin: 3mm 0 6mm; }
+  th, td { border-bottom: 1px solid var(--line); padding: 3mm; text-align: left; vertical-align: top; }
+  th { background: var(--accent-soft); color: var(--accent-deep); font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; border-bottom: 1.5pt solid var(--accent); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; } th.num { text-align: right; }
+  tr.highlight td { background: var(--accent-soft); color: var(--accent-deep); font-weight: 700; }
+  .callout { background: var(--card); border: 1px solid var(--line); border-left: 3pt solid var(--accent); padding: 4mm 5mm; margin: 4mm 0 6mm; border-radius: 1mm; }
+  .callout .lbl { font-size: 9pt; font-weight: 700; letter-spacing: 1.5px; color: var(--accent-deep); text-transform: uppercase; margin-bottom: 2mm; }
+  .callout.gold { border-left-color: var(--gold); } .callout.gold .lbl { color: #8a6e2a; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0 6mm; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; margin: 3mm 0 6mm; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 2mm; padding: 5mm; }
+  .card h4 { margin: 0 0 2mm; font-family: Georgia, serif; font-weight: 400; font-size: 14pt; color: var(--accent-deep); }
+  .card p { margin: 0; color: var(--muted); font-size: 10pt; }
+  .card .big { font-family: Georgia, serif; color: var(--accent-deep); font-size: 32pt; line-height: 1; margin: 2mm 0 3mm; }
+  .card .lbl { color: var(--muted); font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 1mm; }
+  ul.clean { list-style: none; padding: 0; margin: 0 0 4mm; }
+  ul.clean li { padding: 2mm 0 2mm 6mm; border-bottom: 1px dashed var(--line); position: relative; }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li::before { content: ""; position: absolute; left: 0; top: 4.5mm; width: 2mm; height: 2mm; background: var(--accent); border-radius: 50%; }
+  .closing { margin-top: 8mm; padding: 8mm; background: var(--accent-deep); color: #fff; border-radius: 2mm; }
+  .closing .lbl { color: var(--gold); font-size: 9pt; font-weight: 700; letter-spacing: 2px; margin-bottom: 3mm; }
+  .closing h3 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; margin: 0 0 4mm; }
+  .closing p { color: var(--gold-soft); margin: 0 0 3mm; }
+  .small { font-size: 9.5pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">PLATFORM INVESTMENT</div>
+  <h1>An app that<br/>finds the fit.</h1>
+  <div class="deck-tagline">A right-sized partnership for launch —<br/>mobile app + admin Studio, ready as one.</div>
+  <div class="meta">
+    <strong>Prepared for</strong> &nbsp;·&nbsp; The Free Label team<br/>
+    <strong>Scope</strong> &nbsp;·&nbsp; Mobile platform + The Studio (web admin portal) — hosting, AI, releases, monitoring, on-call, OS-required maintenance<br/>
+    <strong>Excluded</strong> &nbsp;·&nbsp; One-time build (separate proposal). Payment processing, shipping, taxes — passthrough.
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE PHILOSOPHY</div>
+  <h2>Right-sized for launch. Designed for an independent brand.</h2>
+  <p>You should not pay enterprise prices for an app that hasn't yet proven itself in market. You also should not have a launch tier that boxes in the kind of AI fit work that makes Free Label different. Our recommendation balances those.</p>
+  <div class="rule"></div>
+
+  <div class="grid3">
+    <div class="card"><h4>Predictable</h4><p>A flat monthly fee for everything in the launch scope. No surprises during Year 1.</p></div>
+    <div class="card"><h4>Inclusive</h4><p>The app supports A–L cup, 2X–5X by default. Trans/nonbinary fit guidance is in scope.</p></div>
+    <div class="card"><h4>Honest</h4><p>If something is genuinely included, we say so. If something is passthrough or scoped separately, we say that too.</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE RECOMMENDATION</div>
+  <h2>Growth tier + Studio add-on — $4,250 / month — for Year 1.</h2>
+
+  <div class="grid3">
+    <div class="card">
+      <div class="lbl">MOBILE TIER</div>
+      <div class="big">Growth</div>
+      <p style="margin-bottom:3mm"><strong style="color:var(--ink);font-size:11pt">$3,500 / mo</strong></p>
+      <p>Both stores via React Native. Claude-powered AI. RevenueCat. Apple + Google sign-in. ASO quarterly. Two releases a month. Shared Slack with 4-hour response.</p>
+    </div>
+    <div class="card">
+      <div class="lbl">ADMIN PORTAL</div>
+      <div class="big">The Studio</div>
+      <p style="margin-bottom:3mm"><strong style="color:var(--ink);font-size:11pt">$750 / mo</strong></p>
+      <p>Fit-Finder rules engine, Drops & production tracker, swap workflow, Comfort Lab content admin, concierge inbox, Free-tier admin, analytics.</p>
+    </div>
+    <div class="card">
+      <div class="lbl">FUTURE TIER</div>
+      <div class="big">Enterprise</div>
+      <p style="margin-bottom:3mm"><strong style="color:var(--ink);font-size:11pt">from $8,000 / mo</strong></p>
+      <p>AR fit visualisation. Photo-based fit check at scale. Wholesale B2B portal. EU GDPR residency. SSO + audit logging + RLS hardening. 24/7 SLA. Studio folds in.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE STUDIO — WHAT'S INSIDE</div>
+  <h2>The internal twin of the mobile app.</h2>
+  <p class="lede">Catalog and orders stay in Shopify. The Studio owns the Fit-Finder rules, the Drops & production schedule, the swap workflow, and the Comfort Lab content.</p>
+
+  <table>
+    <thead><tr><th>Module</th><th>What your team does with it</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Fit-Finder rules engine</strong></td><td>Per-style algorithm: how cup feel + band feel + body comfort + brand anchor map to a recommended size.</td></tr>
+      <tr><td><strong>Drops &amp; production tracker</strong></td><td>Schedule drops, track batch counts, manage waitlists, no fake urgency.</td></tr>
+      <tr><td><strong>Swap workflow</strong></td><td>Free size-swap operations: label print, in-transit tracking, second-size ship, swap-history per customer.</td></tr>
+      <tr><td><strong>Pieces &amp; passport editor</strong></td><td>Author fabric, fit notes, OEKO-TEX certifications, cup-size guidance per piece.</td></tr>
+      <tr><td><strong>Comfort Lab content admin</strong></td><td>Care videos, fit tutorials, plus-cup confidence content, trans/nonbinary fit guidance.</td></tr>
+      <tr><td><strong>Concierge inbox</strong></td><td>Lab chat escalations · size-swap follow-ups · larger-cup fitting questions · waitlist asks.</td></tr>
+      <tr><td><strong>Translation workflow</strong></td><td>EN-first; Claude drafts FR; editors approve per locale.</td></tr>
+      <tr><td><strong>Analytics dashboards</strong></td><td>Fit-Finder conversion, return rate by style, drop sell-through, swap-to-keep ratio.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT THIS LOOKS LIKE</div>
+  <h2>At every stage of growth.</h2>
+
+  <table>
+    <thead><tr><th>Stage</th><th class="num">Monthly active users</th><th class="num">Monthly platform fee</th><th class="num">Per active user</th></tr></thead>
+    <tbody>
+      <tr><td>Pilot</td><td class="num">1,000</td><td class="num">$4,250</td><td class="num">$4.25</td></tr>
+      <tr class="highlight"><td>Launch</td><td class="num">5,000</td><td class="num">$4,250</td><td class="num">$0.85</td></tr>
+      <tr><td>Early growth</td><td class="num">10,000</td><td class="num">$4,250</td><td class="num">$0.43</td></tr>
+      <tr><td>Established</td><td class="num">25,000</td><td class="num">$4,250</td><td class="num">$0.17</td></tr>
+      <tr><td>Strong adoption</td><td class="num">50,000</td><td class="num">$4,250</td><td class="num">$0.09</td></tr>
+    </tbody>
+  </table>
+
+  <p class="small">Combined fee covers mobile platform + Studio at every stage. AI overage above 100K calls/month billed at cost +20%.</p>
+</div>
+
+<div class="section">
+  <div class="eyebrow">YEAR 2 — THE UPGRADE PATH</div>
+  <h2>When Free Label is ready, Enterprise is one decision away.</h2>
+
+  <table>
+    <thead><tr><th>Trigger</th><th>What Enterprise unlocks</th></tr></thead>
+    <tbody>
+      <tr><td>Launching <strong>AR fit visualisation</strong></td><td>Native Swift / Kotlin modules for body silhouette AR.</td></tr>
+      <tr><td>Modernising <strong>wholesale &amp; boutique B2B</strong></td><td>SSO, audit logging, role-based access, row-level security.</td></tr>
+      <tr><td>EU growth makes <strong>data residency</strong> contractual</td><td>EU storage and processing for GDPR.</td></tr>
+      <tr><td>Adding <strong>photo-based fit check at scale</strong></td><td>Body-photo data adjacency requires Enterprise audit posture.</td></tr>
+      <tr><td>Major retail partner requires <strong>24/7 / 1h SLA</strong></td><td>Dedicated lead engineer + PM, on-call rotation.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <div class="lbl">What we lock in your Year 1 contract</div>
+    <p>The Enterprise upgrade fee is set in advance, with no penalty for moving up. Any build credit accrued during Year 1 is prorated against the Enterprise tier. You decide when you're ready.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">FAIR TERMS</div>
+  <h2>Three commitments to keep the relationship healthy.</h2>
+
+  <div class="grid3">
+    <div class="card"><h4>30-day exit</h4><p>Either side can end on 30 days' notice after the Year 1 term.</p></div>
+    <div class="card"><h4>Your data, your accounts</h4><p>Source code, customer data, AI logs, Fit-Finder rules engine all live in your cloud accounts.</p></div>
+    <div class="card"><h4>AI overage cap</h4><p>If AI usage spikes beyond 100,000 calls per month, anything above is billed at our cost +20%.</p></div>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Brand-side approval</div>
+    <p>Every fit, care, or product claim — and every piece of inclusivity content (plus-cup, trans/nonbinary) — reviewed and approved by your editorial team. AI generates; humans approve. Always.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT'S NOT INCLUDED</div>
+  <h2>Passed through at cost or scoped separately.</h2>
+  <ul class="clean">
+    <li><strong>App-store fees</strong> — Apple's $99/yr and Google's $25 one-time, on your accounts.</li>
+    <li><strong>Payment processing</strong> — Shopify and Stripe fees on transactions, at standard rates.</li>
+    <li><strong>Free size-swap shipping</strong> — pass-through at carrier rate.</li>
+    <li><strong>Comfort Lab video production</strong> — care videos, founder dispatches, instructor content.</li>
+    <li><strong>Phase 2 &amp; Phase 3 build work</strong> — AR fit, wholesale portal, content scaling all scoped separately.</li>
+    <li><strong>OEKO-TEX certification fees</strong> — yours.</li>
+    <li><strong>Marketing &amp; ad spend</strong> — entirely yours to direct.</li>
+  </ul>
+</div>
+
+<div class="closing">
+  <div class="lbl">THE OFFER</div>
+  <h3>Growth + Studio · $4,250 / month for Year 1. Pre-negotiated Enterprise upgrade folds Studio in. AI overage at cost +20%. Brand-side approval on every fit / inclusivity / care claim. 30-day exit after Year 1.</h3>
+  <p>Right-sized for the launch. Right path for the success scenario. Built so the platform stays in service of the fit — never the other way around.</p>
+</div>
+
+</body>
+</html>
