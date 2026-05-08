@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ūnika Swim — The Studio (Web Admin Mockups)</title>
+<style>
+  :root {
+    --bg: #f7f1e8; --ink: #2a2a26; --muted: #8a857a; --line: #e6dccb; --card: #ffffff;
+    --accent: #d8704a; --accent-deep: #8a3e22; --accent-soft: #f5dfd3;
+    --gold: #d4a85a; --gold-soft: #f3e6c7; --ocean: #4a7e8c; --ocean-soft: #cfdfe2; --sand: #d8c4a0;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 { font-family: "Times New Roman", Georgia, serif; font-weight: 500; font-size: 36px; margin: 0 0 4px; letter-spacing: -0.5px; color: var(--accent-deep); }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .deck { max-width: 1400px; margin: 0 auto; padding: 16px 32px 64px; }
+  .browser { background: #2a2a26; border-radius: 14px; box-shadow: 0 24px 48px rgba(138,62,34,.12), 0 2px 8px rgba(0,0,0,.06); margin-bottom: 32px; overflow: hidden; }
+  .browser .chrome { background: #2a2a26; padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
+  .browser .chrome .dots { display: flex; gap: 6px; }
+  .browser .chrome .dots span { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,.2); }
+  .browser .chrome .url { flex: 1; background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); font-size: 12px; padding: 5px 12px; border-radius: 6px; font-family: monospace; }
+  .frame { height: 720px; display: grid; grid-template-columns: 220px 1fr; background: var(--bg); overflow: hidden; }
+
+  .sidebar { background: #fff; border-right: 1px solid var(--line); padding: 18px 0; display: flex; flex-direction: column; }
+  .brand { padding: 0 18px 16px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+  .brand .logo { font-family: "Times New Roman", Georgia, serif; color: var(--accent-deep); font-size: 12px; letter-spacing: 4px; font-weight: 600; }
+  .brand .sub { color: var(--muted); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .nav { flex: 1; padding: 0 12px; display: flex; flex-direction: column; gap: 2px; }
+  .nav .section-label { color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; padding: 12px 12px 6px; }
+  .nav a { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; color: var(--ink); font-size: 12px; text-decoration: none; }
+  .nav a .ic { width: 18px; height: 18px; background: var(--bg); border-radius: 5px; display: grid; place-items: center; font-size: 10px; color: var(--muted); }
+  .nav a.active { background: var(--accent-soft); color: var(--accent-deep); font-weight: 600; }
+  .nav a.active .ic { background: var(--accent); color: #fff; }
+  .nav a .badge { margin-left: auto; background: var(--accent); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 999px; }
+  .user { padding: 12px 16px; border-top: 1px solid var(--line); display: flex; gap: 10px; align-items: center; }
+  .user .av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--accent-deep)); }
+  .user .name { font-size: 12px; }
+  .user .name strong { display: block; }
+  .user .name span { color: var(--muted); font-size: 10px; }
+
+  .main { overflow: auto; padding: 22px 28px 30px; }
+  .topline { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .crumb { color: var(--muted); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+  .top-actions { display: flex; gap: 8px; }
+  .btn { display: inline-block; padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; background: var(--accent); color: #fff; border: none; cursor: pointer; }
+  .btn.alt { background: #fff; color: var(--accent-deep); border: 1px solid var(--line); }
+  .btn.subtle { background: var(--bg); color: var(--ink); }
+  h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 26px; margin: 0 0 4px; color: var(--ink); }
+  .subhead { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 22px; }
+  .stat-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .stat-card .label { color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+  .stat-card .num { font-family: "Times New Roman", Georgia, serif; color: var(--accent-deep); font-size: 32px; line-height: 1; margin: 6px 0 2px; }
+  .stat-card .delta { color: var(--accent); font-size: 11px; font-weight: 600; }
+
+  .grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+  .panel h3 { margin: 0 0 12px; font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 15px; color: var(--ink); display: flex; justify-content: space-between; align-items: center; }
+  .panel h3 .more { color: var(--accent-deep); font-size: 11px; font-weight: 600; }
+  .row { display: grid; grid-template-columns: 70px 1fr auto auto; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); align-items: center; }
+  .row:last-child { border: none; }
+  .row .id { background: var(--accent-soft); color: var(--accent-deep); border-radius: 6px; padding: 4px; text-align: center; font-family: monospace; font-size: 11px; font-weight: 700; }
+  .row .info { font-size: 12px; }
+  .row .info strong { display: block; }
+  .row .info span { color: var(--muted); font-size: 11px; }
+  .pill { padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; }
+  .pill.live { background: var(--ocean-soft); color: var(--ocean); }
+  .pill.review { background: var(--gold-soft); color: #8a6e2a; }
+  .pill.draft { background: var(--bg); color: var(--muted); }
+  .pill.sensitive { background: #f4e6f0; color: #6b4d62; }
+  .pill.sewing { background: var(--accent-soft); color: var(--accent-deep); }
+
+  /* Custom-order tracker */
+  .order-shell { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .order-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .order-card .head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .order-card .head strong { display: block; font-family: "Times New Roman", Georgia, serif; font-size: 16px; }
+  .order-card .head span { color: var(--muted); font-size: 11px; }
+  .order-card .stages { display: flex; gap: 4px; margin-bottom: 10px; }
+  .order-card .stage { flex: 1; height: 4px; background: var(--line); border-radius: 2px; }
+  .order-card .stage.done { background: var(--accent); }
+  .order-card .stage.active { background: var(--gold); }
+  .order-card .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px; color: var(--muted); }
+  .order-card .meta div strong { color: var(--ink); display: block; font-size: 12px; }
+
+  /* Fabric library editor */
+  .fabric-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; }
+  .fab { aspect-ratio: 1; border-radius: 10px; position: relative; overflow: hidden; cursor: pointer; }
+  .fab.coral { background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+  .fab.gold { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .fab.ocean { background: linear-gradient(135deg, var(--ocean), #1e4148); }
+  .fab.tropical { background: repeating-linear-gradient(45deg, var(--gold) 0 8px, var(--accent) 8px 16px, var(--ocean) 16px 24px); }
+  .fab.sand { background: linear-gradient(135deg, var(--sand), #a89070); }
+  .fab.dark { background: linear-gradient(180deg, var(--ink), #555047); }
+  .fab .name { position: absolute; bottom: 4px; left: 6px; right: 6px; color: #fff; font-size: 9px; font-weight: 700; text-transform: uppercase; }
+  .fab .stock { position: absolute; top: 4px; right: 6px; color: #fff; font-size: 9px; font-weight: 700; opacity: .85; }
+  .fab.low::after { content: ""; position: absolute; inset: 0; background: rgba(216,112,74,.5); border: 2px solid var(--accent); border-radius: 10px; }
+
+  /* Concierge inbox */
+  .inbox-shell { display: grid; grid-template-columns: 280px 1fr; gap: 14px; height: 600px; }
+  .msg { display: grid; grid-template-columns: 32px 1fr; gap: 10px; padding: 10px 12px; border-radius: 8px; cursor: pointer; }
+  .msg.active { background: var(--accent-soft); }
+  .msg .av { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--accent-deep)); }
+  .msg .body { font-size: 12px; }
+  .msg .body .name { font-weight: 600; }
+  .msg .body .preview { color: var(--muted); margin-top: 2px; }
+  .msg .body .meta { color: var(--muted); font-size: 10px; margin-top: 4px; display: flex; gap: 8px; }
+  .msg .body .lang { background: var(--bg); padding: 1px 6px; border-radius: 999px; font-weight: 600; }
+  .msg .body .private { background: #f4e6f0; color: #6b4d62; padding: 1px 6px; border-radius: 999px; font-weight: 700; }
+
+  .inbox-thread { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 18px 22px; display: flex; flex-direction: column; }
+  .thread-head { border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 14px; }
+  .thread-head h4 { margin: 0 0 4px; font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 17px; }
+  .thread-head .meta { color: var(--muted); font-size: 11px; }
+  .thread-head .meta .pill { background: var(--accent-soft); color: var(--accent-deep); padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; margin-right: 6px; }
+  .privacy-banner { background: #f4e6f0; color: #6b4d62; padding: 8px 12px; border-radius: 8px; font-size: 11px; font-weight: 600; margin-bottom: 12px; }
+  .bubbles { flex: 1; overflow: auto; display: flex; flex-direction: column; gap: 8px; }
+  .bubble { max-width: 80%; padding: 10px 12px; border-radius: 12px; font-size: 12px; line-height: 1.4; }
+  .bubble.left { align-self: flex-start; background: var(--bg); }
+  .bubble.right { align-self: flex-end; background: var(--accent); color: #fff; }
+  .bubble.note { align-self: center; background: var(--ocean-soft); color: var(--ocean); font-size: 11px; font-style: italic; }
+  .bubble small { display: block; opacity: .7; margin-top: 4px; font-size: 10px; }
+  .reply-bar { margin-top: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
+
+  .caption { text-align: center; margin: 4px 0 24px; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px; }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>The Studio — Web Admin Mockups</h1>
+  <p>Ūnika Swim's internal-facing portal. Sun-and-sea palette, optimised for Betsy + Yorkville specialists + custom-order ops + concierge.</p>
+</header>
+
+<div class="deck">
+
+  <!-- 1. Dashboard -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.unikaswimwear.com / dashboard</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">UNIKA · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a class="active"><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Atelier</div>
+          <a><span class="ic">✦</span> Custom orders <span class="badge">12</span></a>
+          <a><span class="ic">⏵</span> Appointments <span class="badge">8</span></a>
+          <a><span class="ic">⌬</span> Fabric library</a>
+          <a><span class="ic">A</span> Translations <span class="badge">5</span></a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">▦</span> Pre-made shop</a>
+          <a><span class="ic">↺</span> Repair / restoration</a>
+          <a><span class="ic">✉</span> Concierge <span class="badge">4</span></a>
+          <a><span class="ic">★</span> Sun tiers</a>
+          <div class="section-label">Insights</div>
+          <a><span class="ic">▥</span> Analytics</a>
+        </nav>
+        <div class="user">
+          <div class="av"></div>
+          <div class="name"><strong>Betsy C.</strong><span>Founder · EN/PT/ES</span></div>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">DASHBOARD · TODAY · 9 MAY 2026</div>
+          <div class="top-actions">
+            <button class="btn alt">Search</button>
+            <button class="btn">+ New custom</button>
+          </div>
+        </div>
+        <h2>Bom dia, Betsy.</h2>
+        <div class="subhead">12 custom orders in production · 8 appointments this week · 5 translation drafts pending · 4 concierge messages.</div>
+
+        <div class="stat-row">
+          <div class="stat-card"><div class="label">Active customers · 30d</div><div class="num">3,820</div><div class="delta">+11.2% vs prior</div></div>
+          <div class="stat-card"><div class="label">Custom orders · in production</div><div class="num">12</div><div class="delta">avg lead 28d</div></div>
+          <div class="stat-card"><div class="label">Appointment-to-order %</div><div class="num">82%</div><div class="delta">+3 pts MoM</div></div>
+          <div class="stat-card"><div class="label">ECONYL® batch util</div><div class="num">94%</div><div class="delta">low waste</div></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Custom orders · in production <span class="more">All →</span></h3>
+            <div class="row">
+              <div class="id">2026-184</div>
+              <div class="info"><strong>Sofia M. · Coral one-piece</strong><span>halter neck · ECONYL® coral · stage 5/6 · ships May 18</span></div>
+              <span class="pill sewing">FINISHING</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">2026-185</div>
+              <div class="info"><strong>Maria T. · Tropical bikini</strong><span>tropical print · post-mastectomy pocketed lining · stage 3/6</span></div>
+              <span class="pill sensitive">PRIVATE FIT</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">2026-186</div>
+              <div class="info"><strong>Lila G. · Gold one-piece</strong><span>gold matte · scoop back · stage 2/6 · cut tomorrow</span></div>
+              <span class="pill review">CUTTING</span>
+              <div></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Appointments · this week <span class="more">All →</span></h3>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Sat 18 · 2 pm · Sofia M.</strong><span>Custom one-piece · with Maria · in-store</span></div>
+              <div class="pill">EN</div>
+            </div>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Mon 20 · 11 am · Beatriz S.</strong><span>Video consult · ostomy fit · with Betsy</span></div>
+              <div class="pill sensitive">PRIVATE</div>
+            </div>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Wed 22 · 4 pm · Ana C.</strong><span>Bridal swim · with Maria · in-store</span></div>
+              <div class="pill">PT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">1 · Dashboard · founder's morning view</div>
+
+  <!-- 2. Custom-order tracker -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.unikaswimwear.com / custom-orders / 2026-184</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">UNIKA · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Atelier</div>
+          <a class="active"><span class="ic">✦</span> Custom orders <span class="badge">12</span></a>
+          <a><span class="ic">⏵</span> Appointments</a>
+          <a><span class="ic">⌬</span> Fabric library</a>
+          <a><span class="ic">A</span> Translations</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CUSTOM ORDERS · 2026-184 · SOFIA M.</div>
+          <div class="top-actions">
+            <button class="btn subtle">Discard</button>
+            <button class="btn alt">Photo upload</button>
+            <button class="btn">Update stage</button>
+          </div>
+        </div>
+        <h2>Custom #2026-184 · Sofia M.</h2>
+        <div class="subhead">Coral one-piece · halter neck · low back · ECONYL® coral matte · ordered Apr 28 · ships May 18</div>
+
+        <div class="order-shell">
+          <div class="order-card">
+            <div class="head"><strong>Order timeline</strong><span>5 of 6 stages</span></div>
+            <div class="stages">
+              <div class="stage done"></div>
+              <div class="stage done"></div>
+              <div class="stage done"></div>
+              <div class="stage done"></div>
+              <div class="stage active"></div>
+              <div class="stage"></div>
+            </div>
+            <div class="meta">
+              <div><strong>Stage 5</strong>Hand-finishing</div>
+              <div><strong>~10 days</strong>to ship</div>
+              <div><strong>Apr 28</strong>Design confirmed</div>
+              <div><strong>May 18 (est.)</strong>Ships</div>
+            </div>
+          </div>
+          <div class="order-card">
+            <div class="head"><strong>Customer</strong><span>VIP · Sun tier</span></div>
+            <div style="font-size:12px; line-height:1.6">
+              <strong>Sofia Martins · Toronto</strong><br/>
+              <span style="color:var(--muted)">38 · D cup · 4 pieces in archive · last appt May 4</span><br/>
+              <span style="color:var(--muted)">Body comfort: mid-coverage preferred</span><br/>
+              <span style="color:var(--ocean); font-weight: 600">🔒 No sensitive-fit data on file</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="panel">
+          <h3>Stage history <span class="more">Update stage →</span></h3>
+          <div class="row">
+            <div class="id">STAGE 1</div>
+            <div class="info"><strong>Design confirmed · Apr 28</strong><span>Maria · in-store appointment · Sofia approved coral matte halter</span></div>
+            <span class="pill live">DONE</span>
+            <div></div>
+          </div>
+          <div class="row">
+            <div class="id">STAGE 2</div>
+            <div class="info"><strong>ECONYL® batch reserved · Apr 30</strong><span>Coral matte · batch #2026-A · 1.2m allocated</span></div>
+            <span class="pill live">DONE</span>
+            <div></div>
+          </div>
+          <div class="row">
+            <div class="id">STAGE 3</div>
+            <div class="info"><strong>Fabric cut · May 4</strong><span>Yorkville boutique · photo uploaded to customer app</span></div>
+            <span class="pill live">DONE</span>
+            <div></div>
+          </div>
+          <div class="row">
+            <div class="id">STAGE 4</div>
+            <div class="info"><strong>Sewing complete · May 8</strong><span>Lead seamstress: Adriana · ready for hand-finishing</span></div>
+            <span class="pill live">DONE</span>
+            <div></div>
+          </div>
+          <div class="row">
+            <div class="id">STAGE 5</div>
+            <div class="info"><strong>Hand-finishing · in progress</strong><span>Seam reinforcement · brand label · est. complete May 16</span></div>
+            <span class="pill sewing">ACTIVE</span>
+            <div></div>
+          </div>
+          <div class="row">
+            <div class="id">STAGE 6</div>
+            <div class="info"><strong>Quality check + ship</strong><span>Estimated May 18 · ship to Toronto address on file</span></div>
+            <span class="pill draft">PENDING</span>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">2 · Custom-order tracker · 6-stage with photo updates</div>
+
+  <!-- 3. Fabric library editor -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.unikaswimwear.com / fabric-library</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">UNIKA · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Atelier</div>
+          <a><span class="ic">✦</span> Custom orders</a>
+          <a><span class="ic">⏵</span> Appointments</a>
+          <a class="active"><span class="ic">⌬</span> Fabric library</a>
+          <a><span class="ic">A</span> Translations</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">ATELIER · FABRIC LIBRARY · 24 ECONYL® FABRICS</div>
+          <div class="top-actions">
+            <button class="btn alt">Filter by texture</button>
+            <button class="btn alt">Stock alerts</button>
+            <button class="btn">+ Fabric</button>
+          </div>
+        </div>
+        <h2>Fabric library</h2>
+        <div class="subhead">All ECONYL® · regenerated nylon from fishing nets + post-industrial waste · 24 colors + 6 prints. Three highlighted: low-stock, batch tracking required.</div>
+
+        <div class="fabric-grid">
+          <div class="fab coral"><span class="stock">3.2m</span><span class="name">Coral matte</span></div>
+          <div class="fab gold"><span class="stock">5.1m</span><span class="name">Sun gold</span></div>
+          <div class="fab ocean"><span class="stock">8.4m</span><span class="name">Atlantic</span></div>
+          <div class="fab tropical"><span class="stock">2.8m</span><span class="name">Tropical print</span></div>
+          <div class="fab sand low"><span class="stock">0.4m</span><span class="name">Sand stripe</span></div>
+          <div class="fab dark"><span class="stock">6.2m</span><span class="name">Onyx</span></div>
+          <div class="fab coral"><span class="stock">4.8m</span><span class="name">Sunset</span></div>
+          <div class="fab ocean"><span class="stock">3.6m</span><span class="name">Deep blue</span></div>
+          <div class="fab gold"><span class="stock">2.2m</span><span class="name">Saffron</span></div>
+          <div class="fab tropical low"><span class="stock">0.6m</span><span class="name">Botanical</span></div>
+          <div class="fab dark"><span class="stock">5.4m</span><span class="name">Stormy</span></div>
+          <div class="fab sand"><span class="stock">3.8m</span><span class="name">Champagne</span></div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="panel">
+          <h3>Reorder candidates · 2 fabrics low <span class="more">Auto-flag rules →</span></h3>
+          <div class="row">
+            <div class="id">SAND-S</div>
+            <div class="info"><strong>Sand stripe · 0.4m remaining</strong><span>Used in 2 active custom orders · reorder lead time 4 weeks</span></div>
+            <span class="pill review">LOW</span>
+            <button class="btn alt" style="padding:4px 10px;font-size:10px">Order 6m</button>
+          </div>
+          <div class="row">
+            <div class="id">BOTANICAL</div>
+            <div class="info"><strong>Botanical print · 0.6m remaining</strong><span>Used in 3 pre-made stock pieces · seasonal print, decide whether to renew</span></div>
+            <span class="pill review">LOW</span>
+            <button class="btn alt" style="padding:4px 10px;font-size:10px">Decide</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">3 · Fabric library · ECONYL® inventory + restock</div>
+
+  <!-- 4. Concierge inbox -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.unikaswimwear.com / concierge / beatriz-s-2841</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">UNIKA · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Atelier</div>
+          <a><span class="ic">✦</span> Custom orders</a>
+          <a><span class="ic">⌬</span> Fabric library</a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">↺</span> Repair / restoration</a>
+          <a class="active"><span class="ic">✉</span> Concierge <span class="badge">4</span></a>
+          <a><span class="ic">★</span> Sun tiers</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CONCIERGE · 4 OPEN</div>
+          <div class="top-actions">
+            <button class="btn alt">Filter</button>
+            <button class="btn">Mark resolved</button>
+          </div>
+        </div>
+        <h2>Concierge inbox</h2>
+        <div class="subhead">Atelier chat escalations · sensitive-fit conversations · custom-design questions · repair / restoration</div>
+
+        <div class="inbox-shell">
+          <div class="panel" style="overflow:auto">
+            <h3 style="margin-bottom:8px">Open · 4</h3>
+            <div class="msg active">
+              <div class="av"></div>
+              <div class="body">
+                <div class="name">Beatriz S. · São Paulo</div>
+                <div class="preview">Ostomy fit · video consult next week</div>
+                <div class="meta"><span class="lang">PT</span><span class="private">PRIVATE</span><span>2h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--gold),var(--accent-deep))"></div>
+              <div class="body">
+                <div class="name">Maria T. · Toronto</div>
+                <div class="preview">Mastectomy lining · pocket placement</div>
+                <div class="meta"><span class="lang">EN</span><span class="private">PRIVATE</span><span>4h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--ocean),var(--accent-deep))"></div>
+              <div class="body">
+                <div class="name">Ana C. · Toronto</div>
+                <div class="preview">Bridal swim · honeymoon timeline</div>
+                <div class="meta"><span class="lang">EN</span><span>5h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--accent),var(--ocean))"></div>
+              <div class="body">
+                <div class="name">Lila G. · Montréal</div>
+                <div class="preview">Restoration · 3-year-old one-piece</div>
+                <div class="meta"><span class="lang">FR</span><span>1d</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="inbox-thread">
+            <div class="thread-head">
+              <h4>Beatriz Silva · São Paulo, Brazil</h4>
+              <div class="meta"><span class="pill">VIP · SUN</span><span>2 pieces · ostomy disclosed · video consult Mon · 2h ago</span></div>
+            </div>
+
+            <div class="privacy-banner">
+              🔒 <strong>Sensitive-fit data on file.</strong> Audit-logged. Visible only to you and the assigned specialist (Betsy). Never used in marketing AI prompts. Customer can revoke at any time.
+            </div>
+
+            <div class="bubbles">
+              <div class="bubble note">Atelier chat escalated this — customer asked about ostomy-aware swimwear cuts. AI provided high-level info and routed directly to Betsy without exposing sensitive fields. Customer prefers PT and asked for a video consult.</div>
+              <div class="bubble left">Olá! Tive uma cirurgia de ileostomia no ano passado e estou procurando um maiô que cobre confortavelmente. Posso fazer uma consulta por vídeo? Não falo bem inglês.<small>PT · 2h ago</small></div>
+              <div class="bubble left" style="background:var(--ocean-soft)">"Hello! I had an ileostomy surgery last year and I'm looking for a swimsuit that covers comfortably. Can I do a video consultation? My English isn't great."<small>brand glossary translation</small></div>
+              <div class="bubble right">Olá Beatriz, claro. Marquei nossa consulta para segunda 11h (Toronto). Vou te mostrar três cortes que respeitam a posição do estoma e podemos escolher o tecido juntas. Sem pressa.<small>PT · sending</small></div>
+            </div>
+            <div class="reply-bar"><span>Reply in Portuguese · sensitive-fit thread · audit-logged…</span><span>↑</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">4 · Concierge inbox · sensitive-fit data segregation</div>
+
+</div>
+
+</body>
+</html>

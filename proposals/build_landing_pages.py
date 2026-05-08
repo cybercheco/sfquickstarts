@@ -242,6 +242,34 @@ BRANDS = [
         "studio":   "studio-mockups.html",
         "pricing":  "Free-Label-Pricing-Client.pdf",
     },
+    {
+        "slug": "unika-swim",
+        "folder": "unika-swim-mobile-app",
+        "name": "Ūnika Swim",
+        "tagline": "Made for the body you're in.",
+        "summary": (
+            "An Atelier-from-couch app for the Toronto custom-swim brand "
+            "founded by Betsy Campos. Browse ECONYL® fabrics, draft your "
+            "design, book the Yorkville appointment. Cup AAA–H, "
+            "mastectomy / ostomy / scar accommodation as service — "
+            "with sensitive-fit data in a segregated, audit-logged store."
+        ),
+        "category": "Custom swimwear · ECONYL® · sensitive-fit aware",
+        "palette": {
+            "bg":      "#f7f1e8",
+            "ink":     "#2a2a26",
+            "muted":   "#8a857a",
+            "line":    "#e6dccb",
+            "accent":  "#d8704a",
+            "deep":    "#8a3e22",
+            "soft":    "#f5dfd3",
+            "gold":    "#d4a85a",
+        },
+        "deck":     "Unika-Swim-Pitch.pptx",
+        "mobile":   "mockups.html",
+        "studio":   "studio-mockups.html",
+        "pricing":  "Unika-Swim-Pricing-Client.pdf",
+    },
 ]
 
 
