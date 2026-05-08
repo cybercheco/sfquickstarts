@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Encircled — The Studio (Web Admin Mockups)</title>
+<style>
+  :root {
+    --bg: #f4efea; --ink: #2b2a26; --muted: #888379; --line: #e6dfd3; --card: #ffffff;
+    --accent: #5d6e54; --accent-deep: #36422f; --accent-soft: #dfe5d6;
+    --gold: #b89968; --gold-soft: #ecdec3; --terra: #b96a4f; --plum: #6f4d62;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 { font-family: "Times New Roman", Georgia, serif; font-weight: 500; font-size: 36px; margin: 0 0 4px; letter-spacing: -0.5px; color: var(--accent); }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .deck { max-width: 1400px; margin: 0 auto; padding: 16px 32px 64px; }
+  .browser { background: #2b2a26; border-radius: 14px; box-shadow: 0 24px 48px rgba(54,66,47,.12), 0 2px 8px rgba(0,0,0,.06); margin-bottom: 32px; overflow: hidden; }
+  .browser .chrome { background: #2b2a26; padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
+  .browser .chrome .dots { display: flex; gap: 6px; }
+  .browser .chrome .dots span { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,.2); }
+  .browser .chrome .url { flex: 1; background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); font-size: 12px; padding: 5px 12px; border-radius: 6px; font-family: monospace; }
+  .frame { height: 720px; display: grid; grid-template-columns: 220px 1fr; background: var(--bg); overflow: hidden; }
+
+  .sidebar { background: #fff; border-right: 1px solid var(--line); padding: 18px 0; display: flex; flex-direction: column; }
+  .brand { padding: 0 18px 16px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+  .brand .logo { font-family: "Times New Roman", Georgia, serif; color: var(--accent); font-size: 13px; letter-spacing: 4px; font-weight: 600; }
+  .brand .sub { color: var(--muted); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .nav { flex: 1; padding: 0 12px; display: flex; flex-direction: column; gap: 2px; }
+  .nav .section-label { color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; padding: 12px 12px 6px; }
+  .nav a { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; color: var(--ink); font-size: 12px; text-decoration: none; }
+  .nav a .ic { width: 18px; height: 18px; background: var(--bg); border-radius: 5px; display: grid; place-items: center; font-size: 10px; color: var(--muted); }
+  .nav a.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .nav a.active .ic { background: var(--accent); color: #fff; }
+  .nav a .badge { margin-left: auto; background: var(--accent); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 999px; }
+  .user { padding: 12px 16px; border-top: 1px solid var(--line); display: flex; gap: 10px; align-items: center; }
+  .user .av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--accent-deep)); }
+  .user .name { font-size: 12px; }
+  .user .name strong { display: block; }
+  .user .name span { color: var(--muted); font-size: 10px; }
+
+  .main { overflow: auto; padding: 22px 28px 30px; }
+  .topline { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .crumb { color: var(--muted); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+  .top-actions { display: flex; gap: 8px; }
+  .btn { display: inline-block; padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; background: var(--accent); color: #fff; border: none; cursor: pointer; }
+  .btn.alt { background: #fff; color: var(--accent); border: 1px solid var(--line); }
+  .btn.subtle { background: var(--bg); color: var(--ink); }
+  h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 26px; margin: 0 0 4px; color: var(--ink); }
+  .subhead { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 22px; }
+  .stat-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .stat-card .label { color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+  .stat-card .num { font-family: "Times New Roman", Georgia, serif; color: var(--accent); font-size: 32px; line-height: 1; margin: 6px 0 2px; }
+  .stat-card .delta { color: var(--accent); font-size: 11px; font-weight: 600; }
+
+  .grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+  .panel h3 { margin: 0 0 12px; font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 15px; color: var(--ink); display: flex; justify-content: space-between; align-items: center; }
+  .panel h3 .more { color: var(--accent); font-size: 11px; font-weight: 600; }
+  .row { display: grid; grid-template-columns: 70px 1fr auto auto; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); align-items: center; }
+  .row:last-child { border: none; }
+  .row .id { background: var(--accent-soft); color: var(--accent); border-radius: 6px; padding: 4px; text-align: center; font-family: monospace; font-size: 11px; font-weight: 700; }
+  .row .info { font-size: 12px; }
+  .row .info strong { display: block; }
+  .row .info span { color: var(--muted); font-size: 11px; }
+  .pill { padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; }
+  .pill.live { background: var(--accent-soft); color: var(--accent); }
+  .pill.review { background: var(--gold-soft); color: #8a6e2a; }
+  .pill.draft { background: var(--bg); color: var(--muted); }
+  .pill.repair { background: #f4dccb; color: var(--terra); }
+  .pill.diy { background: var(--accent-soft); color: var(--accent); }
+  .pill.complete { background: #d6e9d3; color: #3e6539; }
+
+  /* Multi-way style editor */
+  .editor-shell { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field-group { margin-bottom: 14px; }
+  .field-group label { display: block; color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 5px; }
+  .field { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 12px; color: var(--ink); line-height: 1.5; }
+  .field.lg { min-height: 80px; }
+  .field.title { font-family: "Times New Roman", Georgia, serif; font-size: 18px; }
+
+  .ai-banner { background: linear-gradient(135deg, var(--accent-soft), var(--gold-soft)); border-radius: 10px; padding: 10px 14px; font-size: 11px; color: var(--ink); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .ai-banner .star { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 12px; }
+  .ai-banner strong { color: var(--accent); }
+
+  .ways-list { display: flex; flex-direction: column; gap: 8px; }
+  .way-item {
+    display: grid; grid-template-columns: 36px 1fr 80px auto;
+    gap: 10px; padding: 10px 12px;
+    background: var(--bg); border-radius: 8px;
+    align-items: center;
+  }
+  .way-item .num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: grid; place-items: center;
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 13px; font-weight: 700;
+  }
+  .way-item .num.draft { background: var(--gold); color: #2b2a26; }
+  .way-item .info { font-size: 12px; }
+  .way-item .info strong { display: block; }
+  .way-item .info span { color: var(--muted); font-size: 11px; }
+
+  /* Repair queue cards */
+  .repair-card {
+    background: #fff; border: 1px solid var(--line);
+    border-radius: 10px; overflow: hidden;
+    display: grid; grid-template-columns: 110px 1fr;
+  }
+  .repair-card .img { background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+  .repair-card.amber .img { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .repair-card.terra .img { background: linear-gradient(135deg, var(--terra), #6f3a18); }
+  .repair-card.plum .img { background: linear-gradient(135deg, var(--plum), #3a2832); }
+  .repair-card .body { padding: 12px 14px; }
+  .repair-card .head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 4px;
+  }
+  .repair-card .head strong { font-size: 13px; }
+  .repair-card .head .age { color: var(--muted); font-size: 10px; }
+  .repair-card .meta { color: var(--muted); font-size: 11px; line-height: 1.4; }
+  .repair-card .ai-tag {
+    margin-top: 6px; font-size: 10px; font-weight: 600;
+    color: var(--accent);
+  }
+  .repair-card .actions {
+    margin-top: 8px; display: flex; gap: 6px;
+  }
+  .repair-card .actions button {
+    background: var(--accent-soft); color: var(--accent);
+    border: none; padding: 4px 10px; border-radius: 999px;
+    font-size: 10px; font-weight: 700; cursor: pointer;
+  }
+  .repair-card .actions button.primary { background: var(--accent); color: #fff; }
+
+  /* Concierge inbox */
+  .inbox-shell { display: grid; grid-template-columns: 280px 1fr; gap: 14px; height: 600px; }
+  .msg { display: grid; grid-template-columns: 32px 1fr; gap: 10px; padding: 10px 12px; border-radius: 8px; cursor: pointer; }
+  .msg.active { background: var(--accent-soft); }
+  .msg .av { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--accent-deep)); }
+  .msg .body { font-size: 12px; }
+  .msg .body .name { font-weight: 600; }
+  .msg .body .preview { color: var(--muted); margin-top: 2px; }
+  .msg .body .meta { color: var(--muted); font-size: 10px; margin-top: 4px; display: flex; gap: 8px; }
+  .msg .body .lang { background: var(--bg); padding: 1px 6px; border-radius: 999px; font-weight: 600; }
+
+  .inbox-thread { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 18px 22px; display: flex; flex-direction: column; }
+  .thread-head { border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 14px; }
+  .thread-head h4 { margin: 0 0 4px; font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 17px; }
+  .thread-head .meta { color: var(--muted); font-size: 11px; }
+  .thread-head .meta .pill { background: var(--accent-soft); color: var(--accent); padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; margin-right: 6px; }
+  .bubbles { flex: 1; overflow: auto; display: flex; flex-direction: column; gap: 8px; }
+  .bubble { max-width: 80%; padding: 10px 12px; border-radius: 12px; font-size: 12px; line-height: 1.4; }
+  .bubble.left { align-self: flex-start; background: var(--bg); }
+  .bubble.right { align-self: flex-end; background: var(--accent); color: #fff; }
+  .bubble.ai { align-self: center; background: linear-gradient(135deg, var(--accent-soft), var(--gold-soft)); color: var(--ink); font-size: 11px; font-style: italic; }
+  .bubble small { display: block; opacity: .7; margin-top: 4px; font-size: 10px; }
+  .reply-bar { margin-top: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
+
+  .caption { text-align: center; margin: 4px 0 24px; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px; }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>The Studio — Web Admin Mockups</h1>
+  <p>Encircled's internal-facing portal. Calm sage palette, Toronto-quiet, optimised for editors, repair ops, and concierge.</p>
+</header>
+
+<div class="deck">
+
+  <!-- 1. Dashboard -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.encircled.ca / dashboard</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">ENC · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a class="active"><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">◐</span> Pieces &amp; multi-way <span class="badge">4</span></a>
+          <a><span class="ic">▦</span> Drops &amp; calendar</a>
+          <a><span class="ic">A</span> Translations <span class="badge">6</span></a>
+          <a><span class="ic">✈</span> Capsule templates</a>
+          <div class="section-label">Operations</div>
+          <a><span class="ic">⌬</span> Repair queue <span class="badge">9</span></a>
+          <a><span class="ic">📦</span> Capsule starters</a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">✉</span> Concierge <span class="badge">3</span></a>
+          <a><span class="ic">★</span> Loops &amp; tiers</a>
+          <div class="section-label">Insights</div>
+          <a><span class="ic">▥</span> Analytics</a>
+          <a><span class="ic">∞</span> Long-life report</a>
+        </nav>
+        <div class="user">
+          <div class="av"></div>
+          <div class="name"><strong>Kristi S.</strong><span>Founder · EN/FR</span></div>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">DASHBOARD · TODAY · 7 MAY 2026</div>
+          <div class="top-actions">
+            <button class="btn alt">Search</button>
+            <button class="btn">+ New piece</button>
+          </div>
+        </div>
+        <h2>Good morning, Kristi.</h2>
+        <div class="subhead">9 repair tickets in queue · 4 multi-way style drafts pending · 6 translation drafts pending · 3 concierge messages.</div>
+
+        <div class="stat-row">
+          <div class="stat-card"><div class="label">Active customers · 30d</div><div class="num">11,840</div><div class="delta">+8.3% vs prior</div></div>
+          <div class="stat-card"><div class="label">Pieces registered</div><div class="num">28,420</div><div class="delta">+1,124 this week</div></div>
+          <div class="stat-card"><div class="label">Repair conversion</div><div class="num">82%</div><div class="delta">+4 pts MoM</div></div>
+          <div class="stat-card"><div class="label">Multi-way unlock rate</div><div class="num">63%</div><div class="delta">avg 4.2 of 8 unlocked</div></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Upcoming drops &amp; events <span class="more">Calendar →</span></h3>
+            <div class="row">
+              <div class="id">14 MAY</div>
+              <div class="info"><strong>Sage Wide-leg · summer drop</strong><span>2 SKUs · push EN/FR · CA + US</span></div>
+              <span class="pill live">LIVE-READY</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">22 MAY</div>
+              <div class="info"><strong>Founder dispatch · Chrysalis 13yr</strong><span>Kristi-narrated short · push to all members</span></div>
+              <span class="pill review">REVIEW</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">06 JUN</div>
+              <div class="info"><strong>Capsule template · Lisbon mild</strong><span>Staff-curated · 4 pieces · 11 outfits</span></div>
+              <span class="pill draft">DRAFT</span>
+              <div></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Repair queue · 9 open <span class="more">All →</span></h3>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Madeleine R. · Toronto</strong><span>Chrysalis Cardi · seam · in-house · 7d turnaround</span></div>
+              <div class="pill repair">QUOTE</div>
+            </div>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Sarah J. · Vancouver</strong><span>Multi-way Tank · button · DIY guide sent</span></div>
+              <div class="pill diy">DIY</div>
+            </div>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Anna L. · NYC</strong><span>Wide-leg Pant · hem · arrived studio</span></div>
+              <div class="pill repair">REPAIR</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">1 · Dashboard · the founder's morning view</div>
+
+  <!-- 2. Multi-way style editor -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.encircled.ca / pieces / chrysalis-cardi / multi-way</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">ENC · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a class="active"><span class="ic">◐</span> Pieces &amp; multi-way</a>
+          <a><span class="ic">▦</span> Drops &amp; calendar</a>
+          <a><span class="ic">A</span> Translations</a>
+          <a><span class="ic">✈</span> Capsule templates</a>
+          <div class="section-label">Operations</div>
+          <a><span class="ic">⌬</span> Repair queue</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">PIECES · ICONS · CHRYSALIS CARDI</div>
+          <div class="top-actions">
+            <button class="btn subtle">Discard</button>
+            <button class="btn alt">Save draft</button>
+            <button class="btn">Publish</button>
+          </div>
+        </div>
+        <h2>Chrysalis Cardi · Black</h2>
+        <div class="subhead">SKU 0001 · the icon · 8 documented styles · purchased by 14,200 customers since 2012</div>
+
+        <div class="ai-banner">
+          <div class="star">✦</div>
+          <div><strong>Claude drafted style #4 (Off-shoulder).</strong> Founder review pending — verify the snap-mapping diagram before publish.</div>
+        </div>
+
+        <div class="editor-shell">
+          <div>
+            <div class="field-group">
+              <label>Name &amp; product slug</label>
+              <div class="field title">Chrysalis Cardi</div>
+            </div>
+            <div class="field-group">
+              <label>Fabric &amp; construction</label>
+              <div class="field lg">100% Tencel + organic cotton blend · 6 hidden hand-sewn snaps (4 top seam, 2 bottom) · printed lookbook included with purchase</div>
+            </div>
+            <div class="field-group">
+              <label>Lifetime guarantee</label>
+              <div class="field" style="font-size:11px">
+                <strong>Yes · in-house repair, free for life</strong><br/>
+                <span style="color:var(--muted)">In-house repair team in Toronto · 7-day turnaround · pickup or mail-in</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="field-group">
+              <label>Multi-way style library · 8 styles</label>
+              <div class="ways-list">
+                <div class="way-item">
+                  <div class="num">1</div>
+                  <div class="info"><strong>Cardigan</strong><span>video 0:32 · published 2012</span></div>
+                  <span class="pill live">LIVE</span>
+                  <div>›</div>
+                </div>
+                <div class="way-item">
+                  <div class="num">2</div>
+                  <div class="info"><strong>Wrap top</strong><span>video 0:28 · published 2013</span></div>
+                  <span class="pill live">LIVE</span>
+                  <div>›</div>
+                </div>
+                <div class="way-item">
+                  <div class="num">3</div>
+                  <div class="info"><strong>Halter dress</strong><span>video 0:34 · published 2014</span></div>
+                  <span class="pill live">LIVE</span>
+                  <div>›</div>
+                </div>
+                <div class="way-item">
+                  <div class="num draft">4</div>
+                  <div class="info"><strong>Off-shoulder top</strong><span>Claude draft · 2 min ago</span></div>
+                  <span class="pill review">REVIEW</span>
+                  <div>›</div>
+                </div>
+                <div class="way-item">
+                  <div class="num">5</div>
+                  <div class="info"><strong>Skirt</strong><span>video 0:30 · published 2015</span></div>
+                  <span class="pill live">LIVE</span>
+                  <div>›</div>
+                </div>
+                <div class="way-item">
+                  <div class="num">6</div>
+                  <div class="info"><strong>Poncho</strong><span>video 0:24 · published 2016</span></div>
+                  <span class="pill live">LIVE</span>
+                  <div>›</div>
+                </div>
+                <div class="way-item">
+                  <div class="num">7</div>
+                  <div class="info"><strong>Scarf</strong><span>video 0:22 · published 2017</span></div>
+                  <span class="pill live">LIVE</span>
+                  <div>›</div>
+                </div>
+                <div class="way-item">
+                  <div class="num">8</div>
+                  <div class="info"><strong>Beach cover-up</strong><span>video 0:26 · published 2018</span></div>
+                  <span class="pill live">LIVE</span>
+                  <div>›</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">2 · Multi-way style editor · 8-style library</div>
+
+  <!-- 3. Repair queue -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.encircled.ca / repair-queue</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">ENC · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">◐</span> Pieces &amp; multi-way</a>
+          <a><span class="ic">▦</span> Drops &amp; calendar</a>
+          <a><span class="ic">✈</span> Capsule templates</a>
+          <div class="section-label">Operations</div>
+          <a class="active"><span class="ic">⌬</span> Repair queue <span class="badge">9</span></a>
+          <a><span class="ic">📦</span> Capsule starters</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">OPERATIONS · REPAIR QUEUE · 9 OPEN</div>
+          <div class="top-actions">
+            <button class="btn alt">Filter</button>
+            <button class="btn alt">Bulk send DIY</button>
+            <button class="btn">Print labels</button>
+          </div>
+        </div>
+        <h2>Repair queue · guaranteed for life</h2>
+        <div class="subhead">AI-triaged from photos. Approve a quote, send a DIY guide, or escalate to the in-house atelier.</div>
+
+        <div class="ai-banner">
+          <div class="star">✦</div>
+          <div><strong>AI processed 11 of 9 incoming overnight.</strong> 2 already routed as DIY · 7 awaiting human triage.</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="repair-card">
+            <div class="img"></div>
+            <div class="body">
+              <div class="head"><strong>Madeleine R. · Toronto</strong><span class="age">2h</span></div>
+              <div class="meta">Chrysalis Cardi · purchased 2023 · seam separation · 2 photos<br/><span class="ai-tag">AI: in-house · 7d turnaround · $0 (lifetime)</span></div>
+              <div class="actions">
+                <button class="primary">Approve quote</button>
+                <button>Open ticket</button>
+              </div>
+            </div>
+          </div>
+          <div class="repair-card amber">
+            <div class="img"></div>
+            <div class="body">
+              <div class="head"><strong>Sarah J. · Vancouver</strong><span class="age">5h</span></div>
+              <div class="meta">Multi-way Tank · purchased 2024 · loose button · 1 photo<br/><span class="ai-tag">AI: DIY guide · 5-min fix</span></div>
+              <div class="actions">
+                <button class="primary">Send DIY guide</button>
+                <button>Open ticket</button>
+              </div>
+            </div>
+          </div>
+          <div class="repair-card terra">
+            <div class="img"></div>
+            <div class="body">
+              <div class="head"><strong>Anna L. · NYC</strong><span class="age">8h</span></div>
+              <div class="meta">Wide-leg Pant · purchased 2022 · hem fray · 3 photos<br/><span class="ai-tag">AI: in-house · arrived Toronto · $0</span></div>
+              <div class="actions">
+                <button class="primary">Mark received</button>
+                <button>Open ticket</button>
+              </div>
+            </div>
+          </div>
+          <div class="repair-card plum">
+            <div class="img"></div>
+            <div class="body">
+              <div class="head"><strong>Léa M. · Montréal</strong><span class="age">1d</span></div>
+              <div class="meta">Chrysalis Cardi · purchased 2019 · snap replacement · 2 photos<br/><span class="ai-tag">AI: in-house · simple snap fix</span></div>
+              <div class="actions">
+                <button class="primary">Approve quote</button>
+                <button>Open ticket</button>
+              </div>
+            </div>
+          </div>
+          <div class="repair-card">
+            <div class="img"></div>
+            <div class="body">
+              <div class="head"><strong>Diana T. · Calgary</strong><span class="age">2d</span></div>
+              <div class="meta">Tencel Tee · purchased 2024 · pilling · 2 photos<br/><span class="ai-tag">AI: care reminder · no repair needed</span></div>
+              <div class="actions">
+                <button class="primary">Send care guide</button>
+                <button>Open ticket</button>
+              </div>
+            </div>
+          </div>
+          <div class="repair-card amber">
+            <div class="img"></div>
+            <div class="body">
+              <div class="head"><strong>Kelly O. · Ottawa</strong><span class="age">2d</span></div>
+              <div class="meta">Wide-leg Pant · purchased 2023 · zipper failure · 2 photos<br/><span class="ai-tag">AI: in-house · zipper replacement</span></div>
+              <div class="actions">
+                <button class="primary">Approve quote</button>
+                <button>Open ticket</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">3 · Repair queue · AI-triaged with one-click actions</div>
+
+  <!-- 4. Concierge inbox -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.encircled.ca / concierge / madeleine-r-2841</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">ENC · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">◐</span> Pieces &amp; multi-way</a>
+          <a><span class="ic">✈</span> Capsule templates</a>
+          <div class="section-label">Operations</div>
+          <a><span class="ic">⌬</span> Repair queue</a>
+          <div class="section-label">Customers</div>
+          <a class="active"><span class="ic">✉</span> Concierge <span class="badge">3</span></a>
+          <a><span class="ic">★</span> Loops &amp; tiers</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CONCIERGE · 3 OPEN</div>
+          <div class="top-actions">
+            <button class="btn alt">Filter</button>
+            <button class="btn">Mark resolved</button>
+          </div>
+        </div>
+        <h2>Concierge inbox</h2>
+        <div class="subhead">Escalations from the Atelier · capsule planning · long-time customer questions</div>
+
+        <div class="inbox-shell">
+          <div class="panel" style="overflow:auto">
+            <h3 style="margin-bottom:8px">Open · 3</h3>
+            <div class="msg active">
+              <div class="av"></div>
+              <div class="body">
+                <div class="name">Madeleine R. · Toronto</div>
+                <div class="preview">Chrysalis Cardi · halter style for Lisbon trip</div>
+                <div class="meta"><span class="lang">EN</span><span>2h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--terra),var(--gold))"></div>
+              <div class="body">
+                <div class="name">Léa M. · Montréal</div>
+                <div class="preview">Repair history request — for resale on Poshmark</div>
+                <div class="meta"><span class="lang">FR</span><span>4h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--plum),var(--accent-deep))"></div>
+              <div class="body">
+                <div class="name">Sarah J. · Vancouver</div>
+                <div class="preview">Wholesale enquiry · MEC Vancouver pop-up</div>
+                <div class="meta"><span class="lang">EN</span><span>1d</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="inbox-thread">
+            <div class="thread-head">
+              <h4>Madeleine Reid · Toronto</h4>
+              <div class="meta"><span class="pill">VIP · LOOPS</span><span>11 pieces in wardrobe · 3 lifetime repairs · escalated by Atelier · 2h ago</span></div>
+            </div>
+            <div class="bubbles">
+              <div class="bubble ai">Atelier escalated this — customer asking for personalised guidance on the Halter Dress style for an upcoming trip. AI offered the standard guide; customer wanted more.</div>
+              <div class="bubble left">I have my Chrysalis Cardi for 2 years now and I've only worn it as a cardigan. Going to Lisbon in November and want to try the Halter Dress for evenings. Will it work for a 5'5" small body, and is it warm enough for Nov in Lisbon?<small>EN · 2h ago</small></div>
+              <div class="bubble right">Hi Madeleine — yes, the Halter Dress hits mid-thigh on a 5'5" body. Tencel/cotton breathes well, mild evenings in Lisbon (12–17°C) are fine if you layer with a light cardigan. I'll attach the 30-sec how-to and a few customer photos showing the style on different body types.<small>EN · sending</small></div>
+            </div>
+            <div class="reply-bar"><span>Reply in English — Claude ready to translate to FR for archive…</span><span>↑</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">4 · Concierge inbox · Atelier escalations &amp; bilingual support</div>
+
+</div>
+
+</body>
+</html>
