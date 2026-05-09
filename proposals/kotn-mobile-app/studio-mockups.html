@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kotn — The Studio (Web Admin Mockups)</title>
+<style>
+  :root {
+    --bg: #f4f1ea; --ink: #1d2a3a; --muted: #7a7569; --line: #e2dccd; --card: #ffffff;
+    --accent: #2f5a78; --accent-deep: #143247; --accent-soft: #d6e3ed;
+    --gold: #c89868; --gold-soft: #f0e0c7; --green: #6b8e63; --terra: #b8642a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 { font-family: "Times New Roman", Georgia, serif; font-weight: 500; font-size: 36px; margin: 0 0 4px; letter-spacing: -0.5px; color: var(--accent); }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .deck { max-width: 1400px; margin: 0 auto; padding: 16px 32px 64px; }
+  .browser { background: #1d2a3a; border-radius: 14px; box-shadow: 0 24px 48px rgba(20,50,71,.12), 0 2px 8px rgba(0,0,0,.06); margin-bottom: 32px; overflow: hidden; }
+  .browser .chrome { background: #1d2a3a; padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
+  .browser .chrome .dots { display: flex; gap: 6px; }
+  .browser .chrome .dots span { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,.2); }
+  .browser .chrome .url { flex: 1; background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); font-size: 12px; padding: 5px 12px; border-radius: 6px; font-family: monospace; }
+  .frame { height: 720px; display: grid; grid-template-columns: 220px 1fr; background: var(--bg); overflow: hidden; }
+
+  .sidebar { background: #fff; border-right: 1px solid var(--line); padding: 18px 0; display: flex; flex-direction: column; }
+  .brand { padding: 0 18px 16px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+  .brand .logo { font-family: "Times New Roman", Georgia, serif; color: var(--accent); font-size: 12px; letter-spacing: 5px; font-weight: 600; }
+  .brand .sub { color: var(--muted); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .nav { flex: 1; padding: 0 12px; display: flex; flex-direction: column; gap: 2px; }
+  .nav .section-label { color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; padding: 12px 12px 6px; }
+  .nav a { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; color: var(--ink); font-size: 12px; text-decoration: none; }
+  .nav a .ic { width: 18px; height: 18px; background: var(--bg); border-radius: 5px; display: grid; place-items: center; font-size: 10px; color: var(--muted); }
+  .nav a.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .nav a.active .ic { background: var(--accent); color: #fff; }
+  .nav a .badge { margin-left: auto; background: var(--accent); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 999px; }
+  .user { padding: 12px 16px; border-top: 1px solid var(--line); display: flex; gap: 10px; align-items: center; }
+  .user .av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--accent-deep)); }
+  .user .name { font-size: 12px; }
+  .user .name strong { display: block; }
+  .user .name span { color: var(--muted); font-size: 10px; }
+
+  .main { overflow: auto; padding: 22px 28px 30px; }
+  .topline { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .crumb { color: var(--muted); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+  .top-actions { display: flex; gap: 8px; }
+  .btn { display: inline-block; padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; background: var(--accent); color: #fff; border: none; cursor: pointer; }
+  .btn.alt { background: #fff; color: var(--accent); border: 1px solid var(--line); }
+  .btn.subtle { background: var(--bg); color: var(--ink); }
+  h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 26px; margin: 0 0 4px; color: var(--ink); }
+  .subhead { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 22px; }
+  .stat-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .stat-card .label { color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+  .stat-card .num { font-family: "Times New Roman", Georgia, serif; color: var(--accent); font-size: 32px; line-height: 1; margin: 6px 0 2px; }
+  .stat-card .delta { color: var(--green); font-size: 11px; font-weight: 600; }
+
+  .grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+  .panel h3 { margin: 0 0 12px; font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 15px; color: var(--ink); display: flex; justify-content: space-between; align-items: center; }
+  .panel h3 .more { color: var(--accent); font-size: 11px; font-weight: 600; }
+
+  .row { display: grid; grid-template-columns: 70px 1fr auto auto; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); align-items: center; }
+  .row:last-child { border: none; }
+  .row .id { background: var(--accent-soft); color: var(--accent); border-radius: 6px; padding: 4px; text-align: center; font-family: monospace; font-size: 11px; font-weight: 700; }
+  .row .info { font-size: 12px; }
+  .row .info strong { display: block; }
+  .row .info span { color: var(--muted); font-size: 11px; }
+  .pill { padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; }
+  .pill.live { background: #dee9d9; color: #3e6539; }
+  .pill.review { background: var(--accent-soft); color: var(--accent); }
+  .pill.draft { background: var(--bg); color: var(--muted); }
+  .pill.gold { background: var(--gold-soft); color: #8a6e2a; }
+
+  /* Editor */
+  .editor-shell { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .field-group { margin-bottom: 14px; }
+  .field-group label { display: block; color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 5px; }
+  .field { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 12px; color: var(--ink); line-height: 1.5; }
+  .field.lg { min-height: 90px; }
+  .field.title { font-family: "Times New Roman", Georgia, serif; font-size: 18px; }
+  .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ai-banner { background: linear-gradient(135deg, var(--accent-soft), var(--gold-soft)); border-radius: 10px; padding: 10px 14px; font-size: 11px; color: var(--ink); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .ai-banner .star { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 12px; }
+  .ai-banner strong { color: var(--accent); }
+
+  /* Provenance ledger */
+  .ledger-edit { display: flex; flex-direction: column; gap: 8px; }
+  .ledger-step {
+    display: grid; grid-template-columns: 28px 1fr auto;
+    gap: 10px; padding: 10px 12px;
+    background: var(--bg); border-radius: 8px;
+    align-items: flex-start;
+  }
+  .ledger-step .ic {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: grid; place-items: center;
+    font-size: 11px; font-weight: 700;
+  }
+  .ledger-step .info { font-size: 12px; }
+  .ledger-step .info strong { display: block; }
+  .ledger-step .info .meta { color: var(--muted); font-size: 11px; }
+  .ledger-step .info .citation { color: var(--accent); font-size: 11px; margin-top: 4px; font-weight: 600; }
+  .ledger-step .verified { color: var(--green); font-size: 10px; font-weight: 700; }
+
+  /* Impact dashboard */
+  .impact-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+  .impact-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .impact-card .lbl { color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+  .impact-card .num { font-family: "Times New Roman", Georgia, serif; color: var(--accent); font-size: 30px; line-height: 1; margin: 6px 0 2px; }
+  .impact-card .sub { color: var(--muted); font-size: 11px; }
+
+  .school-row { display: grid; grid-template-columns: 50px 1fr 100px 100px; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); align-items: center; }
+  .school-row .ic { width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, var(--gold), var(--terra)); display: grid; place-items: center; color: #fff; font-size: 14px; }
+  .school-row .info { font-size: 12px; }
+  .school-row .info strong { display: block; }
+  .school-row .info span { color: var(--muted); font-size: 11px; }
+  .school-row .meta { text-align: center; font-size: 11px; color: var(--muted); }
+  .school-row .meta strong { display: block; color: var(--ink); font-size: 13px; }
+
+  .bars { display: flex; align-items: flex-end; gap: 6px; height: 90px; }
+  .bars .bar { flex: 1; background: var(--accent-soft); border-radius: 4px 4px 0 0; position: relative; }
+  .bars .bar.on { background: var(--accent); }
+  .bars .bar .lbl { position: absolute; bottom: -16px; left: 0; right: 0; text-align: center; font-size: 9px; color: var(--muted); }
+
+  /* Concierge inbox */
+  .inbox-shell { display: grid; grid-template-columns: 280px 1fr; gap: 14px; height: 600px; }
+  .msg { display: grid; grid-template-columns: 32px 1fr; gap: 10px; padding: 10px 12px; border-radius: 8px; cursor: pointer; }
+  .msg.active { background: var(--accent-soft); }
+  .msg .av { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--accent-deep)); }
+  .msg .body { font-size: 12px; }
+  .msg .body .name { font-weight: 600; }
+  .msg .body .preview { color: var(--muted); margin-top: 2px; }
+  .msg .body .meta { color: var(--muted); font-size: 10px; margin-top: 4px; display: flex; gap: 8px; }
+  .msg .body .lang { background: var(--bg); padding: 1px 6px; border-radius: 999px; font-weight: 600; }
+
+  .inbox-thread { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 18px 22px; display: flex; flex-direction: column; }
+  .thread-head { border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 14px; }
+  .thread-head h4 { margin: 0 0 4px; font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 17px; }
+  .thread-head .meta { color: var(--muted); font-size: 11px; }
+  .thread-head .meta .pill { background: var(--accent-soft); color: var(--accent); padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; margin-right: 6px; }
+  .bubbles { flex: 1; overflow: auto; display: flex; flex-direction: column; gap: 8px; }
+  .bubble { max-width: 80%; padding: 10px 12px; border-radius: 12px; font-size: 12px; line-height: 1.4; }
+  .bubble.left { align-self: flex-start; background: var(--bg); }
+  .bubble.right { align-self: flex-end; background: var(--accent); color: #fff; }
+  .bubble.ai { align-self: center; background: linear-gradient(135deg, var(--accent-soft), var(--gold-soft)); color: var(--ink); font-size: 11px; font-style: italic; }
+  .bubble small { display: block; opacity: .7; margin-top: 4px; font-size: 10px; }
+  .reply-bar { margin-top: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
+
+  .caption { text-align: center; margin: 4px 0 24px; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px; }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>The Studio — Web Admin Mockups</h1>
+  <p>Kotn's internal-facing portal. Calm earthy palette, Nile blue accents, optimised for editors, sustainability ops, and concierge.</p>
+</header>
+
+<div class="deck">
+
+  <!-- 1. Dashboard -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.kotn.com / dashboard</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">K · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a class="active"><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">⊡</span> Origins / passports <span class="badge">6</span></a>
+          <a><span class="ic">⏵</span> Maker audio</a>
+          <a><span class="ic">A</span> Translations <span class="badge">11</span></a>
+          <a><span class="ic">▦</span> Drops &amp; events</a>
+          <div class="section-label">Impact</div>
+          <a><span class="ic">♔</span> Education ledger</a>
+          <a><span class="ic">⌑</span> Maker dispatches</a>
+          <a><span class="ic">⊞</span> Transparency report</a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">✉</span> Concierge <span class="badge">5</span></a>
+          <a><span class="ic">⌃</span> Atelier (repair)</a>
+          <div class="section-label">Insights</div>
+          <a><span class="ic">▥</span> Analytics</a>
+        </nav>
+        <div class="user">
+          <div class="av"></div>
+          <div class="name"><strong>Anaïs L.</strong><span>Editor · EN/FR</span></div>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">DASHBOARD · TODAY · 6 MAY 2026</div>
+          <div class="top-actions">
+            <button class="btn alt">Search</button>
+            <button class="btn">+ New origin</button>
+          </div>
+        </div>
+        <h2>Bonjour, Anaïs.</h2>
+        <div class="subhead">11 translations awaiting review · 6 origins drafted · 5 concierge messages.</div>
+
+        <div class="stat-row">
+          <div class="stat-card"><div class="label">Active customers · 30d</div><div class="num">18,420</div><div class="delta">+9.6% vs prior</div></div>
+          <div class="stat-card"><div class="label">Pieces registered</div><div class="num">42,310</div><div class="delta">+1,832 this week</div></div>
+          <div class="stat-card"><div class="label">School-days funded · YTD</div><div class="num">14,820</div><div class="delta">on track for 18k goal</div></div>
+          <div class="stat-card"><div class="label">Origin scan rate</div><div class="num">68%</div><div class="delta">+12 pts MoM</div></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Upcoming drops &amp; events <span class="more">Calendar →</span></h3>
+            <div class="row">
+              <div class="id">12 MAY</div>
+              <div class="info"><strong>Linen Series · summer drop</strong><span>4 SKUs · push EN/FR · CA + US</span></div>
+              <span class="pill live">LIVE-READY</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">18 MAY</div>
+              <div class="info"><strong>Mending workshop · Brooklyn</strong><span>Cobble Hill · Sat 11am · 24 RSVPs</span></div>
+              <span class="pill review">REVIEW</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">02 JUN</div>
+              <div class="info"><strong>Annual Transparency Report</strong><span>Email blast · 6 langs · audit citations attached</span></div>
+              <span class="pill draft">DRAFT</span>
+              <div></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Concierge inbox <span class="more">All →</span></h3>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Anaïs L. · Montréal</strong><span>Question about Linen Shirt origin · escalated by Atelier</span></div>
+              <div class="pill">FR · 2h</div>
+            </div>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Marcus B. · Brooklyn</strong><span>Repair drop-off booking · Field Tee · seam separation</span></div>
+              <div class="pill">EN · 4h</div>
+            </div>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Priya R. · Toronto</strong><span>Wholesale enquiry · 200 pieces for hotel partner</span></div>
+              <div class="pill">EN · 6h</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">1 · Dashboard · the editor's morning view</div>
+
+  <!-- 2. Origin / passport editor -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.kotn.com / origins / field-tee-sand-2026 / edit</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">K · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a class="active"><span class="ic">⊡</span> Origins / passports</a>
+          <a><span class="ic">⏵</span> Maker audio</a>
+          <a><span class="ic">A</span> Translations</a>
+          <a><span class="ic">▦</span> Drops &amp; events</a>
+          <div class="section-label">Impact</div>
+          <a><span class="ic">♔</span> Education ledger</a>
+          <a><span class="ic">⌑</span> Maker dispatches</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">ORIGINS · WOMENS · FIELD TEE · SAND</div>
+          <div class="top-actions">
+            <button class="btn subtle">Discard</button>
+            <button class="btn alt">Save draft</button>
+            <button class="btn">Publish</button>
+          </div>
+        </div>
+        <h2>Field Tee · Sand · 2026 batch</h2>
+        <div class="subhead">SKU 1442 · 100% Egyptian cotton · Soliman family farm · regular fit · unisex</div>
+
+        <div class="ai-banner">
+          <div class="star">✦</div>
+          <div><strong>Claude drafted the origin story.</strong> All claims must be verified against citations before publish — never trust AI-generated provenance.</div>
+        </div>
+
+        <div class="editor-shell">
+          <div>
+            <div class="field-group">
+              <label>Customer-facing title</label>
+              <div class="field title">From a farm in Fayoum, to your wardrobe.</div>
+            </div>
+            <div class="field-group">
+              <label>Story (English source)</label>
+              <div class="field lg">This piece begins with cotton grown by the Soliman family in Fayoum, Egypt. Harvested October 2025, spun and woven at the Mahalla mill, sewn by the Cairo women's collective — 32 women earning living wages with on-site childcare.</div>
+            </div>
+            <div class="field-group">
+              <label>Provenance ledger</label>
+              <div class="ledger-edit">
+                <div class="ledger-step">
+                  <div class="ic">1</div>
+                  <div class="info">
+                    <strong>Soliman family farm · Fayoum</strong>
+                    <div class="meta">Harvest Oct 2025 · 4.2 hectares · drip irrigation</div>
+                    <div class="citation">↗ Audit · Better Cotton Initiative · 2025</div>
+                  </div>
+                  <div class="verified">✓ VERIFIED</div>
+                </div>
+                <div class="ledger-step">
+                  <div class="ic">2</div>
+                  <div class="info">
+                    <strong>Mill · Mahalla al-Kubra</strong>
+                    <div class="meta">Spinning + weaving · OEKO-TEX 100</div>
+                    <div class="citation">↗ Certificate · OEKO-TEX · valid through 2027</div>
+                  </div>
+                  <div class="verified">✓ VERIFIED</div>
+                </div>
+                <div class="ledger-step">
+                  <div class="ic">3</div>
+                  <div class="info">
+                    <strong>Sewing collective · Cairo</strong>
+                    <div class="meta">32 women · BSCI audited · childcare on-site</div>
+                    <div class="citation">↗ BSCI audit · Q1 2026 · score A</div>
+                  </div>
+                  <div class="verified">✓ VERIFIED</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="field-group">
+              <label>Footprint &amp; impact</label>
+              <div class="field" style="font-size:11px">
+                <strong>2.1 kg CO₂e</strong><br/>cradle-to-gate · LCA 2025<br/>
+                <br/>
+                <strong>78 L water</strong><br/>blue-water consumption · Egyptian Cotton Org<br/>
+                <br/>
+                <strong>3.2 days school</strong><br/>contribution to Fayoum school program · per piece sold
+              </div>
+            </div>
+            <div class="field-group">
+              <label>Translations · Claude-drafted</label>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div class="row" style="grid-template-columns:48px 1fr auto;background:var(--bg);border-radius:8px;padding:8px 10px;border:none">
+                  <div class="id">EN</div>
+                  <div class="info"><strong>English · source</strong><span>Updated by Anaïs L.</span></div>
+                  <span class="pill live">LIVE</span>
+                </div>
+                <div class="row" style="grid-template-columns:48px 1fr auto;background:var(--bg);border-radius:8px;padding:8px 10px;border:none">
+                  <div class="id">FR</div>
+                  <div class="info"><strong>Français</strong><span>Drafted · 2 min ago</span></div>
+                  <span class="pill review">REVIEW</span>
+                </div>
+                <div class="row" style="grid-template-columns:48px 1fr auto;background:var(--bg);border-radius:8px;padding:8px 10px;border:none">
+                  <div class="id">AR</div>
+                  <div class="info"><strong>العربية</strong><span>Drafted · awaiting curator</span></div>
+                  <span class="pill draft">DRAFT</span>
+                </div>
+              </div>
+            </div>
+            <div class="field-group">
+              <label>Maker audio</label>
+              <div class="field" style="font-size:11px">
+                <strong>mahmoud-soliman-AR.m4a</strong> · 1:14<br/>
+                <span style="color:var(--muted)">Voiced by farmer · AR with EN/FR subtitles · uploaded 3 May</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">2 · Origin editor · provenance ledger with citations</div>
+
+  <!-- 3. Education ledger / impact dashboard -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.kotn.com / impact / education-ledger</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">K · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">⊡</span> Origins / passports</a>
+          <a><span class="ic">A</span> Translations</a>
+          <a><span class="ic">▦</span> Drops &amp; events</a>
+          <div class="section-label">Impact</div>
+          <a class="active"><span class="ic">♔</span> Education ledger</a>
+          <a><span class="ic">⌑</span> Maker dispatches</a>
+          <a><span class="ic">⊞</span> Transparency report</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">IMPACT · EDUCATION LEDGER · YTD 2026</div>
+          <div class="top-actions">
+            <button class="btn alt">Range: YTD ▾</button>
+            <button class="btn alt">Export PDF</button>
+            <button class="btn">Send to customers</button>
+          </div>
+        </div>
+        <h2>Education ledger</h2>
+        <div class="subhead">Real numbers, audited and citation-linked. Customers can see this in The Field. Auditors can see the source data.</div>
+
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="lbl">Schools funded · all-time</div>
+            <div class="num">15</div>
+            <div class="sub">7 built, 8 supported with operating funds</div>
+          </div>
+          <div class="impact-card">
+            <div class="lbl">School-days · YTD 2026</div>
+            <div class="num">14,820</div>
+            <div class="sub">on track for 18k by year-end</div>
+          </div>
+          <div class="impact-card">
+            <div class="lbl">Farming families supported</div>
+            <div class="num">182</div>
+            <div class="sub">+24 since last quarter</div>
+          </div>
+          <div class="impact-card">
+            <div class="lbl">% direct-trade cotton</div>
+            <div class="num">100%</div>
+            <div class="sub">no spot market — every kg traceable</div>
+          </div>
+          <div class="impact-card">
+            <div class="lbl">Maker living-wage compliance</div>
+            <div class="num">100%</div>
+            <div class="sub">audited Q1 2026 · BSCI</div>
+          </div>
+          <div class="impact-card">
+            <div class="lbl">Customer-facing impact accuracy</div>
+            <div class="num">100%</div>
+            <div class="sub">every claim citation-linked</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Schools funded — list <span class="more">All →</span></h3>
+            <div class="school-row">
+              <div class="ic">⛨</div>
+              <div class="info"><strong>Fayoum Primary No. 3</strong><span>built 2022 · 240 students · operating funded</span></div>
+              <div class="meta"><strong>2,840</strong>days YTD</div>
+              <div class="meta"><span class="pill live">FUNDED</span></div>
+            </div>
+            <div class="school-row">
+              <div class="ic">⛨</div>
+              <div class="info"><strong>Mahalla Girls' Secondary</strong><span>built 2024 · 184 students · in 3rd year</span></div>
+              <div class="meta"><strong>2,212</strong>days YTD</div>
+              <div class="meta"><span class="pill live">FUNDED</span></div>
+            </div>
+            <div class="school-row">
+              <div class="ic">⛨</div>
+              <div class="info"><strong>Beni Suef Community Centre</strong><span>operating support · 96 enrolled</span></div>
+              <div class="meta"><strong>1,420</strong>days YTD</div>
+              <div class="meta"><span class="pill live">FUNDED</span></div>
+            </div>
+            <div class="school-row">
+              <div class="ic">⛨</div>
+              <div class="info"><strong>Fayoum Primary No. 8</strong><span>under construction · opens Nov 2026</span></div>
+              <div class="meta">—</div>
+              <div class="meta"><span class="pill gold">BUILDING</span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>School-days · per month</h3>
+            <div class="bars">
+              <div class="bar" style="height:42%"><div class="lbl">Jan</div></div>
+              <div class="bar" style="height:50%"><div class="lbl">Feb</div></div>
+              <div class="bar" style="height:55%"><div class="lbl">Mar</div></div>
+              <div class="bar" style="height:62%"><div class="lbl">Apr</div></div>
+              <div class="bar on" style="height:78%"><div class="lbl">May</div></div>
+            </div>
+            <div style="margin-top: 30px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 11px; color: var(--muted)">
+              <strong style="color:var(--ink)">Methodology</strong><br/>
+              Each piece sold contributes a fixed % of margin to the Fayoum Education Fund. Audited annually. Citation-linked from the customer-facing app.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">3 · Education ledger · audit-ready impact data</div>
+
+  <!-- 4. Concierge inbox -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.kotn.com / concierge / anais-l-2841</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">K · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">⊡</span> Origins / passports</a>
+          <a><span class="ic">▦</span> Drops &amp; events</a>
+          <div class="section-label">Impact</div>
+          <a><span class="ic">♔</span> Education ledger</a>
+          <a><span class="ic">⌑</span> Maker dispatches</a>
+          <div class="section-label">Customers</div>
+          <a class="active"><span class="ic">✉</span> Concierge <span class="badge">5</span></a>
+          <a><span class="ic">⌃</span> Atelier (repair)</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CONCIERGE · 5 OPEN</div>
+          <div class="top-actions">
+            <button class="btn alt">Filter</button>
+            <button class="btn">Mark resolved</button>
+          </div>
+        </div>
+        <h2>Concierge inbox</h2>
+        <div class="subhead">Escalations from the Atelier · repair bookings · wholesale enquiries · maker-story requests</div>
+
+        <div class="inbox-shell">
+          <div class="panel" style="overflow:auto">
+            <h3 style="margin-bottom:8px">Open · 5</h3>
+            <div class="msg active">
+              <div class="av"></div>
+              <div class="body">
+                <div class="name">Anaïs L. · Montréal</div>
+                <div class="preview">Linen Shirt origin · spinning location?</div>
+                <div class="meta"><span class="lang">FR</span><span>2h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--accent),var(--green))"></div>
+              <div class="body">
+                <div class="name">Marcus B. · Brooklyn</div>
+                <div class="preview">Repair booking · Field Tee · seam</div>
+                <div class="meta"><span class="lang">EN</span><span>4h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--terra),var(--gold))"></div>
+              <div class="body">
+                <div class="name">Priya R. · Toronto</div>
+                <div class="preview">Wholesale · 200 pcs hotel partner</div>
+                <div class="meta"><span class="lang">EN</span><span>6h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--green),var(--accent-deep))"></div>
+              <div class="body">
+                <div class="name">Sophie J. · Vancouver</div>
+                <div class="preview">Annual transparency report PDF</div>
+                <div class="meta"><span class="lang">EN</span><span>1d</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--gold),var(--terra))"></div>
+              <div class="body">
+                <div class="name">Mohamed F. · Cairo</div>
+                <div class="preview">Maker collective · invoice query</div>
+                <div class="meta"><span class="lang">AR</span><span>2d</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="inbox-thread">
+            <div class="thread-head">
+              <h4>Anaïs Lamarche · Montréal</h4>
+              <div class="meta"><span class="pill">VIP · THREADS</span><span>Bilingual EN/FR · 8 pieces in wardrobe · escalated by Atelier · 2h ago</span></div>
+            </div>
+            <div class="bubbles">
+              <div class="bubble ai">Atelier escalated this — customer asked a specific provenance question Atelier couldn't answer with confidence. Original in FR; brand-glossary translation below.</div>
+              <div class="bubble left">Bonjour, j'aimerais savoir où exactement le lin de la Linen Shirt en olive est filé ? Mon mari est sceptique sur les revendications de provenance et j'aimerais lui montrer la source.<small>FR · 2h ago</small></div>
+              <div class="bubble left" style="background:#f0e9d8">"Hello, I'd like to know exactly where the linen for the olive Linen Shirt is spun. My husband is sceptical of the provenance claims and I'd like to show him the source."<small>brand-glossary translation</small></div>
+              <div class="bubble right">Bonjour Anaïs, merci d'avoir posé la question — la transparence est tout l'objet de la marque. Le lin est filé à Tanta, dans le delta du Nil, par la coopérative de tissage Al-Manar (audit BSCI Q3 2025, lien ci-dessous)…<small>FR · sending with citation link</small></div>
+            </div>
+            <div class="reply-bar"><span>Reply in French — Claude ready to translate to EN for archive…</span><span>↑</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">4 · Concierge inbox · provenance escalations &amp; bilingual support</div>
+
+</div>
+
+</body>
+</html>

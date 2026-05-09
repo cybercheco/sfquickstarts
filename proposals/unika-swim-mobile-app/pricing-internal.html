@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Ūnika Swim — Tier Recommendation (Internal)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 18mm 18mm 18mm;
+    @bottom-left { content: "Ūnika Swim · Tier Recommendation · Internal"; font-family: Georgia, serif; font-size: 9pt; color: #8a857a; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font-family: Georgia, serif; font-size: 9pt; color: #8a857a; }
+  }
+  :root {
+    --bg: #f7f1e8; --ink: #2a2a26; --muted: #8a857a; --line: #e6dccb; --card: #ffffff;
+    --accent: #d8704a; --accent-deep: #8a3e22; --accent-soft: #f5dfd3;
+    --gold: #d4a85a; --gold-soft: #f3e6c7; --ocean: #4a7e8c; --ocean-soft: #cfdfe2;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; font-size: 10.5pt; line-height: 1.5; }
+  .cover { page-break-after: always; padding: 30mm 0 0; }
+  .cover .eyebrow { color: var(--accent-deep); font-weight: 700; font-size: 10pt; letter-spacing: 2px; margin-bottom: 8mm; }
+  .cover h1 { font-family: Georgia, serif; font-weight: 400; font-size: 44pt; line-height: 1.05; margin: 0 0 8mm; letter-spacing: -0.5px; }
+  .cover .deck-tagline { font-family: Georgia, serif; color: var(--accent-deep); font-size: 18pt; line-height: 1.3; margin-bottom: 14mm; }
+  .cover .meta { color: var(--muted); font-size: 10pt; border-top: 1px solid var(--line); padding-top: 4mm; }
+  .cover .meta strong { color: var(--ink); }
+  h2 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; color: var(--ink); margin: 0 0 1mm; letter-spacing: -0.2px; }
+  h2 + .lede { color: var(--muted); margin: 0 0 6mm; font-size: 11pt; }
+  .section { page-break-inside: avoid; margin-bottom: 12mm; }
+  .eyebrow { color: var(--accent-deep); font-weight: 700; font-size: 9pt; letter-spacing: 2px; margin-bottom: 2mm; }
+  .rule { width: 12mm; height: 2pt; background: var(--accent); margin: 4mm 0 6mm; }
+  p { margin: 0 0 4mm; } .muted { color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 3mm 0 6mm; }
+  th, td { border-bottom: 1px solid var(--line); padding: 2.4mm 3mm; text-align: left; vertical-align: top; }
+  th { background: var(--accent-soft); color: var(--accent-deep); font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; border-bottom: 1.5pt solid var(--accent); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; } th.num { text-align: right; }
+  tr.total td { border-top: 1.5pt solid var(--accent); border-bottom: none; font-weight: 700; background: var(--accent-soft); color: var(--accent-deep); }
+  .callout { background: var(--card); border: 1px solid var(--line); border-left: 3pt solid var(--accent); padding: 4mm 5mm; margin: 4mm 0 6mm; border-radius: 1mm; }
+  .callout .lbl { font-size: 9pt; font-weight: 700; letter-spacing: 1.5px; color: var(--accent-deep); text-transform: uppercase; margin-bottom: 2mm; }
+  .callout.gold { border-left-color: var(--gold); } .callout.gold .lbl { color: #8a6e2a; }
+  .callout.warn { border-left-color: var(--ocean); } .callout.warn .lbl { color: var(--ocean); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0 6mm; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 2mm; padding: 5mm; }
+  .card h4 { margin: 0 0 2mm; font-family: Georgia, serif; font-weight: 400; font-size: 13pt; color: var(--accent-deep); }
+  .card p { margin: 0; color: var(--muted); font-size: 10pt; }
+  ul.clean { list-style: none; padding: 0; margin: 0 0 4mm; }
+  ul.clean li { padding: 1.5mm 0 1.5mm 6mm; border-bottom: 1px dashed var(--line); position: relative; }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li::before { content: ""; position: absolute; left: 0; top: 4mm; width: 2mm; height: 2mm; background: var(--accent); border-radius: 50%; }
+  .closing { margin-top: 8mm; padding: 8mm; background: var(--accent-deep); color: #fff; border-radius: 2mm; }
+  .closing .lbl { color: var(--gold); font-size: 9pt; font-weight: 700; letter-spacing: 2px; margin-bottom: 3mm; }
+  .closing h3 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; margin: 0 0 4mm; }
+  .closing p { color: var(--gold-soft); margin: 0 0 3mm; }
+  .small { font-size: 9.5pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">INTERNAL · NOT FOR CLIENT</div>
+  <h1>Tier rationale<br/>Ūnika Swim.</h1>
+  <div class="deck-tagline">Growth + Studio at launch.<br/>Custom-order ops + sensitive-fit segregation are the differentiators.</div>
+  <div class="meta">
+    <strong>Audience</strong> &nbsp;·&nbsp; Internal only<br/>
+    <strong>Use</strong> &nbsp;·&nbsp; Reference for the conversation; never share with the brand<br/>
+    <strong>Status</strong> &nbsp;·&nbsp; Draft for discussion · sensitive-fit data segregation is non-negotiable
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE RECOMMENDATION</div>
+  <h2>Growth ($3,500) + Studio ($750) = $4,250/mo at launch.</h2>
+  <p class="muted">A custom-maker brand whose Atelier work is the product. The Studio is operationally heavy — custom-order tracker + appointment scheduler + fabric library + sensitive-fit segregation — but the margin holds at typical apparel levels. Walk-away signals are sharp around sensitive-fit handling.</p>
+  <div class="rule"></div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">DIFFERENT FROM THE OTHER CLIENTS</div>
+  <h2>What's specific to Ūnika.</h2>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>1. Custom-order tracker is the killer feature</h4>
+      <p>Made-to-order, 4–6 weeks, six stages, real photos from the boutique. No other client has this scale of order-tracking complexity.</p>
+    </div>
+    <div class="card">
+      <h4>2. Sensitive-fit data segregation is non-negotiable</h4>
+      <p>Mastectomy / ostomy / scar data lives in a separate audit-logged store. Specialist-only access. Never trains AI. Privacy posture stricter than apparel clients.</p>
+    </div>
+    <div class="card">
+      <h4>3. Trilingual at launch</h4>
+      <p>EN / PT / ES from day one — Brazilian heritage + Latina audience. Translation cost slightly higher than bilingual clients.</p>
+    </div>
+    <div class="card">
+      <h4>4. Appointment scheduling matters</h4>
+      <p>The boutique is at 101 Yorkville. Appointment scheduler with specialist matching (cup size, sensitive-fit needs) is core to the workflow. Not just a calendar.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHY STARTER IS DISQUALIFIED</div>
+  <h2>Same as other brands — single-platform, 5-screen, no AI.</h2>
+
+  <table>
+    <thead><tr><th>Starter constraint</th><th>Ūnika reality</th></tr></thead>
+    <tbody>
+      <tr><td>Single platform</td><td>Both — Toronto/CA mixed, Brazilian customers heavy iOS, US heavy iOS.</td></tr>
+      <tr><td>5 screens</td><td>Phase 1 is ~18 screens including the Atelier flow alone.</td></tr>
+      <tr><td>No AI</td><td>Atelier chat (trilingual) is core to the value AND custom-design accuracy.</td></tr>
+      <tr><td>24h email support</td><td>Sensitive-fit conversations need same-day response — slow response erodes trust.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="eyebrow">STUDIO ADD-ON ($750/mo)</div>
+  <h2>Mandatory and operationally heavier than apparel clients.</h2>
+  <p class="lede">Custom-order tracker + fabric library + appointment scheduler + sensitive-fit segregated store + trilingual content all live here. Margin holds because Phase 1 customer base is small (~3K MAU expected).</p>
+
+  <table>
+    <thead><tr><th>Component</th><th class="num">Real cost / mo</th><th>Margin notes</th></tr></thead>
+    <tbody>
+      <tr><td>Web hosting</td><td class="num">$25–50</td><td>Compliance review tooling adds slight load</td></tr>
+      <tr><td>DB delta (custom orders, fabric inventory, segregated sensitive-fit)</td><td class="num">$15–35</td><td>Higher than apparel — sensitive-fit segregation requires separate audit-logged DB</td></tr>
+      <tr><td>Object storage (custom-order photos at 6 stages, fabric swatches)</td><td class="num">$15–35</td><td>Photo-heavy</td></tr>
+      <tr><td>Editorial AI (atelier chat, translations EN/PT/ES, fabric descriptions)</td><td class="num">$30–80</td><td>Trilingual = 1.5× bilingual cost</td></tr>
+      <tr><td>Email + push (appointment reminders, order updates, custom-stage photos)</td><td class="num">$15–30</td><td>Custom orders generate more tx email per customer</td></tr>
+      <tr><td>Auth (~12 internal seats — Betsy, specialists, Yorkville staff)</td><td class="num">$0</td><td>Free tier on Supabase / Clerk</td></tr>
+      <tr class="total"><td>Subtotal infra + AI</td><td class="num">~$100–230</td><td>Between apparel (~$140) and Moon Juice (~$260)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <div class="lbl">Margin at $750/mo</div>
+    <p>Real cost ~$165/mo (mid-band). Includes ~5 maintenance hrs/mo. Gross margin ~70%. Healthy for a custom-maker brand.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Studio one-time build cost</div>
+    <p>Roughly <strong>$40–55K</strong> on top of the mobile build. 9 modules in Phase 1: auth + custom-order tracker (most complex single module — 6-stage workflow with photo upload) + fabric library editor + appointment scheduler with specialist matching + concierge inbox with sensitive-fit access controls + repair / restoration workflow + trilingual translation pipeline + Sun-tier admin + analytics. Higher than apparel due to custom-order tracker + sensitive-fit segregation.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">YEAR-2 UPGRADE TRIGGERS</div>
+  <h2>Move them to Enterprise the moment any one fires.</h2>
+
+  <table>
+    <thead><tr><th>Trigger</th><th>Why it forces the upgrade</th></tr></thead>
+    <tbody>
+      <tr><td>AR custom-design preview</td><td>Body silhouette AR needs native Swift / Kotlin modules.</td></tr>
+      <tr><td>Wholesale / boutique B2B portal</td><td>SSO + audit logging + RLS for partner boutiques.</td></tr>
+      <tr><td>EU / Brazilian data residency</td><td>GDPR + LGPD as European/Brazilian volume becomes material.</td></tr>
+      <tr><td>In-store iPad POS integration</td><td>Boutique team co-designs with customer; needs hardened device management.</td></tr>
+      <tr><td>24/7 1h SLA</td><td>Retail / boutique partner makes uptime contractual.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="lbl">Likelihood by month 12</div>
+    <p>AR: <strong>medium</strong>. Wholesale: <strong>medium-high</strong> — boutique conversations likely. Brazilian data residency: <strong>medium</strong> — depends on Brazil expansion velocity. Realistic 12–18 months to Enterprise.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">DEAL-MAKING TACTICS</div>
+  <h2>How to anchor and protect the conversation.</h2>
+  <ul class="clean">
+    <li><strong>Lead with the custom-order tracker demo.</strong> Show the 6-stage workflow with photo upload. Differentiates from competitors who pitch generic e-commerce apps.</li>
+    <li><strong>Sensitive-fit segregation is your trust builder.</strong> Walk Betsy through the data flow: stored separately, audit-logged, never trains AI, specialist-only. This is a feature she'll defend internally.</li>
+    <li><strong>Pre-negotiate the Enterprise upgrade path.</strong> 12–18 month timeline.</li>
+    <li><strong>AI overage clause.</strong> Trilingual Atelier chat is non-trivial cost.</li>
+    <li><strong>Brazilian/Latina market expansion is the upside.</strong> Frame the trilingual launch as growth foundation, not just nice-to-have.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT WE DON'T SAY OUT LOUD</div>
+  <h2>Internal-only notes — sharper than apparel clients.</h2>
+
+  <div class="callout warn">
+    <div class="lbl">Reputation risk to manage</div>
+    <p>The brand's reputation is built on seeing customers no one else sees. One AI prompt that uses sensitive-fit data in a marketing context is a viral story and a brand-killer. Insist on the segregation architecture in production from day one. Build in audit logging to flag any AI prompt touching the segregated store.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Margin target — combined</div>
+    <p>Growth tier infra+AI cost at expected MAU (~3K active in Year 1) is ~$700–1,000/mo. Plus Studio at ~$165/mo. At combined $4,250/mo we're at 70–75% gross before maintenance dev. Healthy.</p>
+  </div>
+
+  <div class="callout gold">
+    <div class="lbl">Upsell sequencing</div>
+    <p>Don't propose AR + in-store iPad at the same time as Phase 1. Land Growth + Studio, deliver custom-order tracker + sensitive-fit segregation flawlessly, *then* propose AR as the trigger for Enterprise.</p>
+  </div>
+
+  <div class="callout warn">
+    <div class="lbl">Walk-away signals</div>
+    <p>(1) Brand wants sensitive-fit data accessible to marketing AI. (2) Brand wants "summer body" or "slimming" copy. (3) Brand resists the trilingual launch as too expensive. Any one = walk. The brand's reputation depends on these three lines being held.</p>
+  </div>
+</div>
+
+<div class="closing">
+  <div class="lbl">RECOMMENDED ASK</div>
+  <h3>Growth ($3,500) + Studio ($750) = $4,250/mo for Year 1. Pre-negotiated Enterprise upgrade. AI overage at cost +20%. Sensitive-fit segregation contract clause (audit-logged, specialist-only, never trains AI). $40–55K Studio build inside Phase 1.</h3>
+  <p>Right tier for a custom-maker brand whose work is personal. The Studio architecture is what makes the brand's deepest value — sensitive-fit work — actually scalable.</p>
+</div>
+
+</body>
+</html>

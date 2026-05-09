@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Pineda Covalín — Pricing Rationale (Internal)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 18mm 18mm 18mm;
+    @bottom-left { content: "Pineda Covalín · Tier Recommendation · Internal"; font-family: Georgia, serif; font-size: 9pt; color: #8a7866; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font-family: Georgia, serif; font-size: 9pt; color: #8a7866; }
+  }
+  :root {
+    --bg: #f5ede0;
+    --ink: #2a1a14;
+    --muted: #8a7866;
+    --line: #e6d9c0;
+    --card: #ffffff;
+    --accent: #a02747;
+    --accent-deep: #6e1a30;
+    --accent-soft: #f7e0d8;
+    --gold: #d89b3d;
+    --gold-soft: #f5e2bd;
+    --teal: #2c6e6b;
+    --plum: #5b2a52;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+  .cover { page-break-after: always; padding: 30mm 0 0; }
+  .cover .eyebrow {
+    color: var(--accent); font-weight: 700; font-size: 10pt;
+    letter-spacing: 2px; margin-bottom: 8mm;
+  }
+  .cover h1 {
+    font-family: Georgia, serif; font-weight: 400; font-size: 44pt;
+    line-height: 1.05; margin: 0 0 8mm; letter-spacing: -0.5px;
+  }
+  .cover .deck-tagline {
+    font-family: Georgia, serif; color: var(--accent);
+    font-size: 18pt; line-height: 1.3; margin-bottom: 14mm;
+  }
+  .cover .meta {
+    color: var(--muted); font-size: 10pt;
+    border-top: 1px solid var(--line); padding-top: 4mm;
+  }
+  .cover .meta strong { color: var(--ink); }
+
+  h2 {
+    font-family: Georgia, serif; font-weight: 400; font-size: 22pt;
+    color: var(--ink); margin: 0 0 1mm; letter-spacing: -0.2px;
+  }
+  h2 + .lede { color: var(--muted); margin: 0 0 6mm; font-size: 11pt; }
+  .section { page-break-inside: avoid; margin-bottom: 12mm; }
+  .eyebrow {
+    color: var(--accent); font-weight: 700; font-size: 9pt;
+    letter-spacing: 2px; margin-bottom: 2mm;
+  }
+  .rule { width: 12mm; height: 2pt; background: var(--accent); margin: 4mm 0 6mm; }
+  p { margin: 0 0 4mm; }
+  .muted { color: var(--muted); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 3mm 0 6mm; }
+  th, td {
+    border-bottom: 1px solid var(--line);
+    padding: 2.4mm 3mm; text-align: left; vertical-align: top;
+  }
+  th {
+    background: var(--accent-soft); color: var(--accent);
+    font-size: 9pt; text-transform: uppercase; letter-spacing: 1px;
+    font-weight: 700; border-bottom: 1.5pt solid var(--accent);
+  }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  th.num { text-align: right; }
+  tr.total td {
+    border-top: 1.5pt solid var(--accent); border-bottom: none;
+    font-weight: 700; background: var(--accent-soft); color: var(--accent);
+  }
+
+  .callout {
+    background: var(--card); border: 1px solid var(--line);
+    border-left: 3pt solid var(--accent);
+    padding: 4mm 5mm; margin: 4mm 0 6mm; border-radius: 1mm;
+  }
+  .callout .lbl {
+    font-size: 9pt; font-weight: 700; letter-spacing: 1.5px;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 2mm;
+  }
+  .callout.gold { border-left-color: var(--gold); }
+  .callout.gold .lbl { color: #8a5e1c; }
+  .callout.warn { border-left-color: var(--accent-deep); }
+  .callout.warn .lbl { color: var(--accent-deep); }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0 6mm; }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 2mm; padding: 5mm;
+  }
+  .card h4 {
+    margin: 0 0 2mm; font-family: Georgia, serif; font-weight: 400;
+    font-size: 13pt; color: var(--accent);
+  }
+  .card p { margin: 0; color: var(--muted); font-size: 10pt; }
+
+  ul.clean { list-style: none; padding: 0; margin: 0 0 4mm; }
+  ul.clean li {
+    padding: 1.5mm 0 1.5mm 6mm;
+    border-bottom: 1px dashed var(--line); position: relative;
+  }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li::before {
+    content: ""; position: absolute; left: 0; top: 4mm;
+    width: 2mm; height: 2mm; background: var(--accent); border-radius: 50%;
+  }
+
+  .closing {
+    margin-top: 8mm; padding: 8mm;
+    background: var(--accent-deep); color: #fff;
+    border-radius: 2mm;
+  }
+  .closing .lbl {
+    color: var(--gold); font-size: 9pt; font-weight: 700;
+    letter-spacing: 2px; margin-bottom: 3mm;
+  }
+  .closing h3 {
+    font-family: Georgia, serif; font-weight: 400;
+    font-size: 22pt; margin: 0 0 4mm;
+  }
+  .closing p { color: var(--accent-soft); margin: 0 0 3mm; }
+
+  .small { font-size: 9.5pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">INTERNAL · NOT FOR CLIENT</div>
+  <h1>Tier rationale<br/>Pineda Covalín.</h1>
+  <div class="deck-tagline">Growth + Studio add-on at launch.<br/>Enterprise when one of four triggers fires.</div>
+  <div class="meta">
+    <strong>Audience</strong> &nbsp;·&nbsp; Internal only<br/>
+    <strong>Use</strong> &nbsp;·&nbsp; Reference for the conversation; never share with the brand<br/>
+    <strong>Status</strong> &nbsp;·&nbsp; Draft for discussion
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE RECOMMENDATION</div>
+  <h2>Growth ($3,500) + Studio add-on ($750) = $4,250/mo at launch. Enterprise when one of four triggers fires.</h2>
+  <p class="muted">A luxury, multi-region brand with serious AI ambitions cannot live on Starter. Enterprise on day one would over-charge and under-utilise. Growth is the right shape — and the Studio add-on is non-negotiable: every brand needs a way to maintain content, drops, translations, and concierge messages.</p>
+  <div class="rule"></div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHY STARTER IS DISQUALIFIED</div>
+  <h2>Single-platform / 5-screen / no-AI is incompatible with the proposition.</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Starter constraint</th>
+        <th>Pineda Covalín reality</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Single platform (iOS or Android)</td><td>Tourists are mixed Android (heavy in MX) + iOS (heavy in US/JP). Both required.</td></tr>
+      <tr><td>5 screens</td><td>Locked Phase 1 scope is ~18 screens.</td></tr>
+      <tr><td>No AI</td><td>Cultural docent, multilingual translation, gift recommender are core to the value proposition.</td></tr>
+      <tr><td>24h email support</td><td>Museum and luxury-hotel partners expect same-day response.</td></tr>
+    </tbody>
+  </table>
+
+  <p class="small">If the brand pushes for Starter on price, walk away from the deal. We'd lose money supporting them and they'd hate the result.</p>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHY GROWTH FITS PHASE 1</div>
+  <h2>The features map exactly to what the proposal needs.</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Growth feature</th>
+        <th>What it delivers for Pineda Covalín</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Both stores via React Native + Expo</td><td>Single codebase, OTA updates — right cadence for cultural-calendar drops.</td></tr>
+      <tr><td>Claude Sonnet + Haiku AI</td><td>Sonnet powers the cultural docent in 6 languages; Haiku batches Atelier summaries and translation.</td></tr>
+      <tr><td>RevenueCat (StoreKit 2 + Google Play Billing)</td><td>Future-proofs digital-certificate or VIP-membership monetisation.</td></tr>
+      <tr><td>Sign in with Apple + Google</td><td>Friction to a luxury-brand login is real. Tourists won't fill forms.</td></tr>
+      <tr><td>ASO quarterly</td><td>Tourist discovery — "Mexico souvenir," "silk scarves Mexico City," "Frida Kahlo gift."</td></tr>
+      <tr><td>2 releases / month</td><td>Cultural-calendar drops demand a regular cadence.</td></tr>
+      <tr><td>Shared Slack, 4h response</td><td>Right level for a luxury brand at launch — not over-engineered.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="eyebrow">STUDIO ADD-ON ($750/mo)</div>
+  <h2>The internal-facing twin. Mandatory, not optional.</h2>
+  <p class="lede">El Estudio is how the brand maintains content — Atelier passports, translations, cultural calendar, concierge inbox, VIP admin, authenticity. SEYSO's MaaS tiers are mobile-only, so this is a separate line item. Every client gets it.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th class="num">Real cost / mo</th>
+        <th>Margin notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Web hosting (Vercel Pro or shared API box)</td><td class="num">$20–40</td><td>Often shared infra; near-zero marginal cost</td></tr>
+      <tr><td>Database delta (passport content, translations, audio metadata, concierge)</td><td class="num">$5–15</td><td>Same Postgres as mobile</td></tr>
+      <tr><td>Object storage (audio guides, hi-res exports)</td><td class="num">$5–25</td><td>R2 or S3</td></tr>
+      <tr><td>Editorial AI (translation drafts, passport drafts)</td><td class="num">$20–60</td><td>Heavily cached — brand glossary as system prompt</td></tr>
+      <tr><td>Email (concierge alerts, B2B approvals)</td><td class="num">$5–15</td><td>Postmark / Resend</td></tr>
+      <tr><td>Auth (~20 internal seats)</td><td class="num">$0</td><td>Free tier on Supabase / Clerk</td></tr>
+      <tr class="total"><td>Subtotal infra + AI</td><td class="num">~$55–155</td><td>Scales with editorial volume, not MAU</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <div class="lbl">Margin at $750/mo</div>
+    <p>Real cost ~$100/mo. Includes ~5 maintenance hrs/mo at $150 internal rate = $750 capacity used; gross margin still ~85%+ before that maintenance is consumed. Even with monthly editor support and minor feature requests, target gross stays above 65%.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Studio one-time build cost</div>
+    <p>Roughly <strong>$30–45K</strong> on top of the mobile build. 8 modules in Phase 1 (auth + Atelier editor + translation workflow + cultural calendar + concierge inbox + VIP admin + authenticity queue + analytics dashboard). Heritage editor and B2B portal are Phase 2.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHY ENTERPRISE IS PREMATURE</div>
+  <h2>Three reasons to hold the upgrade for now.</h2>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>1. White-label / multi-tenant is unused</h4>
+      <p>Enterprise's headline differentiator. Pineda Covalín is one brand; multi-tenant adds zero value. Paying for it now is a tell that we over-sold.</p>
+    </div>
+    <div class="card">
+      <h4>2. Native modules aren't needed yet</h4>
+      <p>Phase 1 has no AR. React Native delivers everything in scope. Native Swift/Kotlin matters when AR scarf try-on goes live in Phase 2 — not earlier.</p>
+    </div>
+    <div class="card">
+      <h4>3. SLA mismatched to launch reality</h4>
+      <p>1h response 24/7 (Enterprise) is for live-revenue partners. At launch the app's downtime doesn't directly stop a sale; the web store carries that. Right level today is 4h.</p>
+    </div>
+    <div class="card">
+      <h4>4. Data residency not yet contractual</h4>
+      <p>Multi-region launch is EN/ES first. EU/Asia residency rules become contractual when traffic from those regions becomes serious — give it 12 months.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">YEAR-2 UPGRADE TRIGGERS</div>
+  <h2>Move them to Enterprise the moment any one fires.</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Trigger</th>
+        <th>Why it forces the upgrade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>AR scarf try-on goes live</td><td>Cloth-drape simulation needs native Swift/SwiftUI + Kotlin/Compose modules — Enterprise-only.</td></tr>
+      <tr><td>Corporate / diplomatic gifting portal</td><td>SSO, audit logging, RLS hardening — Enterprise-only — required for B2B.</td></tr>
+      <tr><td>EU / Asia data-residency clause</td><td>GDPR + APAC localisation rules. Enterprise's region-locked residency is the only compliant option.</td></tr>
+      <tr><td>24/7 1h SLA contractually required</td><td>When a museum partner or luxury-hotel chain makes uptime contractual, the SLA is no longer optional. Their airport stores are genuinely 24/7 globally.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="lbl">Likelihood by month 12</div>
+    <p>AR try-on: <strong>high</strong> — they'll want it for the AW collection drop. Corporate portal: <strong>medium</strong> — depends on whether the diplomatic-gifting business is being modernised. EU residency: <strong>medium</strong> — driven by Galleries Lafayette and any EU growth. SLA: <strong>low</strong> in year 1 unless a partner forces it.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">DEAL-MAKING TACTICS</div>
+  <h2>How to anchor and protect the conversation.</h2>
+  <ul class="clean">
+    <li><strong>Lead with Growth, never Starter.</strong> If Growth feels expensive, expand the build inclusion (e.g. discovery sprint baked in) rather than dropping a tier. Starter quality would damage our reputation with a luxury brand.</li>
+    <li><strong>Pre-negotiate the Enterprise upgrade path.</strong> Lock the upgrade fee at no penalty in the Year 1 contract — easier to land Growth today if Enterprise tomorrow is frictionless.</li>
+    <li><strong>AI overage clause is non-negotiable.</strong> Pineda Covalín's docent will be heavily used in 6 languages. A viral Frida exhibit could 10× usage in a weekend. Cap our exposure: usage above 100K LLM calls/month at cost +20%.</li>
+    <li><strong>Pre-pay discovery, not the build.</strong> $8–12K discovery sprint in week 1 is fine. Resist any pressure to pre-quote the build before discovery is done.</li>
+    <li><strong>Cultural-content review is brand-side.</strong> Make the customer responsible for approving every customer-facing string of cultural content. Protects us from a translation or motif-attribution mistake.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT WE DON'T SAY OUT LOUD</div>
+  <h2>Internal-only notes.</h2>
+
+  <div class="callout warn">
+    <div class="lbl">Reputation risk to manage</div>
+    <p>This brand's value is authentic Mexican cultural craft. A single AI translation error involving Wixárika or Día de Muertos terminology could become a real story. Insist on human curator review for every cultural string. Budget for a Spanish-speaking QA in our team — not the brand's.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Margin target — combined</div>
+    <p>Growth tier infra+AI cost at expected luxury MAU (~5K active in Year 1) is roughly $700–1,200/mo. Plus Studio at ~$100/mo. At combined $4,250/mo invoice we're at 65–80% gross before our maintenance dev. Healthy. Watch the AI line, especially the docent in 6 languages.</p>
+  </div>
+
+  <div class="callout gold">
+    <div class="lbl">Upsell sequencing</div>
+    <p>Don't propose Phase 2 features at the same time as the Phase 1 contract. Land Growth, deliver Phase 1 well, *then* propose AR try-on as the trigger for Enterprise. Earn the upgrade.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Walk-away signals</div>
+    <p>If they push back on AI overage clause + Enterprise upgrade pricing simultaneously, that's a sign they want flat fixed-fee pricing forever. We can't profitably support a multi-region luxury brand that way. Be willing to walk.</p>
+  </div>
+</div>
+
+<div class="closing">
+  <div class="lbl">RECOMMENDED ASK</div>
+  <h3>Growth ($3,500) + Studio ($750) = $4,250/mo for Year 1. Pre-negotiated Enterprise upgrade folds Studio in. AI overage at cost +20%. Brand-side cultural-content approval. $30–45K Studio build inside Phase 1.</h3>
+  <p>Right tier for the launch. Right path for the success scenario. Right protections against the small set of things that could go wrong.</p>
+</div>
+
+</body>
+</html>

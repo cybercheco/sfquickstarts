@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cocokind — App Mockups</title>
+<style>
+  :root {
+    --bg: #f4efe6;
+    --ink: #2c3a2e;
+    --muted: #8a9085;
+    --line: #e0d8c8;
+    --card: #ffffff;
+    --accent: #6e8b6a;
+    --accent-deep: #3e4f3b;
+    --accent-soft: #d8e4d4;
+    --gold: #c9a85e;
+    --gold-soft: #f1e7c9;
+    --rose: #d8a594;
+    --rose-soft: #f4dccd;
+    --blue: #7d97a7;
+    --blue-soft: #cfdce4;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 { font-family: "Times New Roman", Georgia, serif; font-weight: 500; font-size: 38px; margin: 0 0 4px; letter-spacing: -0.5px; color: var(--accent-deep); }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 32px 24px; padding: 16px 32px 64px; max-width: 1400px; margin: 0 auto; }
+  .phone { background: #2c3a2e; border-radius: 44px; padding: 12px; box-shadow: 0 24px 48px rgba(62, 79, 59, .15), 0 2px 8px rgba(0,0,0,.06); width: 310px; justify-self: center; }
+  .screen { background: var(--card); border-radius: 32px; overflow: hidden; height: 620px; display: flex; flex-direction: column; position: relative; }
+  .notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 110px; height: 22px; background: #2c3a2e; border-radius: 0 0 14px 14px; z-index: 5; }
+  .statusbar { height: 38px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 22px 4px; font-size: 12px; font-weight: 600; color: var(--ink); }
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding: 8px 18px 12px; border-bottom: 1px solid var(--line); }
+  .topbar h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 14px; margin: 0; letter-spacing: 4px; color: var(--accent-deep); }
+  .icon-btn { width: 28px; height: 28px; border-radius: 50%; background: var(--bg); display: grid; place-items: center; font-size: 14px; color: var(--ink); }
+  .body { flex: 1; overflow: hidden; padding: 14px 18px; }
+  .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+  .h { font-family: "Times New Roman", Georgia, serif; font-size: 22px; margin: 6px 0 14px; line-height: 1.15; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-deep); font-size: 11px; font-weight: 600; }
+  .pill.gold { background: var(--gold-soft); color: #8a6e2a; }
+  .pill.rose { background: var(--rose-soft); color: #a85a3e; }
+  .pill.blue { background: var(--blue-soft); color: #3e5566; }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  .muted { color: var(--muted); font-size: 12px; }
+  .btn { display: block; text-align: center; background: var(--accent); color: #fff; padding: 12px 14px; border-radius: 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; }
+  .btn.alt { background: #fff; color: var(--accent-deep); border: 1px solid var(--accent); }
+  .btn.gold { background: var(--gold); color: #2c3a2e; }
+  .tabbar { border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(5, 1fr); padding: 8px 4px 14px; background: #fff; }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 10px; color: var(--muted); }
+  .tab.active { color: var(--accent-deep); }
+  .tab .dot { width: 22px; height: 22px; border-radius: 6px; background: var(--bg); display: grid; place-items: center; font-size: 12px; }
+  .tab.active .dot { background: var(--accent-soft); }
+  .caption { text-align: center; margin: 12px 0 0; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px; }
+
+  /* Onboarding */
+  .onb {
+    background: linear-gradient(180deg, #d8e4d4 0%, #6e8b6a 50%, #2c3a2e 100%);
+    color: #fff; flex: 1; padding: 60px 24px 24px;
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+  }
+  .onb::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 12% 20%, rgba(255,255,255,.18) 0 28px, transparent 29px),
+      radial-gradient(circle at 80% 16%, rgba(201,168,94,.22) 0 32px, transparent 33px),
+      radial-gradient(circle at 24% 80%, rgba(255,255,255,.12) 0 22px, transparent 23px);
+    pointer-events: none;
+  }
+  .onb .logo { font-family: "Times New Roman", Georgia, serif; font-size: 18px; letter-spacing: 4px; position: relative; }
+  .onb h3 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.2; margin: auto 0 8px; position: relative; }
+  .onb p { font-size: 13px; opacity: .9; margin: 0 0 22px; position: relative; }
+  .lang-row { display: flex; gap: 6px; margin-bottom: 14px; position: relative; flex-wrap: wrap; }
+  .lang-row span { padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.18); font-size: 11px; font-weight: 600; }
+  .lang-row span.on { background: var(--gold); color: #2c3a2e; }
+
+  /* Home */
+  .routine-hero {
+    background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+    border-radius: 14px; padding: 14px;
+    color: #fff; margin-bottom: 14px;
+    position: relative; overflow: hidden;
+  }
+  .routine-hero::before {
+    content: ""; position: absolute; right: -25px; top: -25px;
+    width: 110px; height: 110px;
+    border: 2px solid rgba(201,168,94,.30); border-radius: 50%;
+  }
+  .routine-hero .tag { font-size: 10px; letter-spacing: 2.5px; opacity: .85; }
+  .routine-hero h3 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.15; margin: 8px 0 10px; }
+  .routine-hero .meta { display: flex; gap: 12px; font-size: 11px; opacity: .9; }
+  .routine-row {
+    display: grid; grid-template-columns: 36px 1fr auto;
+    gap: 10px; padding: 10px 0;
+    border-bottom: 1px dashed var(--line); align-items: center;
+  }
+  .routine-row:last-child { border: none; }
+  .routine-row .ic {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+    color: #fff; display: grid; place-items: center; font-size: 14px;
+  }
+  .routine-row .ic.gold { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .routine-row .ic.rose { background: linear-gradient(135deg, var(--rose), #a85a3e); }
+  .routine-row .ic.blue { background: linear-gradient(135deg, var(--blue), #3e5566); }
+  .routine-row .info { font-size: 12px; }
+  .routine-row .info strong { display: block; }
+  .routine-row .info span { color: var(--muted); font-size: 11px; }
+  .routine-row .step { color: var(--accent-deep); font-size: 11px; font-weight: 700; }
+
+  /* Facts label (signature) */
+  .facts-label {
+    border: 2px solid var(--ink); border-radius: 4px;
+    padding: 10px 12px; background: #fff;
+    margin-bottom: 12px;
+  }
+  .facts-label .top {
+    border-bottom: 4px solid var(--ink); padding-bottom: 4px; margin-bottom: 6px;
+    font-family: "Times New Roman", Georgia, serif;
+  }
+  .facts-label .top .name { font-size: 18px; font-weight: 700; }
+  .facts-label .top .sub { font-size: 11px; color: var(--muted); }
+  .facts-label .row-fact {
+    display: flex; justify-content: space-between;
+    padding: 3px 0;
+    font-size: 11px;
+    border-bottom: 1px solid var(--line);
+  }
+  .facts-label .row-fact:last-child { border: none; }
+  .facts-label .row-fact strong { font-weight: 700; }
+  .facts-label .section-divider {
+    border-top: 2px solid var(--ink);
+    margin: 6px 0;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding-top: 4px;
+  }
+
+  /* Hero passport */
+  .pdp-img {
+    height: 220px; border-radius: 14px;
+    background:
+      radial-gradient(circle at 30% 50%, rgba(201,168,94,.30) 0 20%, transparent 21%),
+      radial-gradient(circle at 70% 50%, rgba(216,228,212,.50) 0 18%, transparent 19%),
+      linear-gradient(135deg, var(--accent), var(--accent-deep));
+    margin-bottom: 12px; position: relative;
+  }
+  .pdp-img .qr { position: absolute; bottom: 10px; right: 10px; width: 34px; height: 34px; background: #fff; border-radius: 6px; display: grid; place-items: center; font-size: 18px; }
+  .pdp-img .badge { position: absolute; top: 10px; left: 10px; background: var(--gold); color: #2c3a2e; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 999px; }
+  .meta-row { display: flex; gap: 6px; margin: 6px 0 12px; flex-wrap: wrap; }
+
+  /* Match (goals) */
+  .goal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .goal-card {
+    border: 2px solid var(--line); border-radius: 14px;
+    padding: 14px 12px; background: #fff;
+    text-align: center; position: relative;
+  }
+  .goal-card.selected { border-color: var(--accent); background: var(--accent-soft); }
+  .goal-card .ic-circle {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), #8a6e2a);
+    margin: 0 auto 8px; position: relative;
+  }
+  .goal-card.selected .ic-circle { background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+  .goal-card .ic-circle::after {
+    content: "•"; position: absolute; inset: 0;
+    display: grid; place-items: center; color: #fff; font-size: 22px;
+  }
+  .goal-card .name { font-family: "Times New Roman", Georgia, serif; font-size: 16px; }
+  .goal-card .sub { color: var(--muted); font-size: 10px; margin-top: 2px; }
+  .goal-card.selected .check {
+    position: absolute; top: 8px; right: 8px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: grid; place-items: center; font-size: 10px; font-weight: 700;
+  }
+
+  /* Routine cards */
+  .routine-card {
+    background: #fff; border: 1px solid var(--line);
+    border-radius: 14px; padding: 14px;
+    margin-bottom: 10px;
+  }
+  .routine-card .head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 8px;
+  }
+  .routine-card .head .when {
+    background: var(--accent-soft); color: var(--accent-deep);
+    padding: 3px 8px; border-radius: 999px;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  }
+  .routine-card .head .when.pm { background: var(--blue-soft); color: #3e5566; }
+  .routine-card h4 {
+    margin: 0; font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400; font-size: 16px;
+  }
+  .routine-card .items { display: flex; flex-direction: column; gap: 6px; }
+  .routine-card .item {
+    display: grid; grid-template-columns: 24px 1fr auto;
+    gap: 8px; padding: 4px 0; align-items: center;
+  }
+  .routine-card .item .num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: grid; place-items: center; font-size: 10px; font-weight: 700;
+  }
+  .routine-card .item .name { font-size: 12px; }
+  .routine-card .item .name span { color: var(--muted); font-size: 11px; }
+  .routine-card .item .check { color: var(--accent); font-size: 14px; }
+
+  /* Refill Vault */
+  .vault-card {
+    background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+    color: #fff; border-radius: 14px; padding: 14px;
+    margin-bottom: 12px; position: relative; overflow: hidden;
+  }
+  .vault-card .lbl { font-size: 10px; letter-spacing: 2px; opacity: .85; }
+  .vault-card h3 {
+    font-family: "Times New Roman", Georgia, serif; font-weight: 400;
+    font-size: 18px; margin: 4px 0 8px;
+  }
+  .vault-card .next { font-size: 12px; opacity: .9; }
+  .sub-row {
+    display: grid; grid-template-columns: 36px 1fr auto;
+    gap: 10px; padding: 10px 0;
+    border-bottom: 1px dashed var(--line); align-items: center;
+  }
+  .sub-row .swatch {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  }
+  .sub-row .swatch.gold { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .sub-row .swatch.rose { background: linear-gradient(135deg, var(--rose), #a85a3e); }
+  .sub-row .swatch.blue { background: linear-gradient(135deg, var(--blue), #3e5566); }
+  .sub-row .info { font-size: 12px; }
+  .sub-row .info strong { display: block; }
+  .sub-row .info span { color: var(--muted); font-size: 11px; }
+  .sub-row .ctrl { font-size: 11px; color: var(--accent-deep); font-weight: 700; }
+
+  /* Studio chat */
+  .chat { flex: 1; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+  .bubble { max-width: 80%; padding: 10px 12px; border-radius: 14px; font-size: 12px; line-height: 1.4; }
+  .bubble.me { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+  .bubble.bot { align-self: flex-start; background: var(--bg); color: var(--ink); border-bottom-left-radius: 4px; }
+  .bubble small { display: block; color: var(--muted); margin-top: 4px; font-size: 10px; }
+  .bubble.warn {
+    align-self: center; background: var(--rose-soft); color: #a85a3e;
+    font-size: 11px; font-weight: 600;
+  }
+  .input { margin-top: auto; border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
+
+  /* Profile */
+  .avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--rose), var(--accent-deep)); margin: 0 auto 8px; }
+  .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+
+  /* Hgrid for product cards */
+  .hgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card { border: 1px solid var(--line); border-radius: 12px; padding: 10px; font-size: 12px; background: #fff; }
+  .card .swatch { height: 70px; border-radius: 8px; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>Cocokind — App Mockups</h1>
+  <p>Phase 1 screens. Open in any browser. Wireframe fidelity, not final visual design.</p>
+</header>
+
+<div class="grid">
+
+  <!-- 1. Onboarding -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="onb">
+        <div class="logo">cocokind</div>
+        <h3>Skincare you can<br/>read in full.</h3>
+        <p>Sustainability Facts on every product. Routines, ingredients, evidence — all in your pocket.</p>
+        <div class="lang-row">
+          <span class="on">EN</span><span>ES</span>
+        </div>
+        <div class="btn gold">Continue with Apple</div>
+        <div style="height:8px"></div>
+        <div class="btn alt" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.4)">Sign in with email</div>
+      </div>
+    </div></div>
+    <div class="caption">1 · Onboarding · matcha palette</div>
+  </div>
+
+  <!-- 2. Home -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>cocokind</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="routine-hero">
+          <div class="tag">TODAY · AM ROUTINE</div>
+          <h3>Hydration + barrier<br/>· 5 steps</h3>
+          <div class="meta"><span>3 of 5 done</span><span>·</span><span>2 min total</span></div>
+        </div>
+        <div class="routine-row">
+          <div class="ic">✓</div>
+          <div class="info"><strong>Step 1 · Cleansing oil</strong><span>done at 7:14 am</span></div>
+          <div class="step">DONE</div>
+        </div>
+        <div class="routine-row">
+          <div class="ic gold">✓</div>
+          <div class="info"><strong>Step 2 · Raspberry toner</strong><span>done at 7:18 am</span></div>
+          <div class="step">DONE</div>
+        </div>
+        <div class="routine-row">
+          <div class="ic rose">○</div>
+          <div class="info"><strong>Step 3 · Vitamin C serum</strong><span>5–7 drops · pat in</span></div>
+          <div class="step">→</div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">○</div><span>Routine</span></div>
+        <div class="tab"><div class="dot">↻</div><span>Refill</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">2 · Home · today's routine</div>
+  </div>
+
+  <!-- 3. The Facts (signature) -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>THE FACTS</h2>
+        <div class="icon-btn">⤴</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="label">VITAMIN C GLOW SERUM · 1 OZ</div>
+        <div class="h" style="margin:4px 0 12px">Sustainability Facts</div>
+        <div class="facts-label">
+          <div class="top">
+            <div class="name">Sustainability Facts</div>
+            <div class="sub">Per use · cradle-to-grave LCA</div>
+          </div>
+          <div class="row-fact"><span>Carbon emissions</span><strong>0.014 kg CO₂e</strong></div>
+          <div class="row-fact"><span>Water use</span><strong>1.8 L</strong></div>
+          <div class="row-fact"><span>Energy</span><strong>0.06 kWh</strong></div>
+          <div class="section-divider">PACKAGING</div>
+          <div class="row-fact"><span>Glass bottle</span><strong>100% recyclable</strong></div>
+          <div class="row-fact"><span>Dropper</span><strong>Mixed · separate to recycle</strong></div>
+          <div class="row-fact"><span>Outer box</span><strong>FSC paper · curbside</strong></div>
+          <div class="section-divider">INGREDIENTS</div>
+          <div class="row-fact"><span>Total ingredients</span><strong>9</strong></div>
+          <div class="row-fact"><span>USDA Organic</span><strong>62%</strong></div>
+          <div class="row-fact"><span>Plant-derived</span><strong>87%</strong></div>
+        </div>
+        <div class="muted" style="text-align:center;margin-bottom:6px">All figures audited · cited LCA · Q1 2026</div>
+        <div class="btn alt">View full ingredient list ›</div>
+      </div>
+    </div></div>
+    <div class="caption">3 · Facts · digital Sustainability Facts</div>
+  </div>
+
+  <!-- 4. The Match (goals) -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>THE MATCH</h2>
+        <div class="icon-btn">?</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="label" style="margin-bottom:4px">SELECT 1–3</div>
+        <div class="h" style="margin:0 0 14px">What's your skin working on?</div>
+        <div class="goal-grid">
+          <div class="goal-card selected">
+            <div class="check">✓</div>
+            <div class="ic-circle"></div>
+            <div class="name">Hydration</div>
+            <div class="sub">moisture barrier</div>
+          </div>
+          <div class="goal-card selected">
+            <div class="check">✓</div>
+            <div class="ic-circle"></div>
+            <div class="name">Glow</div>
+            <div class="sub">tone evening</div>
+          </div>
+          <div class="goal-card">
+            <div class="ic-circle"></div>
+            <div class="name">Barrier</div>
+            <div class="sub">repair + soothe</div>
+          </div>
+          <div class="goal-card">
+            <div class="ic-circle"></div>
+            <div class="name">Acne</div>
+            <div class="sub">manage breakouts</div>
+          </div>
+          <div class="goal-card">
+            <div class="ic-circle"></div>
+            <div class="name">Age</div>
+            <div class="sub">firmness + lines</div>
+          </div>
+          <div class="goal-card">
+            <div class="ic-circle"></div>
+            <div class="name">Sensitivity</div>
+            <div class="sub">calm + soothe</div>
+          </div>
+        </div>
+        <div style="height:14px"></div>
+        <div class="btn">Build my routine ✦</div>
+      </div>
+    </div></div>
+    <div class="caption">4 · Match · multi-select goals</div>
+  </div>
+
+  <!-- 5. The Routine -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>THE ROUTINE</h2>
+        <div class="icon-btn">⚙</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="row" style="margin-bottom:8px">
+          <div class="muted">Hydration + Glow · 8 steps total</div>
+          <div class="pill">Active</div>
+        </div>
+        <div class="routine-card">
+          <div class="head"><h4>AM</h4><div class="when">MORNING · 5 STEPS</div></div>
+          <div class="items">
+            <div class="item">
+              <div class="num">1</div>
+              <div class="name">Cleansing oil <span>· emulsify w/ water</span></div>
+              <div class="check">✓</div>
+            </div>
+            <div class="item">
+              <div class="num">2</div>
+              <div class="name">Raspberry vinegar toner <span>· cotton pad</span></div>
+              <div class="check">✓</div>
+            </div>
+            <div class="item">
+              <div class="num">3</div>
+              <div class="name">Vitamin C glow serum <span>· 5–7 drops</span></div>
+              <div></div>
+            </div>
+            <div class="item">
+              <div class="num">4</div>
+              <div class="name">Ceramide moisturiser <span>· pat in</span></div>
+              <div></div>
+            </div>
+            <div class="item">
+              <div class="num">5</div>
+              <div class="name">SPF 32 lotion <span>· generous · last step</span></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+        <div class="routine-card">
+          <div class="head"><h4>PM</h4><div class="when pm">EVENING · 3 STEPS</div></div>
+          <div class="items">
+            <div class="item">
+              <div class="num">1</div>
+              <div class="name">Cleansing oil <span>· double cleanse if SPF</span></div>
+              <div></div>
+            </div>
+            <div class="item">
+              <div class="num">2</div>
+              <div class="name">Vitamin C glow serum <span>· OR retinol night</span></div>
+              <div></div>
+            </div>
+            <div class="item">
+              <div class="num">3</div>
+              <div class="name">Ceramide moisturiser <span>· generous</span></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab active"><div class="dot">○</div><span>Routine</span></div>
+        <div class="tab"><div class="dot">↻</div><span>Refill</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">5 · Routine · AM + PM steps</div>
+  </div>
+
+  <!-- 6. The Refill -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>THE REFILL</h2>
+        <div class="icon-btn">+</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="vault-card">
+          <div class="lbl">NEXT REFILL</div>
+          <h3>Vitamin C + Ceramide</h3>
+          <div class="next">Bundled · ships May 18 · ~21 days</div>
+        </div>
+        <div class="row" style="margin-bottom:6px">
+          <div class="label">ACTIVE · 4 SUBS</div>
+          <div class="muted">Skip / pause</div>
+        </div>
+        <div class="sub-row">
+          <div class="swatch gold"></div>
+          <div class="info"><strong>Vitamin C glow serum</strong><span>every 30 days · 21d remaining</span></div>
+          <div class="ctrl">EDIT ›</div>
+        </div>
+        <div class="sub-row">
+          <div class="swatch"></div>
+          <div class="info"><strong>Ceramide moisturiser</strong><span>every 30 days · 21d remaining</span></div>
+          <div class="ctrl">EDIT ›</div>
+        </div>
+        <div class="sub-row">
+          <div class="swatch blue"></div>
+          <div class="info"><strong>Daily SPF 32</strong><span>every 60 days · 8d remaining</span></div>
+          <div class="ctrl">EDIT ›</div>
+        </div>
+        <div class="sub-row" style="border:none">
+          <div class="swatch rose"></div>
+          <div class="info"><strong>Raspberry toner</strong><span>every 90 days · 41d remaining</span></div>
+          <div class="ctrl">EDIT ›</div>
+        </div>
+        <div style="height:10px"></div>
+        <div class="btn alt">Pause everything · vacation mode</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">○</div><span>Routine</span></div>
+        <div class="tab active"><div class="dot">↻</div><span>Refill</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">6 · Refill · subscription management</div>
+  </div>
+
+  <!-- 7. PDP -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>VITAMIN C SERUM</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="pdp-img">
+          <div class="badge">62% USDA ORGANIC</div>
+          <div class="qr">⊡</div>
+        </div>
+        <div class="row">
+          <div>
+            <div class="h" style="margin:0">Vitamin C glow serum</div>
+            <div class="muted">9 ingredients · 0.014 kg CO₂e per use</div>
+          </div>
+          <div style="font-family:Georgia,serif;font-size:18px;color:var(--accent-deep)">$22</div>
+        </div>
+        <div class="meta-row">
+          <span class="pill">Glow + tone</span>
+          <span class="pill rose">Vitamin C 10%</span>
+          <span class="pill gold">Glass · recyclable</span>
+        </div>
+        <div class="btn">Add to routine</div>
+        <div style="height:8px"></div>
+        <div class="btn alt">View Sustainability Facts ✦</div>
+      </div>
+    </div></div>
+    <div class="caption">7 · Product · Facts pills</div>
+  </div>
+
+  <!-- 8. Studio chat -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>ASK THE STUDIO ✦</h2>
+        <div class="icon-btn">⋯</div>
+      </div>
+      <div class="body">
+        <div class="chat">
+          <div class="bubble bot">Hi Maya — looking at the Vitamin C glow serum? Want help fitting it into your routine?</div>
+          <div class="bubble me">Yes. I have sensitive skin and use the Ceramide moisturiser. Will it irritate?</div>
+          <div class="bubble bot">Vitamin C at 10% is gentle in this formulation — plant-derived ascorbyl glucoside, not L-ascorbic acid. Most sensitive-skin customers tolerate it well. Apply between toner and moisturiser; pat in.<small>Sourced from product Facts + ingredient evidence library</small></div>
+          <div class="bubble warn">If you have an active dermatological condition (rosacea, eczema flare), check with your dermatologist before adding new actives.</div>
+          <div class="bubble me">What if my skin tingles?</div>
+          <div class="bubble bot">Mild tingling can be normal day 1–3. If it persists past day 5 or becomes burning, stop and reach concierge — we'll route to a partnered esthetician.</div>
+          <div class="input"><span>Ask about ingredients, routines, packaging…</span><span>↑</span></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">8 · Studio · ingredient + routine AI</div>
+  </div>
+
+  <!-- 9. Profile -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>PROFILE</h2>
+        <div class="icon-btn">⚙</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div style="text-align:center;margin-bottom:12px">
+          <div class="avatar"></div>
+          <div style="font-family:Georgia,serif;font-size:18px">Maya R.</div>
+          <div class="muted">Member since 2024 · Honest tier · San Francisco</div>
+        </div>
+        <div class="label" style="margin-bottom:4px">YOUR DATA</div>
+        <div class="menu-item"><span>Skin goals · Hydration + Glow</span><span>›</span></div>
+        <div class="menu-item"><span>Sensitivities</span><span>›</span></div>
+        <div class="menu-item"><span>Current routine · 8 steps</span><span>›</span></div>
+        <div class="menu-item"><span>Language &amp; region · EN · US</span><span>›</span></div>
+        <div class="menu-item"><span>What we know about you</span><span>›</span></div>
+        <div class="menu-item"><span>Privacy &amp; consent</span><span>›</span></div>
+        <div class="menu-item"><span>Sign out</span><span>›</span></div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">○</div><span>Routine</span></div>
+        <div class="tab"><div class="dot">↻</div><span>Refill</span></div>
+        <div class="tab active"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">9 · Profile · data &amp; privacy</div>
+  </div>
+
+</div>
+
+</body>
+</html>

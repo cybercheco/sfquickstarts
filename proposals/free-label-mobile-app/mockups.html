@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Free Label — App Mockups</title>
+<style>
+  :root {
+    --bg: #f7f3ed;
+    --ink: #2a2520;
+    --muted: #8a7e72;
+    --line: #e6dcd0;
+    --card: #ffffff;
+    --accent: #c08f7a;            /* warm terracotta — bamboo / skin tone */
+    --accent-deep: #7a4d3d;
+    --accent-soft: #f0dfd2;
+    --gold: #c9a85e;
+    --gold-soft: #f3e8c7;
+    --sage: #9bb0a0;
+    --sage-soft: #d9e3dc;
+    --blush: #d8a5a5;
+    --blush-soft: #f3dcdc;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 { font-family: "Times New Roman", Georgia, serif; font-weight: 500; font-size: 38px; margin: 0 0 4px; letter-spacing: -0.5px; color: var(--accent-deep); }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 32px 24px; padding: 16px 32px 64px; max-width: 1400px; margin: 0 auto; }
+  .phone { background: #2a2520; border-radius: 44px; padding: 12px; box-shadow: 0 24px 48px rgba(122, 77, 61, .15), 0 2px 8px rgba(0,0,0,.06); width: 310px; justify-self: center; }
+  .screen { background: var(--card); border-radius: 32px; overflow: hidden; height: 620px; display: flex; flex-direction: column; position: relative; }
+  .notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 110px; height: 22px; background: #2a2520; border-radius: 0 0 14px 14px; z-index: 5; }
+  .statusbar { height: 38px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 22px 4px; font-size: 12px; font-weight: 600; color: var(--ink); }
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding: 8px 18px 12px; border-bottom: 1px solid var(--line); }
+  .topbar h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 14px; margin: 0; letter-spacing: 4px; color: var(--accent-deep); }
+  .icon-btn { width: 28px; height: 28px; border-radius: 50%; background: var(--bg); display: grid; place-items: center; font-size: 14px; color: var(--ink); }
+  .body { flex: 1; overflow: hidden; padding: 14px 18px; }
+  .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+  .h { font-family: "Times New Roman", Georgia, serif; font-size: 22px; margin: 6px 0 14px; line-height: 1.15; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-deep); font-size: 11px; font-weight: 600; }
+  .pill.gold { background: var(--gold-soft); color: #8a6e2a; }
+  .pill.sage { background: var(--sage-soft); color: #4e6754; }
+  .pill.blush { background: var(--blush-soft); color: #a85a5a; }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  .muted { color: var(--muted); font-size: 12px; }
+  .btn { display: block; text-align: center; background: var(--accent); color: #fff; padding: 12px 14px; border-radius: 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; }
+  .btn.alt { background: #fff; color: var(--accent-deep); border: 1px solid var(--accent); }
+  .btn.gold { background: var(--gold); color: #2a2520; }
+  .tabbar { border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(5, 1fr); padding: 8px 4px 14px; background: #fff; }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 10px; color: var(--muted); }
+  .tab.active { color: var(--accent-deep); }
+  .tab .dot { width: 22px; height: 22px; border-radius: 6px; background: var(--bg); display: grid; place-items: center; font-size: 12px; }
+  .tab.active .dot { background: var(--accent-soft); }
+  .caption { text-align: center; margin: 12px 0 0; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px; }
+
+  /* Onboarding */
+  .onb {
+    background: linear-gradient(180deg, #d8a5a5 0%, #c08f7a 50%, #2a2520 100%);
+    color: #fff; flex: 1; padding: 60px 24px 24px;
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+  }
+  .onb::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 12% 20%, rgba(255,255,255,.18) 0 28px, transparent 29px),
+      radial-gradient(circle at 80% 16%, rgba(201,168,94,.22) 0 32px, transparent 33px),
+      radial-gradient(circle at 24% 80%, rgba(255,255,255,.12) 0 22px, transparent 23px);
+    pointer-events: none;
+  }
+  .onb .logo { font-family: "Times New Roman", Georgia, serif; font-size: 18px; letter-spacing: 5px; position: relative; }
+  .onb h3 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.2; margin: auto 0 8px; position: relative; }
+  .onb p { font-size: 13px; opacity: .9; margin: 0 0 22px; position: relative; }
+  .lang-row { display: flex; gap: 6px; margin-bottom: 14px; position: relative; flex-wrap: wrap; }
+  .lang-row span { padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.18); font-size: 11px; font-weight: 600; }
+  .lang-row span.on { background: var(--gold); color: #2a2520; }
+
+  /* Home */
+  .home-hero {
+    background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+    border-radius: 14px; padding: 14px;
+    color: #fff; margin-bottom: 14px;
+    position: relative; overflow: hidden;
+  }
+  .home-hero::before {
+    content: ""; position: absolute; right: -25px; top: -25px;
+    width: 110px; height: 110px;
+    border: 2px solid rgba(201,168,94,.30); border-radius: 50%;
+  }
+  .home-hero .tag { font-size: 10px; letter-spacing: 2.5px; opacity: .85; }
+  .home-hero h3 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.15; margin: 8px 0 10px; }
+  .home-hero .meta { display: flex; gap: 12px; font-size: 11px; opacity: .9; }
+  .hgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card { border: 1px solid var(--line); border-radius: 12px; padding: 10px; font-size: 12px; background: #fff; position: relative; }
+  .card .swatch { height: 70px; border-radius: 8px; margin-bottom: 8px; }
+  .card .badge { position: absolute; top: 6px; right: 6px; background: var(--accent); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 999px; }
+
+  /* Fit Finder */
+  .fit-progress {
+    display: flex; gap: 6px;
+    margin-bottom: 16px;
+  }
+  .fit-progress .step {
+    flex: 1; height: 4px;
+    background: var(--line); border-radius: 2px;
+  }
+  .fit-progress .step.done { background: var(--accent); }
+  .fit-progress .step.active { background: var(--accent-deep); }
+  .fit-question {
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    padding: 12px 14px; border-radius: 14px;
+    font-size: 12px; font-weight: 600;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .fit-options { display: flex; flex-direction: column; gap: 8px; }
+  .fit-option {
+    display: flex; gap: 12px; align-items: center;
+    padding: 12px 14px;
+    background: #fff; border: 2px solid var(--line);
+    border-radius: 12px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .fit-option.selected {
+    border-color: var(--accent); background: var(--accent-soft);
+  }
+  .fit-option .ic {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--bg); color: var(--accent-deep);
+    display: grid; place-items: center;
+    font-family: "Times New Roman", Georgia, serif; font-size: 16px; font-weight: 700;
+  }
+  .fit-option.selected .ic { background: var(--accent); color: #fff; }
+  .fit-option .info { flex: 1; }
+  .fit-option .info strong { display: block; font-size: 13px; }
+  .fit-option .info span { color: var(--muted); font-size: 11px; }
+
+  /* PDP */
+  .pdp-img {
+    height: 220px; border-radius: 14px;
+    background:
+      radial-gradient(circle at 50% 60%, rgba(216,165,165,.4) 0 28%, transparent 29%),
+      linear-gradient(135deg, var(--blush), var(--accent));
+    margin-bottom: 12px; position: relative;
+  }
+  .pdp-img .qr { position: absolute; bottom: 10px; right: 10px; width: 34px; height: 34px; background: #fff; border-radius: 6px; display: grid; place-items: center; font-size: 18px; }
+  .pdp-img .badge { position: absolute; top: 10px; left: 10px; background: var(--gold); color: #2a2520; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 999px; }
+  .meta-row { display: flex; gap: 6px; margin: 6px 0 12px; flex-wrap: wrap; }
+
+  /* Wardrobe */
+  .closet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .piece { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; position: relative; }
+  .piece .sw { height: 100px; }
+  .piece .info { padding: 8px; font-size: 12px; }
+  .piece .info strong { display: block; }
+  .piece .info span { color: var(--muted); font-size: 11px; }
+  .piece .feel {
+    position: absolute; top: 6px; right: 6px;
+    background: var(--sage); color: #fff;
+    font-size: 9px; font-weight: 700;
+    padding: 2px 6px; border-radius: 999px;
+  }
+  .piece .feel.off { background: var(--blush); }
+
+  /* Drop */
+  .drop-card {
+    background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+    color: #fff; border-radius: 14px;
+    padding: 14px; margin-bottom: 12px;
+    position: relative; overflow: hidden;
+  }
+  .drop-card .lbl { font-size: 10px; letter-spacing: 2px; opacity: .85; }
+  .drop-card h3 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.1; margin: 4px 0 8px; }
+  .drop-card .progress {
+    height: 6px; background: rgba(255,255,255,.2);
+    border-radius: 3px; margin: 10px 0 6px; overflow: hidden;
+  }
+  .drop-card .progress > i {
+    display: block; height: 100%; width: 64%;
+    background: var(--gold);
+  }
+  .drop-card .stats {
+    display: flex; gap: 12px; font-size: 11px; opacity: .9;
+  }
+  .drop-row {
+    display: grid; grid-template-columns: 56px 1fr auto;
+    gap: 12px; padding: 10px 0;
+    border-bottom: 1px dashed var(--line); align-items: center;
+  }
+  .drop-row:last-child { border: none; }
+  .drop-row .swatch {
+    width: 56px; height: 56px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--blush), var(--accent));
+  }
+  .drop-row .swatch.gold { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .drop-row .swatch.sage { background: linear-gradient(135deg, var(--sage), #4e6754); }
+  .drop-row .swatch.dark { background: linear-gradient(180deg, #2a2520, #555047); }
+  .drop-row .info { font-size: 12px; }
+  .drop-row .info strong { display: block; }
+  .drop-row .info span { color: var(--muted); font-size: 11px; }
+  .drop-row .ctrl { color: var(--accent-deep); font-size: 11px; font-weight: 700; }
+
+  /* Comfort Lab */
+  .lab-row {
+    display: grid; grid-template-columns: 56px 1fr auto;
+    gap: 12px; padding: 10px 0;
+    border-bottom: 1px dashed var(--line); align-items: center;
+  }
+  .lab-row:last-child { border: none; }
+  .lab-row .thumb {
+    width: 56px; height: 56px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+    display: grid; place-items: center; color: #fff; font-size: 18px;
+  }
+  .lab-row .thumb.gold { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .lab-row .thumb.sage { background: linear-gradient(135deg, var(--sage), #4e6754); }
+  .lab-row .info strong { display: block; font-size: 13px; }
+  .lab-row .info span { color: var(--muted); font-size: 11px; }
+  .lab-row .min { color: var(--accent-deep); font-size: 11px; font-weight: 700; }
+
+  /* Lab chat */
+  .chat { flex: 1; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+  .bubble { max-width: 80%; padding: 10px 12px; border-radius: 14px; font-size: 12px; line-height: 1.4; }
+  .bubble.me { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+  .bubble.bot { align-self: flex-start; background: var(--bg); color: var(--ink); border-bottom-left-radius: 4px; }
+  .bubble small { display: block; color: var(--muted); margin-top: 4px; font-size: 10px; }
+  .input { margin-top: auto; border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
+
+  /* Profile */
+  .avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--blush), var(--accent-deep)); margin: 0 auto 8px; }
+  .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>Free Label — App Mockups</h1>
+  <p>Phase 1 screens. Open in any browser. Wireframe fidelity, not final visual design.</p>
+</header>
+
+<div class="grid">
+
+  <!-- 1. Onboarding -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="onb">
+        <div class="logo">FREE · LABEL</div>
+        <h3>The bra<br/>that finally fits.</h3>
+        <p>Wire-free. Bamboo. Sized A to L. Made in Vancouver.</p>
+        <div class="lang-row">
+          <span class="on">EN</span><span>FR</span>
+        </div>
+        <div class="btn gold">Continue with Apple</div>
+        <div style="height:8px"></div>
+        <div class="btn alt" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.4)">Sign in with email</div>
+      </div>
+    </div></div>
+    <div class="caption">1 · Onboarding · EN/FR</div>
+  </div>
+
+  <!-- 2. Home -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>FREE · LABEL</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="home-hero">
+          <div class="tag">CARRIE BRA · BACK IN STOCK</div>
+          <h3>Black + bamboo<br/>· in your size</h3>
+          <div class="meta"><span>Sizes A-L · 2X-5X</span><span>·</span><span>Restock: 220 made</span></div>
+        </div>
+        <div class="row" style="margin-bottom:8px">
+          <div class="label">FOR YOU</div>
+          <div class="muted">See all →</div>
+        </div>
+        <div class="hgrid">
+          <div class="card">
+            <div class="badge">FIT FINDER ✦</div>
+            <div class="swatch" style="background:linear-gradient(135deg,var(--blush),var(--accent))"></div>
+            <div>Andie reversible bra</div>
+            <div class="muted">CA$58 · 14 sizes</div>
+          </div>
+          <div class="card">
+            <div class="swatch" style="background:linear-gradient(135deg,var(--sage),#4e6754)"></div>
+            <div>Bamboo lounge set</div>
+            <div class="muted">CA$118</div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">✦</div><span>Fit</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">2 · Home · restock alert</div>
+  </div>
+
+  <!-- 3. Fit Finder -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>FIT FINDER</h2>
+        <div class="icon-btn">?</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="fit-progress">
+          <div class="step done"></div>
+          <div class="step done"></div>
+          <div class="step active"></div>
+          <div class="step"></div>
+        </div>
+        <div class="label" style="margin-bottom:4px">QUESTION 3 OF 4</div>
+        <div class="h" style="margin:4px 0 12px">How much support<br/>do you want?</div>
+        <div class="fit-question">
+          Most customers under-size on their first try. The Andie holds you without pressing — pick the level you'll actually wear all day.
+        </div>
+        <div class="fit-options">
+          <div class="fit-option">
+            <div class="ic">·</div>
+            <div class="info"><strong>Light + breathable</strong><span>everyday · light movement</span></div>
+          </div>
+          <div class="fit-option selected">
+            <div class="ic">··</div>
+            <div class="info"><strong>Medium hold</strong><span>most popular · all-day comfort</span></div>
+          </div>
+          <div class="fit-option">
+            <div class="ic">···</div>
+            <div class="info"><strong>Firm support</strong><span>workouts · larger cup sizes</span></div>
+          </div>
+        </div>
+        <div style="height:14px"></div>
+        <div class="btn">Next</div>
+      </div>
+    </div></div>
+    <div class="caption">3 · Fit Finder · 4-question flow</div>
+  </div>
+
+  <!-- 4. PDP -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>ANDIE BRA</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="pdp-img">
+          <div class="badge">SIZES A-L · 2X-5X</div>
+          <div class="qr">⊡</div>
+        </div>
+        <div class="row">
+          <div>
+            <div class="h" style="margin:0">Andie reversible bra</div>
+            <div class="muted">Wire-free · bamboo · made in Vancouver</div>
+          </div>
+          <div style="font-family:Georgia,serif;font-size:18px;color:var(--accent-deep)">CA$58</div>
+        </div>
+        <div class="meta-row">
+          <span class="pill">Reversible</span>
+          <span class="pill sage">OEKO-TEX 100</span>
+          <span class="pill gold">14 sizes</span>
+        </div>
+        <div class="btn">Add to bag</div>
+        <div style="height:8px"></div>
+        <div class="btn alt">Find my size ✦</div>
+      </div>
+    </div></div>
+    <div class="caption">4 · Product · sizes pill + Find My Size</div>
+  </div>
+
+  <!-- 5. Wardrobe -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>WARDROBE</h2>
+        <div class="icon-btn">+</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="row" style="margin-bottom:10px">
+          <div class="muted">8 pieces · "felt good" 162 times</div>
+          <div class="pill">All</div>
+        </div>
+        <div class="closet-grid">
+          <div class="piece">
+            <div class="feel">FELT GOOD</div>
+            <div class="sw" style="background:linear-gradient(135deg,var(--blush),var(--accent))"></div>
+            <div class="info">
+              <strong>Andie · blush</strong>
+              <span>worn 38× · sz M</span>
+            </div>
+          </div>
+          <div class="piece">
+            <div class="feel">FELT GOOD</div>
+            <div class="sw" style="background:linear-gradient(180deg,#2a2520,#555047)"></div>
+            <div class="info">
+              <strong>Carrie · black</strong>
+              <span>worn 28× · sz L</span>
+            </div>
+          </div>
+          <div class="piece">
+            <div class="feel off">FELT OFF</div>
+            <div class="sw" style="background:linear-gradient(135deg,var(--sage),#4e6754)"></div>
+            <div class="info">
+              <strong>Lounge set · sage</strong>
+              <span>worn 6× · sz M</span>
+            </div>
+          </div>
+          <div class="piece">
+            <div class="feel">FELT GOOD</div>
+            <div class="sw" style="background:linear-gradient(180deg,#fff,var(--accent-soft))"></div>
+            <div class="info">
+              <strong>Bamboo tank · cream</strong>
+              <span>worn 22× · sz L</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">✦</div><span>Fit</span></div>
+        <div class="tab active"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">5 · Wardrobe · "felt good" log</div>
+  </div>
+
+  <!-- 6. The Drop -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>THE DROP</h2>
+        <div class="icon-btn">?</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="drop-card">
+          <div class="lbl">CURRENT DROP · MAY 2026</div>
+          <h3>Carrie bra · black</h3>
+          <div class="progress"><i></i></div>
+          <div class="stats">
+            <div><strong>140</strong> sold</div>
+            <div>·</div>
+            <div><strong>80</strong> remaining</div>
+            <div>·</div>
+            <div>220 made</div>
+          </div>
+        </div>
+        <div class="label" style="margin-bottom:6px">PRODUCTION</div>
+        <div class="drop-row">
+          <div class="swatch dark"></div>
+          <div class="info"><strong>Carrie · black · 220 made</strong><span>cut + sewn Vancouver · ships May 24</span></div>
+          <div class="ctrl">LIVE</div>
+        </div>
+        <div class="drop-row">
+          <div class="swatch"></div>
+          <div class="info"><strong>Andie · blush · 180 made</strong><span>in production · ships Jun 7</span></div>
+          <div class="ctrl">PRE-ORDER</div>
+        </div>
+        <div class="drop-row" style="border:none">
+          <div class="swatch sage"></div>
+          <div class="info"><strong>Bamboo set · sage · TBD</strong><span>community waitlist · 142 saved</span></div>
+          <div class="ctrl">NOTIFY</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">6 · Drop · small-batch transparency</div>
+  </div>
+
+  <!-- 7. Comfort Lab -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>COMFORT LAB</h2>
+        <div class="icon-btn">⌕</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="meta-row">
+          <span class="pill">All</span>
+          <span class="pill">Bra fit</span>
+          <span class="pill sage">Bamboo care</span>
+          <span class="pill blush">Size swap</span>
+        </div>
+        <div class="row" style="margin-bottom:6px">
+          <div class="label">BRA FITTING TIPS</div>
+        </div>
+        <div class="lab-row">
+          <div class="thumb">▶</div>
+          <div class="info"><strong>Where the band should sit</strong><span>Video · 1:14 · with Jess</span></div>
+          <div class="min">1:14</div>
+        </div>
+        <div class="lab-row">
+          <div class="thumb gold">▶</div>
+          <div class="info"><strong>Larger cup support tips (G+)</strong><span>Video · 2:32 · with Sarah</span></div>
+          <div class="min">2:32</div>
+        </div>
+        <div class="row" style="margin: 12px 0 6px">
+          <div class="label">BAMBOO CARE</div>
+        </div>
+        <div class="lab-row">
+          <div class="thumb sage">▶</div>
+          <div class="info"><strong>How to wash bamboo</strong><span>Video · 1:48 · cold + line dry</span></div>
+          <div class="min">1:48</div>
+        </div>
+        <div class="lab-row" style="border:none">
+          <div class="thumb sage">▶</div>
+          <div class="info"><strong>Why bamboo lasts</strong><span>Article · 4 min read</span></div>
+          <div class="min">4 min</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">7 · Comfort Lab · care + fit videos</div>
+  </div>
+
+  <!-- 8. Lab chat -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>ASK THE LAB ✦</h2>
+        <div class="icon-btn">⋯</div>
+      </div>
+      <div class="body">
+        <div class="chat">
+          <div class="bubble bot">Hi Sam — looking at the Andie? Want help with sizing?</div>
+          <div class="bubble me">Yes. I'm 5'7", I wear a 36DD in wired bras and they leave marks.</div>
+          <div class="bubble bot">In the Andie I'd go with <b>L (cup) · band M</b>. Wire-free runs different — the band should feel firm but not pinch. Most customers in 36DD wired drop one cup size in our wire-free range.<small>Sourced from your past orders + brand fit chart</small></div>
+          <div class="bubble me">What if I'm between sizes?</div>
+          <div class="bubble bot">Free Label has free size-swap on bras — if it's not right, send it back, we ship the next size at no cost. Most customers get it on the second try, not the first.</div>
+          <div class="input"><span>Ask about fit, fabric, swap…</span><span>↑</span></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">8 · Lab chat · multilingual fit AI</div>
+  </div>
+
+  <!-- 9. Profile -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>PROFILE</h2>
+        <div class="icon-btn">⚙</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div style="text-align:center;margin-bottom:12px">
+          <div class="avatar"></div>
+          <div style="font-family:Georgia,serif;font-size:18px">Sam K.</div>
+          <div class="muted">Member since 2023 · Free tier · Vancouver</div>
+        </div>
+        <div class="label" style="margin-bottom:4px">YOUR DATA</div>
+        <div class="menu-item"><span>Fit profile · L cup · M band</span><span>›</span></div>
+        <div class="menu-item"><span>Body comfort preferences</span><span>›</span></div>
+        <div class="menu-item"><span>Language &amp; region · EN · CA</span><span>›</span></div>
+        <div class="menu-item"><span>Size-swap history · 1 swap</span><span>›</span></div>
+        <div class="menu-item"><span>What we know about you</span><span>›</span></div>
+        <div class="menu-item"><span>Privacy &amp; consent</span><span>›</span></div>
+        <div class="menu-item"><span>Sign out</span><span>›</span></div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">✦</div><span>Fit</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab active"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">9 · Profile · data &amp; privacy</div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Erth to Erth — Platform Investment</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 18mm 18mm 18mm;
+    @bottom-left { content: "Erth to Erth · Platform Investment"; font-family: Georgia, serif; font-size: 9pt; color: #6b665c; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font-family: Georgia, serif; font-size: 9pt; color: #6b665c; }
+  }
+  :root {
+    --bg: #f3efe7;
+    --ink: #1f1d18;
+    --muted: #6b665c;
+    --line: #d9d2c4;
+    --card: #ffffff;
+    --accent: #2f4a36;
+    --accent2: #5a6e44;
+    --accent-soft: #e3ead0;
+    --gold: #b9914c;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+  }
+  .cover {
+    page-break-after: always;
+    padding: 30mm 0 0;
+  }
+  .cover .eyebrow {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 10pt;
+    letter-spacing: 2px;
+    margin-bottom: 8mm;
+  }
+  .cover h1 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 44pt;
+    line-height: 1.05;
+    margin: 0 0 8mm;
+    letter-spacing: -0.5px;
+  }
+  .cover .deck-tagline {
+    font-family: Georgia, serif;
+    color: var(--accent);
+    font-size: 18pt;
+    line-height: 1.3;
+    margin-bottom: 14mm;
+  }
+  .cover .meta {
+    color: var(--muted);
+    font-size: 10pt;
+    border-top: 1px solid var(--line);
+    padding-top: 4mm;
+  }
+  .cover .meta strong { color: var(--ink); }
+
+  h2 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 22pt;
+    color: var(--ink);
+    margin: 0 0 1mm;
+    letter-spacing: -0.2px;
+  }
+  h2 + .lede { color: var(--muted); margin: 0 0 6mm; font-size: 11pt; }
+  .section {
+    page-break-inside: avoid;
+    margin-bottom: 12mm;
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 9pt;
+    letter-spacing: 2px;
+    margin-bottom: 2mm;
+  }
+  .rule {
+    width: 12mm; height: 2pt; background: var(--accent);
+    margin: 4mm 0 6mm;
+  }
+  p { margin: 0 0 4mm; }
+  .muted { color: var(--muted); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10.5pt;
+    margin: 3mm 0 6mm;
+  }
+  th, td {
+    border-bottom: 1px solid var(--line);
+    padding: 3mm;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    border-bottom: 1.5pt solid var(--accent);
+  }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  th.num { text-align: right; }
+  tr.highlight td {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .callout {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 3pt solid var(--accent);
+    padding: 4mm 5mm;
+    margin: 4mm 0 6mm;
+    border-radius: 1mm;
+  }
+  .callout .lbl {
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 2mm;
+  }
+  .callout.gold { border-left-color: var(--gold); }
+  .callout.gold .lbl { color: var(--gold); }
+
+  .grid2 {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4mm;
+    margin: 3mm 0 6mm;
+  }
+  .grid3 {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm;
+    margin: 3mm 0 6mm;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 2mm;
+    padding: 5mm;
+  }
+  .card h4 {
+    margin: 0 0 2mm;
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 14pt;
+    color: var(--accent);
+  }
+  .card p { margin: 0; color: var(--muted); font-size: 10pt; }
+  .card .big {
+    font-family: Georgia, serif;
+    color: var(--accent);
+    font-size: 32pt;
+    line-height: 1;
+    margin: 2mm 0 3mm;
+  }
+  .card .lbl {
+    color: var(--muted); font-size: 9pt;
+    text-transform: uppercase; letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 1mm;
+  }
+
+  ul.clean { list-style: none; padding: 0; margin: 0 0 4mm; }
+  ul.clean li {
+    padding: 2mm 0 2mm 6mm;
+    border-bottom: 1px dashed var(--line);
+    position: relative;
+  }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li::before {
+    content: "";
+    position: absolute; left: 0; top: 4.5mm;
+    width: 2mm; height: 2mm; background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .closing {
+    margin-top: 8mm;
+    padding: 8mm;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 2mm;
+  }
+  .closing .lbl {
+    color: var(--accent-soft);
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 3mm;
+  }
+  .closing h3 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 22pt;
+    margin: 0 0 4mm;
+  }
+  .closing p { color: var(--accent-soft); margin: 0 0 3mm; }
+
+  .small { font-size: 9.5pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">PLATFORM INVESTMENT</div>
+  <h1>An app that<br/>grows with you.</h1>
+  <div class="deck-tagline">Predictable to start. Fair as you scale.<br/>Aligned with how the app earns its keep.</div>
+  <div class="meta">
+    <strong>Prepared for</strong> &nbsp;·&nbsp; The Erth to Erth team<br/>
+    <strong>Scope</strong> &nbsp;·&nbsp; Mobile app + Studio (web admin portal) — hosting, AI, monitoring, on-call, OS updates<br/>
+    <strong>Excluded</strong> &nbsp;·&nbsp; One-time build (separate proposal). Payment processing, shipping &amp; tax passthrough.
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE PHILOSOPHY</div>
+  <h2>You should pay for what the app delivers, not for what it might.</h2>
+  <p>Most software vendors charge a flat fee that's expensive when you're starting out and a bargain once you've scaled. We've inverted it. The platform fee is light at launch — when the app is still earning your customers' trust — and grows only as active use grows.</p>
+  <div class="rule"></div>
+
+  <div class="grid3">
+    <div class="card">
+      <h4>Predictable</h4>
+      <p>A fixed monthly floor. You always know the minimum.</p>
+    </div>
+    <div class="card">
+      <h4>Aligned</h4>
+      <p>Variable cost only kicks in when active customers are using the app — i.e. when it's working for you.</p>
+    </div>
+    <div class="card">
+      <h4>Honest</h4>
+      <p>Per-MAU rate is calibrated to cover real cloud, AI, and email costs your active users generate.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE STRUCTURE</div>
+  <h2>One floor. One slope. No surprises.</h2>
+
+  <div class="grid3">
+    <div class="card">
+      <div class="lbl">MOBILE FLOOR</div>
+      <div class="big">$500<span style="font-size:14pt;color:var(--muted)"> / mo</span></div>
+      <p>Keeps the mobile app running for up to 1,000 monthly active users — hosting, AI, push, monitoring, OS updates, security patches.</p>
+    </div>
+    <div class="card">
+      <div class="lbl">STUDIO ADD-ON</div>
+      <div class="big">$750<span style="font-size:14pt;color:var(--muted)"> / mo</span></div>
+      <p>The web admin portal your team uses every day — passport editor, take-back queue, repair queue, drop scheduler, sustainability report.</p>
+    </div>
+    <div class="card">
+      <div class="lbl">ABOVE 1,000 MAU</div>
+      <div class="big">$0.30<span style="font-size:14pt;color:var(--muted)"> / MAU</span></div>
+      <p>Pay only for active customers above the included 1,000 — covers cloud, AI calls, and email each engaged user generates.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:6mm; padding:5mm; background:var(--accent-soft); border-radius:2mm; text-align:center; font-size:11pt; color:var(--accent); font-family:Georgia,serif">
+    Combined floor at launch · <strong>$1,250 / mo</strong> · then +$0.30 per MAU as the app grows.
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE STUDIO — WHAT'S INSIDE</div>
+  <h2>The brand's web admin portal. The internal twin of the app.</h2>
+  <p class="lede">Catalog and orders stay in Shopify. The Studio owns everything new the app introduces — the lifecycle data, the queues, the loyalty ledger, the customer concierge.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Module</th>
+        <th>What your team does with it</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Garment passport editor</strong></td><td>Author materials, origin, factory, care, carbon-equivalent. Claude drafts; editors approve.</td></tr>
+      <tr><td><strong>Drop &amp; release scheduler</strong></td><td>Schedule drops, write push copy, restock alerts, geofenced events.</td></tr>
+      <tr><td><strong>Take-back queue</strong></td><td>Track parcels arriving at hubs, mark recycled, credit points on receipt.</td></tr>
+      <tr><td><strong>Repair queue (AI-triaged)</strong></td><td>Vision model classifies damage from photos; one-click DIY guide or atelier quote.</td></tr>
+      <tr><td><strong>Resale listings</strong></td><td>Approve customer listings, set price floors, manage second-cycle GMV.</td></tr>
+      <tr><td><strong>Loyalty admin</strong></td><td>Tier overrides, comp credits, referral approvals, points ledger.</td></tr>
+      <tr><td><strong>Concierge inbox</strong></td><td>Customer escalations from the app — repair questions, recycle pickups, lost passports.</td></tr>
+      <tr><td><strong>Sustainability report</strong></td><td>Audit-ready numbers — kg saved, items recycled, CO₂e avoided. Export for marketing or regulators.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT THIS LOOKS LIKE</div>
+  <h2>At every stage of growth.</h2>
+  <p class="lede">Sample monthly platform fee at common scale points. The build fee is one-time and separate.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Stage</th>
+        <th class="num">Monthly active users</th>
+        <th class="num">Monthly platform fee</th>
+        <th class="num">Per active user</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Pilot</td><td class="num">500</td><td class="num">$1,250</td><td class="num">$2.50</td></tr>
+      <tr class="highlight"><td>Launch</td><td class="num">1,000</td><td class="num">$1,250</td><td class="num">$1.25</td></tr>
+      <tr><td>Early growth</td><td class="num">2,500</td><td class="num">$1,700</td><td class="num">$0.68</td></tr>
+      <tr><td>Established</td><td class="num">5,000</td><td class="num">$2,450</td><td class="num">$0.49</td></tr>
+      <tr><td>Strong adoption</td><td class="num">15,000</td><td class="num">$5,450</td><td class="num">$0.36</td></tr>
+      <tr><td>At scale</td><td class="num">25,000</td><td class="num">$8,450</td><td class="num">$0.34</td></tr>
+    </tbody>
+  </table>
+
+  <p class="small">Combined fee includes mobile platform + Studio + variable above 1K MAU. Per-customer cost falls as you grow.</p>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT'S INCLUDED</div>
+  <h2>The platform fee covers everything.</h2>
+  <ul class="clean">
+    <li><strong>Hosting & infrastructure</strong> — application servers, database, object storage, CDN, push notifications, transactional email.</li>
+    <li><strong>AI features</strong> — fit assistant, recommendations, visual search, garment-passport summaries, repair triage. All caching and optimisation included.</li>
+    <li><strong>Monitoring & on-call</strong> — error tracking, uptime monitoring, weekday business-hours response to critical issues.</li>
+    <li><strong>OS-required maintenance</strong> — Apple and Google deprecate APIs roughly twice a year. We handle the updates so the app keeps working.</li>
+    <li><strong>Security patches</strong> — dependency updates and security advisories, applied as released.</li>
+    <li><strong>One small feature request per quarter</strong> — a UI tweak, a new screen, a copy change. Larger work is scoped separately.</li>
+    <li><strong>Quarterly review</strong> — a half-day session covering metrics, customer feedback, and the next quarter's priorities.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="eyebrow">FAIR TERMS</div>
+  <h2>Three commitments to keep the relationship healthy.</h2>
+
+  <div class="grid3">
+    <div class="card">
+      <h4>30-day exit</h4>
+      <p>Either side can end the agreement on 30 days' notice. The relationship is renewed every month by mutual fit, not by lock-in.</p>
+    </div>
+    <div class="card">
+      <h4>Your data, your accounts</h4>
+      <p>Source code, customer data, AI logs all live in your cloud accounts. We have no leverage except being useful.</p>
+    </div>
+    <div class="card">
+      <h4>AI overage cap</h4>
+      <p>If AI usage spikes beyond 100,000 calls per month, anything above is billed at our cost +20% — never a margin grab.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT'S NOT INCLUDED</div>
+  <h2>Passed through at cost or scoped separately.</h2>
+  <ul class="clean">
+    <li><strong>App-store fees</strong> — Apple's $99/yr developer programme and Google's one-time $25 fee, paid on your accounts.</li>
+    <li><strong>Payment processing</strong> — Shopify and Stripe fees on transactions, paid at standard rates.</li>
+    <li><strong>Shipping & label APIs</strong> — for take-back, repair, and resale flows. Pass-through at cost.</li>
+    <li><strong>Major new features</strong> — Phase 2 and Phase 3 work is scoped as separate engagements with their own fixed fees.</li>
+    <li><strong>Marketing &amp; ad spend</strong> — entirely yours to direct.</li>
+  </ul>
+</div>
+
+<div class="closing">
+  <div class="lbl">THE OFFER</div>
+  <h3>$1,250/mo to start (mobile + Studio). $0.30 per MAU once you're past 1,000. 30-day exit, always.</h3>
+  <p>Two numbers to start. One slope as you grow. The cost of the platform stays in line with the value the app is delivering — and we share the same incentive to keep it that way.</p>
+</div>
+
+</body>
+</html>

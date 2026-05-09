@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Free Label — Tier Recommendation (Internal)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 18mm 18mm 18mm;
+    @bottom-left { content: "Free Label · Tier Recommendation · Internal"; font-family: Georgia, serif; font-size: 9pt; color: #8a7e72; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font-family: Georgia, serif; font-size: 9pt; color: #8a7e72; }
+  }
+  :root {
+    --bg: #f7f3ed; --ink: #2a2520; --muted: #8a7e72; --line: #e6dcd0; --card: #ffffff;
+    --accent: #c08f7a; --accent-deep: #7a4d3d; --accent-soft: #f0dfd2;
+    --gold: #c9a85e; --gold-soft: #f3e8c7; --blush: #d8a5a5; --blush-soft: #f3dcdc;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; font-size: 10.5pt; line-height: 1.5; }
+  .cover { page-break-after: always; padding: 30mm 0 0; }
+  .cover .eyebrow { color: var(--accent-deep); font-weight: 700; font-size: 10pt; letter-spacing: 2px; margin-bottom: 8mm; }
+  .cover h1 { font-family: Georgia, serif; font-weight: 400; font-size: 44pt; line-height: 1.05; margin: 0 0 8mm; letter-spacing: -0.5px; }
+  .cover .deck-tagline { font-family: Georgia, serif; color: var(--accent-deep); font-size: 18pt; line-height: 1.3; margin-bottom: 14mm; }
+  .cover .meta { color: var(--muted); font-size: 10pt; border-top: 1px solid var(--line); padding-top: 4mm; }
+  .cover .meta strong { color: var(--ink); }
+  h2 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; color: var(--ink); margin: 0 0 1mm; letter-spacing: -0.2px; }
+  h2 + .lede { color: var(--muted); margin: 0 0 6mm; font-size: 11pt; }
+  .section { page-break-inside: avoid; margin-bottom: 12mm; }
+  .eyebrow { color: var(--accent-deep); font-weight: 700; font-size: 9pt; letter-spacing: 2px; margin-bottom: 2mm; }
+  .rule { width: 12mm; height: 2pt; background: var(--accent); margin: 4mm 0 6mm; }
+  p { margin: 0 0 4mm; } .muted { color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 3mm 0 6mm; }
+  th, td { border-bottom: 1px solid var(--line); padding: 2.4mm 3mm; text-align: left; vertical-align: top; }
+  th { background: var(--accent-soft); color: var(--accent-deep); font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; border-bottom: 1.5pt solid var(--accent); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; } th.num { text-align: right; }
+  tr.total td { border-top: 1.5pt solid var(--accent); border-bottom: none; font-weight: 700; background: var(--accent-soft); color: var(--accent-deep); }
+  .callout { background: var(--card); border: 1px solid var(--line); border-left: 3pt solid var(--accent); padding: 4mm 5mm; margin: 4mm 0 6mm; border-radius: 1mm; }
+  .callout .lbl { font-size: 9pt; font-weight: 700; letter-spacing: 1.5px; color: var(--accent-deep); text-transform: uppercase; margin-bottom: 2mm; }
+  .callout.gold { border-left-color: var(--gold); } .callout.gold .lbl { color: #8a6e2a; }
+  .callout.warn { border-left-color: var(--blush); } .callout.warn .lbl { color: #a85a5a; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0 6mm; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 2mm; padding: 5mm; }
+  .card h4 { margin: 0 0 2mm; font-family: Georgia, serif; font-weight: 400; font-size: 13pt; color: var(--accent-deep); }
+  .card p { margin: 0; color: var(--muted); font-size: 10pt; }
+  ul.clean { list-style: none; padding: 0; margin: 0 0 4mm; }
+  ul.clean li { padding: 1.5mm 0 1.5mm 6mm; border-bottom: 1px dashed var(--line); position: relative; }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li::before { content: ""; position: absolute; left: 0; top: 4mm; width: 2mm; height: 2mm; background: var(--accent); border-radius: 50%; }
+  .closing { margin-top: 8mm; padding: 8mm; background: var(--accent-deep); color: #fff; border-radius: 2mm; }
+  .closing .lbl { color: var(--gold); font-size: 9pt; font-weight: 700; letter-spacing: 2px; margin-bottom: 3mm; }
+  .closing h3 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; margin: 0 0 4mm; }
+  .closing p { color: var(--gold-soft); margin: 0 0 3mm; }
+  .small { font-size: 9.5pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">INTERNAL · NOT FOR CLIENT</div>
+  <h1>Tier rationale<br/>Free Label.</h1>
+  <div class="deck-tagline">Growth + Studio at launch.<br/>Fit AI is the killer feature; sizing it is the product.</div>
+  <div class="meta">
+    <strong>Audience</strong> &nbsp;·&nbsp; Internal only<br/>
+    <strong>Use</strong> &nbsp;·&nbsp; Reference for the conversation; never share with the brand<br/>
+    <strong>Status</strong> &nbsp;·&nbsp; Draft for discussion
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE RECOMMENDATION</div>
+  <h2>Growth ($3,500) + Studio ($750) = $4,250/mo at launch.</h2>
+  <p class="muted">An apparel brand whose entire customer-acquisition pain is sizing. The Fit Finder + free size-swap workflow is the Studio's main job. Margin is in line with other apparel clients (Encircled, Kotn).</p>
+  <div class="rule"></div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHY STARTER IS DISQUALIFIED</div>
+  <h2>Same as other apparel brands — single-platform, 5-screen, no AI.</h2>
+
+  <table>
+    <thead><tr><th>Starter constraint</th><th>Free Label reality</th></tr></thead>
+    <tbody>
+      <tr><td>Single platform</td><td>Both — CA/US customer base mixed iOS/Android.</td></tr>
+      <tr><td>5 screens</td><td>Phase 1 is ~18 screens including the Fit Finder flow alone.</td></tr>
+      <tr><td>No AI</td><td>Fit Finder, Lab chat, multi-language are core to the value AND to the return-rate reduction.</td></tr>
+      <tr><td>24h email support</td><td>Size-swap turnaround needs same-day response — slow response erodes the free-swap-as-feature promise.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHY GROWTH FITS PHASE 1</div>
+  <h2>Standard fit. Same as other apparel clients.</h2>
+
+  <table>
+    <thead><tr><th>Growth feature</th><th>What it delivers for Free Label</th></tr></thead>
+    <tbody>
+      <tr><td>Both stores, RN + Expo</td><td>Single codebase. OTA matches small-batch drop cadence.</td></tr>
+      <tr><td>Claude Sonnet + Haiku</td><td>Sonnet powers Lab chat in EN/FR. Haiku batches care guides + translation.</td></tr>
+      <tr><td>RevenueCat</td><td>Future-proofs subscription bundle programs.</td></tr>
+      <tr><td>Apple + Google sign-in</td><td>Reduces install friction.</td></tr>
+      <tr><td>ASO quarterly</td><td>"Wire-free bra", "bamboo bra Canada", "size inclusive activewear" all matter.</td></tr>
+      <tr><td>2 releases / month</td><td>Drop cadence demands a regular rhythm.</td></tr>
+      <tr><td>Shared Slack, 4h response</td><td>Right level for an independent brand at launch.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="eyebrow">STUDIO ADD-ON ($750/mo)</div>
+  <h2>Mandatory. Fit-Finder rules engine + Drop tracker + swap workflow form the brand's operational backbone.</h2>
+  <p class="lede">Margin in line with other apparel brands.</p>
+
+  <table>
+    <thead><tr><th>Component</th><th class="num">Real cost / mo</th><th>Margin notes</th></tr></thead>
+    <tbody>
+      <tr><td>Web hosting</td><td class="num">$20–40</td><td>Often shared with mobile API</td></tr>
+      <tr><td>DB delta (Fit-Finder rules, Drop tracker, swap log)</td><td class="num">$10–25</td><td>Higher than apparel due to sizing matrix complexity</td></tr>
+      <tr><td>Object + video storage (Comfort Lab videos × multiple cup sizes)</td><td class="num">$10–25</td><td></td></tr>
+      <tr><td>Editorial AI (fit-finder rules, Lab content, translation)</td><td class="num">$25–60</td><td></td></tr>
+      <tr><td>Email + push (drop alerts, swap status, restock)</td><td class="num">$10–25</td><td>Higher tx volume from drop launches</td></tr>
+      <tr><td>Auth (~15 internal seats)</td><td class="num">$0</td><td>Free tier on Supabase / Clerk</td></tr>
+      <tr class="total"><td>Subtotal infra + AI</td><td class="num">~$75–175</td><td>Standard apparel range</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <div class="lbl">Margin at $750/mo</div>
+    <p>Real cost ~$125/mo (mid-band). Includes ~5 maintenance hrs/mo. Gross margin ~75%. Healthy.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Studio one-time build cost</div>
+    <p>Roughly <strong>$32–48K</strong> on top of the mobile build. 9 modules in Phase 1: auth + Fit-Finder rules engine (the most complex single module — per-style algorithm with body comfort + brand anchor) + drop scheduler with batch tracker + swap workflow + Lab content admin + concierge + Free-tier admin + analytics.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">YEAR-2 UPGRADE TRIGGERS</div>
+  <h2>Move them to Enterprise the moment any one fires.</h2>
+
+  <table>
+    <thead><tr><th>Trigger</th><th>Why it forces the upgrade</th></tr></thead>
+    <tbody>
+      <tr><td>AR fit visualisation goes live</td><td>Body silhouette AR needs native Swift / Kotlin modules.</td></tr>
+      <tr><td>Wholesale / boutique B2B portal</td><td>SSO + audit logging + RLS for boutique partners (Granville, etc.).</td></tr>
+      <tr><td>EU GDPR data-residency clause</td><td>EU storage + processing as European volume becomes material.</td></tr>
+      <tr><td>Photo-based fit check at scale</td><td>Body-photo data adjacency — Enterprise audit posture required.</td></tr>
+      <tr><td>24/7 1h SLA</td><td>Major retail / boutique partner makes uptime contractual.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="lbl">Likelihood by month 12</div>
+    <p>AR: <strong>medium</strong>. Wholesale: <strong>medium-high</strong> — boutique conversations likely. Photo fit-check: <strong>medium</strong>. Realistic timeline 12–18 months to Enterprise.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">DEAL-MAKING TACTICS</div>
+  <h2>How to anchor and protect the conversation.</h2>
+  <ul class="clean">
+    <li><strong>Lead with the return-rate ROI.</strong> 6-point drop in returns on bras = real money. Fit AI funds the entire build in Year 1.</li>
+    <li><strong>The Fit Finder is the killer demo.</strong> Show the rules editor in the Studio. Walk through how a 36DD wired customer maps to L cup wire-free. Differentiates from competitors.</li>
+    <li><strong>Pre-negotiate the Enterprise upgrade path.</strong> Lock the upgrade fee in Year 1.</li>
+    <li><strong>AI overage clause.</strong> Lab chat in 2 languages with body-shape opt-in is non-trivial cost.</li>
+    <li><strong>Brand-side approval on inclusivity content.</strong> Trans/nonbinary fit guidance + plus-cup (G–L) confidence content needs editorial sign-off — protects the brand from misstep.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT WE DON'T SAY OUT LOUD</div>
+  <h2>Internal-only notes.</h2>
+
+  <div class="callout warn">
+    <div class="lbl">Reputation risk to manage</div>
+    <p>The brand's whole position is anti-shapewear, anti-body-shaming. One AI suggestion that reads as "slimming" or "flattering" is a viral story. Insist on brand-side review of every Lab chat reply about fit. Train the AI prompt to never use shape-modifying language.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Margin target — combined</div>
+    <p>Growth tier infra+AI cost at expected MAU (~5K active in Year 1) is ~$700–1,000/mo. Plus Studio at ~$125/mo. At combined $4,250/mo we're at 70–75% gross before maintenance dev. Healthy.</p>
+  </div>
+
+  <div class="callout gold">
+    <div class="lbl">Upsell sequencing</div>
+    <p>Don't propose AR + photo fit-check at the same time as Phase 1. Land Growth + Studio, deliver Fit Finder + Drop well, *then* propose AR as the trigger for Enterprise.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Walk-away signals</div>
+    <p>(1) Brand wants "slimming" / "flattering" / "shaping" copy in the AI. (2) Brand wants fake-urgency mechanics in the Drop. (3) Brand pushes back on inclusivity content as default. Any one = walk.</p>
+  </div>
+</div>
+
+<div class="closing">
+  <div class="lbl">RECOMMENDED ASK</div>
+  <h3>Growth ($3,500) + Studio ($750) = $4,250/mo for Year 1. Pre-negotiated Enterprise upgrade. AI overage at cost +20%. Brand-side approval on every fit / inclusivity / care claim. $32–48K Studio build inside Phase 1.</h3>
+  <p>Right tier for an independent brand whose value is fit-trust. The Fit Finder alone justifies the investment.</p>
+</div>
+
+</body>
+</html>

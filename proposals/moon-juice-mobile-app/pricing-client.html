@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Moon Juice — Platform Investment</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 18mm 18mm 18mm;
+    @bottom-left { content: "Moon Juice · Platform Investment"; font-family: Georgia, serif; font-size: 9pt; color: #8b8194; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font-family: Georgia, serif; font-size: 9pt; color: #8b8194; }
+  }
+  :root {
+    --bg: #f5f0eb; --ink: #2a1f3d; --muted: #8b8194; --line: #e6dfd0; --card: #ffffff;
+    --accent: #8b6fbf; --accent-deep: #4a3878; --accent-soft: #e7defa;
+    --gold: #c9a85e; --gold-soft: #f3e8c7; --pink: #d8a8b5;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; font-size: 10.5pt; line-height: 1.55; }
+  .cover { page-break-after: always; padding: 30mm 0 0; }
+  .cover .eyebrow { color: var(--accent); font-weight: 700; font-size: 10pt; letter-spacing: 2px; margin-bottom: 8mm; }
+  .cover h1 { font-family: Georgia, serif; font-weight: 400; font-size: 44pt; line-height: 1.05; margin: 0 0 8mm; letter-spacing: -0.5px; }
+  .cover .deck-tagline { font-family: Georgia, serif; color: var(--accent); font-size: 18pt; line-height: 1.3; margin-bottom: 14mm; }
+  .cover .meta { color: var(--muted); font-size: 10pt; border-top: 1px solid var(--line); padding-top: 4mm; }
+  .cover .meta strong { color: var(--ink); }
+  h2 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; color: var(--ink); margin: 0 0 1mm; letter-spacing: -0.2px; }
+  h2 + .lede { color: var(--muted); margin: 0 0 6mm; font-size: 11pt; }
+  .section { page-break-inside: avoid; margin-bottom: 12mm; }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: 9pt; letter-spacing: 2px; margin-bottom: 2mm; }
+  .rule { width: 12mm; height: 2pt; background: var(--accent); margin: 4mm 0 6mm; }
+  p { margin: 0 0 4mm; } .muted { color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 10.5pt; margin: 3mm 0 6mm; }
+  th, td { border-bottom: 1px solid var(--line); padding: 3mm; text-align: left; vertical-align: top; }
+  th { background: var(--accent-soft); color: var(--accent-deep); font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; border-bottom: 1.5pt solid var(--accent); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; } th.num { text-align: right; }
+  tr.highlight td { background: var(--accent-soft); color: var(--accent-deep); font-weight: 700; }
+  .callout { background: var(--card); border: 1px solid var(--line); border-left: 3pt solid var(--accent); padding: 4mm 5mm; margin: 4mm 0 6mm; border-radius: 1mm; }
+  .callout .lbl { font-size: 9pt; font-weight: 700; letter-spacing: 1.5px; color: var(--accent); text-transform: uppercase; margin-bottom: 2mm; }
+  .callout.gold { border-left-color: var(--gold); } .callout.gold .lbl { color: #8a6e2a; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0 6mm; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; margin: 3mm 0 6mm; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 2mm; padding: 5mm; }
+  .card h4 { margin: 0 0 2mm; font-family: Georgia, serif; font-weight: 400; font-size: 14pt; color: var(--accent); }
+  .card p { margin: 0; color: var(--muted); font-size: 10pt; }
+  .card .big { font-family: Georgia, serif; color: var(--accent); font-size: 32pt; line-height: 1; margin: 2mm 0 3mm; }
+  .card .lbl { color: var(--muted); font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 1mm; }
+  ul.clean { list-style: none; padding: 0; margin: 0 0 4mm; }
+  ul.clean li { padding: 2mm 0 2mm 6mm; border-bottom: 1px dashed var(--line); position: relative; }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li::before { content: ""; position: absolute; left: 0; top: 4.5mm; width: 2mm; height: 2mm; background: var(--accent); border-radius: 50%; }
+  .closing { margin-top: 8mm; padding: 8mm; background: var(--accent-deep); color: #fff; border-radius: 2mm; }
+  .closing .lbl { color: var(--gold); font-size: 9pt; font-weight: 700; letter-spacing: 2px; margin-bottom: 3mm; }
+  .closing h3 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; margin: 0 0 4mm; }
+  .closing p { color: var(--gold-soft); margin: 0 0 3mm; }
+  .small { font-size: 9.5pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">PLATFORM INVESTMENT</div>
+  <h1>An app that<br/>grows the practice.</h1>
+  <div class="deck-tagline">A right-sized partnership for launch —<br/>mobile app + admin Studio, ready as one.</div>
+  <div class="meta">
+    <strong>Prepared for</strong> &nbsp;·&nbsp; The Moon Juice team<br/>
+    <strong>Scope</strong> &nbsp;·&nbsp; Mobile platform + The Studio (web admin portal) — hosting, AI with compliance guardrails, releases, monitoring, on-call, OS-required maintenance<br/>
+    <strong>Excluded</strong> &nbsp;·&nbsp; One-time build (separate). Payment processing, shipping, taxes, Rx interaction database licensing — passthrough at cost.
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE PHILOSOPHY</div>
+  <h2>Right-sized for launch. Designed for a regulated category.</h2>
+  <p>Wellness apps grow until the FDA or FTC notices. We've built compliance into the architecture from day one — so the brand grows safely past Sephora into Whole Foods, Target, EU. Our recommendation balances a strong middle tier today with a contractually-locked path to Enterprise the moment scale requires it.</p>
+  <div class="rule"></div>
+
+  <div class="grid3">
+    <div class="card"><h4>Predictable</h4><p>A flat monthly fee for everything in the launch scope. No surprises during Year 1.</p></div>
+    <div class="card"><h4>Compliant</h4><p>Every customer-facing claim cited and editor-approved. AI never invents science.</p></div>
+    <div class="card"><h4>Honest</h4><p>If something is genuinely included, we say so. If something is passthrough or scoped separately, we say that too.</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE RECOMMENDATION</div>
+  <h2>Growth tier + Studio add-on — $4,250 / month — for Year 1.</h2>
+
+  <div class="grid3">
+    <div class="card">
+      <div class="lbl">MOBILE TIER</div>
+      <div class="big">Growth</div>
+      <p style="margin-bottom:3mm"><strong style="color:var(--ink);font-size:11pt">$3,500 / mo</strong></p>
+      <p>Both stores via React Native. Claude-powered AI with strict compliance guardrails. RevenueCat. Apple + Google sign-in. ASO quarterly. Two releases a month. Shared Slack with 4-hour response.</p>
+    </div>
+    <div class="card">
+      <div class="lbl">ADMIN PORTAL</div>
+      <div class="big">The Studio</div>
+      <p style="margin-bottom:3mm"><strong style="color:var(--ink);font-size:11pt">$750 / mo</strong></p>
+      <p>Apothecary editor with citation manager, adaptogen library, compliance review queue, ritual library, refill ops dashboard, concierge inbox, analytics.</p>
+    </div>
+    <div class="card">
+      <div class="lbl">FUTURE TIER</div>
+      <div class="big">Enterprise</div>
+      <p style="margin-bottom:3mm"><strong style="color:var(--ink);font-size:11pt">from $8,000 / mo</strong></p>
+      <p>Practitioner B2B portal. Health-data integration (Apple Health, cycle data). EU GDPR data residency. Native AR. SSO + audit logging + RLS hardening. 24/7 SLA. Studio folds in.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE STUDIO — WHAT'S INSIDE</div>
+  <h2>The internal twin of the mobile app — and the brand's compliance backbone.</h2>
+  <p class="lede">Catalog and orders stay in Shopify. The Studio owns the Apothecary, the citation library, the compliance review queue, the refill ops dashboard. The AI proposes; humans approve.</p>
+
+  <table>
+    <thead><tr><th>Module</th><th>What your team does with it</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Apothecary editor + citation manager</strong></td><td>Author per-product passports with adaptogen sourcing, dosing, evidence links. Every claim citation-backed.</td></tr>
+      <tr><td><strong>Adaptogen library</strong></td><td>Per-adaptogen reference with peer-reviewed citations and contraindications.</td></tr>
+      <tr><td><strong>Compliance review queue</strong></td><td>Catches FDA / FTC sensitive language before publish. AI pre-screens; you approve.</td></tr>
+      <tr><td><strong>Ritual library</strong></td><td>Morning / midday / evening cards with audio narration. Multilingual.</td></tr>
+      <tr><td><strong>Goal-stack rules engine</strong></td><td>Staff-curated rules, AI-augmented. Editors define what "calm + brain" recommends.</td></tr>
+      <tr><td><strong>Refill ops dashboard</strong></td><td>At-risk subscriptions, smart refill predictions, bottle returns + credit.</td></tr>
+      <tr><td><strong>Concierge inbox</strong></td><td>Apothecary chat escalations, Rx-interaction queries, refill questions, practitioner enquiries.</td></tr>
+      <tr><td><strong>Analytics dashboards</strong></td><td>Ritual completion, stack adoption, refill churn, compliance flags caught pre-publish.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT THIS LOOKS LIKE</div>
+  <h2>At every stage of growth.</h2>
+
+  <table>
+    <thead><tr><th>Stage</th><th class="num">Monthly active users</th><th class="num">Monthly platform fee</th><th class="num">Per active user</th></tr></thead>
+    <tbody>
+      <tr><td>Pilot</td><td class="num">2,000</td><td class="num">$4,250</td><td class="num">$2.13</td></tr>
+      <tr class="highlight"><td>Launch</td><td class="num">10,000</td><td class="num">$4,250</td><td class="num">$0.43</td></tr>
+      <tr><td>Early growth</td><td class="num">25,000</td><td class="num">$4,250</td><td class="num">$0.17</td></tr>
+      <tr><td>Established</td><td class="num">50,000</td><td class="num">$4,250</td><td class="num">$0.09</td></tr>
+      <tr><td>Strong adoption</td><td class="num">100,000</td><td class="num">$4,250</td><td class="num">$0.04</td></tr>
+    </tbody>
+  </table>
+
+  <p class="small">Combined fee covers mobile platform + Studio at every stage. AI overage above 100K calls/month billed at cost +20%. Rx interaction database license passthrough at cost.</p>
+</div>
+
+<div class="section">
+  <div class="eyebrow">YEAR 2 — THE UPGRADE PATH</div>
+  <h2>When Moon Juice is ready, Enterprise is one decision away.</h2>
+
+  <table>
+    <thead><tr><th>Trigger</th><th>What Enterprise unlocks</th></tr></thead>
+    <tbody>
+      <tr><td>Launching <strong>practitioner B2B portal</strong></td><td>SSO, audit logging, role-based access — required for naturopath / coach client tracking.</td></tr>
+      <tr><td>Adding <strong>health-data integration</strong> (Apple Health, cycle data)</td><td>HIPAA-adjacent / CCPA-CMIA audit logging.</td></tr>
+      <tr><td>EU expansion makes <strong>data residency</strong> contractual</td><td>EU storage and processing for GDPR special-category data.</td></tr>
+      <tr><td>Launching <strong>AR ritual visualization</strong></td><td>Native Swift / Kotlin modules for stable on-counter AR.</td></tr>
+      <tr><td>Major retail partner requires <strong>24/7 / 1h SLA</strong></td><td>Dedicated lead engineer + PM, on-call rotation.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <div class="lbl">What we lock in your Year 1 contract</div>
+    <p>The Enterprise upgrade fee is set in advance, with no penalty for moving up. Any build credit accrued during Year 1 is prorated against the Enterprise tier. You decide when you're ready.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">FAIR TERMS</div>
+  <h2>Three commitments to keep the relationship healthy.</h2>
+
+  <div class="grid3">
+    <div class="card"><h4>30-day exit</h4><p>Either side can end on 30 days' notice after the Year 1 term.</p></div>
+    <div class="card"><h4>Your data, your accounts</h4><p>Source code, customer data, AI logs, the Apothecary citation library all live in your cloud accounts.</p></div>
+    <div class="card"><h4>AI overage cap</h4><p>If AI usage spikes beyond 100,000 calls per month, anything above is billed at our cost +20%.</p></div>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Brand-side legal review</div>
+    <p>Every customer-facing adaptogen, dosing, or interaction claim reviewed and approved by your legal team before publish. AI generates; humans approve. Always. We never let the platform put your FDA / FTC posture at risk.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Rx interaction database</div>
+    <p>We license a commercial interaction database (or use RxNorm where viable). License fee passed through at cost. We don't mark up regulatory infrastructure.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT'S NOT INCLUDED</div>
+  <h2>Passed through at cost or scoped separately.</h2>
+  <ul class="clean">
+    <li><strong>App-store fees</strong> — Apple's $99/yr and Google's $25 one-time, on your accounts.</li>
+    <li><strong>Payment processing</strong> — Shopify and Stripe fees on transactions, at standard rates.</li>
+    <li><strong>Rx interaction database license</strong> — pass-through at cost.</li>
+    <li><strong>Ritual audio production</strong> — Amanda + practitioner voice recordings are yours to produce.</li>
+    <li><strong>Editorial / journal production</strong> — long-form content is yours.</li>
+    <li><strong>Phase 2 &amp; Phase 3 build work</strong> — practitioner portal, AR, content scaling all scoped separately.</li>
+    <li><strong>Marketing &amp; ad spend</strong> — entirely yours to direct.</li>
+  </ul>
+</div>
+
+<div class="closing">
+  <div class="lbl">THE OFFER</div>
+  <h3>Growth + Studio · $4,250 / month for Year 1. Pre-negotiated Enterprise upgrade folds Studio in. Brand-side legal review on every customer-facing claim. AI overage at cost +20%. Rx interaction database at cost. 30-day exit after Year 1.</h3>
+  <p>Right-sized for the launch. Right path for the success scenario. Built so the platform stays in service of the practice — and inside the lines of the regulators.</p>
+</div>
+
+</body>
+</html>

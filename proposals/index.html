@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SEYSO · Proposals</title>
+<style>
+  :root {
+    --bg: #faf7f1;
+    --ink: #1a1a1a;
+    --muted: #6b665c;
+    --line: #e6e0d4;
+    --card: #ffffff;
+    --accent: #2a3a44;
+    --deep: #14202a;
+    --soft: #d8e0e4;
+    --gold: #c9a85e;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 56px 28px 80px; }
+
+  .eyebrow {
+    color: var(--accent); font-weight: 700;
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400; font-size: 60px;
+    line-height: 1.05; letter-spacing: -1px;
+    margin: 0 0 12px;
+  }
+  .lede {
+    font-family: "Times New Roman", Georgia, serif;
+    color: var(--accent); font-size: 22px; line-height: 1.35;
+    margin: 0 0 28px; max-width: 760px;
+  }
+  .summary {
+    color: var(--ink); font-size: 15px; line-height: 1.65;
+    margin: 0 0 38px; max-width: 720px;
+  }
+  .summary strong { color: var(--accent); }
+
+  h2 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400; font-size: 22px;
+    margin: 0 0 6px;
+  }
+  .intro {
+    color: var(--muted); font-size: 14px;
+    margin: 0 0 28px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+
+  .brand-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    text-decoration: none; color: var(--ink);
+    transition: all .15s ease;
+    display: grid;
+    grid-template-columns: 8px 1fr;
+  }
+  .brand-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0,0,0,.06);
+  }
+  .brand-card .stripe { background: var(--card-accent); }
+  .brand-card .body { padding: 22px 24px; }
+  .brand-card .label {
+    color: var(--muted); font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .brand-card .name {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400; font-size: 24px;
+    margin: 0 0 6px;
+  }
+  .brand-card .tag {
+    color: var(--card-accent); font-size: 13px;
+    font-style: italic; margin-bottom: 10px;
+    line-height: 1.35;
+  }
+  .brand-card .desc {
+    color: var(--muted); font-size: 13px; line-height: 1.5;
+  }
+
+  .closing {
+    background: var(--deep); color: #fff;
+    border-radius: 14px; padding: 36px 32px;
+    margin-bottom: 36px;
+  }
+  .closing .lbl {
+    color: var(--gold); font-size: 11px;
+    font-weight: 700; letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .closing h3 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400; font-size: 28px;
+    margin: 0 0 14px;
+  }
+  .closing p {
+    color: var(--soft); margin: 0 0 16px;
+    font-size: 14px; line-height: 1.55;
+  }
+  .closing a.cta {
+    display: inline-block;
+    background: var(--gold); color: var(--deep);
+    text-decoration: none;
+    padding: 10px 18px; border-radius: 999px;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+  }
+
+  footer {
+    color: var(--muted); font-size: 11px;
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="eyebrow">MOBILE-AS-A-SERVICE · PROPOSAL ARCHIVE</div>
+    <h1>Proposals.</h1>
+    <p class="lede">Brand-tailored mobile + admin Studio proposals,<br/>delivered under the SEYSO MaaS subscription model.</p>
+    <p class="summary">
+      Each proposal contains a 23-slide pitch deck, an interactive
+      mobile-app mockup, an admin Studio mockup, and a platform
+      investment one-pager. <strong>Built for the brand</strong> — the
+      voice, the palette, the operational reality each one operates
+      in. Browse below.
+    </p>
+
+    <h2>Brands</h2>
+    <p class="intro">Apparel · accessories · activewear · skincare · wellness</p>
+
+    <div class="grid">
+      <a class="brand-card" href="erth-to-erth-mobile-app/landing.html" style="--card-accent: #2f4a36; --card-muted: #6b665c;">
+        <div class="stripe"></div>
+        <div class="body">
+          <div class="label">Sustainable apparel · circular fashion</div>
+          <div class="name">Erth to Erth</div>
+          <div class="tag">Clothes that come back to the earth — and to the people who wear them.</div>
+          <div class="desc">A circular-wardrobe companion. The mobile app stewards the garments your customers already own — passport, repair, resale, recycle — and turns each piece into a…</div>
+        </div>
+      </a>
+      <a class="brand-card" href="pineda-covalin-mobile-app/landing.html" style="--card-accent: #a02747; --card-muted: #8a7866;">
+        <div class="stripe"></div>
+        <div class="body">
+          <div class="label">Luxury silk accessories · cultural craft</div>
+          <div class="name">Pineda Covalín</div>
+          <div class="tag">El alma de México, en el bolsillo de cada cliente.</div>
+          <div class="desc">A pocket museum, a luxury gift concierge, and a traveler's companion for the Mexican luxury silk house. Every piece carries its cultural passport. Every gift be…</div>
+        </div>
+      </a>
+      <a class="brand-card" href="titika-active-mobile-app/landing.html" style="--card-accent: #c43e54; --card-muted: #777777;">
+        <div class="stripe"></div>
+        <div class="body">
+          <div class="label">Premium athleisure · multi-region</div>
+          <div class="name">Titika Active</div>
+          <div class="tag">VERSATILE. ACTIVE. LIFE.</div>
+          <div class="desc">A daily companion to a versatile life — gym, yoga, brunch, errands. Built around what Titika already does well: the Closet's three-ways styling, the Practice li…</div>
+        </div>
+      </a>
+      <a class="brand-card" href="kotn-mobile-app/landing.html" style="--card-accent: #2f5a78; --card-muted: #7a7569;">
+        <div class="stripe"></div>
+        <div class="body">
+          <div class="label">Direct-trade Egyptian cotton · B Corp essentials</div>
+          <div class="name">Kotn</div>
+          <div class="tag">From the Nile, to your wardrobe.</div>
+          <div class="desc">A thread between the customer and the people who made what she wears — the farms in Fayoum, the women's sewing collective in Cairo, the schools built with last …</div>
+        </div>
+      </a>
+      <a class="brand-card" href="encircled-mobile-app/landing.html" style="--card-accent: #5d6e54; --card-muted: #888379;">
+        <div class="stripe"></div>
+        <div class="body">
+          <div class="label">Multi-way slow-fashion · B Corp · Toronto</div>
+          <div class="name">Encircled</div>
+          <div class="tag">Fewer pieces. More ways to wear them.</div>
+          <div class="desc">A transformation engine for a slow-fashion brand. The Chrysalis Cardi has eight documented styles; most owners use three. The app teaches the rest, builds capsu…</div>
+        </div>
+      </a>
+      <a class="brand-card" href="moon-juice-mobile-app/landing.html" style="--card-accent: #8b6fbf; --card-muted: #8b8194;">
+        <div class="stripe"></div>
+        <div class="body">
+          <div class="label">Adaptogens · supplements · clean beauty</div>
+          <div class="name">Moon Juice</div>
+          <div class="tag">Your daily ritual, guided.</div>
+          <div class="desc">An adaptogen coach in your customer's pocket. The Apothecary explains every Moon Dust with sourcing and citations. The Goals → Stack flow ends the "which Moon D…</div>
+        </div>
+      </a>
+      <a class="brand-card" href="cocokind-mobile-app/landing.html" style="--card-accent: #6e8b6a; --card-muted: #8a9085;">
+        <div class="stripe"></div>
+        <div class="body">
+          <div class="label">Clean skincare · radical transparency</div>
+          <div class="name">Cocokind</div>
+          <div class="tag">Skincare you can read in full.</div>
+          <div class="desc">A transparency engine for the brand that pioneered Sustainability Facts labels. Per-product Facts, citation-linked ingredients, and routine guidance from the ex…</div>
+        </div>
+      </a>
+      <a class="brand-card" href="free-label-mobile-app/landing.html" style="--card-accent: #c08f7a; --card-muted: #8a7e72;">
+        <div class="stripe"></div>
+        <div class="body">
+          <div class="label">Wire-free bras · size-inclusive · slow fashion</div>
+          <div class="name">Free Label</div>
+          <div class="tag">The bra that finally fits.</div>
+          <div class="desc">A fit engine for the Vancouver brand making wire-free, elastic-free, bamboo bras sized A to L cup and up to 5X. The Fit Finder ends the under-sizing first try. …</div>
+        </div>
+      </a>
+      <a class="brand-card" href="unika-swim-mobile-app/landing.html" style="--card-accent: #d8704a; --card-muted: #8a857a;">
+        <div class="stripe"></div>
+        <div class="body">
+          <div class="label">Custom swimwear · ECONYL® · sensitive-fit aware</div>
+          <div class="name">Ūnika Swim</div>
+          <div class="tag">Made for the body you're in.</div>
+          <div class="desc">An Atelier-from-couch app for the Toronto custom-swim brand founded by Betsy Campos. Browse ECONYL® fabrics, draft your design, book the Yorkville appointment. …</div>
+        </div>
+      </a>
+      <a class="brand-card" href="the-ten-spot-mobile-app/landing.html" style="--card-accent: #e85a8c; --card-muted: #8a8485;">
+        <div class="stripe"></div>
+        <div class="body">
+          <div class="label">Beauty bar · 33+ location franchise · booking</div>
+          <div class="name">The Ten Spot</div>
+          <div class="tag">Book the spot. Skip the spa.</div>
+          <div class="desc">A multi-location booking + relationship engine for North America's largest anti-spa beauty-bar franchise. 33+ locations, recurring 4-week cadence, technician re…</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="closing">
+      <div class="lbl">NEW PROPOSAL?</div>
+      <h3>We tailor a full pack in two weeks.</h3>
+      <p>Six pillars, mobile + Studio mockups, pitch deck, pricing, and a deliverability-tuned outreach email — for any brand whose customer relationship is worth deepening.</p>
+      <a class="cta" href="mailto:hello@seysoservices.com?subject=New%20MaaS%20proposal">Start a proposal</a>
+    </div>
+
+    <footer>
+      <span>SEYSO · Mobile-as-a-Service</span>
+      <a href="https://seysoservices.com">seysoservices.com</a>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Titika Active — App Mockups</title>
+<style>
+  :root {
+    --bg: #f6f4f0;
+    --ink: #1a1a1a;
+    --muted: #777;
+    --line: #e6e3dd;
+    --card: #ffffff;
+    --accent: #c43e54;          /* signature couture wine-rose */
+    --accent-deep: #8a2236;
+    --accent-soft: #f8e0e4;
+    --gold: #d4a85a;
+    --teal: #2d6e7e;
+    --pink: #ef6f8b;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 500; font-size: 38px; margin: 0 0 4px;
+    letter-spacing: -0.5px; color: var(--accent);
+  }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 32px 24px; padding: 16px 32px 64px; max-width: 1400px; margin: 0 auto;
+  }
+  .phone {
+    background: #1a1a1a; border-radius: 44px; padding: 12px;
+    box-shadow: 0 24px 48px rgba(138, 34, 54, .14), 0 2px 8px rgba(0,0,0,.06);
+    width: 310px; justify-self: center;
+  }
+  .screen {
+    background: var(--card); border-radius: 32px;
+    overflow: hidden; height: 620px;
+    display: flex; flex-direction: column; position: relative;
+  }
+  .notch {
+    position: absolute; top: 8px; left: 50%;
+    transform: translateX(-50%); width: 110px; height: 22px;
+    background: #1a1a1a; border-radius: 0 0 14px 14px; z-index: 5;
+  }
+  .statusbar {
+    height: 38px; display: flex; justify-content: space-between;
+    align-items: flex-end; padding: 0 22px 4px;
+    font-size: 12px; font-weight: 600; color: var(--ink);
+  }
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 18px 12px; border-bottom: 1px solid var(--line);
+  }
+  .topbar h2 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400; font-size: 14px; margin: 0;
+    letter-spacing: 3px; color: var(--ink);
+  }
+  .icon-btn {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--bg); display: grid; place-items: center;
+    font-size: 14px; color: var(--ink);
+  }
+  .body { flex: 1; overflow: hidden; padding: 14px 18px; }
+  .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+  .h {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 22px; margin: 6px 0 14px; line-height: 1.15;
+  }
+  .pill {
+    display: inline-block; padding: 4px 10px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent);
+    font-size: 11px; font-weight: 600;
+  }
+  .pill.gold { background: #f5e8c8; color: #8a6e2a; }
+  .pill.teal { background: #d6e4e6; color: var(--teal); }
+  .pill.dark { background: var(--ink); color: #fff; }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  .muted { color: var(--muted); font-size: 12px; }
+  .btn {
+    display: block; text-align: center; background: var(--accent);
+    color: #fff; padding: 12px 14px; border-radius: 14px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+  }
+  .btn.alt { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
+  .btn.dark { background: var(--ink); color: #fff; }
+  .tabbar {
+    border-top: 1px solid var(--line); display: grid;
+    grid-template-columns: repeat(5, 1fr); padding: 8px 4px 14px; background: #fff;
+  }
+  .tab {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    font-size: 10px; color: var(--muted);
+  }
+  .tab.active { color: var(--accent); }
+  .tab .dot {
+    width: 22px; height: 22px; border-radius: 6px;
+    background: var(--bg); display: grid; place-items: center; font-size: 12px;
+  }
+  .tab.active .dot { background: var(--accent-soft); }
+  .caption {
+    text-align: center; margin: 12px 0 0; font-size: 12px;
+    color: var(--muted); font-weight: 600; letter-spacing: 0.4px;
+  }
+
+  /* Onboarding */
+  .onb {
+    background: linear-gradient(180deg, #c43e54 0%, #8a2236 60%, #1a1a1a 100%);
+    color: #fff; flex: 1; padding: 60px 24px 24px;
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+  }
+  .onb::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 14% 22%, rgba(212,168,90,.18) 0 22px, transparent 23px),
+      radial-gradient(circle at 80% 14%, rgba(255,255,255,.08) 0 30px, transparent 31px),
+      radial-gradient(circle at 22% 78%, rgba(212,168,90,.12) 0 18px, transparent 19px);
+    pointer-events: none;
+  }
+  .onb .logo {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 16px; letter-spacing: 5px; position: relative;
+  }
+  .onb h3 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400; font-size: 28px; line-height: 1.15;
+    margin: auto 0 12px; position: relative;
+  }
+  .onb .versatile {
+    font-size: 11px; letter-spacing: 4px; opacity: .75;
+    position: relative; margin-bottom: 12px;
+  }
+  .onb p { font-size: 13px; opacity: .9; margin: 0 0 20px; position: relative; }
+  .lang-row {
+    display: flex; gap: 6px; margin-bottom: 14px;
+    position: relative; flex-wrap: wrap;
+  }
+  .lang-row span {
+    padding: 4px 10px; border-radius: 999px;
+    background: rgba(255,255,255,.15);
+    font-size: 11px; font-weight: 600;
+  }
+  .lang-row span.on { background: var(--gold); color: #1a1a1a; }
+
+  /* Home */
+  .practice-hero {
+    background: linear-gradient(135deg, #1a1a1a, #c43e54);
+    border-radius: 14px; padding: 14px;
+    color: #fff; margin-bottom: 14px;
+    position: relative; overflow: hidden;
+  }
+  .practice-hero::after {
+    content: ""; position: absolute; right: -20px; bottom: -20px;
+    width: 120px; height: 120px;
+    border: 2px solid rgba(212,168,90,.25);
+    border-radius: 50%;
+  }
+  .practice-hero .tag { font-size: 10px; letter-spacing: 2.5px; }
+  .practice-hero h3 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400; font-size: 22px; line-height: 1.1;
+    margin: 6px 0 8px;
+  }
+  .practice-hero .meta { display: flex; gap: 8px; font-size: 11px; opacity: .85; }
+  .hgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card {
+    border: 1px solid var(--line); border-radius: 12px;
+    padding: 10px; font-size: 12px; background: #fff;
+  }
+  .card .swatch { height: 70px; border-radius: 8px; margin-bottom: 8px; }
+
+  /* Practice library */
+  .session-row {
+    display: grid; grid-template-columns: 56px 1fr auto;
+    gap: 12px; padding: 10px 0;
+    border-bottom: 1px dashed var(--line); align-items: center;
+  }
+  .session-row:last-child { border: none; }
+  .session-row .thumb {
+    width: 56px; height: 56px; border-radius: 8px;
+    background: linear-gradient(135deg, #c43e54, #1a1a1a);
+    display: grid; place-items: center;
+    color: #fff; font-size: 18px;
+  }
+  .session-row .thumb.gold { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .session-row .thumb.teal { background: linear-gradient(135deg, var(--teal), #1a4148); }
+  .session-row .info strong { display: block; font-size: 13px; }
+  .session-row .info span { color: var(--muted); font-size: 11px; }
+  .session-row .min { color: var(--accent); font-size: 11px; font-weight: 700; }
+
+  /* Closet */
+  .three-ways {
+    background: var(--ink); border-radius: 14px;
+    padding: 14px; margin-bottom: 14px; color: #fff;
+    position: relative;
+  }
+  .three-ways .lbl { font-size: 10px; letter-spacing: 2.5px; opacity: .7; margin-bottom: 8px; }
+  .three-ways h3 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 18px; margin: 0 0 6px;
+  }
+  .three-ways .ways {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px; margin-top: 12px;
+  }
+  .three-ways .way {
+    height: 60px; border-radius: 8px;
+    display: flex; align-items: flex-end;
+    padding: 6px;
+    font-size: 10px; font-weight: 700;
+    color: #fff;
+  }
+  .way.studio { background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+  .way.street { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .way.sunday { background: linear-gradient(135deg, var(--teal), #1a4148); }
+  .closet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .piece {
+    border: 1px solid var(--line); border-radius: 12px;
+    overflow: hidden; background: #fff;
+  }
+  .piece .sw { height: 100px; }
+  .piece .info { padding: 8px; font-size: 12px; }
+  .piece .info span { color: var(--muted); font-size: 11px; }
+
+  /* PDP */
+  .pdp-img {
+    height: 220px; border-radius: 14px;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,.15) 0 8%, transparent 9%),
+      linear-gradient(135deg, #c43e54, #1a1a1a);
+    margin-bottom: 12px; position: relative;
+  }
+  .pdp-img .qr {
+    position: absolute; bottom: 10px; right: 10px;
+    width: 34px; height: 34px;
+    background: #fff; border-radius: 6px;
+    display: grid; place-items: center; font-size: 18px;
+  }
+  .meta-row { display: flex; gap: 6px; margin: 6px 0 12px; flex-wrap: wrap; }
+
+  /* Fit chat */
+  .chat { flex: 1; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+  .bubble {
+    max-width: 80%; padding: 10px 12px; border-radius: 14px;
+    font-size: 12px; line-height: 1.4;
+  }
+  .bubble.me { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+  .bubble.bot { align-self: flex-start; background: var(--bg); color: var(--ink); border-bottom-left-radius: 4px; }
+  .bubble small { display: block; color: var(--muted); margin-top: 4px; font-size: 10px; }
+  .input {
+    margin-top: auto; border: 1px solid var(--line);
+    border-radius: 999px; padding: 10px 14px;
+    font-size: 12px; color: var(--muted);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .input .upload {
+    background: var(--accent-soft); color: var(--accent);
+    padding: 3px 8px; border-radius: 999px;
+    font-size: 10px; font-weight: 700;
+  }
+
+  /* Tribe */
+  .meetup-card {
+    background: linear-gradient(135deg, var(--teal), #1a4148);
+    color: #fff; border-radius: 14px; padding: 14px;
+    margin-bottom: 12px;
+  }
+  .meetup-card .when { font-size: 10px; letter-spacing: 2px; opacity: .85; }
+  .meetup-card .where {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 18px; margin-top: 4px;
+  }
+  .meetup-card .meta {
+    display: flex; gap: 8px; margin-top: 8px;
+    font-size: 11px; opacity: .85;
+  }
+  .look {
+    display: grid; grid-template-columns: 56px 1fr auto;
+    gap: 10px; padding: 8px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .look:last-child { border: none; }
+  .look .av {
+    width: 56px; height: 56px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--pink), var(--accent-deep));
+  }
+  .look .info { font-size: 12px; }
+  .look .info strong { display: block; }
+  .look .info span { color: var(--muted); font-size: 11px; }
+
+  /* Rewards */
+  .tier-card {
+    background: linear-gradient(135deg, var(--ink), var(--accent-deep));
+    color: #fff; border-radius: 16px;
+    padding: 16px; margin-bottom: 14px;
+    position: relative; overflow: hidden;
+  }
+  .tier-card::after {
+    content: ""; position: absolute; right: -20px; top: -20px;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, rgba(212,168,90,.3) 0 35%, transparent 36%);
+  }
+  .tier-card .balance {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 36px; line-height: 1;
+  }
+  .miles-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,.12); padding: 5px 10px;
+    border-radius: 999px; font-size: 10px; font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .reward-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px;
+  }
+  .reward-item:last-child { border: 0; }
+
+  /* Profile */
+  .avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink), var(--accent-deep));
+    margin: 0 auto 8px;
+  }
+  .menu-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>Titika Active — App Mockups</h1>
+  <p>Phase 1 + Phase 2 preview. Open in any browser. Wireframe fidelity, not final visual design.</p>
+</header>
+
+<div class="grid">
+
+  <!-- 1. Onboarding -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="onb">
+        <div class="logo">TITIKA · ACTIVE</div>
+        <div class="versatile" style="margin-top:8px">VERSATILE  ·  ACTIVE  ·  LIFE</div>
+        <h3>Activewear that flexes between studio, street, and Sunday.</h3>
+        <p>Designed in Canada. Made for everywhere.</p>
+        <div class="lang-row">
+          <span class="on">EN</span><span>繁中</span><span>简中</span>
+          <span>JP</span><span>KR</span><span>FR</span>
+        </div>
+        <div class="btn dark">Continue with Apple</div>
+        <div style="height:8px"></div>
+        <div class="btn alt" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.4)">Sign in with email</div>
+      </div>
+    </div></div>
+    <div class="caption">1 · Onboarding · 6 languages</div>
+  </div>
+
+  <!-- 2. Home -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>TITIKA · ACTIVE</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="practice-hero">
+          <div class="tag">TODAY · LOW ENERGY</div>
+          <h3>20-min restorative<br/>flow.</h3>
+          <div class="meta"><span>Yoga · Mei</span><span>20 min</span><span>Audio-only</span></div>
+        </div>
+        <div class="row" style="margin-bottom:8px">
+          <div class="label">New drop · for you</div>
+          <div class="muted">See all →</div>
+        </div>
+        <div class="hgrid">
+          <div class="card">
+            <div class="swatch" style="background:linear-gradient(135deg,#c43e54,#1a1a1a)"></div>
+            <div>Couture Legging</div>
+            <div class="muted">CA$118</div>
+          </div>
+          <div class="card">
+            <div class="swatch" style="background:linear-gradient(135deg,#d4a85a,#8a6e2a)"></div>
+            <div>Soft Bra · Gold</div>
+            <div class="muted">CA$72</div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">▶</div><span>Practice</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">2 · Home · today's practice + drops</div>
+  </div>
+
+  <!-- 3. Practice library -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>THE PRACTICE</h2>
+        <div class="icon-btn">⌕</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="meta-row">
+          <span class="pill dark">All</span>
+          <span class="pill">Yoga</span>
+          <span class="pill">Mobility</span>
+          <span class="pill teal">Strength</span>
+          <span class="pill gold">Walks</span>
+        </div>
+        <div class="row" style="margin-bottom:6px">
+          <div class="label">10 minutes</div>
+        </div>
+        <div class="session-row">
+          <div class="thumb">▶</div>
+          <div class="info"><strong>Morning spine</strong><span>Yoga · Mei · audio + video</span></div>
+          <div class="min">10 min</div>
+        </div>
+        <div class="session-row">
+          <div class="thumb teal">▶</div>
+          <div class="info"><strong>Desk reset</strong><span>Mobility · Lin · video</span></div>
+          <div class="min">10 min</div>
+        </div>
+        <div class="row" style="margin: 10px 0 6px">
+          <div class="label">20 minutes</div>
+        </div>
+        <div class="session-row">
+          <div class="thumb">▶</div>
+          <div class="info"><strong>Restorative flow</strong><span>Yoga · Mei · audio-only</span></div>
+          <div class="min">20 min</div>
+        </div>
+        <div class="session-row">
+          <div class="thumb gold">▶</div>
+          <div class="info"><strong>Just-walking · sunset</strong><span>Walk · Aria · audio</span></div>
+          <div class="min">25 min</div>
+        </div>
+        <div class="session-row">
+          <div class="thumb teal">▶</div>
+          <div class="info"><strong>Strong glutes</strong><span>Strength · Kira · video</span></div>
+          <div class="min">22 min</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">3 · The Practice · session library</div>
+  </div>
+
+  <!-- 4. Closet -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>MY CLOSET</h2>
+        <div class="icon-btn">+</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="three-ways">
+          <div class="lbl">FEATURED PIECE · WEAR IT 3 WAYS</div>
+          <h3>Couture Legging · Black</h3>
+          <div style="font-size:11px;opacity:.85">Same piece. Studio · Street · Sunday.</div>
+          <div class="ways">
+            <div class="way studio"><span>STUDIO</span></div>
+            <div class="way street"><span>STREET</span></div>
+            <div class="way sunday"><span>SUNDAY</span></div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:8px">
+          <div class="muted">14 pieces · 3 collections</div>
+          <div class="pill">All</div>
+        </div>
+        <div class="closet-grid">
+          <div class="piece">
+            <div class="sw" style="background:linear-gradient(135deg,#c43e54,#8a2236)"></div>
+            <div class="info"><strong>Couture Legging</strong><span>worn 22×</span></div>
+          </div>
+          <div class="piece">
+            <div class="sw" style="background:linear-gradient(135deg,#d4a85a,#8a6e2a)"></div>
+            <div class="info"><strong>Soft Bra · Gold</strong><span>worn 14×</span></div>
+          </div>
+          <div class="piece">
+            <div class="sw" style="background:linear-gradient(135deg,#2d6e7e,#1a4148)"></div>
+            <div class="info"><strong>Cropped Tank</strong><span>worn 9×</span></div>
+          </div>
+          <div class="piece">
+            <div class="sw" style="background:linear-gradient(180deg,#1a1a1a,#3a3a3a)"></div>
+            <div class="info"><strong>Black Series Tee</strong><span>worn 31×</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">▶</div><span>Practice</span></div>
+        <div class="tab active"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">4 · Closet · "wear it three ways"</div>
+  </div>
+
+  <!-- 5. PDP -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>COUTURE LEGGING</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="pdp-img"><div class="qr">⊡</div></div>
+        <div class="row">
+          <div>
+            <div class="h" style="margin:0">Couture Legging · Black</div>
+            <div class="muted">Active series · 25" · high rise</div>
+          </div>
+          <div style="font-family:Georgia,serif;font-size:18px;color:var(--accent)">CA$118</div>
+        </div>
+        <div class="meta-row">
+          <span class="pill">High rise · 25"</span>
+          <span class="pill teal">Cool-touch</span>
+          <span class="pill gold">Runs true</span>
+        </div>
+        <div class="btn">Add to bag</div>
+        <div style="height:8px"></div>
+        <div class="btn alt">Ask the Fit Atelier ✦</div>
+      </div>
+    </div></div>
+    <div class="caption">5 · Product · fit pills + ask AI</div>
+  </div>
+
+  <!-- 6. Fit Atelier chat -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>FIT ATELIER ✦</h2>
+        <div class="icon-btn">⋯</div>
+      </div>
+      <div class="body">
+        <div class="chat">
+          <div class="bubble bot">Hi Priya — looking at the Couture Legging? Want help finding your size?</div>
+          <div class="bubble me">Yeah. I'm 5'4", usually a 6 in Lululemon Align.</div>
+          <div class="bubble bot">In Couture I'd go with <b>S</b>. The waistband is firmer than Align — true to size, not compressive. Inseam 25" hits just above ankle on you.<small>Sourced from your past orders + brand fit chart</small></div>
+          <div class="bubble me">Will it pill?</div>
+          <div class="bubble bot">No — cool-touch nylon/elastane blend, low pill. Wash inside-out, no fabric softener.</div>
+          <div class="input">
+            <span>Ask about fit, fabric, returns…</span>
+            <span class="upload">📷 Try a fit photo</span>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">6 · Fit Atelier · multilingual AI</div>
+  </div>
+
+  <!-- 7. Tribe -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>THE TRIBE</h2>
+        <div class="icon-btn">+</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="meetup-card">
+          <div class="when">SAT · 9 MAY · 8:00 AM</div>
+          <div class="where">Park yoga · Mei</div>
+          <div class="meta"><span>Trinity Bellwoods, Toronto</span><span>·</span><span>14 going</span></div>
+        </div>
+        <div class="row" style="margin-bottom:8px">
+          <div class="label">Fit looks · this week</div>
+          <div class="muted">See all →</div>
+        </div>
+        <div class="look">
+          <div class="av"></div>
+          <div class="info">
+            <strong>@aria.s · Toronto</strong>
+            <span>Couture Legging × Black Series Tee — Sunday brunch</span>
+          </div>
+          <div style="color:var(--accent);font-size:11px;font-weight:700">♡ 142</div>
+        </div>
+        <div class="look">
+          <div class="av" style="background:linear-gradient(135deg,var(--gold),var(--accent-deep))"></div>
+          <div class="info">
+            <strong>@kira.h · Hong Kong</strong>
+            <span>Soft Bra Gold × Cropped Tank — Pure Yoga, Central</span>
+          </div>
+          <div style="color:var(--accent);font-size:11px;font-weight:700">♡ 89</div>
+        </div>
+        <div class="look">
+          <div class="av" style="background:linear-gradient(135deg,var(--teal),#1a4148)"></div>
+          <div class="info">
+            <strong>@meilin · Hong Kong</strong>
+            <span>Couture Legging — runs at Bowen Road</span>
+          </div>
+          <div style="color:var(--accent);font-size:11px;font-weight:700">♡ 64</div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">▶</div><span>Practice</span></div>
+        <div class="tab active"><div class="dot">◐</div><span>Tribe</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">7 · The Tribe · meetups + looks</div>
+  </div>
+
+  <!-- 8. Rewards / Asia Miles -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>REWARDS</h2>
+        <div class="icon-btn">?</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="tier-card">
+          <div style="font-size:11px;letter-spacing:2px;opacity:.85">TIER · COUTURE</div>
+          <div class="balance">2,840</div>
+          <div style="font-size:12px;opacity:.85">Titika points · 460 to Atelier tier</div>
+          <div style="margin-top:10px">
+            <span class="miles-pill">✈ 320 Asia Miles earned this year</span>
+          </div>
+        </div>
+        <div class="label" style="margin-bottom:6px">EARN MORE</div>
+        <div class="reward-item"><span>Complete a practice session</span><span class="pill">+10</span></div>
+        <div class="reward-item"><span>Register a piece in your closet</span><span class="pill">+50</span></div>
+        <div class="reward-item"><span>Refer a friend</span><span class="pill">+500</span></div>
+        <div class="reward-item"><span>Attend a Tribe meetup</span><span class="pill gold">+100</span></div>
+        <div style="height:10px"></div>
+        <div class="btn">Redeem rewards</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">▶</div><span>Practice</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab active"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">8 · Rewards · Titika tier + Asia Miles</div>
+  </div>
+
+  <!-- 9. Profile -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>PROFILE</h2>
+        <div class="icon-btn">⚙</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div style="text-align:center;margin-bottom:12px">
+          <div class="avatar"></div>
+          <div style="font-family:Georgia,serif;font-size:18px">Priya R.</div>
+          <div class="muted">Member since 2024 · Couture tier · Toronto</div>
+        </div>
+        <div class="label" style="margin-bottom:4px">FIT &amp; PRACTICE</div>
+        <div class="menu-item"><span>Sizes &amp; fit profile</span><span>›</span></div>
+        <div class="menu-item"><span>Practice preferences</span><span>›</span></div>
+        <div class="menu-item"><span>Motivation tags</span><span>›</span></div>
+        <div class="label" style="margin: 12px 0 4px">YOUR DATA</div>
+        <div class="menu-item"><span>Language &amp; region · EN · CA</span><span>›</span></div>
+        <div class="menu-item"><span>What we know about you</span><span>›</span></div>
+        <div class="menu-item"><span>Privacy &amp; consent</span><span>›</span></div>
+        <div class="menu-item"><span>Sign out</span><span>›</span></div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">▶</div><span>Practice</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab active"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">9 · Profile · data &amp; privacy</div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>The Ten Spot — Tier Recommendation (Internal)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 18mm 18mm 18mm;
+    @bottom-left { content: "The Ten Spot · Tier Recommendation · Internal"; font-family: Georgia, serif; font-size: 9pt; color: #8a8485; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font-family: Georgia, serif; font-size: 9pt; color: #8a8485; }
+  }
+  :root { --bg: #faf6f4; --ink: #1a1a1a; --muted: #8a8485; --line: #ebd9da; --card: #ffffff; --accent: #e85a8c; --accent-deep: #a82e60; --accent-soft: #fce0eb; --gold: #d4a85a; --gold-soft: #f3e8c7; --mint: #b5d4c4; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; font-size: 10.5pt; line-height: 1.5; }
+  .cover { page-break-after: always; padding: 30mm 0 0; }
+  .cover .eyebrow { color: var(--accent-deep); font-weight: 700; font-size: 10pt; letter-spacing: 2px; margin-bottom: 8mm; }
+  .cover h1 { font-family: Georgia, serif; font-weight: 400; font-size: 44pt; line-height: 1.05; margin: 0 0 8mm; letter-spacing: -0.5px; }
+  .cover .deck-tagline { font-family: Georgia, serif; color: var(--accent-deep); font-size: 18pt; line-height: 1.3; margin-bottom: 14mm; }
+  .cover .meta { color: var(--muted); font-size: 10pt; border-top: 1px solid var(--line); padding-top: 4mm; }
+  .cover .meta strong { color: var(--ink); }
+  h2 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; color: var(--ink); margin: 0 0 1mm; letter-spacing: -0.2px; }
+  h2 + .lede { color: var(--muted); margin: 0 0 6mm; font-size: 11pt; }
+  .section { page-break-inside: avoid; margin-bottom: 12mm; }
+  .eyebrow { color: var(--accent-deep); font-weight: 700; font-size: 9pt; letter-spacing: 2px; margin-bottom: 2mm; }
+  .rule { width: 12mm; height: 2pt; background: var(--accent); margin: 4mm 0 6mm; }
+  p { margin: 0 0 4mm; } .muted { color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 3mm 0 6mm; }
+  th, td { border-bottom: 1px solid var(--line); padding: 2.4mm 3mm; text-align: left; vertical-align: top; }
+  th { background: var(--accent-soft); color: var(--accent-deep); font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; border-bottom: 1.5pt solid var(--accent); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; } th.num { text-align: right; }
+  tr.total td { border-top: 1.5pt solid var(--accent); border-bottom: none; font-weight: 700; background: var(--accent-soft); color: var(--accent-deep); }
+  .callout { background: var(--card); border: 1px solid var(--line); border-left: 3pt solid var(--accent); padding: 4mm 5mm; margin: 4mm 0 6mm; border-radius: 1mm; }
+  .callout .lbl { font-size: 9pt; font-weight: 700; letter-spacing: 1.5px; color: var(--accent-deep); text-transform: uppercase; margin-bottom: 2mm; }
+  .callout.gold { border-left-color: var(--gold); } .callout.gold .lbl { color: #8a6e2a; }
+  .callout.warn { border-left-color: var(--ink); } .callout.warn .lbl { color: var(--ink); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0 6mm; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 2mm; padding: 5mm; }
+  .card h4 { margin: 0 0 2mm; font-family: Georgia, serif; font-weight: 400; font-size: 13pt; color: var(--accent-deep); }
+  .card p { margin: 0; color: var(--muted); font-size: 10pt; }
+  ul.clean { list-style: none; padding: 0; margin: 0 0 4mm; }
+  ul.clean li { padding: 1.5mm 0 1.5mm 6mm; border-bottom: 1px dashed var(--line); position: relative; }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li::before { content: ""; position: absolute; left: 0; top: 4mm; width: 2mm; height: 2mm; background: var(--accent); border-radius: 50%; }
+  .closing { margin-top: 8mm; padding: 8mm; background: var(--ink); color: #fff; border-radius: 2mm; }
+  .closing .lbl { color: var(--gold); font-size: 9pt; font-weight: 700; letter-spacing: 2px; margin-bottom: 3mm; }
+  .closing h3 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; margin: 0 0 4mm; }
+  .closing p { color: var(--gold-soft); margin: 0 0 3mm; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">INTERNAL · NOT FOR CLIENT</div>
+  <h1>Tier rationale<br/>The Ten Spot.</h1>
+  <div class="deck-tagline">Growth + Studio at launch.<br/>Multi-location franchise = highest Studio complexity in portfolio.</div>
+  <div class="meta">
+    <strong>Audience</strong> &nbsp;·&nbsp; Internal only<br/>
+    <strong>Status</strong> &nbsp;·&nbsp; Booking-system integration scoped separately. Faster Enterprise upgrade likely.
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE RECOMMENDATION</div>
+  <h2>Growth ($3,500) + Studio ($750) = $4,250/mo at launch.</h2>
+  <p class="muted">First service-and-multi-location-franchise client in the portfolio. Studio is the most complex one we've built — RBAC for corporate vs franchise-owner, per-location pricing variation, technician scheduling, multi-location calendar. Faster path to Enterprise (12 months expected) due to Booker/Mindbody two-way sync at SLA-grade.</p>
+  <div class="rule"></div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">DIFFERENT FROM PRODUCT BRANDS</div>
+  <h2>What's specific to The Ten Spot.</h2>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>1. Booking is the product</h4>
+      <p>Not e-commerce, not content. The customer comes for the booking. App quality = booking quality.</p>
+    </div>
+    <div class="card">
+      <h4>2. 33+ locations + franchise model</h4>
+      <p>Multi-location calendar, per-franchise pricing variation, RBAC for corporate vs owner. Most operationally complex Studio.</p>
+    </div>
+    <div class="card">
+      <h4>3. Booking system integration is critical</h4>
+      <p>Booker / Mindbody / current system — customer's existing tools. Don't replace; sync. Scoped as separate engagement.</p>
+    </div>
+    <div class="card">
+      <h4>4. Technicians are the product</h4>
+      <p>The relationship between customer and tech is what brings retention. App must surface it (with tech opt-in for photo/bio).</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">STUDIO ADD-ON ($750/mo)</div>
+  <h2>Most complex Studio in the portfolio. Margin holds because of high MAU.</h2>
+
+  <table>
+    <thead><tr><th>Component</th><th class="num">Real cost / mo</th><th>Margin notes</th></tr></thead>
+    <tbody>
+      <tr><td>Web hosting</td><td class="num">$30–60</td><td>Higher load: 33 locations of admin traffic</td></tr>
+      <tr><td>DB delta (multi-location calendar, per-franchise pricing, RBAC)</td><td class="num">$20–40</td><td>Highest of any client — multi-location data model</td></tr>
+      <tr><td>Object storage</td><td class="num">$5–15</td><td>Tech photos, location photos</td></tr>
+      <tr><td>Booker/Mindbody integration costs</td><td class="num">$25–80</td><td>API costs at SLA-grade; pass-through above quota</td></tr>
+      <tr><td>Editorial AI (translation EN/FR, prep guides)</td><td class="num">$25–60</td><td>Bilingual</td></tr>
+      <tr><td>Email + push (booking reminders, prep, after, cadence)</td><td class="num">$50–150</td><td>HIGHEST tx volume — recurring customer base × 33 locations</td></tr>
+      <tr><td>Auth (~150 internal seats — corporate + 33 franchise owners + technicians)</td><td class="num">$0–20</td><td>May exceed free tier; flat $20/mo cap</td></tr>
+      <tr class="total"><td>Subtotal infra + AI</td><td class="num">~$155–425</td><td>Highest of any client to date</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn">
+    <div class="lbl">Margin at $750/mo</div>
+    <p>Real cost ~$280/mo (mid-band). Tighter than apparel clients (~$140) and Moon Juice (~$260). Gross margin ~60%. Push for Enterprise upgrade by month 12 to recover margin.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Studio one-time build cost</div>
+    <p>Roughly <strong>$45–65K</strong> on top of the mobile build. Most complex Studio: 11 modules. Booking-system integration is separate ($25–40K). Total Phase 1 build: <strong>$110–175K</strong> (mobile + Studio + integration).</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">FASTER PATH TO ENTERPRISE</div>
+  <h2>Likely 12 months. Don't fight it; price it in.</h2>
+
+  <table>
+    <thead><tr><th>Trigger</th><th>Why it forces the upgrade</th></tr></thead>
+    <tbody>
+      <tr><td>Booker/Mindbody two-way sync at SLA-grade</td><td>Booking-critical app needs Enterprise SLA from month 6+.</td></tr>
+      <tr><td>Franchise-owner B2B portal at scale</td><td>33+ owners = SSO + audit logging + RLS hardening required.</td></tr>
+      <tr><td>Multi-state US data residency</td><td>As US expansion grows.</td></tr>
+      <tr><td>24/7 / 1h SLA</td><td>Multi-location franchise + booking-critical = uptime is contractual.</td></tr>
+      <tr><td>PCI compliance hardening</td><td>Gift card + membership payment volume.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="eyebrow">DEAL-MAKING TACTICS</div>
+  <ul class="clean">
+    <li><strong>Lead with operational savings.</strong> 10–15 hr/week per location of phone-bound staff time × 33 locations = $200K+/year operational savings. Justifies the build immediately.</li>
+    <li><strong>Booking-system integration as separate scope.</strong> Don't bundle. Booker / Mindbody migration is its own 4–8 week project.</li>
+    <li><strong>Per-franchise pricing transparency.</strong> The Studio supports +/-15% variation per location. Show that on the demo.</li>
+    <li><strong>AI overage clause.</strong> Concierge chat at 33-location scale generates real volume.</li>
+    <li><strong>Pre-negotiate 12-month Enterprise upgrade.</strong> Lock the upgrade fee.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT WE DON'T SAY OUT LOUD</div>
+
+  <div class="callout warn">
+    <div class="lbl">Reputation risk</div>
+    <p>The Ten Spot positions itself as "anti-spa" — comfortable, no judgment, accessible. One AI suggestion that makes a customer feel judged about her body or routine = brand-killer. Insist on brand-side review of every chat persona prompt. Train the AI to never suggest "you should also book X" — that's franchise upsell, not concierge.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Margin target</div>
+    <p>Combined infra+AI ~$280/mo. At $4,250 we're at 60% gross at expected MAU. Tight. Plan to upsell Enterprise by month 12.</p>
+  </div>
+
+  <div class="callout warn">
+    <div class="lbl">Walk-away signals</div>
+    <p>(1) Brand wants AI to push franchise upsell ("you should book Y at Yorkville"). (2) Brand wants per-franchise unilateral pricing without master controls. (3) Brand wants laser/skin services positioned as medical treatment. Any one = walk.</p>
+  </div>
+</div>
+
+<div class="closing">
+  <div class="lbl">RECOMMENDED ASK</div>
+  <h3>Growth ($3,500) + Studio ($750) = $4,250/mo for Year 1. Booking-system integration separately scoped ($25–40K). Pre-negotiated 12-month Enterprise upgrade. AI overage at cost +20%. $45–65K Studio build inside Phase 1. Total Phase 1: $110–175K.</h3>
+  <p>Right tier for a multi-location franchise with the largest customer base in the portfolio. Plan for Enterprise upgrade by month 12 — the architecture demands it.</p>
+</div>
+
+</body>
+</html>

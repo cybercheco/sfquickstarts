@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pineda Covalín — El Estudio (Web Admin Mockups)</title>
+<style>
+  :root {
+    --bg: #f5ede0;
+    --ink: #2a1a14;
+    --muted: #8a7866;
+    --line: #e6d9c0;
+    --card: #ffffff;
+    --accent: #a02747;
+    --accent-deep: #6e1a30;
+    --accent-soft: #f7e0d8;
+    --gold: #d89b3d;
+    --gold-soft: #f5e2bd;
+    --teal: #2c6e6b;
+    --plum: #5b2a52;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header.page {
+    padding: 32px 32px 0;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  header.page h1 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 500;
+    font-size: 38px;
+    margin: 0 0 4px;
+    color: var(--accent);
+  }
+  header.page p {
+    color: var(--muted); margin: 0 0 24px; font-size: 14px;
+  }
+  .deck {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 32px 64px;
+  }
+  .browser {
+    background: #2a1a14;
+    border-radius: 14px;
+    padding: 0;
+    box-shadow: 0 24px 48px rgba(110,26,48,.15), 0 2px 8px rgba(0,0,0,.06);
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .browser .chrome {
+    background: #2a1a14;
+    padding: 10px 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .browser .chrome .dots { display: flex; gap: 6px; }
+  .browser .chrome .dots span {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: rgba(255,255,255,.2);
+  }
+  .browser .chrome .url {
+    flex: 1;
+    background: rgba(255,255,255,.08);
+    color: rgba(255,255,255,.7);
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-family: monospace;
+  }
+  .frame {
+    height: 720px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    background: #fff;
+    border-right: 1px solid var(--line);
+    padding: 18px 0;
+    display: flex; flex-direction: column;
+  }
+  .brand {
+    padding: 0 18px 16px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 12px;
+  }
+  .brand .logo {
+    font-family: "Times New Roman", Georgia, serif;
+    color: var(--accent);
+    font-size: 14px;
+    letter-spacing: 4px;
+    font-weight: 600;
+  }
+  .brand .sub {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .nav {
+    flex: 1;
+    padding: 0 12px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .nav .section-label {
+    color: var(--muted);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    padding: 12px 12px 6px;
+  }
+  .nav a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--ink);
+    font-size: 12px;
+    text-decoration: none;
+  }
+  .nav a .ic {
+    width: 18px; height: 18px;
+    background: var(--bg);
+    border-radius: 5px;
+    display: grid; place-items: center;
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .nav a.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .nav a.active .ic { background: var(--accent); color: #fff; }
+  .nav a .badge {
+    margin-left: auto;
+    background: var(--accent);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 999px;
+  }
+  .user {
+    padding: 12px 16px;
+    border-top: 1px solid var(--line);
+    display: flex; gap: 10px; align-items: center;
+  }
+  .user .av {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--accent));
+  }
+  .user .name { font-size: 12px; }
+  .user .name strong { display: block; }
+  .user .name span { color: var(--muted); font-size: 10px; }
+
+  /* Main area */
+  .main {
+    overflow: auto;
+    padding: 22px 28px 30px;
+  }
+  .topline {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .crumb {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .top-actions { display: flex; gap: 8px; }
+  .btn {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  .btn.gold { background: var(--gold); color: #2a1a14; }
+  .btn.alt {
+    background: #fff;
+    color: var(--accent);
+    border: 1px solid var(--line);
+  }
+  .btn.subtle {
+    background: var(--bg);
+    color: var(--ink);
+  }
+  h2 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 500;
+    font-size: 26px;
+    margin: 0 0 4px;
+    color: var(--ink);
+  }
+  .subhead { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+
+  /* Stat cards */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .stat-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .stat-card .label {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .stat-card .num {
+    font-family: "Times New Roman", Georgia, serif;
+    color: var(--accent);
+    font-size: 32px;
+    line-height: 1;
+    margin: 6px 0 2px;
+  }
+  .stat-card .delta {
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .stat-card .delta.down { color: var(--accent); }
+
+  /* Two-column area */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+    gap: 14px;
+  }
+  .panel {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .panel h3 {
+    margin: 0 0 12px;
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--ink);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .panel h3 .more { color: var(--accent); font-size: 11px; font-weight: 600; }
+
+  /* Drop schedule */
+  .drop {
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--line);
+    align-items: center;
+  }
+  .drop:last-child { border: none; }
+  .drop .when {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 8px;
+    text-align: center;
+    padding: 6px 4px;
+  }
+  .drop .when .d {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 18px;
+    line-height: 1;
+  }
+  .drop .when .m {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    margin-top: 3px;
+  }
+  .drop .info { font-size: 12px; }
+  .drop .info strong { display: block; }
+  .drop .info span { color: var(--muted); font-size: 11px; }
+  .drop .status .pill {
+    background: var(--gold-soft);
+    color: #8a5e1c;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .drop .status .pill.live { background: #d6ebd9; color: #2c6e3a; }
+  .drop .status .pill.draft { background: var(--bg); color: var(--muted); }
+
+  /* Inbox */
+  .msg {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .msg:last-child { border: none; }
+  .msg .av {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--plum));
+  }
+  .msg .body { font-size: 12px; }
+  .msg .body .name { font-weight: 600; }
+  .msg .body .preview { color: var(--muted); margin-top: 2px; }
+  .msg .body .meta {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 4px;
+    display: flex; gap: 8px;
+  }
+  .msg .body .lang {
+    background: var(--bg);
+    padding: 1px 6px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  /* === Atelier Editor screen === */
+  .editor-shell {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 14px;
+  }
+  .field-group { margin-bottom: 14px; }
+  .field-group label {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .field {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .field.lg { min-height: 110px; }
+  .field.title {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 18px;
+  }
+  .audio-row {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--gold-soft);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .audio-row .play {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #2a1a14;
+    display: grid; place-items: center;
+    font-size: 12px;
+  }
+  .audio-row .info { font-size: 12px; }
+  .audio-row .info strong { display: block; color: #5a3e16; }
+  .audio-row .info span { color: var(--muted); font-size: 10px; }
+
+  /* Translation panel */
+  .lang-list { display: flex; flex-direction: column; gap: 6px; }
+  .lang-row {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: var(--bg);
+    font-size: 12px;
+  }
+  .lang-row .code {
+    font-family: monospace;
+    background: #fff;
+    color: var(--accent);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .lang-row .name strong { display: block; }
+  .lang-row .name span { color: var(--muted); font-size: 10px; }
+  .lang-row .pill {
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .lang-row .pill.draft { background: var(--gold-soft); color: #8a5e1c; }
+  .lang-row .pill.review { background: #f5d6dc; color: var(--accent); }
+  .lang-row .pill.live { background: #d6ebd9; color: #2c6e3a; }
+  .ai-banner {
+    background: linear-gradient(135deg, var(--accent-soft), var(--gold-soft));
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 11px;
+    color: var(--ink);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ai-banner .star {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: grid; place-items: center;
+    font-size: 12px;
+  }
+  .ai-banner strong { color: var(--accent); }
+
+  /* Cultural calendar */
+  .cal {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-top: 10px;
+  }
+  .cal .day {
+    background: var(--bg);
+    border-radius: 6px;
+    padding: 6px 5px;
+    min-height: 70px;
+    font-size: 10px;
+    color: var(--muted);
+    position: relative;
+  }
+  .cal .day.in { background: #fff; border: 1px solid var(--line); color: var(--ink); }
+  .cal .day .d { font-family: "Times New Roman", Georgia, serif; font-size: 13px; }
+  .cal .day .ev {
+    margin-top: 5px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 4px;
+    padding: 2px 5px;
+    font-size: 9px;
+    font-weight: 600;
+  }
+  .cal .day .ev.gold { background: var(--gold); color: #2a1a14; }
+  .cal .day .ev.plum { background: var(--plum); }
+  .cal .day .ev.teal { background: var(--teal); }
+  .cal .day.today { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .weekday {
+    text-align: center;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding-bottom: 4px;
+  }
+
+  /* Concierge inbox */
+  .inbox-shell {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 14px;
+    height: 600px;
+  }
+  .inbox-list .msg { padding: 12px; border-radius: 8px; cursor: pointer; }
+  .inbox-list .msg.active { background: var(--accent-soft); }
+  .inbox-thread {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 22px;
+    display: flex; flex-direction: column;
+  }
+  .thread-head { border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 14px; }
+  .thread-head h4 {
+    margin: 0 0 4px;
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 500;
+    font-size: 17px;
+  }
+  .thread-head .meta { color: var(--muted); font-size: 11px; }
+  .thread-head .meta .pill { background: var(--accent-soft); color: var(--accent); padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; margin-right: 6px; }
+  .bubbles { flex: 1; overflow: auto; display: flex; flex-direction: column; gap: 8px; }
+  .bubble {
+    max-width: 80%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .bubble.left { align-self: flex-start; background: var(--bg); }
+  .bubble.right { align-self: flex-end; background: var(--accent); color: #fff; }
+  .bubble.ai {
+    align-self: center;
+    background: linear-gradient(135deg, var(--accent-soft), var(--gold-soft));
+    color: var(--ink);
+    font-size: 11px;
+    font-style: italic;
+  }
+  .bubble small { display: block; opacity: .7; margin-top: 4px; font-size: 10px; }
+  .reply-bar {
+    margin-top: 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 14px;
+    color: var(--muted);
+    font-size: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .caption {
+    text-align: center;
+    margin: 4px 0 24px;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+  }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>El Estudio — Web Admin Mockups</h1>
+  <p>Pineda Covalín's internal-facing web portal. Same brand palette, optimised for editors, curators, concierge, and analysts. Wireframe fidelity.</p>
+</header>
+
+<div class="deck">
+
+  <!-- Screen 1: Dashboard -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">estudio.pinedacovalin.com / dashboard</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">PC · ESTUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a class="active"><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">◐</span> Atelier passports</a>
+          <a><span class="ic">⏵</span> Audio guides</a>
+          <a><span class="ic">A</span> Translations <span class="badge">12</span></a>
+          <a><span class="ic">▦</span> Collections</a>
+          <a><span class="ic">⊕</span> Cultural calendar</a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">✉</span> Concierge <span class="badge">4</span></a>
+          <a><span class="ic">★</span> VIP &amp; tiers</a>
+          <a><span class="ic">⊡</span> Authenticity</a>
+          <div class="section-label">Insights</div>
+          <a><span class="ic">▥</span> Analytics</a>
+        </nav>
+        <div class="user">
+          <div class="av"></div>
+          <div class="name"><strong>Cristina P.</strong><span>Curator · ES</span></div>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">DASHBOARD · TODAY · 6 MAY 2026</div>
+          <div class="top-actions">
+            <button class="btn alt">Search</button>
+            <button class="btn">+ New piece</button>
+          </div>
+        </div>
+        <h2>Buenos días, Cristina.</h2>
+        <div class="subhead">12 translations awaiting your review · 3 drops scheduled this week · 4 concierge messages need attention.</div>
+
+        <div class="stat-row">
+          <div class="stat-card"><div class="label">Active customers · 30d</div><div class="num">14,820</div><div class="delta">+8.4% vs prior</div></div>
+          <div class="stat-card"><div class="label">Tourist registrations</div><div class="num">2,135</div><div class="delta">+22% — Día Muertos lift</div></div>
+          <div class="stat-card"><div class="label">Gift-mode orders</div><div class="num">486</div><div class="delta">42% of all orders</div></div>
+          <div class="stat-card"><div class="label">Recipient activations</div><div class="num">61%</div><div class="delta">+6 pts MoM</div></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Upcoming drops <span class="more">Open calendar →</span></h3>
+            <div class="drop">
+              <div class="when"><div class="d">12</div><div class="m">MAY</div></div>
+              <div class="info"><strong>Frida · Self-Portrait series</strong><span>3 SKUs · push in 6 langs · scheduled 09:00 CDMX</span></div>
+              <div class="status"><span class="pill live">LIVE-READY</span></div>
+            </div>
+            <div class="drop">
+              <div class="when"><div class="d">18</div><div class="m">MAY</div></div>
+              <div class="info"><strong>Monarch migration teaser</strong><span>1 SKU · video asset pending · push EN/ES only</span></div>
+              <div class="status"><span class="pill">REVIEW</span></div>
+            </div>
+            <div class="drop">
+              <div class="when"><div class="d">02</div><div class="m">NOV</div></div>
+              <div class="info"><strong>Día de Muertos · 2026 collection</strong><span>8 SKUs · all 6 langs · museum-store exclusive (3)</span></div>
+              <div class="status"><span class="pill draft">DRAFT</span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Concierge inbox <span class="more">All messages →</span></h3>
+            <div class="msg">
+              <div class="av"></div>
+              <div class="body">
+                <div class="name">Yuki Tanaka · 東京</div>
+                <div class="preview">Question about Huichol motif on the Peyote Vision scarf — gift for her mother.</div>
+                <div class="meta"><span class="lang">JP</span><span>2h ago</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--accent),var(--teal))"></div>
+              <div class="body">
+                <div class="name">Galleries Lafayette · Paris</div>
+                <div class="preview">Bulk corporate gifting — 240 pieces for end-of-year client appreciation.</div>
+                <div class="meta"><span class="lang">FR</span><span>4h ago</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--plum),var(--gold))"></div>
+              <div class="body">
+                <div class="name">Carmen Fuentes · CDMX</div>
+                <div class="preview">Mariposa-tier studio visit — confirming for 14 May, prefer Spanish guide.</div>
+                <div class="meta"><span class="lang">ES</span><span>5h ago</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">1 · Dashboard · the editor's morning view</div>
+
+  <!-- Screen 2: Atelier passport editor -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">estudio.pinedacovalin.com / passports / 2026-monarca-142 / edit</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">PC · ESTUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a class="active"><span class="ic">◐</span> Atelier passports</a>
+          <a><span class="ic">⏵</span> Audio guides</a>
+          <a><span class="ic">A</span> Translations</a>
+          <a><span class="ic">▦</span> Collections</a>
+          <a><span class="ic">⊕</span> Cultural calendar</a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">✉</span> Concierge</a>
+          <a><span class="ic">★</span> VIP &amp; tiers</a>
+          <a><span class="ic">⊡</span> Authenticity</a>
+          <div class="section-label">Insights</div>
+          <a><span class="ic">▥</span> Analytics</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">PASSPORTS · MONARCAS · #2026-142</div>
+          <div class="top-actions">
+            <button class="btn subtle">Discard</button>
+            <button class="btn alt">Save draft</button>
+            <button class="btn">Publish</button>
+          </div>
+        </div>
+        <h2>Monarca Migration · 2026 edition</h2>
+        <div class="subhead">90 × 90 cm silk twill · printed in Hidalgo · 500 pieces total · #142 of 500</div>
+
+        <div class="ai-banner">
+          <div class="star">✦</div>
+          <div><strong>Claude drafted 5 translations.</strong> Spanish source unchanged · EN, FR, IT, JP, ZH ready for your review.</div>
+        </div>
+
+        <div class="editor-shell">
+          <div>
+            <div class="field-group">
+              <label>Spanish — source · the story</label>
+              <div class="field title">Un viaje de 4,500 km, tejido en seda.</div>
+            </div>
+            <div class="field-group">
+              <label>Story body (es)</label>
+              <div class="field lg">La migración anual del monarca, desde Canadá hasta los bosques de oyamel de Michoacán, inspiró esta pieza. El patrón hace eco del trayecto de una sola generación que jamás regresa al lugar donde nació...</div>
+            </div>
+            <div class="field-group">
+              <label>Audio guide</label>
+              <div class="audio-row">
+                <div class="play">▶</div>
+                <div class="info">
+                  <strong>monarca-2026-es.m4a · 1:32</strong>
+                  <span>Voiced by Cristina Pineda · uploaded 3 May · 6 languages pending</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="field-group">
+              <label>Translations · Claude-drafted</label>
+              <div class="lang-list">
+                <div class="lang-row">
+                  <div class="code">ES</div>
+                  <div class="name"><strong>Spanish · source</strong><span>Updated by Cristina P.</span></div>
+                  <span class="pill live">LIVE</span>
+                </div>
+                <div class="lang-row">
+                  <div class="code">EN</div>
+                  <div class="name"><strong>English</strong><span>Drafted · Sonnet · 2 min ago</span></div>
+                  <span class="pill review">REVIEW</span>
+                </div>
+                <div class="lang-row">
+                  <div class="code">FR</div>
+                  <div class="name"><strong>Français</strong><span>Drafted · Sonnet · 2 min ago</span></div>
+                  <span class="pill review">REVIEW</span>
+                </div>
+                <div class="lang-row">
+                  <div class="code">IT</div>
+                  <div class="name"><strong>Italiano</strong><span>Drafted · Sonnet · 2 min ago</span></div>
+                  <span class="pill review">REVIEW</span>
+                </div>
+                <div class="lang-row">
+                  <div class="code">JP</div>
+                  <div class="name"><strong>日本語</strong><span>Drafted · Sonnet · awaiting curator</span></div>
+                  <span class="pill draft">DRAFT</span>
+                </div>
+                <div class="lang-row">
+                  <div class="code">ZH</div>
+                  <div class="name"><strong>中文</strong><span>Drafted · Sonnet · awaiting curator</span></div>
+                  <span class="pill draft">DRAFT</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">2 · Atelier passport editor · with translation workflow</div>
+
+  <!-- Screen 3: Cultural calendar -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">estudio.pinedacovalin.com / calendar</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">PC · ESTUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">◐</span> Atelier passports</a>
+          <a><span class="ic">⏵</span> Audio guides</a>
+          <a><span class="ic">A</span> Translations</a>
+          <a><span class="ic">▦</span> Collections</a>
+          <a class="active"><span class="ic">⊕</span> Cultural calendar</a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">✉</span> Concierge</a>
+          <a><span class="ic">★</span> VIP &amp; tiers</a>
+          <a><span class="ic">⊡</span> Authenticity</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CULTURAL CALENDAR · NOVEMBER 2026</div>
+          <div class="top-actions">
+            <button class="btn alt">‹ October</button>
+            <button class="btn alt">December ›</button>
+            <button class="btn">+ Schedule drop</button>
+          </div>
+        </div>
+        <h2>November · Día de Muertos season</h2>
+        <div class="subhead">Three drops scheduled · 11 push notifications across 6 languages · MUNAL museum exclusive on 1 Nov</div>
+
+        <div class="cal" style="grid-template-columns: repeat(7, 1fr); margin-bottom: 4px">
+          <div class="weekday">Lun</div><div class="weekday">Mar</div><div class="weekday">Mié</div>
+          <div class="weekday">Jue</div><div class="weekday">Vie</div><div class="weekday">Sáb</div><div class="weekday">Dom</div>
+        </div>
+        <div class="cal">
+          <div class="day"><div class="d">26</div></div>
+          <div class="day"><div class="d">27</div></div>
+          <div class="day"><div class="d">28</div></div>
+          <div class="day"><div class="d">29</div></div>
+          <div class="day"><div class="d">30</div></div>
+          <div class="day"><div class="d">31</div></div>
+          <div class="day in"><div class="d">1</div><div class="ev">Día Muertos · drop</div><div class="ev gold">MUNAL excl.</div></div>
+          <div class="day in"><div class="d">2</div><div class="ev plum">Push · 6 langs</div></div>
+          <div class="day in"><div class="d">3</div></div>
+          <div class="day in today"><div class="d">4</div><div class="ev">Today</div></div>
+          <div class="day in"><div class="d">5</div></div>
+          <div class="day in"><div class="d">6</div></div>
+          <div class="day in"><div class="d">7</div></div>
+          <div class="day in"><div class="d">8</div></div>
+          <div class="day in"><div class="d">9</div></div>
+          <div class="day in"><div class="d">10</div><div class="ev teal">Monarcas · teaser</div></div>
+          <div class="day in"><div class="d">11</div></div>
+          <div class="day in"><div class="d">12</div></div>
+          <div class="day in"><div class="d">13</div></div>
+          <div class="day in"><div class="d">14</div></div>
+          <div class="day in"><div class="d">15</div><div class="ev">Monarcas · drop</div></div>
+          <div class="day in"><div class="d">16</div><div class="ev plum">Push · 6 langs</div></div>
+          <div class="day in"><div class="d">17</div></div>
+          <div class="day in"><div class="d">18</div></div>
+          <div class="day in"><div class="d">19</div></div>
+          <div class="day in"><div class="d">20</div><div class="ev gold">Revolución</div></div>
+          <div class="day in"><div class="d">21</div></div>
+          <div class="day in"><div class="d">22</div></div>
+          <div class="day in"><div class="d">23</div></div>
+          <div class="day in"><div class="d">24</div></div>
+          <div class="day in"><div class="d">25</div></div>
+          <div class="day in"><div class="d">26</div></div>
+          <div class="day in"><div class="d">27</div></div>
+          <div class="day in"><div class="d">28</div></div>
+          <div class="day in"><div class="d">29</div></div>
+          <div class="day in"><div class="d">30</div><div class="ev">Frida birthday teaser</div></div>
+          <div class="day"><div class="d">1</div></div>
+          <div class="day"><div class="d">2</div></div>
+          <div class="day"><div class="d">3</div></div>
+          <div class="day"><div class="d">4</div></div>
+          <div class="day"><div class="d">5</div></div>
+          <div class="day"><div class="d">6</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">3 · Cultural calendar · drops &amp; push scheduling</div>
+
+  <!-- Screen 4: Concierge inbox -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">estudio.pinedacovalin.com / concierge / yuki-tanaka-2841</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">PC · ESTUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">◐</span> Atelier passports</a>
+          <a><span class="ic">A</span> Translations</a>
+          <a><span class="ic">⊕</span> Cultural calendar</a>
+          <div class="section-label">Customers</div>
+          <a class="active"><span class="ic">✉</span> Concierge <span class="badge">4</span></a>
+          <a><span class="ic">★</span> VIP &amp; tiers</a>
+          <a><span class="ic">⊡</span> Authenticity</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CONCIERGE · 4 OPEN</div>
+          <div class="top-actions">
+            <button class="btn alt">Filter</button>
+            <button class="btn">Mark resolved</button>
+          </div>
+        </div>
+        <h2>Concierge inbox</h2>
+        <div class="subhead">Escalations from the cultural docent · B2B requests · VIP messages</div>
+
+        <div class="inbox-shell">
+          <div class="panel inbox-list" style="overflow:auto">
+            <h3 style="margin-bottom:8px">Open · 4</h3>
+            <div class="msg active">
+              <div class="av"></div>
+              <div class="body">
+                <div class="name">Yuki Tanaka</div>
+                <div class="preview">Huichol motif meaning · gift for mother</div>
+                <div class="meta"><span class="lang">JP</span><span>2h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--accent),var(--teal))"></div>
+              <div class="body">
+                <div class="name">Galleries Lafayette</div>
+                <div class="preview">Bulk corporate gifting · 240 pieces</div>
+                <div class="meta"><span class="lang">FR</span><span>4h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--plum),var(--gold))"></div>
+              <div class="body">
+                <div class="name">Carmen Fuentes</div>
+                <div class="preview">Mariposa studio visit confirmation</div>
+                <div class="meta"><span class="lang">ES</span><span>5h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--teal),var(--plum))"></div>
+              <div class="body">
+                <div class="name">Sofía Ramírez</div>
+                <div class="preview">Authenticity check on a vintage piece</div>
+                <div class="meta"><span class="lang">EN</span><span>1d</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="inbox-thread">
+            <div class="thread-head">
+              <h4>Yuki Tanaka · 田中 友紀</h4>
+              <div class="meta"><span class="pill">VIP · CRISÁLIDA</span><span>Tokyo · JP · 4 pieces in archive · escalated by El Docente · 2h ago</span></div>
+            </div>
+            <div class="bubbles">
+              <div class="bubble ai">El Docente couldn't fully answer this question — escalated to a human curator. Original question in Japanese; brand-glossary translation below.</div>
+              <div class="bubble left">先日購入したペヨーテ・ビジョンのスカーフをお義母に贈りたいのですが、青と赤の意味の違いについて、もう少し詳しく教えていただけますか？<small>JP · 2h ago</small></div>
+              <div class="bubble left" style="background:#f0e9d8">"I'd like to gift my mother-in-law the Peyote Vision scarf I bought last week. Could you tell me more about the difference between the blue and the red in its meaning?"<small>brand-glossary translation</small></div>
+              <div class="bubble right">Querida Yuki, qué hermoso regalo. En la cosmología Wixárika, el azul representa el agua que sustenta la vida, mientras que el rojo es el fuego que purifica…<small>ES · sending in JP</small></div>
+            </div>
+            <div class="reply-bar"><span>Reply in Spanish — Claude will translate to JP for review…</span><span>↑</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">4 · Concierge inbox · docent escalations &amp; B2B requests</div>
+
+</div>
+
+</body>
+</html>

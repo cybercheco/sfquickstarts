@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Encircled — Tier Recommendation (Internal)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 18mm 18mm 18mm;
+    @bottom-left { content: "Encircled · Tier Recommendation · Internal"; font-family: Georgia, serif; font-size: 9pt; color: #888379; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font-family: Georgia, serif; font-size: 9pt; color: #888379; }
+  }
+  :root {
+    --bg: #f4efea; --ink: #2b2a26; --muted: #888379; --line: #e6dfd3; --card: #ffffff;
+    --accent: #5d6e54; --accent-deep: #36422f; --accent-soft: #dfe5d6;
+    --gold: #b89968; --gold-soft: #ecdec3; --terra: #b96a4f;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; font-size: 10.5pt; line-height: 1.5; }
+  .cover { page-break-after: always; padding: 30mm 0 0; }
+  .cover .eyebrow { color: var(--accent); font-weight: 700; font-size: 10pt; letter-spacing: 2px; margin-bottom: 8mm; }
+  .cover h1 { font-family: Georgia, serif; font-weight: 400; font-size: 44pt; line-height: 1.05; margin: 0 0 8mm; letter-spacing: -0.5px; }
+  .cover .deck-tagline { font-family: Georgia, serif; color: var(--accent); font-size: 18pt; line-height: 1.3; margin-bottom: 14mm; }
+  .cover .meta { color: var(--muted); font-size: 10pt; border-top: 1px solid var(--line); padding-top: 4mm; }
+  .cover .meta strong { color: var(--ink); }
+  h2 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; color: var(--ink); margin: 0 0 1mm; letter-spacing: -0.2px; }
+  h2 + .lede { color: var(--muted); margin: 0 0 6mm; font-size: 11pt; }
+  .section { page-break-inside: avoid; margin-bottom: 12mm; }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: 9pt; letter-spacing: 2px; margin-bottom: 2mm; }
+  .rule { width: 12mm; height: 2pt; background: var(--accent); margin: 4mm 0 6mm; }
+  p { margin: 0 0 4mm; } .muted { color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 3mm 0 6mm; }
+  th, td { border-bottom: 1px solid var(--line); padding: 2.4mm 3mm; text-align: left; vertical-align: top; }
+  th { background: var(--accent-soft); color: var(--accent); font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; border-bottom: 1.5pt solid var(--accent); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; } th.num { text-align: right; }
+  tr.total td { border-top: 1.5pt solid var(--accent); border-bottom: none; font-weight: 700; background: var(--accent-soft); color: var(--accent); }
+  .callout { background: var(--card); border: 1px solid var(--line); border-left: 3pt solid var(--accent); padding: 4mm 5mm; margin: 4mm 0 6mm; border-radius: 1mm; }
+  .callout .lbl { font-size: 9pt; font-weight: 700; letter-spacing: 1.5px; color: var(--accent); text-transform: uppercase; margin-bottom: 2mm; }
+  .callout.gold { border-left-color: var(--gold); } .callout.gold .lbl { color: #8a6e2a; }
+  .callout.warn { border-left-color: var(--accent-deep); } .callout.warn .lbl { color: var(--accent-deep); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0 6mm; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 2mm; padding: 5mm; }
+  .card h4 { margin: 0 0 2mm; font-family: Georgia, serif; font-weight: 400; font-size: 13pt; color: var(--accent); }
+  .card p { margin: 0; color: var(--muted); font-size: 10pt; }
+  ul.clean { list-style: none; padding: 0; margin: 0 0 4mm; }
+  ul.clean li { padding: 1.5mm 0 1.5mm 6mm; border-bottom: 1px dashed var(--line); position: relative; }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li::before { content: ""; position: absolute; left: 0; top: 4mm; width: 2mm; height: 2mm; background: var(--accent); border-radius: 50%; }
+  .closing { margin-top: 8mm; padding: 8mm; background: var(--accent-deep); color: #fff; border-radius: 2mm; }
+  .closing .lbl { color: var(--gold); font-size: 9pt; font-weight: 700; letter-spacing: 2px; margin-bottom: 3mm; }
+  .closing h3 { font-family: Georgia, serif; font-weight: 400; font-size: 22pt; margin: 0 0 4mm; }
+  .closing p { color: var(--gold-soft); margin: 0 0 3mm; }
+  .small { font-size: 9.5pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">INTERNAL · NOT FOR CLIENT</div>
+  <h1>Tier rationale<br/>Encircled.</h1>
+  <div class="deck-tagline">Growth + Studio at launch.<br/>Enterprise when AR multi-way, wholesale, or EU residency triggers.</div>
+  <div class="meta">
+    <strong>Audience</strong> &nbsp;·&nbsp; Internal only<br/>
+    <strong>Use</strong> &nbsp;·&nbsp; Reference for the conversation; never share with the brand<br/>
+    <strong>Status</strong> &nbsp;·&nbsp; Draft for discussion
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">THE RECOMMENDATION</div>
+  <h2>Growth ($3,500) + Studio ($750) = $4,250/mo at launch.</h2>
+  <p class="muted">Encircled has more editorial volume than other clients at this scale because every piece needs a multi-way style library and a repair workflow. Studio is mandatory and especially important here. Starter is disqualified; Enterprise is premature.</p>
+  <div class="rule"></div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHY STARTER IS DISQUALIFIED</div>
+  <h2>Single-platform / 5-screen / no-AI is incompatible with the proposition.</h2>
+
+  <table>
+    <thead><tr><th>Starter constraint</th><th>Encircled reality</th></tr></thead>
+    <tbody>
+      <tr><td>Single platform</td><td>Both — CA/US customer base mixed iOS/Android. International travellers skew iOS.</td></tr>
+      <tr><td>5 screens</td><td>Phase 1 is ~18 screens including The Many, The Capsule, The Atelier.</td></tr>
+      <tr><td>No AI</td><td>Multi-way styler, capsule builder, repair triage, fit chat — all core to value.</td></tr>
+      <tr><td>24h email support</td><td>Repair tickets need same-day routing — slow response damages the lifetime-guarantee promise.</td></tr>
+    </tbody>
+  </table>
+
+  <p class="small">If the brand pushes for Starter on price, walk away. The lifetime repair workflow alone needs faster than 24h response.</p>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHY GROWTH FITS PHASE 1</div>
+  <h2>Standard fit. Same as the other small-batch sustainable brands.</h2>
+
+  <table>
+    <thead><tr><th>Growth feature</th><th>What it delivers for Encircled</th></tr></thead>
+    <tbody>
+      <tr><td>Both stores, RN + Expo</td><td>Single codebase; OTA matches small-collection drop cadence.</td></tr>
+      <tr><td>Claude Sonnet + Haiku</td><td>Sonnet powers multi-way styler + Atelier chat. Haiku batches FR translations.</td></tr>
+      <tr><td>RevenueCat</td><td>Future-proofs subscription capsule-curation or "Loops Plus" membership.</td></tr>
+      <tr><td>Apple + Google sign-in</td><td>Reduces install friction.</td></tr>
+      <tr><td>ASO quarterly</td><td>"Travel clothing", "multi-way", "Canadian sustainable" all matter for discovery.</td></tr>
+      <tr><td>2 releases / month</td><td>Drop cadence + multi-way library updates demand a regular rhythm.</td></tr>
+      <tr><td>Shared Slack, 4h response</td><td>Right level for a B Corp at launch.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="eyebrow">STUDIO ADD-ON ($750/mo)</div>
+  <h2>Mandatory and especially important here — this is the ops portal, not just content.</h2>
+  <p class="lede">Encircled's Studio runs more than provenance content. It runs the repair queue (live operations), the multi-way style library (design IP), and the capsule template library (editorial). More functional than other clients; slightly higher real cost.</p>
+
+  <table>
+    <thead><tr><th>Component</th><th class="num">Real cost / mo</th><th>Margin notes</th></tr></thead>
+    <tbody>
+      <tr><td>Web hosting</td><td class="num">$20–40</td><td>Often shared with mobile API</td></tr>
+      <tr><td>DB delta (multi-way library, repair tickets, capsule templates)</td><td class="num">$10–25</td><td>Higher than other clients due to repair-ticket volume</td></tr>
+      <tr><td>Object + video storage (8 styles × N pieces × short-form video)</td><td class="num">$15–40</td><td>Multi-way video library is the swing factor</td></tr>
+      <tr><td>Editorial AI (multi-way drafts, FR translations, repair triage)</td><td class="num">$25–70</td><td>Multi-way + multilingual editorial work</td></tr>
+      <tr><td>Email + push (repair status updates, drop alerts)</td><td class="num">$10–25</td><td>Repair tickets generate tx email volume</td></tr>
+      <tr><td>Auth (~25 internal seats — editors, repair ops, founder, concierge)</td><td class="num">$0</td><td>Free tier on Supabase / Clerk</td></tr>
+      <tr class="total"><td>Subtotal infra + AI</td><td class="num">~$80–200</td><td>Slightly higher than other clients due to repair ops</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout gold">
+    <div class="lbl">Margin at $750/mo</div>
+    <p>Real cost ~$140/mo (mid-band). Includes ~5 maintenance hrs/mo + Studio releases aligned with mobile cadence. Gross margin ~75% before maintenance hours consumed. Healthy.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Studio one-time build cost</div>
+    <p>Roughly <strong>$32–48K</strong> on top of the mobile build. 9 modules in Phase 1: auth + multi-way style editor + repair queue (the most complex single module — vision triage + status tracking + label printing) + capsule template library + drop scheduler + concierge inbox + Loops admin + analytics + transparency report. Higher end of range due to repair-ops integration.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHY ENTERPRISE IS PREMATURE</div>
+  <h2>Three reasons to hold the upgrade.</h2>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>1. AR multi-way is Phase 2</h4>
+      <p>Phase 1 has no AR. RN delivers everything in scope. Native modules matter when AR multi-way preview goes live.</p>
+    </div>
+    <div class="card">
+      <h4>2. Wholesale portal is Phase 2</h4>
+      <p>SSO + audit logging + RLS hardening are needed when MEC, Away, hotel-shops come online.</p>
+    </div>
+    <div class="card">
+      <h4>3. EU residency not yet contractual</h4>
+      <p>EU shipping is fine on a multi-region storefront. Data-residency clauses become contractual once EU volume becomes material.</p>
+    </div>
+    <div class="card">
+      <h4>4. SLA mismatched to launch</h4>
+      <p>1h response 24/7 (Enterprise) is for live-revenue partners. The web store carries the revenue. 4h is right for the app.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">YEAR-2 UPGRADE TRIGGERS</div>
+  <h2>Move them to Enterprise the moment any one fires.</h2>
+
+  <table>
+    <thead><tr><th>Trigger</th><th>Why it forces the upgrade</th></tr></thead>
+    <tbody>
+      <tr><td>AR multi-way preview goes live</td><td>Stable on-body AR with cloth simulation needs native Swift / Kotlin modules.</td></tr>
+      <tr><td>Wholesale / travel-retail B2B portal</td><td>SSO + audit logging + RLS — required for partners like MEC, Away.</td></tr>
+      <tr><td>EU GDPR data-residency clause</td><td>EU storage and processing as European traveller volume grows.</td></tr>
+      <tr><td>24/7 1h SLA</td><td>Major retail partner makes uptime a contract clause.</td></tr>
+      <tr><td>Repair ops scale-out</td><td>If repair-ticket volume hits 200+ tickets/month, more sophisticated logistics integration may need Enterprise tooling.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="lbl">Likelihood by month 12</div>
+    <p>AR: <strong>medium-high</strong> — natural fit for the multi-way story. Wholesale: <strong>medium-high</strong> — MEC partnership conversations likely. EU residency: <strong>medium</strong>. Repair scale-out: <strong>medium</strong> — depends on volume.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">DEAL-MAKING TACTICS</div>
+  <h2>How to anchor and protect the conversation.</h2>
+  <ul class="clean">
+    <li><strong>Lead with the multi-way + repair value props, not features.</strong> "8 styles unlocked instead of 3" and "lifetime repair in one tap" are concrete outcomes. Sell those.</li>
+    <li><strong>Studio is mandatory.</strong> The repair queue lives there. Without it, repair ops fall back to email — defeats the whole proposition.</li>
+    <li><strong>Pre-negotiate the Enterprise upgrade path.</strong> Lock the upgrade fee in Year 1.</li>
+    <li><strong>AI overage clause is non-negotiable.</strong> Multi-way styler chat could spike during a viral moment.</li>
+    <li><strong>Repair-volume scale-out clause.</strong> If repair-ticket volume passes 200/month, Phase 2 logistics integration becomes a separate engagement.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="eyebrow">WHAT WE DON'T SAY OUT LOUD</div>
+  <h2>Internal-only notes.</h2>
+
+  <div class="callout warn">
+    <div class="lbl">Reputation risk to manage</div>
+    <p>The brand's promise is "guaranteed for life." If repair tickets pile up because the queue is mismanaged, that promise looks hollow. Insist on a 7-day SLA for repair-ticket triage in our contract — protects them and us.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Margin target — combined</div>
+    <p>Growth tier infra+AI cost at expected MAU (~6K active in Year 1) is roughly $800–1,200/mo. Plus Studio at ~$140/mo. At combined $4,250/mo we're at 65–75% gross before maintenance dev. Healthy.</p>
+  </div>
+
+  <div class="callout gold">
+    <div class="lbl">Upsell sequencing</div>
+    <p>Don't propose AR multi-way at the same time as the Phase 1 contract. Land Growth + Studio, deliver The Many and Atelier well, *then* propose AR as the Enterprise trigger.</p>
+  </div>
+
+  <div class="callout">
+    <div class="lbl">Walk-away signals</div>
+    <p>If they push back on Studio being mandatory, walk. Without the repair queue in the Studio, the lifetime-guarantee promise can't scale and we'd own the operational debt.</p>
+  </div>
+</div>
+
+<div class="closing">
+  <div class="lbl">RECOMMENDED ASK</div>
+  <h3>Growth ($3,500) + Studio ($750) = $4,250/mo for Year 1. Pre-negotiated Enterprise upgrade. AI overage at cost +20%. Repair-volume scale-out clause above 200/month. Brand-side approval on every customer-facing styling/care/repair claim. $32–48K Studio build inside Phase 1.</h3>
+  <p>Right tier for a B Corp with a documented multi-way library and a real repair operation. The Atelier flow alone justifies the investment.</p>
+</div>
+
+</body>
+</html>

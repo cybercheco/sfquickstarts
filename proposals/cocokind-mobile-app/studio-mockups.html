@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cocokind — The Studio (Web Admin Mockups)</title>
+<style>
+  :root {
+    --bg: #f4efe6; --ink: #2c3a2e; --muted: #8a9085; --line: #e0d8c8; --card: #ffffff;
+    --accent: #6e8b6a; --accent-deep: #3e4f3b; --accent-soft: #d8e4d4;
+    --gold: #c9a85e; --gold-soft: #f1e7c9; --rose: #d8a594; --rose-soft: #f4dccd; --blue: #7d97a7;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 { font-family: "Times New Roman", Georgia, serif; font-weight: 500; font-size: 36px; margin: 0 0 4px; letter-spacing: -0.5px; color: var(--accent-deep); }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .deck { max-width: 1400px; margin: 0 auto; padding: 16px 32px 64px; }
+  .browser { background: #2c3a2e; border-radius: 14px; box-shadow: 0 24px 48px rgba(62,79,59,.12), 0 2px 8px rgba(0,0,0,.06); margin-bottom: 32px; overflow: hidden; }
+  .browser .chrome { background: #2c3a2e; padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
+  .browser .chrome .dots { display: flex; gap: 6px; }
+  .browser .chrome .dots span { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,.2); }
+  .browser .chrome .url { flex: 1; background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); font-size: 12px; padding: 5px 12px; border-radius: 6px; font-family: monospace; }
+  .frame { height: 720px; display: grid; grid-template-columns: 220px 1fr; background: var(--bg); overflow: hidden; }
+
+  .sidebar { background: #fff; border-right: 1px solid var(--line); padding: 18px 0; display: flex; flex-direction: column; }
+  .brand { padding: 0 18px 16px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+  .brand .logo { font-family: "Times New Roman", Georgia, serif; color: var(--accent-deep); font-size: 13px; letter-spacing: 3px; font-weight: 600; }
+  .brand .sub { color: var(--muted); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .nav { flex: 1; padding: 0 12px; display: flex; flex-direction: column; gap: 2px; }
+  .nav .section-label { color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; padding: 12px 12px 6px; }
+  .nav a { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; color: var(--ink); font-size: 12px; text-decoration: none; }
+  .nav a .ic { width: 18px; height: 18px; background: var(--bg); border-radius: 5px; display: grid; place-items: center; font-size: 10px; color: var(--muted); }
+  .nav a.active { background: var(--accent-soft); color: var(--accent-deep); font-weight: 600; }
+  .nav a.active .ic { background: var(--accent); color: #fff; }
+  .nav a .badge { margin-left: auto; background: var(--accent); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 999px; }
+  .user { padding: 12px 16px; border-top: 1px solid var(--line); display: flex; gap: 10px; align-items: center; }
+  .user .av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--accent-deep)); }
+  .user .name { font-size: 12px; }
+  .user .name strong { display: block; }
+  .user .name span { color: var(--muted); font-size: 10px; }
+
+  .main { overflow: auto; padding: 22px 28px 30px; }
+  .topline { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .crumb { color: var(--muted); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+  .top-actions { display: flex; gap: 8px; }
+  .btn { display: inline-block; padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; background: var(--accent); color: #fff; border: none; cursor: pointer; }
+  .btn.alt { background: #fff; color: var(--accent-deep); border: 1px solid var(--line); }
+  .btn.subtle { background: var(--bg); color: var(--ink); }
+  h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 26px; margin: 0 0 4px; color: var(--ink); }
+  .subhead { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 22px; }
+  .stat-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .stat-card .label { color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+  .stat-card .num { font-family: "Times New Roman", Georgia, serif; color: var(--accent-deep); font-size: 32px; line-height: 1; margin: 6px 0 2px; }
+  .stat-card .delta { color: var(--accent); font-size: 11px; font-weight: 600; }
+
+  .grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+  .panel h3 { margin: 0 0 12px; font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 15px; color: var(--ink); display: flex; justify-content: space-between; align-items: center; }
+  .panel h3 .more { color: var(--accent-deep); font-size: 11px; font-weight: 600; }
+  .row { display: grid; grid-template-columns: 70px 1fr auto auto; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); align-items: center; }
+  .row:last-child { border: none; }
+  .row .id { background: var(--accent-soft); color: var(--accent-deep); border-radius: 6px; padding: 4px; text-align: center; font-family: monospace; font-size: 11px; font-weight: 700; }
+  .row .info { font-size: 12px; }
+  .row .info strong { display: block; }
+  .row .info span { color: var(--muted); font-size: 11px; }
+  .pill { padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; }
+  .pill.live { background: var(--accent-soft); color: var(--accent-deep); }
+  .pill.review { background: var(--gold-soft); color: #8a6e2a; }
+  .pill.draft { background: var(--bg); color: var(--muted); }
+  .pill.warn { background: var(--rose-soft); color: #a85a3e; }
+
+  /* Facts editor */
+  .editor-shell { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .field-group { margin-bottom: 14px; }
+  .field-group label { display: block; color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 5px; }
+  .field { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 12px; color: var(--ink); line-height: 1.5; }
+  .field.lg { min-height: 80px; }
+  .field.title { font-family: "Times New Roman", Georgia, serif; font-size: 18px; }
+  .ai-banner { background: linear-gradient(135deg, var(--accent-soft), var(--gold-soft)); border-radius: 10px; padding: 10px 14px; font-size: 11px; color: var(--ink); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .ai-banner .star { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 12px; }
+  .ai-banner strong { color: var(--accent-deep); }
+
+  .compliance-banner { background: var(--rose-soft); color: #a85a3e; padding: 10px 14px; border-radius: 10px; font-size: 11px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .compliance-banner .ic { width: 24px; height: 24px; border-radius: 50%; background: var(--rose); color: #fff; display: grid; place-items: center; font-size: 14px; flex: none; }
+  .compliance-banner strong { color: #a85a3e; }
+
+  .facts-edit { display: flex; flex-direction: column; gap: 6px; }
+  .facts-edit .item { display: grid; grid-template-columns: 1fr 110px; gap: 10px; padding: 8px 12px; background: var(--bg); border-radius: 8px; align-items: center; }
+  .facts-edit .item .info { font-size: 12px; }
+  .facts-edit .item .info strong { display: block; }
+  .facts-edit .item .info .citation { color: var(--accent-deep); font-size: 11px; font-weight: 600; margin-top: 4px; }
+  .facts-edit .item .value { font-size: 13px; color: var(--accent-deep); font-weight: 700; text-align: right; font-family: "Times New Roman", Georgia, serif; }
+
+  /* Ingredient library */
+  .ingredient-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ing-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .ing-card .body-content { padding: 12px 14px; }
+  .ing-card .head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .ing-card .head strong { font-family: "Times New Roman", Georgia, serif; font-size: 16px; }
+  .ing-card .meta { color: var(--muted); font-size: 11px; line-height: 1.5; margin-bottom: 8px; }
+  .ing-card .citations { font-size: 11px; }
+  .ing-card .citations .cit { display: block; color: var(--accent-deep); font-weight: 600; padding: 2px 0; }
+  .ing-card .actions { padding: 8px 14px; background: var(--bg); display: flex; justify-content: space-between; align-items: center; font-size: 11px; }
+  .ing-card .actions .used { color: var(--muted); }
+  .ing-card .actions button { background: none; border: none; color: var(--accent-deep); font-weight: 700; cursor: pointer; }
+
+  /* Concierge */
+  .inbox-shell { display: grid; grid-template-columns: 280px 1fr; gap: 14px; height: 600px; }
+  .msg { display: grid; grid-template-columns: 32px 1fr; gap: 10px; padding: 10px 12px; border-radius: 8px; cursor: pointer; }
+  .msg.active { background: var(--accent-soft); }
+  .msg .av { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--rose), var(--accent-deep)); }
+  .msg .body { font-size: 12px; }
+  .msg .body .name { font-weight: 600; }
+  .msg .body .preview { color: var(--muted); margin-top: 2px; }
+  .msg .body .meta { color: var(--muted); font-size: 10px; margin-top: 4px; display: flex; gap: 8px; }
+  .msg .body .lang { background: var(--bg); padding: 1px 6px; border-radius: 999px; font-weight: 600; }
+
+  .inbox-thread { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 18px 22px; display: flex; flex-direction: column; }
+  .thread-head { border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 14px; }
+  .thread-head h4 { margin: 0 0 4px; font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 17px; }
+  .thread-head .meta { color: var(--muted); font-size: 11px; }
+  .thread-head .meta .pill { background: var(--accent-soft); color: var(--accent-deep); padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; margin-right: 6px; }
+  .bubbles { flex: 1; overflow: auto; display: flex; flex-direction: column; gap: 8px; }
+  .bubble { max-width: 80%; padding: 10px 12px; border-radius: 12px; font-size: 12px; line-height: 1.4; }
+  .bubble.left { align-self: flex-start; background: var(--bg); }
+  .bubble.right { align-self: flex-end; background: var(--accent); color: #fff; }
+  .bubble.ai { align-self: center; background: linear-gradient(135deg, var(--accent-soft), var(--gold-soft)); color: var(--ink); font-size: 11px; font-style: italic; }
+  .bubble.warn { align-self: center; background: var(--rose-soft); color: #a85a3e; font-size: 11px; font-weight: 600; }
+  .bubble small { display: block; opacity: .7; margin-top: 4px; font-size: 10px; }
+  .reply-bar { margin-top: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
+
+  .caption { text-align: center; margin: 4px 0 24px; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px; }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>The Studio — Web Admin Mockups</h1>
+  <p>Cocokind's internal-facing portal. Matcha-cream palette, optimised for editors, sustainability ops, refill ops, concierge, and brand-side compliance review.</p>
+</header>
+
+<div class="deck">
+
+  <!-- 1. Dashboard -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.cocokind.com / dashboard</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">CK · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a class="active"><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">⊡</span> Products & Facts <span class="badge">3</span></a>
+          <a><span class="ic">⌬</span> Ingredient library</a>
+          <a><span class="ic">⚠</span> Compliance review <span class="badge">2</span></a>
+          <a><span class="ic">○</span> Routine library</a>
+          <a><span class="ic">A</span> Translations <span class="badge">5</span></a>
+          <a><span class="ic">▦</span> Drops & calendar</a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">↻</span> Refill ops</a>
+          <a><span class="ic">✉</span> Concierge <span class="badge">4</span></a>
+          <a><span class="ic">★</span> Honest tiers</a>
+          <div class="section-label">Insights</div>
+          <a><span class="ic">▥</span> Analytics</a>
+          <a><span class="ic">∞</span> Sustainability report</a>
+        </nav>
+        <div class="user">
+          <div class="av"></div>
+          <div class="name"><strong>Priscilla T.</strong><span>Founder · EN</span></div>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">DASHBOARD · TODAY · 8 MAY 2026</div>
+          <div class="top-actions">
+            <button class="btn alt">Search</button>
+            <button class="btn">+ New product</button>
+          </div>
+        </div>
+        <h2>Good morning, Priscilla.</h2>
+        <div class="subhead">2 compliance items awaiting your review · 3 product Facts drafted · 5 translations pending · 4 concierge messages.</div>
+
+        <div class="stat-row">
+          <div class="stat-card"><div class="label">Active customers · 30d</div><div class="num">22,140</div><div class="delta">+8.6% vs prior</div></div>
+          <div class="stat-card"><div class="label">Active subscriptions</div><div class="num">8,420</div><div class="delta">+248 this week</div></div>
+          <div class="stat-card"><div class="label">Refill churn · 90d</div><div class="num">7.4%</div><div class="delta">−1.4 pts MoM</div></div>
+          <div class="stat-card"><div class="label">Routine completion · 30d</div><div class="num">68%</div><div class="delta">+4 pts MoM</div></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Compliance review · 2 pending <span class="more">All →</span></h3>
+            <div class="row">
+              <div class="id">FACTS</div>
+              <div class="info"><strong>Vitamin C serum · "fades dark spots" copy</strong><span>Claude-drafted · cosmetic-claim review needed</span></div>
+              <span class="pill warn">FLAG</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">CHAT</div>
+              <div class="info"><strong>Studio chat · skin-condition reply</strong><span>AI deferred to derm — log entry awaiting review</span></div>
+              <span class="pill review">REVIEW</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">DROP</div>
+              <div class="info"><strong>Ceramide launch · "barrier repair" copy</strong><span>FDA cosmetic-rule review required</span></div>
+              <span class="pill warn">FLAG</span>
+              <div></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Refill ops <span class="more">All →</span></h3>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>At-risk subs · skipped 2x</strong><span>22 customers · concierge outreach suggested</span></div>
+              <div class="pill warn">22</div>
+            </div>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Bottle returns · this week</strong><span>104 returns · $2,080 in credits issued</span></div>
+              <div class="pill live">104</div>
+            </div>
+            <div class="row" style="grid-template-columns:1fr auto">
+              <div class="info"><strong>Smart refill predictions</strong><span>1,820 customers due in next 7d</span></div>
+              <div class="pill">1,820</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">1 · Dashboard · founder's morning view</div>
+
+  <!-- 2. Facts editor -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.cocokind.com / products / vitamin-c-serum / facts</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">CK · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a class="active"><span class="ic">⊡</span> Products & Facts</a>
+          <a><span class="ic">⌬</span> Ingredient library</a>
+          <a><span class="ic">⚠</span> Compliance review</a>
+          <a><span class="ic">○</span> Routine library</a>
+          <a><span class="ic">A</span> Translations</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">PRODUCTS · SERUMS · VITAMIN C GLOW SERUM</div>
+          <div class="top-actions">
+            <button class="btn subtle">Discard</button>
+            <button class="btn alt">Save draft</button>
+            <button class="btn">Send to compliance</button>
+          </div>
+        </div>
+        <h2>Vitamin C Glow Serum · 1 oz</h2>
+        <div class="subhead">SKU 0024 · 9 ingredients · 62% USDA Organic · last LCA Q1 2026</div>
+
+        <div class="ai-banner">
+          <div class="star">✦</div>
+          <div><strong>Claude drafted ingredient summaries.</strong> All claims checked against citation library. Compliance review required before publish — 1 item flagged.</div>
+        </div>
+
+        <div class="compliance-banner">
+          <div class="ic">⚠</div>
+          <div><strong>FDA cosmetic-rule sensitive language detected.</strong> Description contains "fades dark spots" — too close to a drug claim. Compliance flag — pending Priscilla's review or rephrase to structure-function compliant wording.</div>
+        </div>
+
+        <div class="editor-shell">
+          <div>
+            <div class="field-group">
+              <label>Product name</label>
+              <div class="field title">Vitamin C Glow Serum</div>
+            </div>
+            <div class="field-group">
+              <label>Customer-facing description</label>
+              <div class="field lg">A daily glow serum with 10% plant-derived vitamin C (ascorbyl glucoside) to support an even, luminous complexion. Gentle enough for sensitive skin; use AM or PM between toner and moisturiser.</div>
+            </div>
+            <div class="field-group">
+              <label>Sustainability Facts (LCA Q1 2026)</label>
+              <div class="facts-edit">
+                <div class="item">
+                  <div class="info">
+                    <strong>Carbon emissions per use</strong>
+                    <div class="citation">↗ LCA · Anthesis Group · Q1 2026</div>
+                  </div>
+                  <div class="value">0.014 kg CO₂e</div>
+                </div>
+                <div class="item">
+                  <div class="info">
+                    <strong>Water use per use</strong>
+                    <div class="citation">↗ LCA · Q1 2026</div>
+                  </div>
+                  <div class="value">1.8 L</div>
+                </div>
+                <div class="item">
+                  <div class="info">
+                    <strong>USDA Organic %</strong>
+                    <div class="citation">↗ USDA cert · expires Mar 2027</div>
+                  </div>
+                  <div class="value">62%</div>
+                </div>
+                <div class="item">
+                  <div class="info">
+                    <strong>Plant-derived %</strong>
+                    <div class="citation">↗ Formulation audit · Q1 2026</div>
+                  </div>
+                  <div class="value">87%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="field-group">
+              <label>Ingredient list (9)</label>
+              <div class="field" style="font-size:11px;line-height:1.6">
+                Aqua · Ascorbyl Glucoside · Glycerin · Pentylene Glycol · Ferulic Acid · Hyaluronic Acid · Tocopheryl Acetate · Sodium Hyaluronate · Citric Acid<br/>
+                <span style="color:var(--muted)">Each ingredient citation-linked to library evidence</span>
+              </div>
+            </div>
+            <div class="field-group">
+              <label>Packaging</label>
+              <div class="field" style="font-size:11px">
+                <strong>Glass dropper bottle</strong> · 100% recyclable<br/>
+                <strong>Plastic dropper</strong> · separate before recycling<br/>
+                <strong>FSC outer box</strong> · curbside recyclable
+              </div>
+            </div>
+            <div class="field-group">
+              <label>Translations · Claude-drafted</label>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div class="row" style="grid-template-columns:48px 1fr auto;background:var(--bg);border-radius:8px;padding:8px 10px;border:none">
+                  <div class="id">EN</div>
+                  <div class="info"><strong>English · source</strong><span>Updated by Priscilla T.</span></div>
+                  <span class="pill live">LIVE</span>
+                </div>
+                <div class="row" style="grid-template-columns:48px 1fr auto;background:var(--bg);border-radius:8px;padding:8px 10px;border:none">
+                  <div class="id">ES</div>
+                  <div class="info"><strong>Español</strong><span>Drafted · 2 min ago</span></div>
+                  <span class="pill review">REVIEW</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">2 · Facts editor · with compliance + LCA citations</div>
+
+  <!-- 3. Ingredient library -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.cocokind.com / ingredient-library</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">CK · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">⊡</span> Products & Facts</a>
+          <a class="active"><span class="ic">⌬</span> Ingredient library</a>
+          <a><span class="ic">⚠</span> Compliance review</a>
+          <a><span class="ic">○</span> Routine library</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CONTENT · INGREDIENT LIBRARY · 142 ENTRIES</div>
+          <div class="top-actions">
+            <button class="btn alt">Filter</button>
+            <button class="btn alt">Import LCA</button>
+            <button class="btn">+ Ingredient</button>
+          </div>
+        </div>
+        <h2>Ingredient library</h2>
+        <div class="subhead">Every ingredient used across the catalog with peer-reviewed citations. Tap an ingredient to edit its evidence base.</div>
+
+        <div class="ingredient-grid">
+          <div class="ing-card">
+            <div class="body-content">
+              <div class="head"><strong>Ascorbyl Glucoside</strong><span class="pill live">LIVE</span></div>
+              <div class="meta">Stable, plant-derived form of vitamin C. Gentler than L-ascorbic acid; effective at 10%.</div>
+              <div class="citations">
+                <span class="cit">↗ Yamamoto et al. 1990 · Cosmet Toilet</span>
+                <span class="cit">↗ Stamford 2012 · J Cosmet Dermatol</span>
+              </div>
+            </div>
+            <div class="actions">
+              <span class="used">Used in 4 products</span>
+              <button>Edit ›</button>
+            </div>
+          </div>
+          <div class="ing-card">
+            <div class="body-content">
+              <div class="head"><strong>Hyaluronic Acid</strong><span class="pill live">LIVE</span></div>
+              <div class="meta">Hydrating humectant. Multi-weight blend ensures surface and deeper hydration.</div>
+              <div class="citations">
+                <span class="cit">↗ Papakonstantinou et al. 2012 · Dermatoendocrinol</span>
+              </div>
+            </div>
+            <div class="actions">
+              <span class="used">Used in 6 products</span>
+              <button>Edit ›</button>
+            </div>
+          </div>
+          <div class="ing-card">
+            <div class="body-content">
+              <div class="head"><strong>Ceramide NP</strong><span class="pill live">LIVE</span></div>
+              <div class="meta">Lipid that mimics natural skin ceramides; supports moisture barrier.</div>
+              <div class="citations">
+                <span class="cit">↗ Park et al. 2014 · Yonsei Med J</span>
+                <span class="cit">↗ Coderch et al. 2003 · Am J Clin Dermatol</span>
+              </div>
+            </div>
+            <div class="actions">
+              <span class="used">Used in 3 products</span>
+              <button>Edit ›</button>
+            </div>
+          </div>
+          <div class="ing-card">
+            <div class="body-content">
+              <div class="head"><strong>Niacinamide</strong><span class="pill review">REVIEW</span></div>
+              <div class="meta">Vitamin B3 derivative. Claude-drafted summary awaiting compliance check.</div>
+              <div class="citations">
+                <span class="cit">↗ Bissett et al. 2005 · Dermatol Surg (draft)</span>
+              </div>
+            </div>
+            <div class="actions">
+              <span class="used">Used in 2 products</span>
+              <button>Edit ›</button>
+            </div>
+          </div>
+          <div class="ing-card">
+            <div class="body-content">
+              <div class="head"><strong>Raspberry Vinegar</strong><span class="pill live">LIVE</span></div>
+              <div class="meta">Cold-pressed raspberry-derived AHA. Gentle exfoliation; pH-balancing.</div>
+              <div class="citations">
+                <span class="cit">↗ Internal cosmetic chemistry brief</span>
+              </div>
+            </div>
+            <div class="actions">
+              <span class="used">Used in 1 product</span>
+              <button>Edit ›</button>
+            </div>
+          </div>
+          <div class="ing-card">
+            <div class="body-content">
+              <div class="head"><strong>Squalane</strong><span class="pill live">LIVE</span></div>
+              <div class="meta">Sugarcane-derived emollient. Mimics natural sebum; non-comedogenic.</div>
+              <div class="citations">
+                <span class="cit">↗ Kim et al. 2018 · Skin Res Technol</span>
+              </div>
+            </div>
+            <div class="actions">
+              <span class="used">Used in 4 products</span>
+              <button>Edit ›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">3 · Ingredient library · citation-linked evidence</div>
+
+  <!-- 4. Concierge inbox -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.cocokind.com / concierge / maya-r-2841</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">CK · STUDIO</div>
+          <div class="sub">admin portal</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">⊡</span> Products & Facts</a>
+          <a><span class="ic">⌬</span> Ingredient library</a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">↻</span> Refill ops</a>
+          <a class="active"><span class="ic">✉</span> Concierge <span class="badge">4</span></a>
+          <a><span class="ic">★</span> Honest tiers</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CONCIERGE · 4 OPEN</div>
+          <div class="top-actions">
+            <button class="btn alt">Filter</button>
+            <button class="btn">Mark resolved</button>
+          </div>
+        </div>
+        <h2>Concierge inbox</h2>
+        <div class="subhead">Studio chat escalations · ingredient questions · sustainability questions · refill issues</div>
+
+        <div class="inbox-shell">
+          <div class="panel" style="overflow:auto">
+            <h3 style="margin-bottom:8px">Open · 4</h3>
+            <div class="msg active">
+              <div class="av"></div>
+              <div class="body">
+                <div class="name">Maya R. · SF</div>
+                <div class="preview">Vitamin C + sensitive skin · escalated</div>
+                <div class="meta"><span class="lang">EN</span><span>2h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--gold),var(--accent-deep))"></div>
+              <div class="body">
+                <div class="name">Esthetician · Carla S.</div>
+                <div class="preview">B2B portal access · 12 clients</div>
+                <div class="meta"><span class="lang">EN</span><span>4h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--rose),var(--accent-deep))"></div>
+              <div class="body">
+                <div class="name">Lila G. · Madrid</div>
+                <div class="preview">¿Es vegano el ceramide moisturiser?</div>
+                <div class="meta"><span class="lang">ES</span><span>5h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--blue),var(--accent-deep))"></div>
+              <div class="body">
+                <div class="name">Chris O. · Toronto</div>
+                <div class="preview">Bottle return — credit not posted</div>
+                <div class="meta"><span class="lang">EN</span><span>1d</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="inbox-thread">
+            <div class="thread-head">
+              <h4>Maya Rivera · San Francisco</h4>
+              <div class="meta"><span class="pill">VIP · HONEST</span><span>3 active subs · sensitive skin · escalated by Studio chat · 2h ago</span></div>
+            </div>
+            <div class="bubbles">
+              <div class="bubble ai">Studio chat escalated this. Customer asked about adding Vitamin C serum despite sensitive skin and current rosacea-flare risk. AI gave standard guidance and referred to dermatologist; customer asked for direct human follow-up.</div>
+              <div class="bubble warn">⚠ Sensitive skin disclosed · current rosacea (self-reported) · concerning ingredient: even gentle vitamin C may be too much during a flare</div>
+              <div class="bubble left">Hi! The bot said to talk to my dermatologist before adding Vitamin C. I get rosacea flares but my skin is calm right now. Can I add it slowly?<small>EN · 2h ago</small></div>
+              <div class="bubble right">Hi Maya — appreciate you checking. We don't override an AI hold without dermatologist sign-off. If your skin is calm, you can ask your derm whether ascorbyl glucoside is OK for you (mention it's a gentle, plant-derived form). In the meantime, your current routine is doing beautifully — Ceramide moisturiser is barrier-supportive, which matters for rosacea-prone skin.<small>EN · sending</small></div>
+            </div>
+            <div class="reply-bar"><span>Reply in English — Claude ready to translate to ES for archive…</span><span>↑</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">4 · Concierge inbox · derm-aware escalations</div>
+
+</div>
+
+</body>
+</html>

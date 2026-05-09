@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ūnika Swim — App Mockups</title>
+<style>
+  :root {
+    --bg: #f7f1e8;            /* warm sand cream */
+    --ink: #2a2a26;           /* dark charcoal */
+    --muted: #8a857a;
+    --line: #e6dccb;
+    --card: #ffffff;
+    --accent: #d8704a;        /* sun-warmed coral */
+    --accent-deep: #8a3e22;
+    --accent-soft: #f5dfd3;
+    --gold: #d4a85a;
+    --gold-soft: #f3e6c7;
+    --ocean: #4a7e8c;         /* Atlantic blue */
+    --ocean-soft: #cfdfe2;
+    --sand: #d8c4a0;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 { font-family: "Times New Roman", Georgia, serif; font-weight: 500; font-size: 38px; margin: 0 0 4px; letter-spacing: -0.5px; color: var(--accent-deep); }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 32px 24px; padding: 16px 32px 64px; max-width: 1400px; margin: 0 auto; }
+  .phone { background: #2a2a26; border-radius: 44px; padding: 12px; box-shadow: 0 24px 48px rgba(138, 62, 34, .14), 0 2px 8px rgba(0,0,0,.06); width: 310px; justify-self: center; }
+  .screen { background: var(--card); border-radius: 32px; overflow: hidden; height: 620px; display: flex; flex-direction: column; position: relative; }
+  .notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 110px; height: 22px; background: #2a2a26; border-radius: 0 0 14px 14px; z-index: 5; }
+  .statusbar { height: 38px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 22px 4px; font-size: 12px; font-weight: 600; color: var(--ink); }
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding: 8px 18px 12px; border-bottom: 1px solid var(--line); }
+  .topbar h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 14px; margin: 0; letter-spacing: 4px; color: var(--accent-deep); }
+  .icon-btn { width: 28px; height: 28px; border-radius: 50%; background: var(--bg); display: grid; place-items: center; font-size: 14px; color: var(--ink); }
+  .body { flex: 1; overflow: hidden; padding: 14px 18px; }
+  .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+  .h { font-family: "Times New Roman", Georgia, serif; font-size: 22px; margin: 6px 0 14px; line-height: 1.15; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-deep); font-size: 11px; font-weight: 600; }
+  .pill.gold { background: var(--gold-soft); color: #8a6e2a; }
+  .pill.ocean { background: var(--ocean-soft); color: var(--ocean); }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  .muted { color: var(--muted); font-size: 12px; }
+  .btn { display: block; text-align: center; background: var(--accent); color: #fff; padding: 12px 14px; border-radius: 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; }
+  .btn.alt { background: #fff; color: var(--accent-deep); border: 1px solid var(--accent); }
+  .btn.gold { background: var(--gold); color: #2a2a26; }
+  .tabbar { border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(5, 1fr); padding: 8px 4px 14px; background: #fff; }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 10px; color: var(--muted); }
+  .tab.active { color: var(--accent-deep); }
+  .tab .dot { width: 22px; height: 22px; border-radius: 6px; background: var(--bg); display: grid; place-items: center; font-size: 12px; }
+  .tab.active .dot { background: var(--accent-soft); }
+  .caption { text-align: center; margin: 12px 0 0; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px; }
+
+  /* Onboarding */
+  .onb { background: linear-gradient(180deg, var(--gold) 0%, var(--accent) 50%, var(--accent-deep) 100%); color: #fff; flex: 1; padding: 60px 24px 24px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .onb::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle at 12% 22%, rgba(255,255,255,.2) 0 30px, transparent 31px), radial-gradient(circle at 78% 16%, rgba(74,126,140,.30) 0 30px, transparent 31px), radial-gradient(circle at 22% 80%, rgba(255,255,255,.12) 0 22px, transparent 23px); pointer-events: none; }
+  .onb .logo { font-family: "Times New Roman", Georgia, serif; font-size: 18px; letter-spacing: 5px; position: relative; }
+  .onb h3 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.2; margin: auto 0 8px; position: relative; }
+  .onb p { font-size: 13px; opacity: .9; margin: 0 0 22px; position: relative; }
+  .lang-row { display: flex; gap: 6px; margin-bottom: 14px; position: relative; flex-wrap: wrap; }
+  .lang-row span { padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.18); font-size: 11px; font-weight: 600; }
+  .lang-row span.on { background: var(--gold); color: #2a2a26; }
+
+  /* Home */
+  .home-hero { background: linear-gradient(135deg, var(--accent-deep), var(--accent)); border-radius: 14px; padding: 14px; color: #fff; margin-bottom: 14px; position: relative; overflow: hidden; }
+  .home-hero::after { content: "✦"; position: absolute; right: 14px; top: 14px; color: var(--gold); font-size: 18px; opacity: .8; }
+  .home-hero .tag { font-size: 10px; letter-spacing: 2.5px; opacity: .85; }
+  .home-hero h3 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.15; margin: 8px 0 10px; }
+  .home-hero .meta { display: flex; gap: 12px; font-size: 11px; opacity: .9; }
+  .order-progress { background: var(--ocean-soft); border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; }
+  .order-progress .head { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--ocean); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .order-progress .name { font-size: 13px; color: var(--ink); margin-bottom: 6px; }
+  .order-progress .steps { display: flex; gap: 4px; }
+  .order-progress .steps .step { flex: 1; height: 4px; background: rgba(74,126,140,.2); border-radius: 2px; }
+  .order-progress .steps .step.done { background: var(--ocean); }
+  .order-progress .steps .step.active { background: var(--accent); }
+  .order-progress .stage { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  /* Atelier */
+  .atelier-hero { height: 180px; border-radius: 14px; background: radial-gradient(circle at 30% 50%, rgba(212,168,90,.45) 0 22%, transparent 23%), radial-gradient(circle at 70% 50%, rgba(74,126,140,.35) 0 18%, transparent 19%), linear-gradient(135deg, var(--accent), var(--accent-deep)); margin-bottom: 12px; position: relative; }
+  .atelier-hero::after { content: "ŪNIKA"; position: absolute; bottom: 14px; left: 14px; color: rgba(255,255,255,.85); font-family: "Times New Roman", Georgia, serif; font-size: 22px; letter-spacing: 4px; }
+  .atelier-step { display: grid; grid-template-columns: 32px 1fr; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--line); align-items: flex-start; }
+  .atelier-step:last-child { border: none; }
+  .atelier-step .num { width: 30px; height: 30px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-deep); display: grid; place-items: center; font-family: "Times New Roman", Georgia, serif; font-size: 14px; font-weight: 700; }
+  .atelier-step .num.done { background: var(--accent); color: #fff; }
+  .atelier-step .info { font-size: 12px; }
+  .atelier-step .info strong { display: block; font-size: 13px; }
+  .atelier-step .info span { color: var(--muted); font-size: 11px; }
+
+  /* Fabric library */
+  .fabric-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .fabric { aspect-ratio: 1; border-radius: 12px; position: relative; overflow: hidden; cursor: pointer; }
+  .fabric.coral { background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+  .fabric.gold { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .fabric.ocean { background: linear-gradient(135deg, var(--ocean), #1e4148); }
+  .fabric.tropical { background: repeating-linear-gradient(45deg, var(--gold) 0 8px, var(--accent) 8px 16px, var(--ocean) 16px 24px); }
+  .fabric.sand { background: linear-gradient(135deg, var(--sand), #a89070); }
+  .fabric.dark { background: linear-gradient(180deg, var(--ink), #555047); }
+  .fabric .name { position: absolute; bottom: 6px; left: 8px; right: 8px; color: #fff; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+  .fabric.selected { box-shadow: 0 0 0 3px var(--accent), 0 0 0 5px #fff inset; }
+
+  /* Body / fit profile */
+  .fit-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
+  .fit-card.sensitive { border: 1px solid var(--ocean); background: var(--ocean-soft); }
+  .fit-card .head { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+  .fit-card.sensitive .head { color: var(--ocean); }
+  .fit-card .name { font-family: "Times New Roman", Georgia, serif; font-size: 18px; margin-bottom: 4px; }
+  .fit-card .desc { color: var(--muted); font-size: 12px; line-height: 1.5; }
+  .fit-card .lock { color: var(--ocean); font-size: 10px; font-weight: 700; margin-top: 8px; }
+
+  /* Order tracker (full screen) */
+  .tracker-row { display: grid; grid-template-columns: 32px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px dashed var(--line); align-items: flex-start; position: relative; }
+  .tracker-row::before { content: ""; position: absolute; left: 15px; top: 35px; bottom: -12px; width: 2px; background: var(--line); }
+  .tracker-row:last-child::before { display: none; }
+  .tracker-row .ic { width: 32px; height: 32px; border-radius: 50%; background: #fff; border: 2px solid var(--line); display: grid; place-items: center; font-size: 14px; color: var(--muted); position: relative; z-index: 1; }
+  .tracker-row.done .ic { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .tracker-row.active .ic { background: #fff; border-color: var(--accent); color: var(--accent); }
+  .tracker-row .info { font-size: 12px; padding-top: 4px; }
+  .tracker-row .info strong { display: block; font-size: 13px; }
+  .tracker-row .info span { color: var(--muted); font-size: 11px; }
+  .tracker-row .photo { width: 100%; height: 60px; border-radius: 8px; margin-top: 6px; background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+
+  /* PDP */
+  .pdp-img { height: 220px; border-radius: 14px; background: radial-gradient(circle at 30% 30%, rgba(212,168,90,.3) 0 20%, transparent 21%), linear-gradient(135deg, var(--accent), var(--accent-deep)); margin-bottom: 12px; position: relative; }
+  .pdp-img .qr { position: absolute; bottom: 10px; right: 10px; width: 34px; height: 34px; background: #fff; border-radius: 6px; display: grid; place-items: center; font-size: 18px; }
+  .pdp-img .badge { position: absolute; top: 10px; left: 10px; background: var(--gold); color: #2a2a26; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 999px; }
+  .meta-row { display: flex; gap: 6px; margin: 6px 0 12px; flex-wrap: wrap; }
+
+  /* Atelier chat */
+  .chat { flex: 1; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+  .bubble { max-width: 80%; padding: 10px 12px; border-radius: 14px; font-size: 12px; line-height: 1.4; }
+  .bubble.me { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+  .bubble.bot { align-self: flex-start; background: var(--bg); color: var(--ink); border-bottom-left-radius: 4px; }
+  .bubble small { display: block; color: var(--muted); margin-top: 4px; font-size: 10px; }
+  .input { margin-top: auto; border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
+
+  /* Profile */
+  .avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--accent-deep)); margin: 0 auto 8px; }
+  .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+  .menu-item.sensitive { color: var(--ocean); }
+  .menu-item.sensitive .lock { font-size: 11px; }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>Ūnika Swim — App Mockups</h1>
+  <p>Phase 1 screens. Open in any browser. Wireframe fidelity, not final visual design.</p>
+</header>
+
+<div class="grid">
+
+  <!-- 1. Onboarding -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="onb">
+        <div class="logo">Ū·N·I·K·A · SWIM</div>
+        <h3>Made for the body<br/>you're in.</h3>
+        <p>Custom swimwear in Toronto. Cup AAA–H. ECONYL® regenerated nylon. Brazilian beachwear soul.</p>
+        <div class="lang-row">
+          <span class="on">EN</span><span>PT</span><span>ES</span>
+        </div>
+        <div class="btn gold">Continue with Apple</div>
+        <div style="height:8px"></div>
+        <div class="btn alt" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.4)">Sign in with email</div>
+      </div>
+    </div></div>
+    <div class="caption">1 · Onboarding · sun + sea</div>
+  </div>
+
+  <!-- 2. Home -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>Ū · N · I · K · A</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="home-hero">
+          <div class="tag">YOUR APPOINTMENT · MAY 18</div>
+          <h3>Custom design,<br/>Yorkville studio</h3>
+          <div class="meta"><span>Saturday · 2:00 pm</span><span>·</span><span>with Maria</span></div>
+        </div>
+        <div class="order-progress">
+          <div class="head">
+            <span>YOUR ORDER · IN PRODUCTION</span>
+            <span>4 of 6</span>
+          </div>
+          <div class="name">Coral one-piece · custom</div>
+          <div class="steps">
+            <div class="step done"></div>
+            <div class="step done"></div>
+            <div class="step done"></div>
+            <div class="step done"></div>
+            <div class="step active"></div>
+            <div class="step"></div>
+          </div>
+          <div class="stage">Stage 4 · hand-finishing · ~10 days</div>
+        </div>
+        <div class="row" style="margin-bottom:8px">
+          <div class="label">PRE-MADE · NEW</div>
+          <div class="muted">See all →</div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">✦</div><span>Atelier</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">2 · Home · appointment + order</div>
+  </div>
+
+  <!-- 3. The Atelier -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>THE ATELIER</h2>
+        <div class="icon-btn">⤴</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="atelier-hero"></div>
+        <div class="label">CUSTOM DESIGN · DRAFT</div>
+        <div class="h" style="margin:4px 0 12px">Coral one-piece<br/>· halter · low back</div>
+        <div class="atelier-step">
+          <div class="num done">✓</div>
+          <div class="info"><strong>Cut</strong><span>One-piece · halter neck · low back</span></div>
+        </div>
+        <div class="atelier-step">
+          <div class="num done">✓</div>
+          <div class="info"><strong>Fabric</strong><span>ECONYL® coral · matte finish · stretch 4-way</span></div>
+        </div>
+        <div class="atelier-step">
+          <div class="num">3</div>
+          <div class="info"><strong>Print or solid</strong><span>Choose: solid · or 6 brand prints</span></div>
+        </div>
+        <div class="atelier-step">
+          <div class="num">4</div>
+          <div class="info"><strong>Embellishment</strong><span>Tassels · scrunchie ties · plain</span></div>
+        </div>
+        <div style="height:10px"></div>
+        <div class="btn">Book appointment in Yorkville</div>
+        <div style="height:8px"></div>
+        <div class="btn alt">Or video consult ›</div>
+      </div>
+    </div></div>
+    <div class="caption">3 · Atelier · custom design draft</div>
+  </div>
+
+  <!-- 4. Fabric library -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>FABRICS</h2>
+        <div class="icon-btn">⌕</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="meta-row">
+          <span class="pill">All</span>
+          <span class="pill ocean">Ocean</span>
+          <span class="pill gold">Sun</span>
+          <span class="pill">Earth</span>
+          <span class="pill">Prints</span>
+        </div>
+        <div class="row" style="margin-bottom:8px">
+          <div class="label">ECONYL® · 24 FABRICS</div>
+          <div class="muted">Search</div>
+        </div>
+        <div class="fabric-grid">
+          <div class="fabric coral selected"><span class="name">Coral matte</span></div>
+          <div class="fabric gold"><span class="name">Sun gold</span></div>
+          <div class="fabric ocean"><span class="name">Atlantic</span></div>
+          <div class="fabric tropical"><span class="name">Tropical print</span></div>
+          <div class="fabric sand"><span class="name">Sand stripe</span></div>
+          <div class="fabric dark"><span class="name">Onyx</span></div>
+          <div class="fabric coral"><span class="name">Sunset</span></div>
+          <div class="fabric ocean"><span class="name">Deep blue</span></div>
+          <div class="fabric gold"><span class="name">Saffron</span></div>
+        </div>
+        <div style="height:14px"></div>
+        <div style="background:var(--ocean-soft);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--ocean);font-weight:600;line-height:1.5">
+          <strong>ECONYL® regenerated nylon.</strong><br/>
+          Made from discarded fishing nets and post-industrial waste. Indistinguishable from virgin nylon, more durable.
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">4 · Fabric library · ECONYL® search</div>
+  </div>
+
+  <!-- 5. Body / fit profile -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>YOUR BODY</h2>
+        <div class="icon-btn">?</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="label" style="margin-bottom:6px">FIT PROFILE</div>
+        <div class="fit-card">
+          <div class="head"><span>BAND + CUP</span><span>required</span></div>
+          <div class="name">38 · D cup</div>
+          <div class="desc">Cup sizes AAA–H supported. Tap to update at any time.</div>
+        </div>
+        <div class="fit-card">
+          <div class="head"><span>BODY COMFORT</span><span>opt-in</span></div>
+          <div class="name">Mid-coverage preferred</div>
+          <div class="desc">Helps the specialist propose cuts; never used in marketing.</div>
+        </div>
+        <div class="label" style="margin: 16px 0 6px">SENSITIVE FIT (opt-in only)</div>
+        <div class="fit-card sensitive">
+          <div class="head"><span>POST-MASTECTOMY</span><span>private</span></div>
+          <div class="name">Pocketed lining requested</div>
+          <div class="desc">Specialist Maria has been notified. Custom design includes a discreet pocket for prosthesis or insert.</div>
+          <div class="lock">🔒 Visible only to your appointment specialist · never to AI marketing</div>
+        </div>
+        <div class="fit-card sensitive">
+          <div class="head"><span>SCARS / SURGICAL HISTORY</span><span>private</span></div>
+          <div class="name">Coverage near abdomen</div>
+          <div class="desc">Cuts that respect your comfort. Your data, your choice.</div>
+          <div class="lock">🔒 Specialist-only · audit-logged access</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">5 · Body · sensitive-fit segregated data</div>
+  </div>
+
+  <!-- 6. Order tracker -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>YOUR ORDER</h2>
+        <div class="icon-btn">⤴</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="label">CUSTOM #2026-184 · CORAL ONE-PIECE</div>
+        <div class="h" style="margin:4px 0 14px">In hand-finishing<br/>· ~10 days to ship</div>
+        <div class="tracker-row done">
+          <div class="ic">✓</div>
+          <div class="info"><strong>Design confirmed</strong><span>Apr 28 · with Maria</span></div>
+        </div>
+        <div class="tracker-row done">
+          <div class="ic">✓</div>
+          <div class="info"><strong>ECONYL® batch reserved</strong><span>Apr 30 · coral matte · batch #2026-A</span></div>
+        </div>
+        <div class="tracker-row done">
+          <div class="ic">✓</div>
+          <div class="info">
+            <strong>Fabric cut</strong>
+            <span>May 4 · Yorkville boutique</span>
+            <div class="photo"></div>
+          </div>
+        </div>
+        <div class="tracker-row done">
+          <div class="ic">✓</div>
+          <div class="info"><strong>Sewing complete</strong><span>May 8 · ready for hand-finishing</span></div>
+        </div>
+        <div class="tracker-row active">
+          <div class="ic">●</div>
+          <div class="info"><strong>Hand-finishing</strong><span>In progress · seam reinforcement, label</span></div>
+        </div>
+        <div class="tracker-row">
+          <div class="ic">○</div>
+          <div class="info"><strong>Quality + shipping</strong><span>Estimated May 18</span></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">6 · Order tracker · 6-stage with photos</div>
+  </div>
+
+  <!-- 7. PDP -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>BIA ONE-PIECE</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="pdp-img">
+          <div class="badge">PRE-MADE · 4 SIZES</div>
+          <div class="qr">⊡</div>
+        </div>
+        <div class="row">
+          <div>
+            <div class="h" style="margin:0">Bia one-piece</div>
+            <div class="muted">ECONYL® coral · cup D–F · made in Toronto</div>
+          </div>
+          <div style="font-family:Georgia,serif;font-size:18px;color:var(--accent-deep)">CA$148</div>
+        </div>
+        <div class="meta-row">
+          <span class="pill">Halter neck</span>
+          <span class="pill ocean">ECONYL®</span>
+          <span class="pill gold">Cup D–F</span>
+        </div>
+        <div class="btn">Add to bag</div>
+        <div style="height:8px"></div>
+        <div class="btn alt">Or design custom in this fabric ✦</div>
+      </div>
+    </div></div>
+    <div class="caption">7 · Product · pre-made + custom path</div>
+  </div>
+
+  <!-- 8. Atelier chat -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>ATELIER ✦</h2>
+        <div class="icon-btn">⋯</div>
+      </div>
+      <div class="body">
+        <div class="chat">
+          <div class="bubble bot">Hi Sofia — looking at custom one-pieces for Brazil this summer? Want help thinking through cut + fabric?</div>
+          <div class="bubble me">Yes. I want something supportive but not too covered. I'm a 34DD.</div>
+          <div class="bubble bot">Boa! For 34DD with mid-coverage, the Bia silhouette works — halter neck for support, scoop back. Want a solid coral, or one of our six prints?<small>Sourced from your fit profile + brand cut library</small></div>
+          <div class="bubble me">Tropical print, please.</div>
+          <div class="bubble bot">Beautiful — I've added it to your draft design. Maria will see it before your Saturday appointment. She'll ask if you want any adjustments to the cut on the day.</div>
+          <div class="input"><span>Ask in EN, PT, or ES…</span><span>↑</span></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">8 · Atelier · trilingual design AI</div>
+  </div>
+
+  <!-- 9. Profile -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>PROFILE</h2>
+        <div class="icon-btn">⚙</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div style="text-align:center;margin-bottom:12px">
+          <div class="avatar"></div>
+          <div style="font-family:Georgia,serif;font-size:18px">Sofia M.</div>
+          <div class="muted">Member since 2023 · Sun tier · Toronto</div>
+        </div>
+        <div class="label" style="margin-bottom:4px">YOUR DATA</div>
+        <div class="menu-item"><span>Fit profile · 38 · D cup</span><span>›</span></div>
+        <div class="menu-item"><span>Body comfort preferences</span><span>›</span></div>
+        <div class="menu-item sensitive"><span>🔒 Sensitive-fit profile · 2 entries</span><span class="lock">private</span></div>
+        <div class="menu-item"><span>Language &amp; region · EN · CA</span><span>›</span></div>
+        <div class="menu-item"><span>Custom orders · 4 in archive</span><span>›</span></div>
+        <div class="menu-item"><span>What we know about you</span><span>›</span></div>
+        <div class="menu-item"><span>Privacy &amp; consent</span><span>›</span></div>
+        <div class="menu-item"><span>Sign out</span><span>›</span></div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">✦</div><span>Atelier</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab active"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">9 · Profile · sensitive-fit segregation</div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Encircled — App Mockups</title>
+<style>
+  :root {
+    --bg: #f4efea;             /* warm cream */
+    --ink: #2b2a26;            /* warm charcoal */
+    --muted: #888379;
+    --line: #e6dfd3;
+    --card: #ffffff;
+    --accent: #5d6e54;         /* forest sage / chrysalis green */
+    --accent-deep: #36422f;
+    --accent-soft: #dfe5d6;
+    --gold: #b89968;           /* caramel / amber */
+    --gold-soft: #ecdec3;
+    --terra: #b96a4f;          /* terracotta */
+    --plum: #6f4d62;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 { font-family: "Times New Roman", Georgia, serif; font-weight: 500; font-size: 38px; margin: 0 0 4px; letter-spacing: -0.5px; color: var(--accent); }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 32px 24px; padding: 16px 32px 64px; max-width: 1400px; margin: 0 auto; }
+  .phone { background: #2b2a26; border-radius: 44px; padding: 12px; box-shadow: 0 24px 48px rgba(54, 66, 47, .14), 0 2px 8px rgba(0,0,0,.06); width: 310px; justify-self: center; }
+  .screen { background: var(--card); border-radius: 32px; overflow: hidden; height: 620px; display: flex; flex-direction: column; position: relative; }
+  .notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 110px; height: 22px; background: #2b2a26; border-radius: 0 0 14px 14px; z-index: 5; }
+  .statusbar { height: 38px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 22px 4px; font-size: 12px; font-weight: 600; color: var(--ink); }
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding: 8px 18px 12px; border-bottom: 1px solid var(--line); }
+  .topbar h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 14px; margin: 0; letter-spacing: 4px; color: var(--ink); }
+  .icon-btn { width: 28px; height: 28px; border-radius: 50%; background: var(--bg); display: grid; place-items: center; font-size: 14px; color: var(--ink); }
+  .body { flex: 1; overflow: hidden; padding: 14px 18px; }
+  .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+  .h { font-family: "Times New Roman", Georgia, serif; font-size: 22px; margin: 6px 0 14px; line-height: 1.15; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 11px; font-weight: 600; }
+  .pill.gold { background: var(--gold-soft); color: #8a6e2a; }
+  .pill.terra { background: #f4dccb; color: var(--terra); }
+  .pill.plum { background: #e7d8e2; color: var(--plum); }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  .muted { color: var(--muted); font-size: 12px; }
+  .btn { display: block; text-align: center; background: var(--accent); color: #fff; padding: 12px 14px; border-radius: 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; }
+  .btn.alt { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
+  .btn.gold { background: var(--gold); color: #2b2a26; }
+  .tabbar { border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(5, 1fr); padding: 8px 4px 14px; background: #fff; }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 10px; color: var(--muted); }
+  .tab.active { color: var(--accent); }
+  .tab .dot { width: 22px; height: 22px; border-radius: 6px; background: var(--bg); display: grid; place-items: center; font-size: 12px; }
+  .tab.active .dot { background: var(--accent-soft); }
+  .caption { text-align: center; margin: 12px 0 0; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px; }
+
+  /* Onboarding */
+  .onb {
+    background: linear-gradient(180deg, #b89968 0%, #5d6e54 60%, #36422f 100%);
+    color: #fff; flex: 1; padding: 60px 24px 24px;
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+  }
+  .onb::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 14% 22%, rgba(255,255,255,.15) 0 26px, transparent 27px),
+      radial-gradient(circle at 78% 16%, rgba(184,153,104,.25) 0 30px, transparent 31px),
+      radial-gradient(circle at 24% 78%, rgba(255,255,255,.1) 0 22px, transparent 23px);
+    pointer-events: none;
+  }
+  .onb .logo { font-family: "Times New Roman", Georgia, serif; font-size: 18px; letter-spacing: 6px; position: relative; }
+  .onb h3 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.2; margin: auto 0 8px; position: relative; }
+  .onb p { font-size: 13px; opacity: .9; margin: 0 0 22px; position: relative; }
+  .lang-row { display: flex; gap: 6px; margin-bottom: 14px; position: relative; flex-wrap: wrap; }
+  .lang-row span { padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.18); font-size: 11px; font-weight: 600; }
+  .lang-row span.on { background: var(--gold); color: #2b2a26; }
+
+  /* Home */
+  .style-hero {
+    background: linear-gradient(135deg, #36422f, #5d6e54);
+    border-radius: 14px; padding: 14px;
+    color: #fff; margin-bottom: 14px;
+    position: relative; overflow: hidden;
+  }
+  .style-hero::after {
+    content: ""; position: absolute; right: -25px; bottom: -25px;
+    width: 130px; height: 130px;
+    border: 2px solid rgba(184,153,104,.35); border-radius: 50%;
+  }
+  .style-hero::before {
+    content: ""; position: absolute; right: 5px; bottom: 10px;
+    width: 80px; height: 80px;
+    border: 2px solid rgba(184,153,104,.2); border-radius: 50%;
+  }
+  .style-hero .tag { font-size: 10px; letter-spacing: 2.5px; opacity: .85; }
+  .style-hero h3 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.15; margin: 8px 0 10px; }
+  .style-hero .meta { display: flex; gap: 16px; font-size: 11px; opacity: .85; border-top: 1px solid rgba(255,255,255,.2); padding-top: 10px; }
+  .hgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card { border: 1px solid var(--line); border-radius: 12px; padding: 10px; font-size: 12px; background: #fff; }
+  .card .swatch { height: 70px; border-radius: 8px; margin-bottom: 8px; }
+
+  /* The Many — 8 ways */
+  .ways-hero {
+    height: 180px; border-radius: 14px;
+    background:
+      radial-gradient(circle at 30% 50%, rgba(184,153,104,.5) 0 22%, transparent 23%),
+      radial-gradient(circle at 70% 50%, rgba(223,229,214,.4) 0 18%, transparent 19%),
+      linear-gradient(135deg, var(--accent-deep), var(--accent));
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .ways-hero::after {
+    content: "8"; position: absolute; top: 16px; right: 18px;
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 60px; color: rgba(255,255,255,.18); font-weight: 700;
+  }
+  .ways-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+  .way {
+    aspect-ratio: 1;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--muted);
+    text-align: center; padding: 6px;
+    position: relative;
+  }
+  .way::before {
+    content: ""; width: 22px; height: 22px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+    border-radius: 4px;
+    margin-bottom: 4px;
+  }
+  .way.unlocked::before { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .way.locked { opacity: .5; }
+  .way .num { font-family: "Times New Roman", Georgia, serif; font-size: 11px; color: var(--ink); font-weight: 700; margin-bottom: 2px; }
+  .way .name { line-height: 1.2; }
+
+  /* Wardrobe */
+  .closet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .piece { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; position: relative; }
+  .piece .sw { height: 100px; }
+  .piece .info { padding: 8px; font-size: 12px; }
+  .piece .info strong { display: block; }
+  .piece .info span { color: var(--muted); font-size: 11px; }
+  .piece .badge {
+    position: absolute; top: 6px; right: 6px;
+    background: var(--gold); color: #2b2a26;
+    font-size: 9px; font-weight: 700;
+    padding: 2px 6px; border-radius: 999px;
+  }
+  .cpw { color: var(--accent); font-weight: 700; font-size: 11px; }
+
+  /* PDP */
+  .pdp-img {
+    height: 220px; border-radius: 14px;
+    background:
+      radial-gradient(circle at 50% 60%, rgba(184,153,104,.3) 0 28%, transparent 29%),
+      linear-gradient(135deg, var(--accent), var(--accent-deep));
+    margin-bottom: 12px; position: relative;
+  }
+  .pdp-img .qr { position: absolute; bottom: 10px; right: 10px; width: 34px; height: 34px; background: #fff; border-radius: 6px; display: grid; place-items: center; font-size: 18px; }
+  .pdp-img .ways-pill {
+    position: absolute; top: 10px; left: 10px;
+    background: var(--gold); color: #2b2a26;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    padding: 4px 10px; border-radius: 999px;
+  }
+  .meta-row { display: flex; gap: 6px; margin: 6px 0 12px; flex-wrap: wrap; }
+
+  /* Capsule */
+  .capsule-card {
+    background: linear-gradient(135deg, var(--gold), #8a6e2a);
+    color: #fff; border-radius: 14px; padding: 14px;
+    margin-bottom: 12px; position: relative; overflow: hidden;
+  }
+  .capsule-card .lbl { font-size: 10px; letter-spacing: 2px; opacity: .9; }
+  .capsule-card .where { font-family: "Times New Roman", Georgia, serif; font-size: 22px; line-height: 1.1; margin: 4px 0 8px; }
+  .capsule-card .summary {
+    display: flex; gap: 12px; font-size: 11px;
+    border-top: 1px solid rgba(255,255,255,.25); padding-top: 8px;
+  }
+  .capsule-card .summary div strong { font-family: "Times New Roman", Georgia, serif; font-size: 16px; display: block; }
+  .capsule-pieces { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+  .capsule-pieces .cp {
+    aspect-ratio: 1; border-radius: 6px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+    position: relative;
+  }
+  .capsule-pieces .cp.amber { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .capsule-pieces .cp.terra { background: linear-gradient(135deg, var(--terra), #6f3a18); }
+  .capsule-pieces .cp.dark { background: linear-gradient(180deg, #2b2a26, #555047); }
+  .capsule-pieces .cp.cream { background: linear-gradient(135deg, #f4efea, #d4cebd); }
+
+  /* Atelier (repair) */
+  .repair-step {
+    display: grid; grid-template-columns: 32px 1fr;
+    gap: 10px; padding: 12px 0;
+    border-bottom: 1px dashed var(--line); align-items: flex-start;
+  }
+  .repair-step:last-child { border: none; }
+  .repair-step .num {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent);
+    display: grid; place-items: center;
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 14px; font-weight: 700;
+  }
+  .repair-step .num.done { background: var(--accent); color: #fff; }
+  .repair-step .info { font-size: 12px; }
+  .repair-step .info strong { display: block; font-size: 13px; }
+  .repair-step .info span { color: var(--muted); font-size: 11px; }
+  .repair-banner {
+    background: var(--accent-soft); color: var(--accent);
+    border-radius: 10px; padding: 10px 12px;
+    font-size: 11px; font-weight: 600;
+    margin-bottom: 12px; text-align: center;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* Atelier chat */
+  .chat { flex: 1; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+  .bubble { max-width: 80%; padding: 10px 12px; border-radius: 14px; font-size: 12px; line-height: 1.4; }
+  .bubble.me { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+  .bubble.bot { align-self: flex-start; background: var(--bg); color: var(--ink); border-bottom-left-radius: 4px; }
+  .bubble small { display: block; color: var(--muted); margin-top: 4px; font-size: 10px; }
+  .input { margin-top: auto; border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
+
+  /* Profile */
+  .avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--accent-deep)); margin: 0 auto 8px; }
+  .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>Encircled — App Mockups</h1>
+  <p>Phase 1 screens. Open in any browser. Wireframe fidelity, not final visual design.</p>
+</header>
+
+<div class="grid">
+
+  <!-- 1. Onboarding -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="onb">
+        <div class="logo">ENCIRCLED</div>
+        <h3>Fewer pieces.<br/>More ways to wear them.</h3>
+        <p>Multi-way design. Lifetime repair. Made in Toronto.</p>
+        <div class="lang-row">
+          <span class="on">EN</span><span>FR</span>
+        </div>
+        <div class="btn gold">Continue with Apple</div>
+        <div style="height:8px"></div>
+        <div class="btn alt" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.4)">Sign in with email</div>
+      </div>
+    </div></div>
+    <div class="caption">1 · Onboarding · EN/FR</div>
+  </div>
+
+  <!-- 2. Home -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>ENCIRCLED</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="style-hero">
+          <div class="tag">STYLE OF THE WEEK</div>
+          <h3>Chrysalis Cardi —<br/>the Halter Dress.</h3>
+          <div class="meta"><span>30-sec video</span><span>·</span><span>3 of 8 unlocked</span></div>
+        </div>
+        <div class="row" style="margin-bottom:8px">
+          <div class="label">New drop · for you</div>
+          <div class="muted">See all →</div>
+        </div>
+        <div class="hgrid">
+          <div class="card">
+            <div class="swatch" style="background:linear-gradient(135deg,#5d6e54,#36422f)"></div>
+            <div>Wide-leg Pant · Sage</div>
+            <div class="muted">CA$148</div>
+          </div>
+          <div class="card">
+            <div class="swatch" style="background:linear-gradient(135deg,#b89968,#8a6e2a)"></div>
+            <div>Tencel Tee · Amber</div>
+            <div class="muted">CA$78</div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab"><div class="dot">✈</div><span>Capsule</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">2 · Home · style of the week + drops</div>
+  </div>
+
+  <!-- 3. The Many -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>THE MANY</h2>
+        <div class="icon-btn">⤴</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="ways-hero"></div>
+        <div class="label">CHRYSALIS CARDI · BLACK</div>
+        <div class="h" style="margin:4px 0 12px">Eight garments.<br/>One piece of fabric.</div>
+        <div class="ways-grid">
+          <div class="way unlocked"><div class="num">1</div><div class="name">Cardigan</div></div>
+          <div class="way unlocked"><div class="num">2</div><div class="name">Wrap top</div></div>
+          <div class="way unlocked"><div class="num">3</div><div class="name">Halter dress</div></div>
+          <div class="way locked"><div class="num">4</div><div class="name">Off-shoulder</div></div>
+          <div class="way locked"><div class="num">5</div><div class="name">Skirt</div></div>
+          <div class="way locked"><div class="num">6</div><div class="name">Poncho</div></div>
+          <div class="way locked"><div class="num">7</div><div class="name">Scarf</div></div>
+          <div class="way locked"><div class="num">8</div><div class="name">Beach cover</div></div>
+        </div>
+        <div class="repair-banner">3 unlocked · 5 to go</div>
+        <div class="muted" style="text-align:center">Tap a style to see the 30-sec how-to.</div>
+      </div>
+    </div></div>
+    <div class="caption">3 · The Many · 8 ways to wear</div>
+  </div>
+
+  <!-- 4. Wardrobe -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>WARDROBE</h2>
+        <div class="icon-btn">+</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="row" style="margin-bottom:10px">
+          <div class="muted">11 pieces · 248 wears</div>
+          <div class="pill">All</div>
+        </div>
+        <div class="closet-grid">
+          <div class="piece">
+            <div class="badge">8 WAYS</div>
+            <div class="sw" style="background:linear-gradient(180deg,#2b2a26,#555047)"></div>
+            <div class="info">
+              <strong>Chrysalis Cardi</strong>
+              <span>worn 42× · </span><span class="cpw">$2.30/wear</span>
+            </div>
+          </div>
+          <div class="piece">
+            <div class="sw" style="background:linear-gradient(135deg,#5d6e54,#36422f)"></div>
+            <div class="info">
+              <strong>Wide-leg Pant · Sage</strong>
+              <span>worn 28× · </span><span class="cpw">$5.29/wear</span>
+            </div>
+          </div>
+          <div class="piece">
+            <div class="badge">4 WAYS</div>
+            <div class="sw" style="background:linear-gradient(135deg,#b89968,#8a6e2a)"></div>
+            <div class="info">
+              <strong>Multi-way Tank</strong>
+              <span>worn 18× · </span><span class="cpw">$3.78/wear</span>
+            </div>
+          </div>
+          <div class="piece">
+            <div class="sw" style="background:linear-gradient(180deg,#fff,#e6dfd3)"></div>
+            <div class="info">
+              <strong>Tencel Tee · Cream</strong>
+              <span>worn 31× · </span><span class="cpw">$2.42/wear</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab active"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab"><div class="dot">✈</div><span>Capsule</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">4 · Wardrobe · multi-way unlocks + cost-per-wear</div>
+  </div>
+
+  <!-- 5. PDP -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>CHRYSALIS CARDI</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="pdp-img">
+          <div class="ways-pill">8 WAYS TO WEAR</div>
+          <div class="qr">⊡</div>
+        </div>
+        <div class="row">
+          <div>
+            <div class="h" style="margin:0">Chrysalis Cardi · Black</div>
+            <div class="muted">Made in Toronto · Tencel + organic cotton</div>
+          </div>
+          <div style="font-family:Georgia,serif;font-size:18px;color:var(--accent)">CA$98</div>
+        </div>
+        <div class="meta-row">
+          <span class="pill">8 ways</span>
+          <span class="pill gold">Lifetime repair</span>
+          <span class="pill terra">Made in Canada</span>
+        </div>
+        <div class="btn">Add to bag</div>
+        <div style="height:8px"></div>
+        <div class="btn alt">Ask the Atelier ✦</div>
+      </div>
+    </div></div>
+    <div class="caption">5 · Product · "8 ways" + lifetime repair</div>
+  </div>
+
+  <!-- 6. Capsule -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>THE CAPSULE</h2>
+        <div class="icon-btn">+</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="capsule-card">
+          <div class="lbl">UPCOMING TRIP · 14 NOV</div>
+          <div class="where">Lisbon · 6 days</div>
+          <div class="summary">
+            <div><strong>4</strong>pieces</div>
+            <div><strong>11</strong>outfits</div>
+            <div><strong>1.2 kg</strong>weight</div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:8px">
+          <div class="label">YOUR CAPSULE · 4 pieces · 11 outfits</div>
+        </div>
+        <div class="capsule-pieces">
+          <div class="cp dark"></div>
+          <div class="cp"></div>
+          <div class="cp amber"></div>
+          <div class="cp cream"></div>
+        </div>
+        <div class="muted" style="margin-bottom:10px">Chrysalis Cardi · Wide-leg Pant Sage · Multi-way Tank Amber · Tencel Tee Cream.</div>
+        <div class="repair-banner" style="background:var(--gold-soft);color:#8a6e2a">PACK-LIGHT SCORE · 92 / 100</div>
+        <div class="btn">See all 11 outfits</div>
+        <div style="height:8px"></div>
+        <div class="btn alt">Edit capsule</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab active"><div class="dot">✈</div><span>Capsule</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">6 · Capsule · trip-built outfit set</div>
+  </div>
+
+  <!-- 7. Atelier (repair) -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>THE ATELIER</h2>
+        <div class="icon-btn">?</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="repair-banner">GUARANTEED FOR LIFE · FREE REPAIR</div>
+        <div class="label">REQUESTING REPAIR</div>
+        <div class="h" style="margin:4px 0 12px">Chrysalis Cardi —<br/>seam separation.</div>
+        <div class="repair-step">
+          <div class="num done">✓</div>
+          <div class="info"><strong>Scanned the piece</strong><span>Chrysalis Cardi · Black · #1488 · purchased 2023</span></div>
+        </div>
+        <div class="repair-step">
+          <div class="num done">✓</div>
+          <div class="info"><strong>Photo of damage</strong><span>2 photos uploaded · AI: in-house repair · 7-day turnaround</span></div>
+        </div>
+        <div class="repair-step">
+          <div class="num done">✓</div>
+          <div class="info"><strong>Quote</strong><span>$0 · covered by lifetime guarantee</span></div>
+        </div>
+        <div class="repair-step">
+          <div class="num">4</div>
+          <div class="info"><strong>Choose pickup or label</strong><span>Free pickup in Toronto · or print a prepaid label</span></div>
+        </div>
+        <div style="height:10px"></div>
+        <div class="btn">Book Toronto pickup</div>
+        <div style="height:8px"></div>
+        <div class="btn alt">Print mail-in label</div>
+      </div>
+    </div></div>
+    <div class="caption">7 · Atelier · repair request flow</div>
+  </div>
+
+  <!-- 8. Atelier chat -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>ASK THE ATELIER ✦</h2>
+        <div class="icon-btn">⋯</div>
+      </div>
+      <div class="body">
+        <div class="chat">
+          <div class="bubble bot">Hi Madeleine — looking at the Chrysalis Cardi for Lisbon? Want help finding your size?</div>
+          <div class="bubble me">Yes. I'm 5'5", typically a small. I want to wear it as a dress.</div>
+          <div class="bubble bot">Size <b>S</b>. The Halter Dress style hits mid-thigh on you. The fabric is tencel + organic cotton — packs to a fist, washes overnight. Lisbon in November is mild; this works for evenings.<small>Sourced from your sizes + the multi-way style library</small></div>
+          <div class="bubble me">Can I unlock all 8 styles?</div>
+          <div class="bubble bot">After purchase, scan the QR — I'll walk through each style with a 30-sec video. Most owners use 2 or 3 in their first month and discover the rest over a year.</div>
+          <div class="input"><span>Ask about fit, fabric, repair, capsule…</span><span>↑</span></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">8 · Atelier · multilingual fit + style AI</div>
+  </div>
+
+  <!-- 9. Profile -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>PROFILE</h2>
+        <div class="icon-btn">⚙</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div style="text-align:center;margin-bottom:12px">
+          <div class="avatar"></div>
+          <div style="font-family:Georgia,serif;font-size:18px">Madeleine R.</div>
+          <div class="muted">Member since 2023 · Loops tier · Toronto</div>
+        </div>
+        <div class="label" style="margin-bottom:4px">YOUR DATA</div>
+        <div class="menu-item"><span>Sizes &amp; fit profile</span><span>›</span></div>
+        <div class="menu-item"><span>Travel style</span><span>›</span></div>
+        <div class="menu-item"><span>Language &amp; region · EN · CA</span><span>›</span></div>
+        <div class="menu-item"><span>Repair history · 3 fixes</span><span>›</span></div>
+        <div class="menu-item"><span>What we know about you</span><span>›</span></div>
+        <div class="menu-item"><span>Privacy &amp; consent</span><span>›</span></div>
+        <div class="menu-item"><span>Sign out</span><span>›</span></div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">◐</div><span>Closet</span></div>
+        <div class="tab"><div class="dot">✈</div><span>Capsule</span></div>
+        <div class="tab active"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">9 · Profile · data &amp; privacy</div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Moon Juice — App Mockups</title>
+<style>
+  :root {
+    --bg: #f5f0eb;
+    --ink: #2a1f3d;
+    --muted: #8b8194;
+    --line: #e6dfd0;
+    --card: #ffffff;
+    --accent: #8b6fbf;          /* lavender / cosmic purple */
+    --accent-deep: #4a3878;
+    --accent-soft: #e7defa;
+    --gold: #c9a85e;            /* amber */
+    --gold-soft: #f3e8c7;
+    --pink: #d8a8b5;            /* dusty rose */
+    --pink-soft: #f5e2e6;
+    --mint: #9bb8a0;            /* sage / wellness */
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 500; font-size: 38px; margin: 0 0 4px;
+    letter-spacing: -0.5px; color: var(--accent);
+  }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 32px 24px; padding: 16px 32px 64px; max-width: 1400px; margin: 0 auto;
+  }
+  .phone { background: #2a1f3d; border-radius: 44px; padding: 12px;
+    box-shadow: 0 24px 48px rgba(74, 56, 120, .18), 0 2px 8px rgba(0,0,0,.06);
+    width: 310px; justify-self: center; }
+  .screen { background: var(--card); border-radius: 32px; overflow: hidden; height: 620px;
+    display: flex; flex-direction: column; position: relative; }
+  .notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 110px; height: 22px;
+    background: #2a1f3d; border-radius: 0 0 14px 14px; z-index: 5; }
+  .statusbar { height: 38px; display: flex; justify-content: space-between; align-items: flex-end;
+    padding: 0 22px 4px; font-size: 12px; font-weight: 600; color: var(--ink); }
+  .topbar { display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 18px 12px; border-bottom: 1px solid var(--line); }
+  .topbar h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 400;
+    font-size: 14px; margin: 0; letter-spacing: 4px; color: var(--ink); }
+  .icon-btn { width: 28px; height: 28px; border-radius: 50%; background: var(--bg);
+    display: grid; place-items: center; font-size: 14px; color: var(--ink); }
+  .body { flex: 1; overflow: hidden; padding: 14px 18px; }
+  .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+  .h { font-family: "Times New Roman", Georgia, serif; font-size: 22px; margin: 6px 0 14px; line-height: 1.15; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent-deep); font-size: 11px; font-weight: 600; }
+  .pill.gold { background: var(--gold-soft); color: #8a6e2a; }
+  .pill.pink { background: var(--pink-soft); color: #a85a78; }
+  .pill.mint { background: #d6e6d8; color: #4a6e54; }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  .muted { color: var(--muted); font-size: 12px; }
+  .btn { display: block; text-align: center; background: var(--accent);
+    color: #fff; padding: 12px 14px; border-radius: 14px; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.5px; }
+  .btn.alt { background: #fff; color: var(--accent); border: 1px solid var(--accent); }
+  .btn.gold { background: var(--gold); color: #2a1f3d; }
+  .tabbar { border-top: 1px solid var(--line); display: grid;
+    grid-template-columns: repeat(5, 1fr); padding: 8px 4px 14px; background: #fff; }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 2px;
+    font-size: 10px; color: var(--muted); }
+  .tab.active { color: var(--accent); }
+  .tab .dot { width: 22px; height: 22px; border-radius: 6px; background: var(--bg);
+    display: grid; place-items: center; font-size: 12px; }
+  .tab.active .dot { background: var(--accent-soft); }
+  .caption { text-align: center; margin: 12px 0 0; font-size: 12px;
+    color: var(--muted); font-weight: 600; letter-spacing: 0.4px; }
+
+  /* Onboarding */
+  .onb {
+    background: linear-gradient(180deg, #d8a8b5 0%, #8b6fbf 50%, #2a1f3d 100%);
+    color: #fff; flex: 1; padding: 60px 24px 24px;
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+  }
+  .onb::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 14% 22%, rgba(255,255,255,.18) 0 26px, transparent 27px),
+      radial-gradient(circle at 80% 16%, rgba(201,168,94,.30) 0 30px, transparent 31px),
+      radial-gradient(circle at 24% 78%, rgba(255,255,255,.12) 0 22px, transparent 23px),
+      radial-gradient(circle at 70% 82%, rgba(201,168,94,.18) 0 18px, transparent 19px);
+    pointer-events: none;
+  }
+  .onb .logo { font-family: "Times New Roman", Georgia, serif; font-size: 18px;
+    letter-spacing: 6px; position: relative; }
+  .onb h3 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 28px;
+    line-height: 1.2; margin: auto 0 8px; position: relative; }
+  .onb p { font-size: 13px; opacity: .92; margin: 0 0 22px; position: relative; }
+  .lang-row { display: flex; gap: 6px; margin-bottom: 14px; position: relative; flex-wrap: wrap; }
+  .lang-row span { padding: 4px 10px; border-radius: 999px;
+    background: rgba(255,255,255,.18); font-size: 11px; font-weight: 600; }
+  .lang-row span.on { background: var(--gold); color: #2a1f3d; }
+
+  /* Home */
+  .ritual-hero {
+    background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+    border-radius: 14px; padding: 14px;
+    color: #fff; margin-bottom: 14px;
+    position: relative; overflow: hidden;
+  }
+  .ritual-hero::before {
+    content: ""; position: absolute; right: -25px; top: -25px;
+    width: 110px; height: 110px;
+    border: 2px solid rgba(201,168,94,.30); border-radius: 50%;
+  }
+  .ritual-hero::after {
+    content: "✦"; position: absolute; right: 14px; top: 14px;
+    color: var(--gold); font-size: 18px; opacity: .7;
+  }
+  .ritual-hero .tag { font-size: 10px; letter-spacing: 2.5px; opacity: .85; }
+  .ritual-hero h3 { font-family: "Times New Roman", Georgia, serif; font-weight: 400;
+    font-size: 22px; line-height: 1.15; margin: 8px 0 10px; }
+  .ritual-hero .meta { display: flex; gap: 12px; font-size: 11px; opacity: .9; }
+  .ritual-row {
+    display: grid; grid-template-columns: 36px 1fr auto;
+    gap: 10px; padding: 10px 0;
+    border-bottom: 1px dashed var(--line); align-items: center;
+  }
+  .ritual-row:last-child { border: none; }
+  .ritual-row .ic {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--gold), #8a6e2a);
+    color: #fff; display: grid; place-items: center; font-size: 14px;
+  }
+  .ritual-row .ic.purple { background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+  .ritual-row .ic.pink { background: linear-gradient(135deg, var(--pink), #a85a78); }
+  .ritual-row .info { font-size: 12px; }
+  .ritual-row .info strong { display: block; }
+  .ritual-row .info span { color: var(--muted); font-size: 11px; }
+  .ritual-row .time { color: var(--accent); font-size: 11px; font-weight: 700; }
+
+  .hgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card { border: 1px solid var(--line); border-radius: 12px; padding: 10px; font-size: 12px; background: #fff; }
+  .card .swatch { height: 70px; border-radius: 8px; margin-bottom: 8px; position: relative; }
+  .card .swatch::after {
+    content: ""; position: absolute; inset: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.15);
+  }
+
+  /* Apothecary (passport) */
+  .passport-hero {
+    height: 130px; border-radius: 14px;
+    background:
+      radial-gradient(circle at 30% 50%, rgba(201,168,94,.4) 0 20%, transparent 21%),
+      radial-gradient(circle at 75% 50%, rgba(231,222,250,.5) 0 16%, transparent 17%),
+      linear-gradient(135deg, var(--accent), var(--accent-deep));
+    margin-bottom: 12px; position: relative;
+  }
+  .passport-hero::after {
+    content: "✦"; position: absolute; right: 18px; top: 16px;
+    color: var(--gold); font-size: 22px; opacity: .8;
+  }
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .stat { border: 1px solid var(--line); border-radius: 10px; padding: 8px; text-align: center; }
+  .stat .v { font-family: "Times New Roman", Georgia, serif; font-size: 18px; color: var(--accent); }
+  .stat .l { color: var(--muted); font-size: 10px; }
+
+  .ingredient-row {
+    display: grid; grid-template-columns: 28px 1fr auto;
+    gap: 10px; padding: 8px 0;
+    border-bottom: 1px dashed var(--line); align-items: center;
+  }
+  .ingredient-row .ic {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent-deep);
+    display: grid; place-items: center; font-size: 11px; font-weight: 700;
+  }
+  .ingredient-row .info { font-size: 12px; }
+  .ingredient-row .info strong { display: block; }
+  .ingredient-row .info span { color: var(--muted); font-size: 11px; }
+  .ingredient-row .dose { color: var(--muted); font-size: 11px; font-weight: 600; }
+
+  /* Goals */
+  .goal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .goal-card {
+    border: 2px solid var(--line); border-radius: 14px;
+    padding: 14px 12px; background: #fff;
+    text-align: center; position: relative;
+  }
+  .goal-card.selected { border-color: var(--accent); background: var(--accent-soft); }
+  .goal-card .ic-circle {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), #8a6e2a);
+    margin: 0 auto 8px; position: relative;
+  }
+  .goal-card.selected .ic-circle { background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+  .goal-card .ic-circle::after {
+    content: "✦"; position: absolute; inset: 0;
+    display: grid; place-items: center; color: #fff; font-size: 16px;
+  }
+  .goal-card .name { font-family: "Times New Roman", Georgia, serif; font-size: 16px; }
+  .goal-card .sub { color: var(--muted); font-size: 10px; margin-top: 2px; }
+  .goal-card.selected .check {
+    position: absolute; top: 8px; right: 8px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: grid; place-items: center; font-size: 10px; font-weight: 700;
+  }
+
+  /* Stack */
+  .stack-card {
+    background: #fff; border: 1px solid var(--line);
+    border-radius: 14px; padding: 14px;
+    margin-bottom: 10px;
+  }
+  .stack-card .head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 8px;
+  }
+  .stack-card .head .when {
+    background: var(--accent-soft); color: var(--accent-deep);
+    padding: 3px 8px; border-radius: 999px;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  }
+  .stack-card .head .when.midday { background: var(--gold-soft); color: #8a6e2a; }
+  .stack-card .head .when.evening { background: var(--pink-soft); color: #a85a78; }
+  .stack-card h4 {
+    margin: 0; font-family: "Times New Roman", Georgia, serif;
+    font-weight: 400; font-size: 16px;
+  }
+  .stack-card .items { display: flex; flex-direction: column; gap: 6px; }
+  .stack-card .item {
+    display: grid; grid-template-columns: 28px 1fr auto;
+    gap: 8px; padding: 4px 0; align-items: center;
+  }
+  .stack-card .item .dot {
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .stack-card .item .dot.gold { background: var(--gold); }
+  .stack-card .item .dot.pink { background: var(--pink); }
+  .stack-card .item .name { font-size: 12px; }
+  .stack-card .item .name span { color: var(--muted); font-size: 11px; }
+  .stack-card .item .dose { color: var(--muted); font-size: 11px; }
+
+  /* Refill Vault */
+  .vault-card {
+    background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+    color: #fff; border-radius: 14px; padding: 14px;
+    margin-bottom: 12px; position: relative; overflow: hidden;
+  }
+  .vault-card::after {
+    content: "✦"; position: absolute; right: 14px; top: 14px;
+    color: var(--gold); font-size: 16px; opacity: .8;
+  }
+  .vault-card .lbl { font-size: 10px; letter-spacing: 2px; opacity: .85; }
+  .vault-card h3 {
+    font-family: "Times New Roman", Georgia, serif; font-weight: 400;
+    font-size: 18px; margin: 4px 0 8px;
+  }
+  .vault-card .next { font-size: 12px; opacity: .9; }
+  .sub-row {
+    display: grid; grid-template-columns: 36px 1fr auto;
+    gap: 10px; padding: 10px 0;
+    border-bottom: 1px dashed var(--line); align-items: center;
+  }
+  .sub-row .swatch {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  }
+  .sub-row .swatch.gold { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .sub-row .swatch.pink { background: linear-gradient(135deg, var(--pink), #a85a78); }
+  .sub-row .info { font-size: 12px; }
+  .sub-row .info strong { display: block; }
+  .sub-row .info span { color: var(--muted); font-size: 11px; }
+  .sub-row .ctrl { font-size: 11px; color: var(--accent); font-weight: 700; }
+
+  /* Apothecary chat */
+  .chat { flex: 1; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+  .bubble { max-width: 80%; padding: 10px 12px; border-radius: 14px; font-size: 12px; line-height: 1.4; }
+  .bubble.me { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+  .bubble.bot { align-self: flex-start; background: var(--bg); color: var(--ink); border-bottom-left-radius: 4px; }
+  .bubble small { display: block; color: var(--muted); margin-top: 4px; font-size: 10px; }
+  .bubble.warn {
+    align-self: center; background: var(--pink-soft); color: #a85a78;
+    font-size: 11px; font-weight: 600;
+  }
+  .input { margin-top: auto; border: 1px solid var(--line); border-radius: 999px;
+    padding: 10px 14px; font-size: 12px; color: var(--muted);
+    display: flex; justify-content: space-between; align-items: center; }
+
+  /* Profile */
+  .avatar { width: 64px; height: 64px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink), var(--accent-deep)); margin: 0 auto 8px; }
+  .menu-item { display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>Moon Juice — App Mockups</h1>
+  <p>Phase 1 screens. Open in any browser. Wireframe fidelity, not final visual design.</p>
+</header>
+
+<div class="grid">
+
+  <!-- 1. Onboarding -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="onb">
+        <div class="logo">M · O · O · N · J · U · I · C · E</div>
+        <h3>Your daily ritual,<br/>guided.</h3>
+        <p>Adaptogens for calm, sleep, beauty, and brain. Educated by science. Practiced daily.</p>
+        <div class="lang-row">
+          <span class="on">EN</span><span>ES</span><span>FR</span>
+        </div>
+        <div class="btn gold">Continue with Apple</div>
+        <div style="height:8px"></div>
+        <div class="btn alt" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.4)">Sign in with email</div>
+      </div>
+    </div></div>
+    <div class="caption">1 · Onboarding · cosmic palette</div>
+  </div>
+
+  <!-- 2. Home -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>M·O·O·N·J·U·I·C·E</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="ritual-hero">
+          <div class="tag">TODAY · MORNING RITUAL</div>
+          <h3>Calm + brain<br/>· 3 items</h3>
+          <div class="meta"><span>2 of 3 taken</span><span>·</span><span>1:32 audio</span></div>
+        </div>
+        <div class="ritual-row">
+          <div class="ic">✓</div>
+          <div class="info"><strong>Brain Dust · 1 tsp</strong><span>in coffee · taken 7:12 am</span></div>
+          <div class="time">7:12</div>
+        </div>
+        <div class="ritual-row">
+          <div class="ic">✓</div>
+          <div class="info"><strong>SuperYou · 2 caps</strong><span>with breakfast · taken 7:42 am</span></div>
+          <div class="time">7:42</div>
+        </div>
+        <div class="ritual-row">
+          <div class="ic purple">○</div>
+          <div class="info"><strong>SuperHair · 4 caps</strong><span>with food · suggested before 11 am</span></div>
+          <div class="time">→</div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">✦</div><span>Stack</span></div>
+        <div class="tab"><div class="dot">↻</div><span>Refill</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">2 · Home · today's ritual</div>
+  </div>
+
+  <!-- 3. The Apothecary -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>THE APOTHECARY</h2>
+        <div class="icon-btn">⤴</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="passport-hero"></div>
+        <div class="label">BRAIN DUST</div>
+        <div class="h" style="margin:4px 0 12px">For focus, mental clarity,<br/>and creative flow.</div>
+        <div class="stat-row">
+          <div class="stat"><div class="v">7</div><div class="l">adaptogens</div></div>
+          <div class="stat"><div class="v">1 tsp</div><div class="l">daily dose</div></div>
+          <div class="stat"><div class="v">AM</div><div class="l">best taken</div></div>
+        </div>
+        <div class="label" style="margin-bottom:6px">INGREDIENTS</div>
+        <div class="ingredient-row">
+          <div class="ic">L</div>
+          <div class="info"><strong>Lion's Mane</strong><span>nerve growth · cognition</span></div>
+          <div class="dose">1000mg</div>
+        </div>
+        <div class="ingredient-row">
+          <div class="ic">A</div>
+          <div class="info"><strong>Ashwagandha</strong><span>stress · cortisol balance</span></div>
+          <div class="dose">600mg</div>
+        </div>
+        <div class="ingredient-row">
+          <div class="ic">R</div>
+          <div class="info"><strong>Rhodiola</strong><span>fatigue · mental energy</span></div>
+          <div class="dose">300mg</div>
+        </div>
+        <div class="ingredient-row" style="border:none">
+          <div class="ic">+</div>
+          <div class="info"><strong>4 more adaptogens</strong><span>tap to expand</span></div>
+          <div>›</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">3 · Apothecary · per-product passport</div>
+  </div>
+
+  <!-- 4. The Goals -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>THE GOALS</h2>
+        <div class="icon-btn">?</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="label" style="margin-bottom:4px">SELECT 1–3</div>
+        <div class="h" style="margin:0 0 14px">What are you working on?</div>
+        <div class="goal-grid">
+          <div class="goal-card selected">
+            <div class="check">✓</div>
+            <div class="ic-circle"></div>
+            <div class="name">Calm</div>
+            <div class="sub">stress + cortisol</div>
+          </div>
+          <div class="goal-card selected">
+            <div class="check">✓</div>
+            <div class="ic-circle"></div>
+            <div class="name">Brain</div>
+            <div class="sub">focus + clarity</div>
+          </div>
+          <div class="goal-card">
+            <div class="ic-circle"></div>
+            <div class="name">Sleep</div>
+            <div class="sub">deep + restorative</div>
+          </div>
+          <div class="goal-card">
+            <div class="ic-circle"></div>
+            <div class="name">Beauty</div>
+            <div class="sub">skin + hair</div>
+          </div>
+          <div class="goal-card">
+            <div class="ic-circle"></div>
+            <div class="name">Energy</div>
+            <div class="sub">vitality + drive</div>
+          </div>
+          <div class="goal-card">
+            <div class="ic-circle"></div>
+            <div class="name">Libido</div>
+            <div class="sub">desire + balance</div>
+          </div>
+        </div>
+        <div style="height:14px"></div>
+        <div class="btn">Build my stack ✦</div>
+      </div>
+    </div></div>
+    <div class="caption">4 · Goals · multi-select with stack preview</div>
+  </div>
+
+  <!-- 5. The Stack -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>THE STACK</h2>
+        <div class="icon-btn">⚙</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="row" style="margin-bottom:8px">
+          <div class="muted">Calm + Brain · 5 items</div>
+          <div class="pill">Active</div>
+        </div>
+        <div class="stack-card">
+          <div class="head"><h4>Morning</h4><div class="when">AM · 7–9</div></div>
+          <div class="items">
+            <div class="item">
+              <div class="dot gold"></div>
+              <div class="name">Brain Dust <span>· in coffee</span></div>
+              <div class="dose">1 tsp</div>
+            </div>
+            <div class="item">
+              <div class="dot"></div>
+              <div class="name">SuperYou <span>· with breakfast</span></div>
+              <div class="dose">2 caps</div>
+            </div>
+            <div class="item">
+              <div class="dot pink"></div>
+              <div class="name">SuperHair <span>· with food</span></div>
+              <div class="dose">4 caps</div>
+            </div>
+          </div>
+        </div>
+        <div class="stack-card">
+          <div class="head"><h4>Midday</h4><div class="when midday">PM · 1–3</div></div>
+          <div class="items">
+            <div class="item">
+              <div class="dot"></div>
+              <div class="name">Magnesi-Om <span>· in water</span></div>
+              <div class="dose">1 scoop</div>
+            </div>
+          </div>
+        </div>
+        <div class="stack-card">
+          <div class="head"><h4>Evening</h4><div class="when evening">PM · 9–11</div></div>
+          <div class="items">
+            <div class="item">
+              <div class="dot pink"></div>
+              <div class="name">Dream Dust <span>· in milk</span></div>
+              <div class="dose">1 tsp</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab active"><div class="dot">✦</div><span>Stack</span></div>
+        <div class="tab"><div class="dot">↻</div><span>Refill</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">5 · Stack · timed routines</div>
+  </div>
+
+  <!-- 6. The Refill Vault -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>REFILL VAULT</h2>
+        <div class="icon-btn">+</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="vault-card">
+          <div class="lbl">NEXT REFILL</div>
+          <h3>Brain Dust + SuperYou</h3>
+          <div class="next">Bundled · ships May 14 · ~22 days from now</div>
+        </div>
+        <div class="row" style="margin-bottom:6px">
+          <div class="label">ACTIVE SUBSCRIPTIONS · 4</div>
+          <div class="muted">Skip / pause</div>
+        </div>
+        <div class="sub-row">
+          <div class="swatch gold"></div>
+          <div class="info"><strong>Brain Dust · 100g</strong><span>every 30 days · 22d remaining</span></div>
+          <div class="ctrl">EDIT ›</div>
+        </div>
+        <div class="sub-row">
+          <div class="swatch"></div>
+          <div class="info"><strong>SuperYou · 60 caps</strong><span>every 30 days · 22d remaining</span></div>
+          <div class="ctrl">EDIT ›</div>
+        </div>
+        <div class="sub-row">
+          <div class="swatch pink"></div>
+          <div class="info"><strong>SuperHair · 120 caps</strong><span>every 30 days · 8d remaining</span></div>
+          <div class="ctrl">EDIT ›</div>
+        </div>
+        <div class="sub-row" style="border:none">
+          <div class="swatch pink"></div>
+          <div class="info"><strong>Dream Dust · 50g</strong><span>every 60 days · 41d remaining</span></div>
+          <div class="ctrl">EDIT ›</div>
+        </div>
+        <div style="height:10px"></div>
+        <div class="btn alt">Pause everything · vacation mode</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">✦</div><span>Stack</span></div>
+        <div class="tab active"><div class="dot">↻</div><span>Refill</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">6 · Refill Vault · subscription management</div>
+  </div>
+
+  <!-- 7. PDP -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>BRAIN DUST</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div style="height:200px;border-radius:14px;background:radial-gradient(circle at 50% 50%, var(--gold-soft) 0 30%, transparent 31%),linear-gradient(135deg, var(--accent), var(--accent-deep));margin-bottom:12px;position:relative">
+          <div style="position:absolute;bottom:10px;right:10px;width:34px;height:34px;background:#fff;border-radius:6px;display:grid;place-items:center;font-size:18px">⊡</div>
+          <div style="position:absolute;top:10px;left:10px;background:var(--gold);color:#2a1f3d;font-size:10px;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:999px">7 ADAPTOGENS</div>
+        </div>
+        <div class="row">
+          <div>
+            <div class="h" style="margin:0">Brain Dust · 100g</div>
+            <div class="muted">Lion's Mane · Ashwagandha · Rhodiola + 4 more</div>
+          </div>
+          <div style="font-family:Georgia,serif;font-size:18px;color:var(--accent)">$60</div>
+        </div>
+        <div style="display:flex;gap:6px;margin:6px 0 12px;flex-wrap:wrap">
+          <span class="pill">Focus + clarity</span>
+          <span class="pill mint">USDA Organic</span>
+          <span class="pill gold">~30 days</span>
+        </div>
+        <div class="btn">Add to ritual</div>
+        <div style="height:8px"></div>
+        <div class="btn alt">Ask the Apothecary ✦</div>
+      </div>
+    </div></div>
+    <div class="caption">7 · Product · adaptogen pills + ask AI</div>
+  </div>
+
+  <!-- 8. Apothecary chat -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>APOTHECARY ✦</h2>
+        <div class="icon-btn">⋯</div>
+      </div>
+      <div class="body">
+        <div class="chat">
+          <div class="bubble bot">Hi Sasha — looking at Brain Dust? Want help knowing if it's right for your stack?</div>
+          <div class="bubble me">Yes. I'm taking SuperYou and SuperHair. Can I add Brain Dust?</div>
+          <div class="bubble bot">Yes — Brain Dust layers well with SuperYou (both contain Ashwagandha; total daily Ashwagandha stays within studied ranges) and SuperHair (no overlap). Take Brain Dust in your morning coffee, SuperYou with breakfast, SuperHair with food before 11 am.<small>Sourced from product passports + brand-curated stacking guide</small></div>
+          <div class="bubble warn">⚠ Adaptogen + medication interactions may exist. Tell us your medications in your profile so I can flag them.</div>
+          <div class="bubble me">I take Adderall.</div>
+          <div class="bubble bot">Important: please confirm with your prescribing physician before adding adaptogens — Rhodiola in Brain Dust may interact with stimulant medications. I won't recommend layering until you've checked.</div>
+          <div class="input"><span>Ask about adaptogens, dosing, timing…</span><span>↑</span></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">8 · Apothecary · with Rx interaction guardrails</div>
+  </div>
+
+  <!-- 9. Profile -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>PROFILE</h2>
+        <div class="icon-btn">⚙</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div style="text-align:center;margin-bottom:12px">
+          <div class="avatar"></div>
+          <div style="font-family:Georgia,serif;font-size:18px">Sasha M.</div>
+          <div class="muted">Member since 2024 · Glow tier · Los Angeles</div>
+        </div>
+        <div class="label" style="margin-bottom:4px">YOUR DATA</div>
+        <div class="menu-item"><span>Goals · Calm + Brain</span><span>›</span></div>
+        <div class="menu-item"><span>Allergies &amp; sensitivities</span><span>›</span></div>
+        <div class="menu-item"><span>Current medications · 1</span><span>›</span></div>
+        <div class="menu-item"><span>Language &amp; region · EN · US</span><span>›</span></div>
+        <div class="menu-item"><span>What we know about you</span><span>›</span></div>
+        <div class="menu-item"><span>Privacy &amp; consent</span><span>›</span></div>
+        <div class="menu-item"><span>Sign out</span><span>›</span></div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">▦</div><span>Shop</span></div>
+        <div class="tab"><div class="dot">✦</div><span>Stack</span></div>
+        <div class="tab"><div class="dot">↻</div><span>Refill</span></div>
+        <div class="tab active"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">9 · Profile · data &amp; privacy</div>
+  </div>
+
+</div>
+
+</body>
+</html>
