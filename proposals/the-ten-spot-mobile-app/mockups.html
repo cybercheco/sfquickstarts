@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Ten Spot — App Mockups</title>
+<style>
+  :root {
+    --bg: #faf6f4;
+    --ink: #1a1a1a;
+    --muted: #8a8485;
+    --line: #ebd9da;
+    --card: #ffffff;
+    --accent: #e85a8c;        /* signature hot pink */
+    --accent-deep: #a82e60;
+    --accent-soft: #fce0eb;
+    --gold: #d4a85a;
+    --gold-soft: #f3e8c7;
+    --mint: #b5d4c4;
+    --mint-soft: #e2efe7;
+    --black: #1a1a1a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 { font-family: "Times New Roman", Georgia, serif; font-weight: 500; font-size: 38px; margin: 0 0 4px; letter-spacing: -0.5px; color: var(--accent-deep); }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 32px 24px; padding: 16px 32px 64px; max-width: 1400px; margin: 0 auto; }
+  .phone { background: #1a1a1a; border-radius: 44px; padding: 12px; box-shadow: 0 24px 48px rgba(232, 90, 140, .14), 0 2px 8px rgba(0,0,0,.06); width: 310px; justify-self: center; }
+  .screen { background: var(--card); border-radius: 32px; overflow: hidden; height: 620px; display: flex; flex-direction: column; position: relative; }
+  .notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 110px; height: 22px; background: #1a1a1a; border-radius: 0 0 14px 14px; z-index: 5; }
+  .statusbar { height: 38px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 22px 4px; font-size: 12px; font-weight: 600; color: var(--ink); }
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding: 8px 18px 12px; border-bottom: 1px solid var(--line); }
+  .topbar h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 14px; margin: 0; letter-spacing: 4px; color: var(--ink); }
+  .icon-btn { width: 28px; height: 28px; border-radius: 50%; background: var(--bg); display: grid; place-items: center; font-size: 14px; color: var(--ink); }
+  .body { flex: 1; overflow: hidden; padding: 14px 18px; }
+  .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+  .h { font-family: "Times New Roman", Georgia, serif; font-size: 22px; margin: 6px 0 14px; line-height: 1.15; }
+  .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-deep); font-size: 11px; font-weight: 600; }
+  .pill.gold { background: var(--gold-soft); color: #8a6e2a; }
+  .pill.mint { background: var(--mint-soft); color: #4a7560; }
+  .pill.black { background: var(--black); color: #fff; }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  .muted { color: var(--muted); font-size: 12px; }
+  .btn { display: block; text-align: center; background: var(--accent); color: #fff; padding: 12px 14px; border-radius: 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; }
+  .btn.alt { background: #fff; color: var(--accent-deep); border: 1px solid var(--accent); }
+  .btn.black { background: var(--black); color: #fff; }
+  .tabbar { border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(5, 1fr); padding: 8px 4px 14px; background: #fff; }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 10px; color: var(--muted); }
+  .tab.active { color: var(--accent-deep); }
+  .tab .dot { width: 22px; height: 22px; border-radius: 6px; background: var(--bg); display: grid; place-items: center; font-size: 12px; }
+  .tab.active .dot { background: var(--accent-soft); }
+  .caption { text-align: center; margin: 12px 0 0; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px; }
+
+  /* Onboarding */
+  .onb { background: linear-gradient(180deg, var(--accent) 0%, var(--accent-deep) 60%, var(--black) 100%); color: #fff; flex: 1; padding: 60px 24px 24px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .onb::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle at 14% 22%, rgba(255,255,255,.18) 0 26px, transparent 27px), radial-gradient(circle at 80% 16%, rgba(212,168,90,.30) 0 30px, transparent 31px), radial-gradient(circle at 22% 78%, rgba(255,255,255,.12) 0 20px, transparent 21px); pointer-events: none; }
+  .onb .logo { font-family: "Times New Roman", Georgia, serif; font-size: 18px; letter-spacing: 4px; position: relative; }
+  .onb .tag { font-family: "Times New Roman", Georgia, serif; font-size: 11px; letter-spacing: 4px; opacity: .85; margin-top: 4px; position: relative; }
+  .onb h3 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.2; margin: auto 0 8px; position: relative; }
+  .onb p { font-size: 13px; opacity: .9; margin: 0 0 22px; position: relative; }
+  .lang-row { display: flex; gap: 6px; margin-bottom: 14px; position: relative; flex-wrap: wrap; }
+  .lang-row span { padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.18); font-size: 11px; font-weight: 600; }
+  .lang-row span.on { background: var(--gold); color: var(--black); }
+
+  /* Home */
+  .next-card { background: linear-gradient(135deg, var(--accent-deep), var(--accent)); border-radius: 14px; padding: 14px; color: #fff; margin-bottom: 12px; position: relative; overflow: hidden; }
+  .next-card::after { content: "✦"; position: absolute; right: 14px; top: 14px; color: var(--gold); font-size: 18px; opacity: .8; }
+  .next-card .when { font-size: 10px; letter-spacing: 2px; opacity: .85; }
+  .next-card h3 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.15; margin: 6px 0 8px; }
+  .next-card .meta { display: flex; gap: 10px; font-size: 11px; opacity: .9; }
+  .due-row { display: grid; grid-template-columns: 36px 1fr auto; gap: 10px; padding: 10px 0; border-bottom: 1px dashed var(--line); align-items: center; }
+  .due-row:last-child { border: none; }
+  .due-row .ic { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-soft); color: var(--accent-deep); display: grid; place-items: center; font-size: 14px; font-weight: 700; }
+  .due-row .ic.gold { background: var(--gold-soft); color: #8a6e2a; }
+  .due-row .ic.mint { background: var(--mint-soft); color: #4a7560; }
+  .due-row .info { font-size: 12px; }
+  .due-row .info strong { display: block; }
+  .due-row .info span { color: var(--muted); font-size: 11px; }
+  .due-row .when { color: var(--accent); font-size: 11px; font-weight: 700; }
+
+  /* Book flow */
+  .book-step { background: var(--accent-soft); color: var(--accent-deep); padding: 10px 14px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; text-align: center; }
+  .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .service-card { background: #fff; border: 2px solid var(--line); border-radius: 14px; padding: 12px; cursor: pointer; position: relative; }
+  .service-card.selected { border-color: var(--accent); background: var(--accent-soft); }
+  .service-card .ic { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, var(--accent), var(--accent-deep)); display: grid; place-items: center; color: #fff; font-size: 18px; margin-bottom: 8px; }
+  .service-card.gold .ic { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .service-card.mint .ic { background: linear-gradient(135deg, var(--mint), #4a7560); }
+  .service-card.black .ic { background: linear-gradient(135deg, var(--black), #4a4548); }
+  .service-card .name { font-size: 13px; font-weight: 700; }
+  .service-card .duration { color: var(--muted); font-size: 11px; margin-top: 2px; }
+  .service-card .check { position: absolute; top: 8px; right: 8px; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 10px; font-weight: 700; }
+
+  /* Your Spot */
+  .spot-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
+  .spot-card.fav { border: 2px solid var(--accent); }
+  .spot-card .head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .spot-card .head strong { font-family: "Times New Roman", Georgia, serif; font-size: 16px; }
+  .spot-card .head .pill-fav { background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; }
+  .spot-card .meta { color: var(--muted); font-size: 11px; line-height: 1.5; }
+  .tech-row { display: grid; grid-template-columns: 36px 1fr auto; gap: 10px; padding: 10px 0; align-items: center; }
+  .tech-row .av { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+  .tech-row .av.gold { background: linear-gradient(135deg, var(--gold), #8a6e2a); }
+  .tech-row .av.mint { background: linear-gradient(135deg, var(--mint), #4a7560); }
+  .tech-row .info { font-size: 12px; }
+  .tech-row .info strong { display: block; }
+  .tech-row .info span { color: var(--muted); font-size: 11px; }
+  .tech-row .pill-mini { font-size: 10px; }
+
+  /* Service detail */
+  .svc-img { height: 180px; border-radius: 14px; background: radial-gradient(circle at 30% 50%, rgba(212,168,90,.4) 0 20%, transparent 21%), linear-gradient(135deg, var(--accent), var(--accent-deep)); margin-bottom: 12px; position: relative; }
+  .svc-img .badge { position: absolute; top: 10px; left: 10px; background: var(--gold); color: var(--black); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 999px; }
+  .prep-section { background: var(--mint-soft); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+  .prep-section .head { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #4a7560; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .prep-section .item { font-size: 12px; line-height: 1.5; padding: 3px 0; padding-left: 16px; position: relative; }
+  .prep-section .item::before { content: "✓"; position: absolute; left: 0; color: #4a7560; font-weight: 700; }
+  .meta-row { display: flex; gap: 6px; margin: 6px 0 12px; flex-wrap: wrap; }
+
+  /* Calendar */
+  .cal-month { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 14px; }
+  .cal-day { aspect-ratio: 1; border-radius: 8px; background: var(--card); border: 1px solid var(--line); display: grid; place-items: center; font-size: 11px; color: var(--ink); position: relative; }
+  .cal-day.has-appt { background: var(--accent); color: #fff; font-weight: 700; }
+  .cal-day.has-appt::after { content: ""; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+  .cal-day.due { background: var(--gold-soft); color: #8a6e2a; font-weight: 700; }
+  .cal-day.head { background: transparent; border: none; color: var(--muted); font-size: 9px; font-weight: 700; text-transform: uppercase; }
+  .upcoming { display: flex; flex-direction: column; gap: 8px; }
+  .upcoming-row { display: grid; grid-template-columns: 64px 1fr auto; gap: 10px; padding: 10px 12px; background: var(--bg); border-radius: 10px; align-items: center; }
+  .upcoming-row .date { text-align: center; }
+  .upcoming-row .date .num { font-family: "Times New Roman", Georgia, serif; font-size: 22px; line-height: 1; color: var(--accent-deep); }
+  .upcoming-row .date .month { font-size: 10px; letter-spacing: 1.5px; color: var(--muted); margin-top: 2px; }
+  .upcoming-row .info { font-size: 12px; }
+  .upcoming-row .info strong { display: block; }
+  .upcoming-row .info span { color: var(--muted); font-size: 11px; }
+
+  /* Membership wallet */
+  .wallet-card { background: linear-gradient(135deg, var(--black), var(--accent-deep)); color: #fff; border-radius: 16px; padding: 16px; margin-bottom: 14px; position: relative; overflow: hidden; }
+  .wallet-card::after { content: ""; position: absolute; right: -20px; top: -20px; width: 80px; height: 80px; background: radial-gradient(circle, rgba(212,168,90,.4) 0 35%, transparent 36%); }
+  .wallet-card .lbl { font-size: 10px; letter-spacing: 2px; opacity: .85; }
+  .wallet-card .balance { font-family: "Times New Roman", Georgia, serif; font-size: 36px; line-height: 1; margin: 6px 0; }
+  .wallet-card .tier { font-size: 12px; opacity: .9; }
+  .reward-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+  .reward-item:last-child { border: 0; }
+
+  /* Concierge chat */
+  .chat { flex: 1; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+  .bubble { max-width: 80%; padding: 10px 12px; border-radius: 14px; font-size: 12px; line-height: 1.4; }
+  .bubble.me { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+  .bubble.bot { align-self: flex-start; background: var(--bg); color: var(--ink); border-bottom-left-radius: 4px; }
+  .bubble small { display: block; color: var(--muted); margin-top: 4px; font-size: 10px; }
+  .input { margin-top: auto; border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
+
+  /* Profile */
+  .avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-deep)); margin: 0 auto 8px; }
+  .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>The Ten Spot — App Mockups</h1>
+  <p>Phase 1 screens. Open in any browser. Wireframe fidelity, not final visual design.</p>
+</header>
+
+<div class="grid">
+
+  <!-- 1. Onboarding -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="onb">
+        <div class="logo">THE · TEN · SPOT</div>
+        <div class="tag">ANTI-SPA · BEAUTY BAR</div>
+        <h3>Book the spot.<br/>Skip the spa.</h3>
+        <p>Nails. Wax. Laser. Skin. 33+ locations across North America. One app.</p>
+        <div class="lang-row">
+          <span class="on">EN</span><span>FR</span>
+        </div>
+        <div class="btn black">Continue with Apple</div>
+        <div style="height:8px"></div>
+        <div class="btn alt" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.4)">Sign in with email</div>
+      </div>
+    </div></div>
+    <div class="caption">1 · Onboarding · pink + black</div>
+  </div>
+
+  <!-- 2. Home -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>THE TEN SPOT</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body">
+        <div class="next-card">
+          <div class="when">YOUR NEXT · SAT MAY 18 · 2:00 PM</div>
+          <h3>Brazilian wax<br/>+ brow shape</h3>
+          <div class="meta"><span>Leslieville</span><span>·</span><span>with Jess</span></div>
+        </div>
+        <div class="row" style="margin-bottom:6px">
+          <div class="label">DUE FOR YOU</div>
+          <div class="muted">All →</div>
+        </div>
+        <div class="due-row">
+          <div class="ic gold">L</div>
+          <div class="info"><strong>Lash refill</strong><span>last visit 18 days ago · Liberty Village</span></div>
+          <div class="when">DUE</div>
+        </div>
+        <div class="due-row">
+          <div class="ic mint">F</div>
+          <div class="info"><strong>HydraFacial</strong><span>last visit 5 weeks ago</span></div>
+          <div class="when">SOON</div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">+</div><span>Book</span></div>
+        <div class="tab"><div class="dot">▤</div><span>Calendar</span></div>
+        <div class="tab"><div class="dot">♢</div><span>Wallet</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">2 · Home · next + due</div>
+  </div>
+
+  <!-- 3. Book flow -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>BOOK</h2>
+        <div class="icon-btn">⌕</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="book-step">STEP 1 OF 4 · CHOOSE SERVICE</div>
+        <div class="service-grid">
+          <div class="service-card selected">
+            <div class="check">✓</div>
+            <div class="ic">B</div>
+            <div class="name">Brazilian wax</div>
+            <div class="duration">30 min</div>
+          </div>
+          <div class="service-card selected">
+            <div class="check">✓</div>
+            <div class="ic gold">B</div>
+            <div class="name">Brow shape</div>
+            <div class="duration">15 min</div>
+          </div>
+          <div class="service-card">
+            <div class="ic mint">M</div>
+            <div class="name">Manicure</div>
+            <div class="duration">45 min</div>
+          </div>
+          <div class="service-card">
+            <div class="ic">L</div>
+            <div class="name">Laser session</div>
+            <div class="duration">20 min</div>
+          </div>
+          <div class="service-card black">
+            <div class="ic">F</div>
+            <div class="name">HydraFacial</div>
+            <div class="duration">50 min</div>
+          </div>
+          <div class="service-card">
+            <div class="ic gold">L</div>
+            <div class="name">Lash refill</div>
+            <div class="duration">60 min</div>
+          </div>
+        </div>
+        <div style="height:14px"></div>
+        <div class="btn">Next · choose location</div>
+      </div>
+    </div></div>
+    <div class="caption">3 · Book · multi-service combo</div>
+  </div>
+
+  <!-- 4. Your Spot -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>YOUR SPOT</h2>
+        <div class="icon-btn">⚙</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="label" style="margin-bottom:6px">YOUR HOME LOCATION</div>
+        <div class="spot-card fav">
+          <div class="head">
+            <strong>Leslieville</strong>
+            <span class="pill-fav">★ HOME</span>
+          </div>
+          <div class="meta">1067 Queen St E · 9 yr old location · 4.9 ★ (2,140 reviews)<br/>Open today · 9 am – 9 pm</div>
+        </div>
+        <div class="label" style="margin: 14px 0 6px">YOUR FAVOURITE TECHNICIAN</div>
+        <div class="spot-card">
+          <div class="tech-row" style="border:none;padding:0">
+            <div class="av"></div>
+            <div class="info">
+              <strong>Jess</strong>
+              <span>Wax + skin specialist · 6 yr at Leslieville</span>
+            </div>
+            <span class="pill pill-mini">★</span>
+          </div>
+        </div>
+        <div class="label" style="margin: 14px 0 6px">RECENT VISITS · 2024</div>
+        <div class="tech-row">
+          <div class="av gold"></div>
+          <div class="info"><strong>Brazilian + brow</strong><span>Apr 27 · with Jess · Leslieville</span></div>
+          <div class="muted">RE-BOOK</div>
+        </div>
+        <div class="tech-row">
+          <div class="av mint"></div>
+          <div class="info"><strong>HydraFacial</strong><span>Apr 03 · with Sophie · Liberty Village</span></div>
+          <div class="muted">RE-BOOK</div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">+</div><span>Book</span></div>
+        <div class="tab"><div class="dot">▤</div><span>Calendar</span></div>
+        <div class="tab"><div class="dot">♢</div><span>Wallet</span></div>
+        <div class="tab active"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">4 · Your Spot · favorites + history</div>
+  </div>
+
+  <!-- 5. Service detail (Brazilian wax with prep + after) -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>BRAZILIAN WAX</h2>
+        <div class="icon-btn">♡</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="svc-img">
+          <div class="badge">30 MIN · $58</div>
+        </div>
+        <div class="meta-row">
+          <span class="pill">Wax</span>
+          <span class="pill mint">First-time-friendly</span>
+          <span class="pill gold">Recurring · 4 wks</span>
+        </div>
+        <div class="prep-section">
+          <div class="head"><span>BEFORE YOU COME · 24 HOURS</span><span>read</span></div>
+          <div class="item">No shaving for at least 2 weeks (hair needs 1/4")</div>
+          <div class="item">Skip caffeine the day of (sensitivity)</div>
+          <div class="item">Exfoliate the night before (smoother result)</div>
+        </div>
+        <div class="prep-section" style="background:var(--accent-soft)">
+          <div class="head" style="color:var(--accent-deep)"><span>AFTER · 48 HOURS</span><span>read</span></div>
+          <div class="item" style="--c:var(--accent-deep)">No sun, hot tub, or sauna for 24 hr</div>
+          <div class="item">No tight clothing for 12 hr</div>
+          <div class="item">Apply our post-wax oil (free with service)</div>
+        </div>
+        <div class="btn">Book this · Sat May 18 · 2 pm</div>
+      </div>
+    </div></div>
+    <div class="caption">5 · Service · prep + after</div>
+  </div>
+
+  <!-- 6. Calendar -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>YOUR CALENDAR</h2>
+        <div class="icon-btn">+</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="row" style="margin-bottom:8px">
+          <div class="label">MAY 2026</div>
+          <div class="muted">‹ Apr · Jun ›</div>
+        </div>
+        <div class="cal-month">
+          <div class="cal-day head">M</div><div class="cal-day head">T</div><div class="cal-day head">W</div><div class="cal-day head">T</div><div class="cal-day head">F</div><div class="cal-day head">S</div><div class="cal-day head">S</div>
+          <div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"></div><div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div>
+          <div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day due">9</div><div class="cal-day">10</div><div class="cal-day">11</div>
+          <div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day">15</div><div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day has-appt">18</div>
+          <div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day">24</div><div class="cal-day">25</div>
+          <div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div><div class="cal-day has-appt">29</div><div class="cal-day">30</div><div class="cal-day">31</div><div class="cal-day"></div>
+        </div>
+        <div class="label" style="margin-bottom:6px">UPCOMING + DUE</div>
+        <div class="upcoming">
+          <div class="upcoming-row">
+            <div class="date"><div class="num">9</div><div class="month">MAY · DUE</div></div>
+            <div class="info"><strong>Lash refill due</strong><span>book within 5 days · Liberty Village</span></div>
+            <div class="muted">›</div>
+          </div>
+          <div class="upcoming-row">
+            <div class="date"><div class="num">18</div><div class="month">MAY</div></div>
+            <div class="info"><strong>Brazilian + brow</strong><span>2 pm · with Jess · Leslieville</span></div>
+            <div class="muted">›</div>
+          </div>
+          <div class="upcoming-row">
+            <div class="date"><div class="num">29</div><div class="month">MAY</div></div>
+            <div class="info"><strong>Laser · session 4 of 6</strong><span>11 am · with Mia · Yorkville</span></div>
+            <div class="muted">›</div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">+</div><span>Book</span></div>
+        <div class="tab active"><div class="dot">▤</div><span>Calendar</span></div>
+        <div class="tab"><div class="dot">♢</div><span>Wallet</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">6 · Calendar · recurring schedule</div>
+  </div>
+
+  <!-- 7. Membership wallet -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>WALLET</h2>
+        <div class="icon-btn">?</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div class="wallet-card">
+          <div class="lbl">SPOTTED · MEMBER</div>
+          <div class="balance">$148.50</div>
+          <div class="tier">credit · works at all 33+ locations</div>
+        </div>
+        <div class="row" style="margin-bottom:6px">
+          <div class="label">YOUR MEMBERSHIP</div>
+          <div class="muted">Manage</div>
+        </div>
+        <div class="reward-item"><span>Brazilian wax · 4-pack saved</span><span class="pill">3 of 4 used</span></div>
+        <div class="reward-item"><span>Lash refill · monthly</span><span class="pill mint">Active</span></div>
+        <div class="reward-item"><span>Laser series · 6-pack</span><span class="pill gold">3 of 6 used</span></div>
+        <div class="reward-item"><span>Birthday treatment</span><span class="pill">Available</span></div>
+        <div style="height:10px"></div>
+        <div class="btn">Send a gift card</div>
+        <div style="height:8px"></div>
+        <div class="btn alt">Refer a friend</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">+</div><span>Book</span></div>
+        <div class="tab"><div class="dot">▤</div><span>Calendar</span></div>
+        <div class="tab active"><div class="dot">♢</div><span>Wallet</span></div>
+        <div class="tab"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">7 · Wallet · member + gift cards</div>
+  </div>
+
+  <!-- 8. Concierge chat -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <div class="icon-btn">‹</div>
+        <h2>CONCIERGE ✦</h2>
+        <div class="icon-btn">⋯</div>
+      </div>
+      <div class="body">
+        <div class="chat">
+          <div class="bubble bot">Hi Em — your lash refill is due. Want me to find a slot near Liberty Village?</div>
+          <div class="bubble me">Yes, ideally Friday or Saturday with Lara.</div>
+          <div class="bubble bot">Lara has Sat May 17 at 11:30 am or 3 pm. Both fit before your Saturday afternoon hair appointment. Want me to book the 11:30?<small>Sourced from your calendar + Lara's schedule at Liberty Village</small></div>
+          <div class="bubble me">First time doing laser — what should I know?</div>
+          <div class="bubble bot">Three things: don't shave or wax 4 weeks before (we shave the day of). No sun for 2 weeks before, no sun for 48 hrs after. Most customers do 6 sessions, 4 weeks apart. Want a full prep guide?</div>
+          <div class="input"><span>Ask about booking, prep, after-care…</span><span>↑</span></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">8 · Concierge · multilingual booking AI</div>
+  </div>
+
+  <!-- 9. Profile -->
+  <div>
+    <div class="phone"><div class="screen">
+      <div class="notch"></div>
+      <div class="statusbar"><span>9:41</span><span>•••</span></div>
+      <div class="topbar">
+        <h2>PROFILE</h2>
+        <div class="icon-btn">⚙</div>
+      </div>
+      <div class="body" style="overflow:auto">
+        <div style="text-align:center;margin-bottom:12px">
+          <div class="avatar"></div>
+          <div style="font-family:Georgia,serif;font-size:18px">Em R.</div>
+          <div class="muted">Spotted member · Toronto · since 2022</div>
+        </div>
+        <div class="label" style="margin-bottom:4px">YOUR PREFERENCES</div>
+        <div class="menu-item"><span>Home location · Leslieville</span><span>›</span></div>
+        <div class="menu-item"><span>Favorite technician · Jess</span><span>›</span></div>
+        <div class="menu-item"><span>Sensitivities (private)</span><span>›</span></div>
+        <div class="menu-item"><span>Language &amp; region · EN · CA</span><span>›</span></div>
+        <div class="label" style="margin: 12px 0 4px">DATA</div>
+        <div class="menu-item"><span>Booking history · 28 visits</span><span>›</span></div>
+        <div class="menu-item"><span>What we know about you</span><span>›</span></div>
+        <div class="menu-item"><span>Privacy &amp; consent</span><span>›</span></div>
+        <div class="menu-item"><span>Sign out</span><span>›</span></div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><div class="dot">⌂</div><span>Home</span></div>
+        <div class="tab"><div class="dot">+</div><span>Book</span></div>
+        <div class="tab"><div class="dot">▤</div><span>Calendar</span></div>
+        <div class="tab"><div class="dot">♢</div><span>Wallet</span></div>
+        <div class="tab active"><div class="dot">☺</div><span>Me</span></div>
+      </div>
+    </div></div>
+    <div class="caption">9 · Profile · preferences + privacy</div>
+  </div>
+
+</div>
+
+</body>
+</html>

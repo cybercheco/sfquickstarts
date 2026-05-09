@@ -270,6 +270,34 @@ BRANDS = [
         "studio":   "studio-mockups.html",
         "pricing":  "Unika-Swim-Pricing-Client.pdf",
     },
+    {
+        "slug": "the-ten-spot",
+        "folder": "the-ten-spot-mobile-app",
+        "name": "The Ten Spot",
+        "tagline": "Book the spot. Skip the spa.",
+        "summary": (
+            "A multi-location booking + relationship engine for North "
+            "America's largest anti-spa beauty-bar franchise. 33+ "
+            "locations, recurring 4-week cadence, technician relationships, "
+            "service-specific prep + aftercare. Booker/Mindbody integration "
+            "syncs with your existing system rather than replacing it."
+        ),
+        "category": "Beauty bar · 33+ location franchise · booking",
+        "palette": {
+            "bg":      "#faf6f4",
+            "ink":     "#1a1a1a",
+            "muted":   "#8a8485",
+            "line":    "#ebd9da",
+            "accent":  "#e85a8c",
+            "deep":    "#a82e60",
+            "soft":    "#fce0eb",
+            "gold":    "#d4a85a",
+        },
+        "deck":     "The-Ten-Spot-Pitch.pptx",
+        "mobile":   "mockups.html",
+        "studio":   "studio-mockups.html",
+        "pricing":  "The-Ten-Spot-Pricing-Client.pdf",
+    },
 ]
 
 

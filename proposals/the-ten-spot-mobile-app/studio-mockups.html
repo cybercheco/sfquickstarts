@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>The Ten Spot — The Studio (Web Admin Mockups)</title>
+<style>
+  :root {
+    --bg: #faf6f4; --ink: #1a1a1a; --muted: #8a8485; --line: #ebd9da; --card: #ffffff;
+    --accent: #e85a8c; --accent-deep: #a82e60; --accent-soft: #fce0eb;
+    --gold: #d4a85a; --gold-soft: #f3e8c7; --mint: #b5d4c4; --mint-soft: #e2efe7;
+    --black: #1a1a1a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  header.page { padding: 32px 32px 0; max-width: 1400px; margin: 0 auto; }
+  header.page h1 { font-family: "Times New Roman", Georgia, serif; font-weight: 500; font-size: 36px; margin: 0 0 4px; letter-spacing: -0.5px; color: var(--accent-deep); }
+  header.page p { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+  .deck { max-width: 1400px; margin: 0 auto; padding: 16px 32px 64px; }
+  .browser { background: #1a1a1a; border-radius: 14px; box-shadow: 0 24px 48px rgba(168,46,96,.14), 0 2px 8px rgba(0,0,0,.06); margin-bottom: 32px; overflow: hidden; }
+  .browser .chrome { background: #1a1a1a; padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
+  .browser .chrome .dots { display: flex; gap: 6px; }
+  .browser .chrome .dots span { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,.2); }
+  .browser .chrome .url { flex: 1; background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); font-size: 12px; padding: 5px 12px; border-radius: 6px; font-family: monospace; }
+  .frame { height: 720px; display: grid; grid-template-columns: 220px 1fr; background: var(--bg); overflow: hidden; }
+  .sidebar { background: #fff; border-right: 1px solid var(--line); padding: 18px 0; display: flex; flex-direction: column; }
+  .brand { padding: 0 18px 16px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+  .brand .logo { font-family: "Times New Roman", Georgia, serif; color: var(--accent-deep); font-size: 12px; letter-spacing: 4px; font-weight: 600; }
+  .brand .sub { color: var(--muted); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .brand .scope { font-size: 10px; color: var(--accent-deep); margin-top: 6px; font-weight: 600; }
+  .nav { flex: 1; padding: 0 12px; display: flex; flex-direction: column; gap: 2px; }
+  .nav .section-label { color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; padding: 12px 12px 6px; }
+  .nav a { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; color: var(--ink); font-size: 12px; text-decoration: none; }
+  .nav a .ic { width: 18px; height: 18px; background: var(--bg); border-radius: 5px; display: grid; place-items: center; font-size: 10px; color: var(--muted); }
+  .nav a.active { background: var(--accent-soft); color: var(--accent-deep); font-weight: 600; }
+  .nav a.active .ic { background: var(--accent); color: #fff; }
+  .nav a .badge { margin-left: auto; background: var(--accent); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 999px; }
+  .user { padding: 12px 16px; border-top: 1px solid var(--line); display: flex; gap: 10px; align-items: center; }
+  .user .av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+  .user .name { font-size: 12px; }
+  .user .name strong { display: block; }
+  .user .name span { color: var(--muted); font-size: 10px; }
+  .main { overflow: auto; padding: 22px 28px 30px; }
+  .topline { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .crumb { color: var(--muted); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+  .top-actions { display: flex; gap: 8px; }
+  .btn { display: inline-block; padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; background: var(--accent); color: #fff; border: none; cursor: pointer; }
+  .btn.alt { background: #fff; color: var(--accent-deep); border: 1px solid var(--line); }
+  .btn.subtle { background: var(--bg); color: var(--ink); }
+  h2 { font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 26px; margin: 0 0 4px; color: var(--ink); }
+  .subhead { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 22px; }
+  .stat-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .stat-card .label { color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+  .stat-card .num { font-family: "Times New Roman", Georgia, serif; color: var(--accent-deep); font-size: 32px; line-height: 1; margin: 6px 0 2px; }
+  .stat-card .delta { color: var(--accent); font-size: 11px; font-weight: 600; }
+  .grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+  .panel h3 { margin: 0 0 12px; font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 15px; color: var(--ink); display: flex; justify-content: space-between; align-items: center; }
+  .panel h3 .more { color: var(--accent-deep); font-size: 11px; font-weight: 600; }
+  .row { display: grid; grid-template-columns: 70px 1fr auto auto; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); align-items: center; }
+  .row:last-child { border: none; }
+  .row .id { background: var(--accent-soft); color: var(--accent-deep); border-radius: 6px; padding: 4px; text-align: center; font-family: monospace; font-size: 11px; font-weight: 700; }
+  .row .info { font-size: 12px; }
+  .row .info strong { display: block; }
+  .row .info span { color: var(--muted); font-size: 11px; }
+  .pill { padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; }
+  .pill.live { background: var(--mint-soft); color: #4a7560; }
+  .pill.review { background: var(--gold-soft); color: #8a6e2a; }
+  .pill.draft { background: var(--bg); color: var(--muted); }
+  .pill.warn { background: var(--accent-soft); color: var(--accent-deep); }
+  .pill.noshow { background: #f7d6d6; color: #a83333; }
+
+  /* Calendar grid for scheduler */
+  .scheduler { display: grid; grid-template-columns: 80px repeat(8, 1fr); gap: 1px; background: var(--line); border-radius: 8px; overflow: hidden; }
+  .scheduler .header-cell { background: var(--card); padding: 8px; font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; text-align: center; }
+  .scheduler .time-cell { background: var(--card); padding: 8px; font-size: 10px; color: var(--muted); text-align: right; }
+  .scheduler .slot { background: var(--card); padding: 6px 8px; min-height: 50px; font-size: 10px; cursor: pointer; }
+  .scheduler .slot.booked { background: var(--accent-soft); }
+  .scheduler .slot.booked.now { background: var(--accent); color: #fff; }
+  .scheduler .slot.booked strong { display: block; font-size: 10px; }
+  .scheduler .slot.booked span { color: var(--muted); font-size: 9px; }
+  .scheduler .slot.booked.now span { color: rgba(255,255,255,.85); }
+  .scheduler .slot.empty:hover { background: var(--mint-soft); }
+
+  /* Multi-location dashboard */
+  .loc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .loc-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+  .loc-card .name { font-family: "Times New Roman", Georgia, serif; font-size: 16px; margin-bottom: 4px; }
+  .loc-card .meta { color: var(--muted); font-size: 11px; margin-bottom: 8px; }
+  .loc-card .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 10px; }
+  .loc-card .stat { background: var(--bg); padding: 6px 8px; border-radius: 6px; }
+  .loc-card .stat strong { display: block; color: var(--accent-deep); font-family: "Times New Roman", Georgia, serif; font-size: 14px; }
+  .loc-card .stat span { color: var(--muted); }
+
+  /* Concierge */
+  .inbox-shell { display: grid; grid-template-columns: 280px 1fr; gap: 14px; height: 600px; }
+  .msg { display: grid; grid-template-columns: 32px 1fr; gap: 10px; padding: 10px 12px; border-radius: 8px; cursor: pointer; }
+  .msg.active { background: var(--accent-soft); }
+  .msg .av { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-deep)); }
+  .msg .body { font-size: 12px; }
+  .msg .body .name { font-weight: 600; }
+  .msg .body .preview { color: var(--muted); margin-top: 2px; }
+  .msg .body .meta { color: var(--muted); font-size: 10px; margin-top: 4px; display: flex; gap: 8px; }
+  .msg .body .lang { background: var(--bg); padding: 1px 6px; border-radius: 999px; font-weight: 600; }
+  .inbox-thread { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 18px 22px; display: flex; flex-direction: column; }
+  .thread-head { border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 14px; }
+  .thread-head h4 { margin: 0 0 4px; font-family: "Times New Roman", Georgia, serif; font-weight: 400; font-size: 17px; }
+  .thread-head .meta { color: var(--muted); font-size: 11px; }
+  .thread-head .meta .pill { background: var(--accent-soft); color: var(--accent-deep); padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; margin-right: 6px; }
+  .bubbles { flex: 1; overflow: auto; display: flex; flex-direction: column; gap: 8px; }
+  .bubble { max-width: 80%; padding: 10px 12px; border-radius: 12px; font-size: 12px; line-height: 1.4; }
+  .bubble.left { align-self: flex-start; background: var(--bg); }
+  .bubble.right { align-self: flex-end; background: var(--accent); color: #fff; }
+  .bubble.note { align-self: center; background: var(--mint-soft); color: #4a7560; font-size: 11px; font-style: italic; }
+  .reply-bar { margin-top: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
+  .caption { text-align: center; margin: 4px 0 24px; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.4px; }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <h1>The Ten Spot — Studio · Web Admin Mockups</h1>
+  <p>Multi-location franchise admin. Pink + black palette. Optimised for Kristen, franchise owners, technicians, and corporate ops.</p>
+</header>
+
+<div class="deck">
+
+  <!-- 1. Multi-location dashboard -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.thetenspot.com / dashboard</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">10SPOT · STUDIO</div>
+          <div class="sub">corporate view</div>
+          <div class="scope">▼ ALL 33 LOCATIONS</div>
+        </div>
+        <nav class="nav">
+          <a class="active"><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Bookings</div>
+          <a><span class="ic">▤</span> Master calendar</a>
+          <a><span class="ic">⌖</span> Scheduling</a>
+          <a><span class="ic">!</span> No-shows <span class="badge">14</span></a>
+          <div class="section-label">Locations</div>
+          <a><span class="ic">⌂</span> Per-location</a>
+          <a><span class="ic">⚙</span> Service catalog</a>
+          <a><span class="ic">⊕</span> Franchise admin</a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">★</span> Spotted members</a>
+          <a><span class="ic">✉</span> Concierge <span class="badge">8</span></a>
+          <div class="section-label">Insights</div>
+          <a><span class="ic">▥</span> Analytics</a>
+        </nav>
+        <div class="user">
+          <div class="av"></div>
+          <div class="name"><strong>Kristen G.</strong><span>Founder · CEO</span></div>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CORPORATE · TODAY · 8 MAY 2026 · 33 LOCATIONS</div>
+          <div class="top-actions">
+            <button class="btn alt">Search</button>
+            <button class="btn">+ Schedule</button>
+          </div>
+        </div>
+        <h2>Good morning, Kristen.</h2>
+        <div class="subhead">14 no-shows yesterday · 8 concierge tickets · 1,842 bookings today across 33 locations.</div>
+
+        <div class="stat-row">
+          <div class="stat-card"><div class="label">Bookings · today</div><div class="num">1,842</div><div class="delta">+8.2% vs prior Mon</div></div>
+          <div class="stat-card"><div class="label">App-booked %</div><div class="num">68%</div><div class="delta">+12 pts since launch</div></div>
+          <div class="stat-card"><div class="label">No-show rate · 30d</div><div class="num">4.2%</div><div class="delta">−1.8 pts MoM</div></div>
+          <div class="stat-card"><div class="label">Tech utilisation</div><div class="num">82%</div><div class="delta">healthy</div></div>
+        </div>
+
+        <h3 style="font-family:Georgia,serif;font-size:18px;margin:0 0 12px;color:var(--ink)">Top locations · today</h3>
+        <div class="loc-grid">
+          <div class="loc-card">
+            <div class="name">Leslieville</div>
+            <div class="meta">9 yr · franchise: Sarah K. · 4.9 ★</div>
+            <div class="stats">
+              <div class="stat"><strong>62</strong><span>bookings</span></div>
+              <div class="stat"><strong>$8.4k</strong><span>revenue</span></div>
+              <div class="stat"><strong>2</strong><span>no-shows</span></div>
+              <div class="stat"><strong>88%</strong><span>util</span></div>
+            </div>
+          </div>
+          <div class="loc-card">
+            <div class="name">Yorkville</div>
+            <div class="meta">7 yr · franchise: Maya P. · 4.8 ★</div>
+            <div class="stats">
+              <div class="stat"><strong>71</strong><span>bookings</span></div>
+              <div class="stat"><strong>$11.2k</strong><span>revenue</span></div>
+              <div class="stat"><strong>0</strong><span>no-shows</span></div>
+              <div class="stat"><strong>91%</strong><span>util</span></div>
+            </div>
+          </div>
+          <div class="loc-card">
+            <div class="name">Liberty Village</div>
+            <div class="meta">6 yr · franchise: Lara D. · 4.9 ★</div>
+            <div class="stats">
+              <div class="stat"><strong>58</strong><span>bookings</span></div>
+              <div class="stat"><strong>$7.6k</strong><span>revenue</span></div>
+              <div class="stat"><strong>3</strong><span>no-shows</span></div>
+              <div class="stat"><strong>79%</strong><span>util</span></div>
+            </div>
+          </div>
+          <div class="loc-card">
+            <div class="name">Markham</div>
+            <div class="meta">4 yr · franchise: Jenn O. · 4.7 ★</div>
+            <div class="stats">
+              <div class="stat"><strong>44</strong><span>bookings</span></div>
+              <div class="stat"><strong>$5.8k</strong><span>revenue</span></div>
+              <div class="stat"><strong>1</strong><span>no-show</span></div>
+              <div class="stat"><strong>76%</strong><span>util</span></div>
+            </div>
+          </div>
+          <div class="loc-card">
+            <div class="name">Bedford NS</div>
+            <div class="meta">5 yr · franchise: Pat L. · 4.8 ★</div>
+            <div class="stats">
+              <div class="stat"><strong>38</strong><span>bookings</span></div>
+              <div class="stat"><strong>$4.9k</strong><span>revenue</span></div>
+              <div class="stat"><strong>1</strong><span>no-show</span></div>
+              <div class="stat"><strong>74%</strong><span>util</span></div>
+            </div>
+          </div>
+          <div class="loc-card">
+            <div class="name">NYC LES (US #1)</div>
+            <div class="meta">opened 6 mo · franchise: Ari M.</div>
+            <div class="stats">
+              <div class="stat"><strong>31</strong><span>bookings</span></div>
+              <div class="stat"><strong>$5.4k</strong><span>revenue</span></div>
+              <div class="stat"><strong>2</strong><span>no-shows</span></div>
+              <div class="stat"><strong>68%</strong><span>util</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">1 · Multi-location dashboard · corporate view across 33 locations</div>
+
+  <!-- 2. Scheduling -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.thetenspot.com / scheduling / leslieville · sat may 18</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">10SPOT · STUDIO</div>
+          <div class="sub">leslieville view</div>
+          <div class="scope">▼ LESLIEVILLE</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Bookings</div>
+          <a><span class="ic">▤</span> Master calendar</a>
+          <a class="active"><span class="ic">⌖</span> Scheduling</a>
+          <a><span class="ic">!</span> No-shows</a>
+          <div class="section-label">Locations</div>
+          <a><span class="ic">⌂</span> Per-location</a>
+          <a><span class="ic">⚙</span> Service catalog</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">SCHEDULING · LESLIEVILLE · SAT MAY 18 · 6 TECHS</div>
+          <div class="top-actions">
+            <button class="btn alt">‹ Fri</button>
+            <button class="btn alt">Sun ›</button>
+            <button class="btn">+ Walk-in</button>
+          </div>
+        </div>
+        <h2>Saturday May 18 · Leslieville</h2>
+        <div class="subhead">88% utilised · 62 bookings · 6 technicians active · 2 wait-list customers</div>
+
+        <div class="scheduler">
+          <div class="header-cell"></div>
+          <div class="header-cell">JESS<br/>wax + skin</div>
+          <div class="header-cell">SOPHIE<br/>laser</div>
+          <div class="header-cell">LARA<br/>nails</div>
+          <div class="header-cell">MIA<br/>laser</div>
+          <div class="header-cell">SAM<br/>wax</div>
+          <div class="header-cell">RAE<br/>nails</div>
+          <div class="header-cell">LARA #2<br/>lash</div>
+          <div class="header-cell">+1<br/>floater</div>
+
+          <div class="time-cell">10:00</div>
+          <div class="slot booked"><strong>Em R.</strong><span>Brazilian</span></div>
+          <div class="slot booked"><strong>Tia M.</strong><span>Laser legs · 4 of 6</span></div>
+          <div class="slot booked"><strong>Mae L.</strong><span>Mani + pedi</span></div>
+          <div class="slot empty"></div>
+          <div class="slot booked"><strong>Pia A.</strong><span>Underarm wax</span></div>
+          <div class="slot booked"><strong>Jen K.</strong><span>Gel mani</span></div>
+          <div class="slot booked"><strong>Dee O.</strong><span>Lash refill</span></div>
+          <div class="slot empty">+</div>
+
+          <div class="time-cell">11:00</div>
+          <div class="slot booked"><strong>Pia W.</strong><span>Brazilian</span></div>
+          <div class="slot booked"><strong>Lin T.</strong><span>Laser face · 1 of 6</span></div>
+          <div class="slot booked"><strong>Rin S.</strong><span>Pedicure</span></div>
+          <div class="slot booked"><strong>Maya G.</strong><span>Laser arms</span></div>
+          <div class="slot empty"></div>
+          <div class="slot booked"><strong>Cora A.</strong><span>Acrylic fill</span></div>
+          <div class="slot booked"><strong>Ana D.</strong><span>Lash full set</span></div>
+          <div class="slot empty">+</div>
+
+          <div class="time-cell">12:00</div>
+          <div class="slot empty">+</div>
+          <div class="slot booked"><strong>Nia O.</strong><span>Laser bikini</span></div>
+          <div class="slot booked"><strong>Bea I.</strong><span>Mani</span></div>
+          <div class="slot booked"><strong>Lou T.</strong><span>Laser legs</span></div>
+          <div class="slot booked"><strong>Olivia P.</strong><span>Brow wax</span></div>
+          <div class="slot empty"></div>
+          <div class="slot booked"><strong>Tessa M.</strong><span>Lash fill</span></div>
+          <div class="slot empty">+</div>
+
+          <div class="time-cell">13:00</div>
+          <div class="slot booked"><strong>Sara V.</strong><span>HydraFacial</span></div>
+          <div class="slot booked"><strong>Gigi L.</strong><span>Laser face · 2 of 6</span></div>
+          <div class="slot booked"><strong>Anna R.</strong><span>Gel pedi</span></div>
+          <div class="slot empty"></div>
+          <div class="slot booked"><strong>Mar T.</strong><span>Brazilian</span></div>
+          <div class="slot booked"><strong>Ivy K.</strong><span>Mani</span></div>
+          <div class="slot empty"></div>
+          <div class="slot empty">+</div>
+
+          <div class="time-cell">14:00</div>
+          <div class="slot booked now"><strong>Em R. ✦</strong><span>Brazilian + brow</span></div>
+          <div class="slot booked"><strong>Pat O.</strong><span>Laser bikini · 3 of 6</span></div>
+          <div class="slot booked"><strong>Ros C.</strong><span>Acrylic full set</span></div>
+          <div class="slot booked"><strong>Yas D.</strong><span>Laser face</span></div>
+          <div class="slot booked"><strong>Hana V.</strong><span>Underarm wax</span></div>
+          <div class="slot booked"><strong>Lila S.</strong><span>Gel mani</span></div>
+          <div class="slot booked"><strong>Mia P.</strong><span>Lash refill</span></div>
+          <div class="slot empty">+</div>
+
+          <div class="time-cell">15:00</div>
+          <div class="slot booked"><strong>Tara N.</strong><span>HydraFacial</span></div>
+          <div class="slot booked"><strong>Lina E.</strong><span>Laser legs</span></div>
+          <div class="slot empty"></div>
+          <div class="slot empty"></div>
+          <div class="slot booked"><strong>Dani M.</strong><span>Brazilian</span></div>
+          <div class="slot booked"><strong>Vera P.</strong><span>Gel pedi</span></div>
+          <div class="slot booked"><strong>Lex K.</strong><span>Lash full set</span></div>
+          <div class="slot empty">+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">2 · Scheduling · per-location technician calendar</div>
+
+  <!-- 3. Service catalog editor -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.thetenspot.com / catalog / brazilian-wax</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">10SPOT · STUDIO</div>
+          <div class="sub">corporate view</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Locations</div>
+          <a><span class="ic">⌂</span> Per-location</a>
+          <a class="active"><span class="ic">⚙</span> Service catalog</a>
+          <a><span class="ic">⊕</span> Franchise admin</a>
+          <div class="section-label">Content</div>
+          <a><span class="ic">▶</span> Prep + after</a>
+          <a><span class="ic">A</span> Translations</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CATALOG · WAX · BRAZILIAN</div>
+          <div class="top-actions">
+            <button class="btn subtle">Discard</button>
+            <button class="btn alt">Save draft</button>
+            <button class="btn">Publish</button>
+          </div>
+        </div>
+        <h2>Brazilian wax · service catalog</h2>
+        <div class="subhead">Master service definition · 33 locations · per-franchise pricing variation allowed within +/- 15%</div>
+
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Service basics</h3>
+            <div style="font-size:12px; line-height:1.7">
+              <strong>Name</strong><br/>
+              <span style="color:var(--muted)">Brazilian wax</span><br/><br/>
+              <strong>Duration</strong><br/>
+              <span style="color:var(--muted)">30 min · with 5 min buffer</span><br/><br/>
+              <strong>Master price</strong><br/>
+              <span style="color:var(--muted)">$58 CAD · $52 USD</span><br/><br/>
+              <strong>Allowed variation</strong><br/>
+              <span style="color:var(--muted)">+/- 15% per franchise</span><br/><br/>
+              <strong>Required tech skill</strong><br/>
+              <span style="color:var(--muted)">Wax certified · Brazilian-trained</span><br/><br/>
+              <strong>Recurring cadence</strong><br/>
+              <span style="color:var(--muted)">4 weeks (suggest)</span>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Per-franchise pricing · 33 locations</h3>
+            <div class="row">
+              <div class="id">LESL</div>
+              <div class="info"><strong>Leslieville</strong><span>$58 · master price</span></div>
+              <span class="pill live">LIVE</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">YORK</div>
+              <div class="info"><strong>Yorkville</strong><span>$66 · +14% (within range)</span></div>
+              <span class="pill live">LIVE</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">LIBV</div>
+              <div class="info"><strong>Liberty Village</strong><span>$58 · master price</span></div>
+              <span class="pill live">LIVE</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">MARK</div>
+              <div class="info"><strong>Markham</strong><span>$54 · −7% (within range)</span></div>
+              <span class="pill live">LIVE</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">BEDF</div>
+              <div class="info"><strong>Bedford NS</strong><span>$56 · −3% (within range)</span></div>
+              <span class="pill live">LIVE</span>
+              <div></div>
+            </div>
+            <div class="row">
+              <div class="id">NYCL</div>
+              <div class="info"><strong>NYC LES</strong><span>$62 USD · master USD price</span></div>
+              <span class="pill live">LIVE</span>
+              <div></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="panel">
+          <h3>Prep + Aftercare content (customer-facing)</h3>
+          <div class="row">
+            <div class="id">PREP</div>
+            <div class="info"><strong>Before you come (24 hr)</strong><span>3 items · "no shaving 2 weeks", "skip caffeine", "exfoliate night before"</span></div>
+            <span class="pill live">LIVE</span>
+            <button class="btn alt" style="padding:5px 10px;font-size:10px">Edit</button>
+          </div>
+          <div class="row">
+            <div class="id">AFTER</div>
+            <div class="info"><strong>After (48 hr)</strong><span>3 items · "no sun", "no tight clothing", "post-wax oil"</span></div>
+            <span class="pill live">LIVE</span>
+            <button class="btn alt" style="padding:5px 10px;font-size:10px">Edit</button>
+          </div>
+          <div class="row">
+            <div class="id">FR</div>
+            <div class="info"><strong>French translation</strong><span>Claude-drafted · awaiting editor review</span></div>
+            <span class="pill review">REVIEW</span>
+            <button class="btn alt" style="padding:5px 10px;font-size:10px">Open</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">3 · Catalog · per-location pricing + prep / after content</div>
+
+  <!-- 4. Concierge -->
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">studio.thetenspot.com / concierge / em-r-2841</div>
+    </div>
+    <div class="frame">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">10SPOT · STUDIO</div>
+          <div class="sub">corporate view</div>
+        </div>
+        <nav class="nav">
+          <a><span class="ic">⌂</span> Dashboard</a>
+          <div class="section-label">Bookings</div>
+          <a><span class="ic">▤</span> Master calendar</a>
+          <a><span class="ic">⌖</span> Scheduling</a>
+          <a><span class="ic">!</span> No-shows</a>
+          <div class="section-label">Customers</div>
+          <a><span class="ic">★</span> Spotted members</a>
+          <a class="active"><span class="ic">✉</span> Concierge <span class="badge">8</span></a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="topline">
+          <div class="crumb">CONCIERGE · 8 OPEN · 2 ESCALATED</div>
+          <div class="top-actions">
+            <button class="btn alt">Filter</button>
+            <button class="btn">Mark resolved</button>
+          </div>
+        </div>
+        <h2>Concierge inbox</h2>
+        <div class="subhead">App chat escalations · sensitive questions · franchise-cross issues · membership disputes</div>
+
+        <div class="inbox-shell">
+          <div class="panel" style="overflow:auto">
+            <h3 style="margin-bottom:8px">Open · 8</h3>
+            <div class="msg active">
+              <div class="av"></div>
+              <div class="body">
+                <div class="name">Em R. · Toronto</div>
+                <div class="preview">Lash refill due · scheduling near work</div>
+                <div class="meta"><span class="lang">EN</span><span>2h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--gold),var(--accent-deep))"></div>
+              <div class="body">
+                <div class="name">Anna F. · Montréal</div>
+                <div class="preview">Première fois laser — questions de prep</div>
+                <div class="meta"><span class="lang">FR</span><span>4h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av" style="background:linear-gradient(135deg,var(--mint),#4a7560)"></div>
+              <div class="body">
+                <div class="name">Tia M. · Yorkville</div>
+                <div class="preview">Sensitive skin pre-laser · escalated</div>
+                <div class="meta"><span class="lang">EN</span><span>5h</span></div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="av"></div>
+              <div class="body">
+                <div class="name">Lara D. · franchise owner</div>
+                <div class="preview">Tech sched conflict · Liberty Village</div>
+                <div class="meta"><span class="lang">EN</span><span>1d</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="inbox-thread">
+            <div class="thread-head">
+              <h4>Em Reilly · Toronto</h4>
+              <div class="meta"><span class="pill">SPOTTED · MEMBER</span><span>28 visits · last visit Apr 27 · 2h ago</span></div>
+            </div>
+            <div class="bubbles">
+              <div class="bubble note">App concierge surfaced this — Em's lash refill is due (last visit 18 days ago, recommended cadence 21d). She's asking about scheduling near her work in Liberty Village; usually books at Leslieville.</div>
+              <div class="bubble left">Hi! My lash refill is due and I won't be able to make it to Leslieville this week. Anything in Liberty Village late afternoon Thurs or Fri?<small>EN · 2h ago</small></div>
+              <div class="bubble right">Hi Em — Lara at Liberty Village has Thu May 16 at 5:30 pm, or Fri May 17 at 11:30 am. The 5:30 pm fits between your usual gym times. Want me to book it?<small>EN · sending</small></div>
+            </div>
+            <div class="reply-bar"><span>Reply in English — book directly from chat…</span><span>↑</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">4 · Concierge inbox · cross-location booking + franchise escalations</div>
+
+</div>
+
+</body>
+</html>
